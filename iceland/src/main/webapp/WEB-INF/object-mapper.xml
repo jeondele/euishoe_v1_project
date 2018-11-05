@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<!-- DataSource 설정  마이바티스로 하기때문에 사실상 필요 없음-->
+	<bean type="component" name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521"/>
+		<property name="username" value="hr"/>
+		<property name="password" value="hr"/>
+		<property name="initialSize" value="2"/>
+		<property name="maxTotal" value="10"/>
+		<property name="maxIdle" value="5"/>
+	</bean>
+	<!-- Mybatis SqlSessionFactory 설정-->
+	<bean type="component" name="sqlSessionFactory" class="com.euishoe.common.factory.SqlSessionFactoryCreator">
+		<property name="configLocation" value="mybatis-config.xml"/>
+		<property name="environment" value="development"/>
+	</bean>
+	
+	<!-- cart 맵핑 -->
+	<bean type="dao" name="cartDao" class="com.euishoe.carts.dao.MybatisCartDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="cartService" class="com.euishoe.carts.service.CartServiceImpl">
+		<property name="cartDao" ref="cartDao"/>
+	</bean>
+	
+	<!-- customer 맵핑 -->
+	<bean type="dao" name="customerDao" class="com.euishoe.customers.dao.MybatisCustomerDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="customerService" class="com.euishoe.customers.service.CustomerServiceImpl">
+		<property name="customerDao" ref="customerDao"/>
+	</bean>
+	
+	<!-- noncustomer 맵핑 -->
+	<bean type="dao" name="noncustomerDao" class="com.euishoe.noncustomers.dao.MybatisNoncustomerDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="noncustomerService" class="com.euishoe.noncustomers.service.NoncustomerServiceImpl">
+		<property name="noncustomerDao" ref="noncustomerDao"/>
+	</bean>
+	
+	<!-- review 맵핑 -->
+	<bean type="dao" name="reviewDao" class="com.euishoe.reviews.dao.MybatisReviewDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="ReviewService" class="com.euishoe.reviews.service.ReviewServiceImpl">
+		<property name="reviewDao" ref="reviewDao"/>
+	</bean>
+	
+	<!-- order 맵핑 -->
+	<bean type="dao" name="orderDao" class="com.euishoe.orders.dao.MybatisOrderDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="orderService" class="com.euishoe.orders.service.OrderServiceImpl">
+		<property name="orderDao" ref="orderDao"/>
+	</bean>
+	
+	<!-- image 맵핑 -->
+	<bean type="dao" name="imageDao" class="com.euishoe.images.dao.MybatisImageDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="ImageService" class="com.euishoe.images.service.ImageServiceImpl">
+		<property name="imageDao" ref="imageDao"/>
+	</bean>
+	
+	<!-- point 맵핑 -->
+	<bean type="dao" name="pointDao" class="com.euishoe.points.dao.MybatisPointDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="pointService" class="com.euishoe.points.service.PointServiceImpl">
+		<property name="pointDao" ref="pointDao"/>
+	</bean>
+	
+	<!-- product 맵핑 -->
+	<bean type="dao" name="productDao" class="com.euishoe.products.dao.MybatisProductDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="productService" class="com.euishoe.products.service.ProductServiceImpl">
+		<property name="productDao" ref="productDao"/>
+	</bean>
+	
+	<!-- payment 맵핑 -->
+	<bean type="dao" name="paymentDao" class="com.euishoe.payments.dao.MybatisPaymentDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="paymentService" class="com.euishoe.payments.service.PaymentServiceImpl">
+		<property name="paymentDao" ref="paymentDao"/>
+	</bean>
+	
+	<!-- delivery 맵핑 -->
+	<bean type="dao" name="deliveryDao" class="com.euishoe.deliveries.dao.MybatisDeliveryDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="deliveryService" class="com.euishoe.deliveries.service.DeliveryServiceImpl">
+		<property name="deliveryDao" ref="deliveryDao"/>
+	</bean>
+	
+	<!-- wishlist 맵핑 -->
+	<bean type="dao" name="wishlistDao" class="com.euishoe.wishlists.dao.MybatisWishlistDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="wishlistService" class="com.euishoe.wishlists.service.WishlistServiceImpl">
+		<property name="wishlistDao" ref="wishlistDao"/>
+	</bean>
+	
+	<!-- qna 맵핑 -->
+	<bean type="dao" name="qnaDao" class="com.euishoe.qnas.dao.MybatisQnaDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="qnaService" class="com.euishoe.qnas.service.QnaServiceImpl">
+		<property name="qnaDao" ref="qnaDao"/>
+	</bean>
+</beans>
