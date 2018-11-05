@@ -1,4 +1,4 @@
-# Compiled class file
+﻿# Compiled class file
 *.class
 
 # Log file
@@ -29,3 +29,14 @@ hs_err_pid*
 #web.xml 무시
 web.xml
 Servers/
+
+
+#이클립스용 설정 파일 삭제
+.metadata
+.recommenders
+.classpath
+.project
+.settings/
+
+#서버 제외
+/.recommenders/
