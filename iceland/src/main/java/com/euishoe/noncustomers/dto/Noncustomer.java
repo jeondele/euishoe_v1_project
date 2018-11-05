@@ -7,5 +7,70 @@ package com.euishoe.noncustomers.dto;
  *
  */
 public class Noncustomer {
-	//dto
+	private int noncustomerNum; //비회원번호
+	private String noncustomerEmail; //비회원이메일
+	private String noncustomerName; //비회원이름
+	private String noncustomerPassword; //비회원비밀번호
+	private String noncustomerPhonenumber; //비회원 전화번호
+	
+	public Noncustomer() {
+	}
+
+	public Noncustomer(int noncustomerNum, String noncustomerEmail, String noncustomerName, String noncustomerPassword,
+			String noncustomerPhonenumber) {
+		super();
+		this.noncustomerNum = noncustomerNum;
+		this.noncustomerEmail = noncustomerEmail;
+		this.noncustomerName = noncustomerName;
+		this.noncustomerPassword = noncustomerPassword;
+		this.noncustomerPhonenumber = noncustomerPhonenumber;
+	}
+
+	public int getNoncustomerNum() {
+		return noncustomerNum;
+	}
+
+	public void setNoncustomerNum(int noncustomerNum) {
+		this.noncustomerNum = noncustomerNum;
+	}
+
+	public String getNoncustomerEmail() {
+		return noncustomerEmail;
+	}
+
+	public void setNoncustomerEmail(String noncustomerEmail) {
+		this.noncustomerEmail = noncustomerEmail;
+	}
+
+	public String getNoncustomerName() {
+		return noncustomerName;
+	}
+
+	public void setNoncustomerName(String noncustomerName) {
+		this.noncustomerName = noncustomerName;
+	}
+
+	public String getNoncustomerPassword() {
+		return noncustomerPassword;
+	}
+
+	public void setNoncustomerPassword(String noncustomerPassword) {
+		this.noncustomerPassword = noncustomerPassword;
+	}
+
+	public String getNoncustomerPhonenumber() {
+		return noncustomerPhonenumber;
+	}
+
+	public void setNoncustomerPhonenumber(String noncustomerPhonenumber) {
+		this.noncustomerPhonenumber = noncustomerPhonenumber;
+	}
+
+	@Override
+	public String toString() {
+		return "Noncustomer [noncustomerNum=" + noncustomerNum + ", noncustomerEmail=" + noncustomerEmail
+				+ ", noncustomerName=" + noncustomerName + ", noncustomerPassword=" + noncustomerPassword
+				+ ", noncustomerPhonenumber=" + noncustomerPhonenumber + "]";
+	}
+	
 }
