@@ -6,26 +6,25 @@ package com.euishoe.products.dto;
  *
  */
 public class Product {
-	//상품코드
-	private String productCode;
-	//상품번호 
-	private int productNo; 
-	//상품색깔코드
-	private String colorCode;
-	//상품사이즈코드
-	private String sizeCode;
-	//상품수량
-	private String productCount;
-	
+
+	private String productCode; //상품코드
+	private String colorCode; //상품색깔코드
+	private String jacketCode; //상의코드명
+	private String pantsCode; //하의코드명
+	private int productNum; // 상품번호
+	private int productCount; //상품수량
+
 	public Product() {
 	}
 
-	public Product(String productCode, int productNo, String colorCode, String sizeCode, String productCount) {
+	public Product(String productCode, String colorCode, String jacketCode, String pantsCode, int productNum,
+			int productCount) {
 		super();
 		this.productCode = productCode;
-		this.productNo = productNo;
 		this.colorCode = colorCode;
-		this.sizeCode = sizeCode;
+		this.jacketCode = jacketCode;
+		this.pantsCode = pantsCode;
+		this.productNum = productNum;
 		this.productCount = productCount;
 	}
 
@@ -37,14 +36,6 @@ public class Product {
 		this.productCode = productCode;
 	}
 
-	public int getProductNo() {
-		return productNo;
-	}
-
-	public void setProductNo(int productNo) {
-		this.productNo = productNo;
-	}
-
 	public String getColorCode() {
 		return colorCode;
 	}
@@ -53,26 +44,42 @@ public class Product {
 		this.colorCode = colorCode;
 	}
 
-	public String getSizeCode() {
-		return sizeCode;
+	public String getJacketCode() {
+		return jacketCode;
 	}
 
-	public void setSizeCode(String sizeCode) {
-		this.sizeCode = sizeCode;
+	public void setJacketCode(String jacketCode) {
+		this.jacketCode = jacketCode;
 	}
 
-	public String getProductCount() {
+	public String getPantsCode() {
+		return pantsCode;
+	}
+
+	public void setPantsCode(String pantsCode) {
+		this.pantsCode = pantsCode;
+	}
+
+	public int getProductNum() {
+		return productNum;
+	}
+
+	public void setProductNum(int productNum) {
+		this.productNum = productNum;
+	}
+
+	public int getProductCount() {
 		return productCount;
 	}
 
-	public void setProductCount(String productCount) {
+	public void setProductCount(int productCount) {
 		this.productCount = productCount;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [productCode=" + productCode + ", productNo=" + productNo + ", colorCode=" + colorCode
-				+ ", sizeCode=" + sizeCode + ", productCount=" + productCount + "]";
+		return "Product [productCode=" + productCode + ", colorCode=" + colorCode + ", jacketCode=" + jacketCode
+				+ ", pantsCode=" + pantsCode + ", productNum=" + productNum + ", productCount=" + productCount + "]";
 	}
 	
 }

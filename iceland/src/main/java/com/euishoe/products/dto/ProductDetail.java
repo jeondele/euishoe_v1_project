@@ -1,66 +1,51 @@
 package com.euishoe.products.dto;
 
 public class ProductDetail {
-	//상품번호
-	private int productNo;
-	//상품유형번호
-	private int productTypeNo;
-	//상품이름
-	private String productName;
-	//상품원가
-	private int productOriginCost;
-	//상품정가
-	private int productPrice;
-	//상품요약정보
-	private String productBriefInfo;
-	//상품무게
-	private int productWeight;
-	//상품제조사
-	private String productManufacturer;
-	//상품출시일자
-	private String productOpen;
-	//상품생산지
-	private String productOrigin;
-	//상품글번호
-	private int productListNo;
-	//상품글에 적힌 가격
-	private int productListPrice;
+	
+	private int productNum; //상품번호
+	private int productListNum; //상품글번호
+	private String productName; //상품이름
+	private int productCost; //상품원가
+	private int productPrice; //상품정가
+	private String productBriefInfomation; //상품요약정보
+	private String productManufacturer; //상품제조사
+	private String productReleaseDate; //상품출시일자
+	private String productOrigin; //상품생산지
+	private int productListPrice; //상품글에 적힌 가격
 	
 	public ProductDetail() {
 	}
-	
-	public ProductDetail(int productNo, int productTypeNo, String productName, int productOriginCost, int productPrice,
-			String productBriefInfo, int productWeight, String productManufacturer, String productOpen,
-			String productOrigin, int productListNo, int productListPrice) {
+
+	public ProductDetail(int productNum, int productListNum, String productName, int productCost, int productPrice,
+			String productBriefInfomation, String productManufacturer, String productReleaseDate, String productOrigin,
+			int productListPrice) {
 		super();
-		this.productNo = productNo;
-		this.productTypeNo = productListNo;
+		this.productNum = productNum;
+		this.productListNum = productListNum;
 		this.productName = productName;
-		this.productOriginCost = productOriginCost;
+		this.productCost = productCost;
 		this.productPrice = productPrice;
-		this.productBriefInfo = productBriefInfo;
-		this.productWeight = productWeight;
+		this.productBriefInfomation = productBriefInfomation;
 		this.productManufacturer = productManufacturer;
-		this.productOpen = productOpen;
+		this.productReleaseDate = productReleaseDate;
 		this.productOrigin = productOrigin;
-		this.productListNo = productListNo;
 		this.productListPrice = productListPrice;
 	}
 
-	public int getProductNo() {
-		return productNo;
+	public int getProductNum() {
+		return productNum;
 	}
 
-	public void setProductNo(int productNo) {
-		this.productNo = productNo;
+	public void setProductNum(int productNum) {
+		this.productNum = productNum;
 	}
 
-	public int getProductTypeNo() {
-		return productTypeNo;
+	public int getProductListNum() {
+		return productListNum;
 	}
 
-	public void setProductTypeNo(int productTypeNo) {
-		this.productTypeNo = productTypeNo;
+	public void setProductListNum(int productListNum) {
+		this.productListNum = productListNum;
 	}
 
 	public String getProductName() {
@@ -71,12 +56,12 @@ public class ProductDetail {
 		this.productName = productName;
 	}
 
-	public int getProductOriginCost() {
-		return productOriginCost;
+	public int getProductCost() {
+		return productCost;
 	}
 
-	public void setProductOriginCost(int productOriginCost) {
-		this.productOriginCost = productOriginCost;
+	public void setProductCost(int productCost) {
+		this.productCost = productCost;
 	}
 
 	public int getProductPrice() {
@@ -87,20 +72,12 @@ public class ProductDetail {
 		this.productPrice = productPrice;
 	}
 
-	public String getProductBriefInfo() {
-		return productBriefInfo;
+	public String getProductBriefInfomation() {
+		return productBriefInfomation;
 	}
 
-	public void setProductBriefInfo(String productBriefInfo) {
-		this.productBriefInfo = productBriefInfo;
-	}
-
-	public int getProductWeight() {
-		return productWeight;
-	}
-
-	public void setProductWeight(int productWeight) {
-		this.productWeight = productWeight;
+	public void setProductBriefInfomation(String productBriefInfomation) {
+		this.productBriefInfomation = productBriefInfomation;
 	}
 
 	public String getProductManufacturer() {
@@ -111,12 +88,12 @@ public class ProductDetail {
 		this.productManufacturer = productManufacturer;
 	}
 
-	public String getProductOpen() {
-		return productOpen;
+	public String getProductReleaseDate() {
+		return productReleaseDate;
 	}
 
-	public void setProductOpen(String productOpen) {
-		this.productOpen = productOpen;
+	public void setProductReleaseDate(String productReleaseDate) {
+		this.productReleaseDate = productReleaseDate;
 	}
 
 	public String getProductOrigin() {
@@ -125,14 +102,6 @@ public class ProductDetail {
 
 	public void setProductOrigin(String productOrigin) {
 		this.productOrigin = productOrigin;
-	}
-
-	public int getProductListNo() {
-		return productListNo;
-	}
-
-	public void setProductListNo(int productListNo) {
-		this.productListNo = productListNo;
 	}
 
 	public int getProductListPrice() {
@@ -145,10 +114,11 @@ public class ProductDetail {
 
 	@Override
 	public String toString() {
-		return "ProductDetail [productNo=" + productNo + ", productName=" + productName + ", productOriginCost="
-				+ productOriginCost + ", productPrice=" + productPrice + ", productBriefInfo=" + productBriefInfo
-				+ ", productWeight=" + productWeight + ", productManufacturer=" + productManufacturer + ", productOpen="
-				+ productOpen + ", productOrigin=" + productOrigin + ", productListNo=" + productListNo
+		return "ProductDetail [productNum=" + productNum + ", productListNum=" + productListNum + ", productName="
+				+ productName + ", productCost=" + productCost + ", productPrice=" + productPrice
+				+ ", productBriefInfomation=" + productBriefInfomation + ", productManufacturer=" + productManufacturer
+				+ ", productReleaseDate=" + productReleaseDate + ", productOrigin=" + productOrigin
 				+ ", productListPrice=" + productListPrice + "]";
 	}
+	
 }
