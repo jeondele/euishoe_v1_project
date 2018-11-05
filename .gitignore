@@ -28,3 +28,4 @@ hs_err_pid*
 
 #web.xml 무시
 web.xml
+Servers/
