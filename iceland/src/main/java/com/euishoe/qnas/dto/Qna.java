@@ -3,7 +3,7 @@ package com.euishoe.qnas.dto;
 /**
  * 쇼핑몰 문의 dto
  * 
- * @author 전상일
+ * @author 백욱기
  *
  */
 public class Qna {
