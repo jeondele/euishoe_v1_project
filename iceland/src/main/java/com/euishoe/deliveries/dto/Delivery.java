@@ -9,14 +9,14 @@ package com.euishoe.deliveries.dto;
 public class Delivery {
 	
 	// 변수선언
-	private int deliveryNum;
-	private String deliveryAddress;
-	private String deliveryRecipient;
-	private String deliveryRecipientPhonenumber;
-	private String deliveryRequirement;
-	private String orderDate;
-	private String deliveryDate;
-	private String deliveryStatus;
+	private int deliveryNum; 					// 배송번호 
+	private String deliveryAddress;				// 배송주소
+	private String deliveryRecipient;			// 배송수령인	
+	private String deliveryRecipientPhonenumber;// 배송수령인전화번호
+	private String deliveryRequirement;			// 배송요청사항
+	private String orderDate;					// 배송주문일자
+	private String deliveryDate;				// 배송도착일자
+	private String deliveryStatus;				// 배송사품상태
 	
 	
 	// 생성자(Constructor) 선언
