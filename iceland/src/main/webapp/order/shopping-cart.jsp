@@ -39,18 +39,16 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/iceland/order/shopping-cart.css">
 
 
 
 <style>
 .nav-tabs{
 border-bottom: 1px solid #ddd;
-
 }
 
 .nav{
-  padding-left: 0;
-  margin-bottom: 0;
   list-style: none;
 }
 
@@ -107,7 +105,7 @@ display: table-row;
 										</div>
 									</td>
 									<td class="column-2">Fresh Strawberries</td>
-									<td class="column-3">$ 36.00</td>
+									<td class="column-3">3600</td>
 									<td class="column-4">
 										<div class="wrap-num-product flex-w m-l-auto m-r-0">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -121,7 +119,7 @@ display: table-row;
 											</div>
 										</div>
 									</td>
-									<td class="column-5">$ 36.00</td>
+									<td class="column-5">3600</td>
 								</tr>
 
 								<tr class="table_row">
@@ -131,7 +129,7 @@ display: table-row;
 										</div>
 									</td>
 									<td class="column-2">Lightweight Jacket</td>
-									<td class="column-3">$ 16.00</td>
+									<td class="column-3">1600</td>
 									<td class="column-4">
 										<div class="wrap-num-product flex-w m-l-auto m-r-0">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -145,7 +143,7 @@ display: table-row;
 											</div>
 										</div>
 									</td>
-									<td class="column-5">$ 16.00</td>
+									<td class="column-5">1600</td>
 								</tr>
 							</table>
 						</div>
@@ -157,7 +155,7 @@ display: table-row;
                               <div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
                                         선택 삭제
                             </div>
-							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" id="delete_All">
 								전체 삭제
 							</div>
 						</div>
@@ -171,7 +169,7 @@ display: table-row;
               </ul>
               </div>
               <div class="tab-content">
-                <div id="home" class="tab-pane fade in active">
+                <div id="home" class="tab-pane fade in active show">
                 <div style="display:block">
                   <table>
                   <tbody>
@@ -185,7 +183,7 @@ display: table-row;
                       <td>
                       <address>
                       <input type="text" id="zipcodeTxt" name="zipcodeTxt" maxlength="6" readonly="" onkeypress="javascript:common.onlyNumberInput(event);" style="ime-mode:disabled;width:70px;" title="우편번호">
-                       <a href="javascript:searchAddr();" onclick="doCommonStat('ORAD002');" id="searchAddrBt" class="defbtn_lsm dtype6" data-log-actionid-label="zip_code_find"><span>주소찾기</span></a>
+                       <a href="javascript:searchAddr();" onclick="doCommonStat('ORAD002');" id="searchAddrBt" class="defbtn_lsm dtype6" data-log-actionid-label="zip_code_find"><span>주소찾기</span></a><br>
                         <input type="text" id="rcvrBaseAddr" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" readonly="">
                         <input type="text" id="rcvrBaseAddr" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" readonly="">
                       </address>
@@ -363,6 +361,67 @@ display: table-row;
 					ps.update();
 				})
 			});
+			
+	$('.how-itemcart1').bind("click",function(e){
+		e.currentTarget.parentElement.parentElement.remove();
+	});
+	/*
+	$('.wrap-num-product').bind("click",function(e){
+		console.log(e);
+		console.log(e.previousElementSibling);
+		console.log(e.currentTarget.children[1]);
+		
+	});
+	*/
+	$('.btn-num-product-down').bind("click",function(e){
+		/*
+			갯수 세기
+		*/
+		var num = e.currentTarget.parentElement.children[1].value - 1;
+		var price = e.currentTarget.parentElement.parentElement.parentElement.children[2].innerText;
+		
+		price = parseFloat(price);
+		
+		e.currentTarget.parentElement.parentElement.parentElement.children[4].innerText = (num * price);
+		
+		sumUp();
+	});
+		
+	$('.btn-num-product-up').bind("click",function(e){
+		var num = parseInt(e.currentTarget.parentElement.children[1].value) + 1;
+		var price = e.currentTarget.parentElement.parentElement.parentElement.children[2].innerText;
+		
+		price = parseFloat(price);
+		
+		e.currentTarget.parentElement.parentElement.parentElement.children[4].innerText = (num * price);
+		
+		sumUp();
+		
+	});
+	
+	function sumUp(){
+		var sum = 0;
+		var num = 0;
+		$('.column-5').each(function(index,item){
+			if(index !== 0){
+				num = $(item).text();
+				sum += parseInt(num);
+			}
+		});
+
+		$('.mtext-110').each(function(index,item){
+				$(item).text(sum);
+		})
+	};
+	
+	$('#delete_All').bind('click',function(e){
+		$('.table_row').each(function(index,item){
+			item.remove();
+		})
+		
+		sumUp();
+	});
+	
 		</script>
   <!--===============================================================================================-->
   <script src="/iceland/js/main.js"></script>
