@@ -54,7 +54,7 @@
     <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Sunflower:300" rel="stylesheet">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
- <link rel="stylesheet" type="text/css" href="regist.css">
+ <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/customer/regist/regist.css">
 </head>
 <body class="animsition">
 	

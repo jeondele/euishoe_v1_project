@@ -85,7 +85,7 @@
 .home_info{
   position: relative;
   height: 180px;
-  margin: -40px -40px 0;
+  margin: -40px -40px 0 20%;
   padding: 34px 0 35px;
   border-bottom: 1px solid #e5e5e5;
   background: #f7f8f8;

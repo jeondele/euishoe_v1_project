@@ -85,7 +85,7 @@
 .home_info{
   position: relative;
   height: 180px;
-  margin: -40px -40px 0;
+  margin: -40px -40px 0 20%;
   padding: 34px 0 35px;
   border-bottom: 1px solid #e5e5e5;
   background: #f7f8f8;
@@ -115,6 +115,234 @@
   cursor: pointer;
 }
 
+
+
+
+.spot{
+  position: relative;
+  z-index: 30;
+  margin-top: 1px;
+  border: 1px solid #dadddf;
+  background-color: #edeff2;
+  margin-left: 20%;
+}
+
+.spot ul{
+  display;
+  overflow: hidden;
+  margin-left: 40px;
+  padding: 24px;
+  zoom : 1;
+}
+
+.spot li{
+  display: inline;
+  float: left;
+  position: relative;
+  width: 150px;
+  
+}
+
+.spot li .inner{
+  position: relative;
+  min-height : 83px;
+  
+}
+
+.ask_sc{
+  position: relative;
+  z-index: 20;
+  margin: -1px 0 46px;
+  padding: 19px 30px;
+  border: 1px solid #dadddf;
+  background-color: #edeff2;
+
+}
+
+.spot .zzim_area{
+  position: absolute;
+  top : 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  padding-left: 25px;
+  background: url() no-repeat right 50%;
+}
+
+.spot .zzim_area .text{
+  overflow: hidden;
+  width: 183px;
+  height: 47px;
+  margin: 44px 0 22px;
+  background-position: 0 -130px;
+}
+
+.spot .zzim_area .zzim_num{
+  font-size : 12px;
+  color: #828282;
+  text-decoration: none;
+  
+}
+
+.tit_mouth{
+  width: 100%;
+  height: 39px;
+  margin: -9px 0;
+  text-align: center;
+}
+
+.plst_sc .goods li{
+  position: relative;
+  padding: 10px 30px 10px 0;
+  zoom : 1;
+}
+
+.plst_sc .goods li .p_inr{
+  position: relative;
+  display : flex;
+  padding: 0 120px 0 127px;
+}
+
+.plst_sc .goods li .p_inr .com_thmb{
+  display : inline-block;
+  text-align: center;
+  }
+  
+  .plst_sc .goods li .p_inr .p_info{
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    padding: 15px 0 0;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+  }
+
+.mask{
+  position: absolute;
+  top: 0;
+  left : 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+}
+
+
+.sub_sc{
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  padding: 0 0 30px;
+  background-color: #fff;
+}
+
+.tit_month{
+  width:  100%;
+  height: 40px;
+  text-align: center;
+}
+
+.plst_sc .goods li{
+  position: relative;
+  padding: 10px 30px 10px 0;
+  zoom : 1;
+}
+
+.plst_sc .goods li .p_inr{
+  position: relative;
+  display : flex;
+  padding: 0 120px 0 127px;
+}
+
+.plst_sc .goods li .p_inr .com_thmb{
+  display : inline-block;
+  text-align: center;
+  }
+  
+  .plst_sc .goods li .p_inr .p_info{
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    padding: 15px 0 0;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+  }
+
+.mask{
+  position: absolute;
+  top: 0;
+  left : 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+}
+
+
+.sub_sc{
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  padding: 0 0 30px;
+  background-color: #fff;
+}
+
+.tit_month{
+  width:  100%;
+  height: 40px;
+  text-align: center;
+}
+
+.plst_sc .goods li{
+  position: relative;
+  padding: 10px 30px 10px 0;
+  zoom : 1;
+}
+
+.plst_sc .goods li .p_inr{
+  position: relative;
+  display : flex;
+  padding: 0 120px 0 127px;
+}
+
+.plst_sc .goods li .p_inr .com_thmb{
+  display : inline-block;
+  text-align: center;
+  }
+  
+  .plst_sc .goods li .p_inr .p_info{
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    padding: 15px 0 0;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+  }
+
+.mask{
+  position: absolute;
+  top: 0;
+  left : 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+}
+
+
+.sub_sc{
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  padding: 0 0 30px;
+  background-color: #fff;
+}
+
+.tit_month{
+  width:  100%;
+  height: 40px;
+  text-align: center;
+}
 </style>
 </head>
 <body class="animsition">
@@ -146,13 +374,9 @@
         </div>
 
         <div class="flex-w flex-c-m m-tb-10">
-          <div
-            class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-            <i
-              class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-            <i
-              class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-            Filter
+          <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+            <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+            <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i> Filter
           </div>
 
           <div
@@ -316,8 +540,7 @@
               alt=""> <span class="set">설정변경</span> <span
               class="mask"></span> </a>
             <!--N=a:men.set-->
-            <div id="profileEditMenu" class="set_ly"
-              style="display: none;">
+            <div id="profileEditMenu" class="set_ly" style="display: none;">
               <div class="cont">
                 <ul class="set_lst">
                   <li class="li1"><a
@@ -325,9 +548,7 @@
                     class="lnk"> <span class="ico"></span>프로필사진 수정
                   </a>
                   <!--N=a:men.setimg--></li>
-                  <li class="li2"><a
-                    href="https://pay.naver.com/mypage/update"
-                    class="lnk"> <span class="ico"></span>결제/배송지 정보
+                  <li class="li2"><a href="https://pay.naver.com/mypage/update" class="lnk"> <span class="ico"></span>결제/배송지 정보
                       수정
                   </a>
                   <!--N=a:men.setorder--></li>
@@ -404,7 +625,6 @@
           </div>
      
      <div class="spot _summaryRoot">
-
 <ul>
 <li class="ship1 ">
   <div class="inner">
@@ -456,8 +676,10 @@
   <a href="http://my.shopping.naver.com/my/p/zzim/index.nhn" class="zzim_num"><span class="ico"></span>찜한상품<strong id="_zzimCount">-</strong></a>
 </div></div>
 
-<div id="_listContentArea">
 
+
+<div class="sub_sc" style="min-height: 895px;">
+<div id="_listContentArea">
       <div class="tit_month">
         <h4>2018.08</h4>
       </div>
@@ -484,19 +706,11 @@
           </a><!--N=a:csh.detail-->
           <span class="state">결제완료</span>
         </div>
-        <div class="seller">
-          <span>교보문고</span>
-          <em>15441900</em>
-          <a href="http://www.kyobobook.co.kr" target="_blank">문의하기</a><!--N=a:csh.qnas-->
-        </div>
-      </div>
-      <a href="#" class="btn open _click(nmp.front.order.timeline.home.list.toggleDetailView(20180806NP1214381502)) _stopDefault">상품별기능열기</a><!--N=a:csh.open-->
-      <div class="func" id="_detailView20180806NP1214381502" style="display:none">
-          <p><span></span>결제 및 상세 내역 확인 및 취소요청은 <a href="http://www.kyobobook.co.kr" class="link">교보문고</a>에서 확인하실 수 있습니다.<span class="sub">(거래완료는 포인트 적립 완료로 확인 가능합니다.)</span></p>
-        <div class="btn_area">
-          <a href="http://www.kyobobook.co.kr">바로가기</a><!--N=a:csh.more-->
-          <a href="#" class="_click(nmp.front.order.timeline.home.list.removeEtc(20180806131101NSP20180806NP1214381502)) _stopDefault">내역삭제</a><!--N=a:csh.del-->
-        </div>
+        <div class="flex-w flex-c-m m-tb-10">
+          <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+            <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+            <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i> 상세보기
+          </div>
       </div>
     </li>
         </ul>
@@ -506,7 +720,7 @@
 <input type="hidden" id="_hasMore0" value="false">
 <input type="hidden" id="_interlockNosForDeliveryTracking0" value="">
 </div>
-     
+     </div>
      
         </div>
         <!-- //content -->
