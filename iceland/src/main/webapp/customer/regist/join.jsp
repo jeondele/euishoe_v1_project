@@ -82,7 +82,7 @@
             </div>
             
             
-            <form action="https://httpbin.org/post" method="POST" class="form login">
+            <form action="<%=application.getContextPath()%>/customer/regist/join_action.jsp" method="POST" class="form login">
             <ul>
               <li>
                 <div class="form__label">
