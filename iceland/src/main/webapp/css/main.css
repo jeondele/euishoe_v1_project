@@ -2355,6 +2355,7 @@ input.num-product::-webkit-inner-spin-button {
 /* Poppins-Bold; */
 
 .ltext-103 {
+	margin-top: 20px;
   font-family: Poppins-Bold;
   font-size: 36px;
   line-height: 1.1;
@@ -3332,14 +3333,13 @@ input.num-product::-webkit-inner-spin-button {
     padding: 20px;
   }
   
-  section > .row{
-	width: 70%; 
-	margin-left: auto;
-	margin-right: auto;
-}
 
 }
 
 /*
 */
-
+section > .row{
+	width: 70%; 
+	margin-left: auto;
+	margin-right: auto;
+}
