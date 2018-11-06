@@ -107,12 +107,12 @@
                     <input type="submit" value="Sign In"> </div>
             </form>
             <br>
-            <p class="text--center">회원이 아니세요? <a href="#">지금 가입!</a>
+            <p class="text--center">회원이 아니세요? <a href="/iceland/customer/regist/join.jsp">지금 가입!</a>
                 <svg class="icon">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use>
                 </svg>
             </p>
-            <p class="text--center"><a href="../searchPassword/searchPassword.html">아이디/비밀번호 찾기</a>
+            <p class="text--center"><a href="/iceland/../searchPassword/searchPassword.html">아이디/비밀번호 찾기</a>
                 <svg class="icon">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use>
                 </svg>

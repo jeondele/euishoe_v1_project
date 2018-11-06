@@ -78,6 +78,7 @@
         
             <div class="logo">
             <img src="/iceland/images/icons/logo-01.png">
+            
             </div>
             
             
@@ -85,7 +86,7 @@
             <ul>
               <li>
                 <div class="form__label">
-                    <h3>아이디</h3></div>
+                    <h4>아이디</h4></div>
                 <div class="form__field">
                     <label for="login__username">
                         <svg class="icon">
@@ -97,7 +98,7 @@
                 </li>
                 
               <li>
-                <div class="form__label"><h3>비밀번호</h3></div>
+                <div class="form__label"><h4>비밀번호</h4></div>
                 <div class="form__field">
                     <label for="login__password">
                         <svg class="icon">
@@ -108,7 +109,7 @@
                 
                 
                <li>
-                <div class="form__label"><h3>비밀번호 확인</h3></div>
+                <div class="form__label"><h4>비밀번호 확인</h4></div>
                 <div class="form__field">
                     <label for="login__password__confirm">
                         <svg class="icon">
@@ -118,7 +119,7 @@
               </li>
                 
               <li>
-                <div class="form__label"><h3>이름</h3></div>
+                <div class="form__label"><h4>이름</h4></div>
                 <div class="form__field">
                     <label for="userName">
                         <svg class="icon">
@@ -128,7 +129,7 @@
               </li>
                 
           <li>  
-             <div class="form__label"><h3>생년월일</h3></div>
+             <div class="form__label"><h4>생년월일</h4></div>
                 <div class="form__field">
                     <label for="email">
                         <svg class="icon">
@@ -138,7 +139,7 @@
               </li>
               
             <li>    
-               <div class="form__label"><h3>성별</h3></div>
+               <div class="form__label"><h4>성별</h4></div>
                 <div class="form__field">
                     <select>
                         <option selected>선택</option>
@@ -149,7 +150,7 @@
             </li>
             
              <li>
-                <div class="form__label"><h3>이메일</h3></div> 
+                <div class="form__label"><h4>이메일</h4></div> 
                 <div class="form__field">
                     <label for="email">
                         <svg class="icon">
@@ -173,7 +174,7 @@
                 </li>
                 
               <li>
-                <div class="form__label"><h3>주소</h3></div>
+                <div class="form__label"><h4>주소</h4></div>
                 <div class="form__field">  
                     <label for="address">
                         <svg class="icon">
@@ -188,14 +189,14 @@
                         <input id="detail_address" type="text" name="address" class="form__input" placeholder="상세주소">
                     </div>
                 </li>    
-               
-               <li>
-              <div class="form__label"><h3>추가정보 입력</h3><h5>(필수항목 아님)</h5></div>
+               <br>
+               <li class="addtional_info">
+              <div class="form__label"><h3>추가정보 입력</h3></div>
                </li>
-               
-              <li>
+               <br>
+              <li class="addtional_info">
                 <div class="form__label">
-                    <h3>상의사이즈</h3></div>
+                    <h4>상의사이즈</h4></div>
                 <div class="form__field">
                     <select>
                         <option selected>선택해주세요.</option>
@@ -207,9 +208,9 @@
                 </div>     
                 </li>
                 
-               <li>
+               <li class="addtional_info">
                 <div class="form__label">
-                    <h3>하의사이즈</h3></div>
+                    <h4>하의사이즈</h4></div>
                 <div class="form__field">
                     <select>
                         <option selected>선택해주세요.</option>
@@ -222,9 +223,9 @@
                 </div>     
                 </li>
                 
-              <li>
+              <li class="addtional_info">
                 <div class="form__label">
-                    <h3>키(신장)</h3></div>
+                    <h4>키(신장)</h4></div>
                 <div class="form__field">
                     <select>
                         <option selected>선택해주세요.</option>
@@ -244,16 +245,7 @@
                     <input type="submit" value="Sign In"> </div>
             </form>
             
-            <p class="text--center">회원이시라면 !? <a href="#"><i>로그인</i></a>
-                <svg class="icon">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use>
-                </svg>
-            </p>
-            <p class="text--center"><a href="../searchPassword/searchPassword.html"><i>아이디/비밀번호</i> 찾기</a>
-                <svg class="icon">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use>
-                </svg>
-            </p>
+
             
         <svg xmlns="http://www.w3.org/2000/svg" class="icons">
             <symbol id="arrow-right" viewBox="0 0 1792 1792">
