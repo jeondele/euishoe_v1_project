@@ -127,21 +127,31 @@
                         </svg><span class="hidden">userName</span></label>
                     <input id="login__userName" type="text" name="userName" class="form__input" placeholder="userName" required> </div>
               </li>
+              
+               <li>
+                <div class="form__label"><h4>휴대폰번호</h4></div>
+                <div class="form__field">
+                    <label for="userName">
+                        <svg class="icon">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
+                        </svg><span class="hidden">userName</span></label>
+                    <input id="login__userName" type="text" name="userPhone" class="form__input" placeholder="휴대폰번호" required> </div>
+              </li>
                 
-          <li>  
+          	 <li>  
              <div class="form__label"><h4>생년월일</h4></div>
                 <div class="form__field">
                     <label for="email">
                         <svg class="icon">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
                         </svg><span class="hidden">email</span></label>
-                    <input id="birth" type="text" name="email" class="form__input" placeholder="생년월일" required> </div>
+                    <input id="birth" type="text" name="birth" class="form__input" placeholder="생년월일" required> </div>
               </li>
               
             <li>    
                <div class="form__label"><h4>성별</h4></div>
                 <div class="form__field">
-                    <select>
+                    <select name="gender">
                         <option selected>선택</option>
                         <option>남자</option>
                         <option>여자</option>
@@ -157,7 +167,7 @@
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use>
                         </svg><span class="hidden">email</span></label>
                     <input id="email" type="text" name="email" class="form__input" placeholder="이메일" required><label>@</label>
-                    <select>
+                    <select name="emailHost">
                         <option selected>선택</option>
                         <option>naver.com</option>
                         <option>daum.net</option>
@@ -198,7 +208,7 @@
                 <div class="form__label">
                     <h4>상의사이즈</h4></div>
                 <div class="form__field">
-                    <select>
+                    <select name="jacketSize">
                         <option selected>선택해주세요.</option>
                         <option>90(S)</option>
                         <option>95(M)</option>
@@ -212,7 +222,7 @@
                 <div class="form__label">
                     <h4>하의사이즈</h4></div>
                 <div class="form__field">
-                    <select>
+                    <select name="pantsSize">
                         <option selected>선택해주세요.</option>
                         <option>26</option>
                         <option>28</option>
@@ -227,7 +237,7 @@
                 <div class="form__label">
                     <h4>키(신장)</h4></div>
                 <div class="form__field">
-                    <select>
+                    <select name="height">
                         <option selected>선택해주세요.</option>
                         <option>155이상 ~ 160미만</option>
                         <option>160이상 ~ 165미만</option>
