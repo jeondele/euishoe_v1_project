@@ -8,28 +8,30 @@ package com.euishoe.orders.dto;
  */
 public class Order {
 	
-	private int orderNo; //주문번호
-	private String customerId; // 회원아이디
-	private String noncustomerNum; // 비회원번호
-	private String customerBridgeNum; //회원식별번호
-	private int deliveryNum; //배송번호
-	private int paymentNum; //결제번호
+	// 변수 선언
+	private int orderNo; 				//주문번호
+	private String customerId; 			// 회원아이디
+	private String noncustomerNum; 		// 비회원번호
+	private int deliveryNum; 			//배송번호
+	private int paymentNum; 			//결제번호
 	
+	
+	// 생성자(Contructor 선언)
 	public Order() {
 		super();
 	}
 
-	public Order(int orderNo, String customerId, String noncustomerNum, String customerBridgeNum, int deliveryNum,
-			int paymentNum) {
+	public Order(int orderNo, String customerId, String noncustomerNum, int deliveryNum, int paymentNum) {
 		super();
 		this.orderNo = orderNo;
 		this.customerId = customerId;
 		this.noncustomerNum = noncustomerNum;
-		this.customerBridgeNum = customerBridgeNum;
 		this.deliveryNum = deliveryNum;
 		this.paymentNum = paymentNum;
 	}
 
+	
+	// setter, getter 선언
 	public int getOrderNo() {
 		return orderNo;
 	}
@@ -54,14 +56,6 @@ public class Order {
 		this.noncustomerNum = noncustomerNum;
 	}
 
-	public String getCustomerBridgeNum() {
-		return customerBridgeNum;
-	}
-
-	public void setCustomerBridgeNum(String customerBridgeNum) {
-		this.customerBridgeNum = customerBridgeNum;
-	}
-
 	public int getDeliveryNum() {
 		return deliveryNum;
 	}
@@ -78,10 +72,11 @@ public class Order {
 		this.paymentNum = paymentNum;
 	}
 
+
+	// toString() 선언
 	@Override
 	public String toString() {
 		return "Order [orderNo=" + orderNo + ", customerId=" + customerId + ", noncustomerNum=" + noncustomerNum
-				+ ", customerBridgeNum=" + customerBridgeNum + ", deliveryNum=" + deliveryNum + ", paymentNum="
-				+ paymentNum + "]";
+				+ ", deliveryNum=" + deliveryNum + ", paymentNum=" + paymentNum + "]";
 	}
 }
