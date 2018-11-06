@@ -53,6 +53,8 @@
 <link rel="stylesheet" href="login.css">
     <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Sunflower:300" rel="stylesheet">
+<style>
+</style>
 </head>
 <body class="animsition">
 	
@@ -66,7 +68,7 @@
 
 	<!-- Banner -->
 	<div class="sec-banner bg0 p-t-80 p-b-50">
-		<div class="container">
+		<div class="container" id="login_main">
 			<div class="row">
 	
 <!-- 	<div class="align">
@@ -78,9 +80,11 @@
              </div>
             </div>
         
-            <div>
-                <div><h2>로그인</h2></div>
-                <div>gg에 오신것을 환영합니다.</div>
+            <div class="right_form">
+                <div><h2>로그인</h2><br>
+                <h4>euishoe에 오신것을 환영합니다.</h4>
+                </div>
+                
             <form action="https://httpbin.org/post" method="POST" class="form login">
                 <div class="form__field">
                     <label for="login__username">
@@ -96,12 +100,13 @@
                     <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required> 
                 </div>
                                         <div class="form__field">
-                    <label><input type="checkbox">로그인 정보 기억</label>
+                    <label id="memory_id"><input type="checkbox"/>로그인 정보 기억</label>
                     </div>
                 <div class="form__field">
                     <input type="button" value="HOME">
                     <input type="submit" value="Sign In"> </div>
             </form>
+            <br>
             <p class="text--center">회원이 아니세요? <a href="#">지금 가입!</a>
                 <svg class="icon">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use>

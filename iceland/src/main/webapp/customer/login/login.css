@@ -221,6 +221,8 @@ input[type='button']{
   color: var(--loginSubmitColor);
   font-weight: 700;
   text-transform: uppercase;
+  margin-right:5%;
+  margin-left: 25%;
 }
 
 .login input[type='submit']:focus,
@@ -248,4 +250,36 @@ p {
 .text--center {
   color : black;
   text-align: center;
+}
+
+.right_form{
+	width:30%;
+margin-left: 5%;
+}
+
+#login_main{
+    padding: 40px;
+    border: 2px solid darkgrey;
+    background-color: whitesmoke;
+}
+
+h2,h4{
+    color: black;
+    text-align: center;
+}
+p{
+font-size: x-large;
+background-color: antiquewhite;
+    border: 3px dotted;
+}
+
+input[type='checkbox']{
+	display: inline;
+    margin-right: 10px;
+}
+
+#memory_id{
+margin-left: 25%;
+    background-color: steelblue;	
+	
 }
