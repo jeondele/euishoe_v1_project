@@ -50,7 +50,7 @@
       로그인 폼
 -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-<link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="<%=application.getContextPath()%>/customer/login/login.css">
     <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Sunflower:300" rel="stylesheet">
 <style>
