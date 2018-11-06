@@ -13,7 +13,7 @@
 		<typeAlias type="com.euishoe.customers.dto.Customer" alias="Customer"/>
 		<typeAlias type="com.euishoe.noncustomers.dto.Noncustomer" alias="Noncustomer"/>
 		<typeAlias type="com.euishoe.orders.dto.Order" alias="Order"/>
-		<typeAlias type="com.euishoe.points.dto.PointHistory" alias="Point"/>
+		<typeAlias type="com.euishoe.points.dto.Point" alias="Point"/>
 		<typeAlias type="com.euishoe.products.dto.Product" alias="Product"/>
 		<typeAlias type="com.euishoe.images.dto.Image" alias="Image"/>
 		<typeAlias type="com.euishoe.reviews.dto.Review" alias="Review"/>
