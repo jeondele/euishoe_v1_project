@@ -27,7 +27,7 @@ public class CustomerLoginController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		customerService = (CustomerService)factory.getBean(CustomerServiceImpl.class);
 		
-		mav.setView("/customer/login/login.html");
+		mav.setView("/customer/login/login.jsp");
 		
 		return mav;
 	}

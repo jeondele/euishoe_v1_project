@@ -27,7 +27,7 @@ public class CustomerRegistController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		customerService = (CustomerService)factory.getBean(CustomerServiceImpl.class);
 		
-		mav.setView("/customer/regist/regist.html");
+		mav.setView("/customer/regist/join.jsp");
 		
 		return mav;
 	}
