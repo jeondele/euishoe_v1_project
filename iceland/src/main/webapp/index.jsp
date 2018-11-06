@@ -24,12 +24,9 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/iceland/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================
-    애니메이션
--->
+    애니메이션-->
 	<link rel="stylesheet" type="text/css" href="/iceland/vendor/animate/animate.css">
-<!--===============================================================================================
-
--->	
+<!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="/iceland/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/iceland/vendor/animsition/css/animsition.min.css">
