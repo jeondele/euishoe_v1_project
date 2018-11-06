@@ -137,6 +137,9 @@ input[type='submit'] {
 
 .form {
   margin: calc(var(--formFieldMargin) * -1);
+  border: 3px solid lightgrey;
+  padding: 20px 50px 40px 20px;
+  background-color: whitesmoke;
 }
 
 .form input[type='password'],

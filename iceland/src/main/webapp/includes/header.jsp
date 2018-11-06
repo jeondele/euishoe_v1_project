@@ -35,7 +35,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="../index.jsp" class="logo">
+					<a href="/iceland/index.jsp" class="logo">
 						<img src="/iceland/images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
@@ -47,7 +47,7 @@
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="/iceland/product/product.jsp">Shop</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
@@ -65,6 +65,10 @@
 							<li>
 								<a href="contact.html">Contact</a>
 							</li>
+              
+                            <li>
+                                <a href="contact.html">My page</a>
+                          </li>
 						</ul>
 					</div>	
 
@@ -168,11 +172,11 @@
 				</li>
 
 				<li>
-					<a href="product.html">Shop</a>
+					<a href="/iceland/product/product.jsp">Shop</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="/iceland/order/shoping-cart.jsp" class="label1 rs1" data-label1="hot">Features</a>
 				</li>
 
 				<li>
