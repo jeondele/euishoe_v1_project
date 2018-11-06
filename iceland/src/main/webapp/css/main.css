@@ -1796,7 +1796,7 @@ button.mfp-close {
 }
 
 .num-product {
-  width: calc(100% - 90px);
+  width: calc(100% - 95px);
   height: 100%;
   border-left: 1px solid #e6e6e6;
   border-right: 1px solid #e6e6e6;
