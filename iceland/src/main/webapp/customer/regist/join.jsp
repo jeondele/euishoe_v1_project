@@ -175,7 +175,7 @@
                         <div class="form__field">
                           <input type="text">
                           <!-- 
-                          <input class="checkbtn" type="button" value="이메일 인증">
+						  이메일 인증을 위한 비동기 통신용 버튼
                            -->
                           <button type="button" class="checkbtn" id="emailCertify" onclick="send()">이메일 인증</button>
                     </div>
@@ -193,8 +193,8 @@
                 </div>
                 
              <div class="form__field">
-                  <input id="address" type="text" name="address" class="form__input" placeholder="도로명 주소" required>
-                        <input id="detail_address" type="text" name="address" class="form__input" placeholder="상세주소">
+                  <input id="address" type="text" name="roadAddress" class="form__input" placeholder="도로명 주소" required>
+                        <input id="detail_address" type="text" name="detailAddress" class="form__input" placeholder="상세주소">
                     </div>
                 </li>    
                <br>
@@ -393,13 +393,13 @@
 				param : "emailAdd="+emailAdd,
 				callback : setResult
 			});
-			//setResult(url);
 		}
 		
+		// 비동기통신 후 실행될 콜백함수
 		function setResult(result){
-			var emailResult = result.responseText; // 인증코드값
+			var emailCertifyCode = result.responseText; // 인증코드값
 			alert("입력하신 이메일로 받은 인증번호를 입력해 주세요");
-			//console.log("이메일인증결과값"+emailResult);
+			
 		}
 	</script>
 <!-- ============================================================================================== -->

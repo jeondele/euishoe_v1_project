@@ -35,7 +35,7 @@ public class CustomerRegistController implements Controller {
 		String customerPhonenumber = request.getParameter("userPhone");
 		String customerEmail = request.getParameter("email")+"@"+request.getParameter("emailHost");
 		String customerPostcode = request.getParameter("postNum"); 
-		String customerAddress =  request.getParameter("address");
+		String customerAddress =  request.getParameter("roadAddress")+request.getParameter("detailAddress");
 		String customerBirthday = request.getParameter("birth");
 		String customerGender = request.getParameter("gender");
 		switch (customerGender.trim()) {
