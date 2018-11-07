@@ -19,6 +19,10 @@ public class ProductInfo {
 	private int productShoulder;			// 상품어깨성향
 	private int productArm; 				// 상품팔성향
 	private int productLeg;					// 상품다리성향
+	private String productSeason;			// 상품계절
+	private String productFabric;			// 상품원단
+	private String productTpo;				// 상품TPO
+	
 	
 	// 생성자(Constructor) 선언
 	public ProductInfo() {
@@ -28,7 +32,7 @@ public class ProductInfo {
 	public ProductInfo(int productNum, int productListNum, String productName, int productCost, int productPrice,
 			String productBriefInfomation, String productManufacturer, String productReleaseDate, String productOrigin,
 			int productListPrice, String colorCode, int productHitcount, int productBody, int productShoulder,
-			int productArm, int productLeg) {
+			int productArm, int productLeg, String productSeason, String productFabric, String productTpo) {
 		super();
 		this.productNum = productNum;
 		this.productListNum = productListNum;
@@ -46,6 +50,9 @@ public class ProductInfo {
 		this.productShoulder = productShoulder;
 		this.productArm = productArm;
 		this.productLeg = productLeg;
+		this.productSeason = productSeason;
+		this.productFabric = productFabric;
+		this.productTpo = productTpo;
 	}
 
 	// setter, getter 선언
@@ -177,6 +184,30 @@ public class ProductInfo {
 	public void setProductLeg(int productLeg) {
 		this.productLeg = productLeg;
 	}
+	
+	public String getProductSeason() {
+		return productSeason;
+	}
+	
+	public void setProductSeason(String productSeason) {
+		this.productSeason = productSeason;
+	}
+	
+	public String getProductFabric() {
+		return productFabric;
+	}
+	
+	public void setProductFabric(String productFabric) {
+		this.productFabric = productFabric;
+	}
+	
+	public String getProductTpo() {
+		return productTpo;
+	}
+	
+	public void setProductTpo(String productTpo) {
+		this.productTpo = productTpo;
+	}
 
 	@Override
 	public String toString() {
@@ -186,6 +217,8 @@ public class ProductInfo {
 				+ ", productReleaseDate=" + productReleaseDate + ", productOrigin=" + productOrigin
 				+ ", productListPrice=" + productListPrice + ", colorCode=" + colorCode + ", productHitcount="
 				+ productHitcount + ", productBody=" + productBody + ", productShoulder=" + productShoulder
-				+ ", productArm=" + productArm + ", productLeg=" + productLeg + "]";
+				+ ", productArm=" + productArm + ", productLeg=" + productLeg + ", productSeason=" + productSeason
+				+ ", productFabric=" + productFabric + ", productTpo=" + productTpo + "]";
 	}
+	
 }
