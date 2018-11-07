@@ -71,17 +71,27 @@
           $("#dvQnqContDtl0" ).toggle( selectedEffect, options, 500 );
         };
         
-        
-        function showAnswer() {
-            var selectedEffect = $( "#effectTypes" ).val();
-            var options = {};
-            $("#trQnqContDtl2" ).toggle( selectedEffect, options, 500 );
+      
+      /*
+      	박호준
+      	
+      	리뷰 클릭하면 답변 보기
+      	
+      */
+      function showAnswer(tag) {
+        	if(tag.style.display == 'none'){
+        		tag.style.display = 'table-cell';
+        	}else{
+        		tag.style.display = 'none';
+        	}
           };
+          
     
     // Set effect from select menu value
     $( "#detailViewGrade" ).on( "click", function() {
       runRankpoint();
     });
+    
     
     $( "#admin_Answer" ).on( "click", function() {
     	showReview();
@@ -91,9 +101,17 @@
     	writeReview();
       });
     
-    $( "#showCloseDetail" ).on( "click", function() {
-    	showAnswer();
+    /*
+    	박호준
+    	
+    	리뷰 클릭하면 답변 보기
+    */
+    $(".txt_ellipsis" ).on( "click", function(e) {
+    	if($($($(this.parentElement.parentElement).next()[0]).children()[0]).hasClass('qna_expand')){
+    	showAnswer($($(this.parentElement.parentElement).next()[0]).children()[0]);
+    	}
       });
+    
   } );
   </script>
 
@@ -532,7 +550,7 @@
                             	<div class="bbs_filter">
                             	<label for="prdcQnASch2" class="chk_wrap"><input id="chkQnADtlsSecret" type="checkbox">비밀글 제외</label>
                             		<label for="selQnaDtlsCd" class="hidden_txt" style="overflow:hidden;visibility:hidden;position:absolute">상품QnA 조회조건</label>
-                            		<span class="box_select"><select name="selQnaDtlsCd" id="selQnaDtlsCd"><option value="" selected="selected">문의유형(전체)</option><option value="01">상품</option><option value="02">배송</option><option value="03">반품/취소</option><option value="04">교환/변경</option><option value="05">기타</option></select></span>
+                             	  <select name="selQnaDtlsCd" id="selQnaDtlsCd"><option value="" selected="selected">문의유형(전체)</option><option value="01">상품</option><option value="02">배송</option><option value="03">반품/취소</option><option value="04">교환/변경</option><option value="05">기타</option></select>	
                             	</div>
                             
                             <table class="prdc_bbs" summary="이 표는 상품 Q&amp;A 및 내용이 번호,문의유형,문의/답변,작성자,작성일로 구성되어 있습니다.">
@@ -550,21 +568,39 @@
                             		<tr>
                             			<td class="td_section">배송</td>
                             			<td class="txt_view">
-                            			<span class="state">미완료</span>
+                            			<span class="state">완료</span>
                             			<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono=""> 언제 오나요? 배송 언제되나요?</a>
                             		</td>
                             			<td class="td_write">swe******</td>
                             			<td class="td_date">2018-11-07 11:38</td>
                             		</tr>
-                                
-                            		<tr class="trQna" id="trQnqContDtl2" style="display:none">
-                            			<td colspan="4" class="qna_expand" id="dvQnqContDtl2" style="display:block;">
+                                  
+                            		<tr class="trQna" id="trQnqContDtl2">
+                            			<td colspan="4" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
                             			<div class="question">
                             				<span class="ico_question">답변</span>
                             				  " 답변완료일 시 작성됨 "<br>
                             			</div>
                             			</td>
                             		</tr>
+                                <tr>
+                                  <td class="td_section">배송</td>
+                                  <td class="txt_view">
+                                  <span class="state">미완료</span>
+                                  <a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono=""> 언제 오나요? 배송 언제되나요?</a>
+                                </td>
+                                  <td class="td_write">swe******</td>
+                                  <td class="td_date">2018-11-07 11:38</td>
+                                </tr>
+                                <tr>
+                                  <td class="td_section">배송</td>
+                                  <td class="txt_view">
+                                  <span class="state">미완료</span>
+                                  <a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono=""> 언제 오나요? 배송 언제되나요?</a>
+                                </td>
+                                  <td class="td_write">swe******</td>
+                                  <td class="td_date">2018-11-07 11:38</td>
+                                </tr>
                             	</tbody>
                             </table>
                             
@@ -575,6 +611,8 @@
                             	<div class="s_paging_v2">
                             		<!-- <a href="#this" class="prev" title="이전목록"><span class="hide">이전목록</span></a> -->
                             		<span>
+                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&lt;&lt;" data-keyno="20181107094625">&lt;&lt;</a>
+                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&lt;" data-keyno="20181107094625">&lt;</a>
                             			<strong>1</strong>
                             			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="2" data-keyno="20181107094625">2</a>
                             			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="3" data-keyno="20181107085121">3</a>
@@ -585,8 +623,9 @@
                             			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="8" data-keyno="20181106174212">8</a>
                             			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="9" data-keyno="20181106162300">9</a>
                             			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="10" data-keyno="20181106151741">10</a>
+                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&gt;" data-keyno="20181107094625">&gt;</a>
+                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&gt;&gt;" data-keyno="20181107094625">&gt;&gt;</a>
                             		</span>
-                            		<a href="#this" id="paging_next" data-pagetype="next" data-pagenum="11" data-keyno="20181106132718" class="next" title="다음목록"><span class="hide">다음목록</span></a>
                             	</div>
                             
                             <form name="pageForm" action="/product/SellerProductDetail.tmall" method="get">
@@ -1002,6 +1041,9 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
-
+    <script type="text/javascript">
+    $('.prdc_qna').css('display','none');
+    $($('.nav-item')[3]).on('click',function(){ $('.prdc_qna').css('display','block');});
+    </script>
 </body>
 </html>
