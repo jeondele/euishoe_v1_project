@@ -20,7 +20,7 @@
 							로그인
 						</a>
 
-						<a href="/iceland/customer/regist.es" class="flex-c-m trans-04 p-lr-25">
+						<a href="/iceland/customer/regist/join.jsp" class="flex-c-m trans-04 p-lr-25">
 							회원가입
 						</a>
 

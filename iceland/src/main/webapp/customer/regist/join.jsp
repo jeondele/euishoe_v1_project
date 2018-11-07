@@ -81,8 +81,7 @@
             
             </div>
             
-            
-            <form action="<%=application.getContextPath()%>/customer/regist/join_action.jsp" method="POST" class="form login">
+            <form action="/iceland/customer/regist.es" method="POST" class="form login">
             <ul>
               <li>
                 <div class="form__label">

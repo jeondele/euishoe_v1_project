@@ -7,6 +7,7 @@ package com.euishoe.customers.service;
  */
 
 import com.euishoe.customers.dao.CustomerDao;
+import com.euishoe.customers.dto.Customer;
 
 public class CustomerServiceImpl implements CustomerService {
 	private CustomerDao customerDao;
@@ -17,6 +18,13 @@ public class CustomerServiceImpl implements CustomerService {
 
 	public void setCustomerDao(CustomerDao customerDao) {
 		this.customerDao = customerDao;
+	}
+
+	// 회원가입 서비스
+	@Override
+	public void create(Customer customer) throws Exception {
+		customerDao.create(customer);
+		return;
 	}
 	
 }

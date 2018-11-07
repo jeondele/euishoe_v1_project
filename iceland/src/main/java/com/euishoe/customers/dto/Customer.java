@@ -27,7 +27,6 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
 	public Customer(String customerId, String customerName, String customerPassword, String customerPhonenumber,
 			String customerEmail, String customerAddress, String customerPostcode, String customerBirthday,
 			String customerGender, String customerJacketSize, String customerPantsSize, String customerHeight) {
@@ -45,9 +44,6 @@ public class Customer {
 		this.customerPantsSize = customerPantsSize;
 		this.customerHeight = customerHeight;
 	}
-
-
-
 
 	// setter, getter 선언
 	public String getCustomerId() {
