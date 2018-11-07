@@ -35,6 +35,68 @@
 	<link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
+
+<!-- 상품 문의, 상품 리뷰 css-->
+<link rel="stylesheet" type="text/css" href="product_detail.css">
+<!--===============================================================================================-->
+
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  
+  <!-- toggle  -->
+  <script>
+  $( function() {
+
+    // run the currently selected effect
+    function runRankpoint() {
+      var selectedEffect = $( "#effectTypes" ).val();
+      var options = {};
+      $("#info_content" ).toggle( selectedEffect, options, 500 );
+    };
+
+    
+    function showReview() {
+        var selectedEffect = $( "#effectTypes" ).val();
+        var options = {};
+        $("#dvQnqContDtl1" ).toggle(selectedEffect, options, 500);
+      };
+      
+      
+    
+      function writeReview() {
+          var selectedEffect = $( "#effectTypes" ).val();
+          var options = {};
+          $("#dvQnqContDtl0" ).toggle( selectedEffect, options, 500 );
+        };
+        
+        
+        function showAnswer() {
+            var selectedEffect = $( "#effectTypes" ).val();
+            var options = {};
+            $("#trQnqContDtl2" ).toggle( selectedEffect, options, 500 );
+          };
+    
+    // Set effect from select menu value
+    $( "#detailViewGrade" ).on( "click", function() {
+      runRankpoint();
+    });
+    
+    $( "#admin_Answer" ).on( "click", function() {
+    	showReview();
+      });
+    
+    $( "#write_Answer" ).on( "click", function() {
+    	writeReview();
+      });
+    
+    $( "#showCloseDetail" ).on( "click", function() {
+    	showAnswer();
+      });
+  } );
+  </script>
+
 </head>
 <body class="animsition">
 	
@@ -222,8 +284,9 @@
 						<li class="nav-item p-b-10">
 							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">상품 후기</a>
 						</li>
+            
                         <li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">상품 문의</a>
+							<a class="nav-link" data-toggle="tab" href="#qna" role="tab">상품 문의</a>
 						</li>
 					</ul>
 
@@ -301,18 +364,83 @@
 						<div class="tab-pane fade" id="reviews" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-									<div class="p-b-30 m-lr-15-sm">
+					 				<div class="p-b-30 m-lr-15-sm">
+               
+                                          <div class="grade_select zindex">
+                                                    <a class="ui_info_button dn" id="detailViewGrade"> 
+                                                                평점전체
+                                                     <span class="arr_icon"></span></a>  
+                                                    <div class="grade_lay ui_info_content" id="info_content" style="display: none;">
+                                                      <div class="lay_nw_def" style="display:block;position:relative;">
+                                                        <h3 class="lay_tit">평점 선택</h3>
+                                                        <div class="grade_wrap">
+                                                          <ul class="">
+                                                            <li>
+                                                            <input type="radio" value="0" name="pntValue" id="star" checked="">
+                                                            <label for="star" class="all">평점전체</label>
+                                                            </li>
+                                                            
+                                                            <li>
+                                                              <input type="radio" value="5" name="pntValue" id="star05">
+                                                              <label for="star05">
+                                                                <div class="selr_wrap">
+                                                                  <span class="num">5점</span>
+                                                                  <span class="graph_bar"><em class="gh_bar5" style="width:64%;"><span>64%</span></em></span>
+                                                                </div>
+                                                              </label>
+                                                            </li>
+                                                            <li>
+                                                              <input type="radio" value="4" name="pntValue" id="star04">
+                                                              <label for="star04">
+                                                                <div class="selr_wrap">
+                                                                  <span class="num">4점</span>
+                                                                  <span class="graph_bar"><em style="width:26%;"><span>26%</span></em></span>
+                                                                </div>
+                                                              </label>
+                                                            </li>
+                                                            <li>
+                                                              <input type="radio" value="3" name="pntValue" id="star03">
+                                                              <label for="star03">
+                                                                <div class="selr_wrap">
+                                                                  <span class="num">3점</span>
+                                                                  <span class="graph_bar"><em style="width:8%;"><span>8%</span></em></span>
+                                                                </div>
+                                                              </label>
+                                                            </li>
+                                                            <li>
+                                                              <input type="radio" value="2" name="pntValue" id="star02">
+                                                              <label for="star02">
+                                                                <div class="selr_wrap">
+                                                                  <span class="num">2점</span>
+                                                                  <span class="graph_bar"><em style="width:1%;"><span>1%</span></em></span>
+                                                                </div>
+                                                              </label>
+                                                            </li>
+                                                            <li>
+                                                              <input type="radio" value="1" name="pntValue" id="star01">
+                                                              <label for="star01">
+                                                                <div class="selr_wrap">
+                                                                  <span class="num">1점</span>
+                                                                  <span class="graph_bar"><em style="width:1%;"><span>1%</span></em></span>
+                                                                </div>
+                                                              </label>
+                                                            </li>
+                                                          </ul>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                            
+                  
+                  
 										<!-- Review -->
 										<div class="flex-w flex-t p-b-68">
 											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
 												<img src="/iceland/images/avatar-01.jpg" alt="AVATAR">
 											</div>
-
 											<div class="size-207">
 												<div class="flex-w flex-sb-m p-b-17">
-													<span class="mtext-107 cl2 p-r-20">
-														Ariana Grande
-													</span>
+													<span class="mtext-107 cl2 p-r-20">작 성 자</span>
 
 													<span class="fs-18 cl11">
 														<i class="zmdi zmdi-star"></i>
@@ -322,26 +450,46 @@
 														<i class="zmdi zmdi-star-half"></i>
 													</span>
 												</div>
-
 												<p class="stext-102 cl6">
-													Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
+													"상               품                 평"
 												</p>
+                                                  <span class="mtext-107 cl2 p-r-20"><a id="write_Answer">답변달기</a> </span> 
+                                              <div  class="qna_expand" id="dvQnqContDtl0" style="display: none;">
+                                                    <div class="answer">
+                                                      <span class="ico_answer">답변</span>
+                                                             <textarea rows="10" cols="20"></textarea>
+                                                     <div class="btn_action">
+                                                      <a href="#this" id="report" class="nwtxt_link" data-brdinfono="118895345" data-clfcd="01" data-contcd="03">작성하기<span class="ico"></span></a>
+                                                      </div>
+                                                    </div>
+
+                                                    </div>        
+
+                                                  <span class="mtext-107 cl2 p-r-20"><a  id="admin_Answer">관리자 답변</a></span>
+                                              <div  class="qna_expand" id="dvQnqContDtl1" style="display: none;">
+                                                    <div class="answer">
+                                                      <span class="ico_answer">답변</span>
+                                                                      안녕하세요 11번가 나이키입니다.
+                                                                 고객님께서 문의하신 사항 잘 보았습니다.
+                                                    </div>
+                                                    </div>                                                  
+                                                  
 											</div>
 										</div>
 										
 										<!-- Add review -->
 										<form class="w-full">
 											<h5 class="mtext-108 cl2 p-b-7">
-												Add a review
+												리뷰작성
 											</h5>
 
 											<p class="stext-102 cl6">
-												Your email address will not be published. Required fields are marked *
+												리뷰 비밀번호를 작성해주세요.
 											</p>
 
 											<div class="flex-w flex-m p-t-50 p-b-23">
 												<span class="stext-102 cl3 m-r-16">
-													Your Rating
+													평점을 골라주세요 !
 												</span>
 
 												<span class="wrap-rating fs-18 cl11 pointer">
@@ -356,29 +504,111 @@
 
 											<div class="row p-b-25">
 												<div class="col-12 p-b-5">
-													<label class="stext-102 cl3" for="review">Your review</label>
+													<label class="stext-102 cl3" for="review">내용</label>
 													<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
 												</div>
 
 												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="name">Name</label>
+													<label class="stext-102 cl3" for="name">작성자</label>
 													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
 												</div>
 
 												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="email">Email</label>
+													<label class="stext-102 cl3" for="email">비밀번호</label>
 													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email" type="text" name="email">
 												</div>
 											</div>
 
 											<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-												Submit
-											</button>
+												작성하기</button>
 										</form>
 									</div>
 								</div>
 							</div>
 						</div>
+            
+                        <div class="tab-pane fade show active" id="qna" role="tabpanel">
+                            <div class="prdc_qna">
+                            	<div class="bbs_filter">
+                            	<label for="prdcQnASch2" class="chk_wrap"><input id="chkQnADtlsSecret" type="checkbox">비밀글 제외</label>
+                            		<label for="selQnaDtlsCd" class="hidden_txt" style="overflow:hidden;visibility:hidden;position:absolute">상품QnA 조회조건</label>
+                            		<span class="box_select"><select name="selQnaDtlsCd" id="selQnaDtlsCd"><option value="" selected="selected">문의유형(전체)</option><option value="01">상품</option><option value="02">배송</option><option value="03">반품/취소</option><option value="04">교환/변경</option><option value="05">기타</option></select></span>
+                            	</div>
+                            
+                            <table class="prdc_bbs" summary="이 표는 상품 Q&amp;A 및 내용이 번호,문의유형,문의/답변,작성자,작성일로 구성되어 있습니다.">
+                            	<colgroup><col style="width:85px;"><col style="width:auto"><col style="width:96px;"><col style="width:115px;"></colgroup>
+                            	<thead>
+                            	<tr>
+                            	<!-- 	<th scope="col">번호</th> -->
+                            		<th scope="col">문의유형</th>
+                            		<th scope="col">문의/답변</th>
+                            		<th scope="col">작성자</th>
+                            		<th scope="col">작성일</th>
+                            	</tr>
+                            	</thead>
+                            	<tbody>
+                            		<tr>
+                            			<td class="td_section">배송</td>
+                            			<td class="txt_view">
+                            			<span class="state">미완료</span>
+                            			<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono=""> 언제 오나요? 배송 언제되나요?</a>
+                            		</td>
+                            			<td class="td_write">swe******</td>
+                            			<td class="td_date">2018-11-07 11:38</td>
+                            		</tr>
+                                
+                            		<tr class="trQna" id="trQnqContDtl2" style="display:none">
+                            			<td colspan="4" class="qna_expand" id="dvQnqContDtl2" style="display:block;">
+                            			<div class="question">
+                            				<span class="ico_question">답변</span>
+                            				  " 답변완료일 시 작성됨 "<br>
+                            			</div>
+                            			</td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                            
+                            <div class="btn_btm_wrap">
+                            		<button type="button" id="write" class="btn_nw_gray nw_h_l">상품 문의하기</button>
+                            </div>
+                            	
+                            	<div class="s_paging_v2">
+                            		<!-- <a href="#this" class="prev" title="이전목록"><span class="hide">이전목록</span></a> -->
+                            		<span>
+                            			<strong>1</strong>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="2" data-keyno="20181107094625">2</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="3" data-keyno="20181107085121">3</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="4" data-keyno="20181107080107">4</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="5" data-keyno="20181106234012">5</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="6" data-keyno="20181106212053">6</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="7" data-keyno="20181106184827">7</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="8" data-keyno="20181106174212">8</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="9" data-keyno="20181106162300">9</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="10" data-keyno="20181106151741">10</a>
+                            		</span>
+                            		<a href="#this" id="paging_next" data-pagetype="next" data-pagenum="11" data-keyno="20181106132718" class="next" title="다음목록"><span class="hide">다음목록</span></a>
+                            	</div>
+                            
+                            <form name="pageForm" action="/product/SellerProductDetail.tmall" method="get">
+                            	<input type="hidden" name="method" value="getProductQnAList">
+                            	<input type="hidden" name="brdInfoClfNo" value="2205838409">
+                            	<input type="hidden" name="curPage" value="1">
+                            	<input type="hidden" name="qnaDtlsCd" value="">
+                            	<input type="hidden" name="pageTypCd" value="first">
+                            	<input type="hidden" name="secretYn" value="N">
+                            	<input type="hidden" name="myQnaYn" value="N">
+                            	<input type="hidden" name="isMart" value="N">
+                            	<input type="hidden" name="isSohoPrd" value="false">
+                            	<input type="hidden" name="keyNo" value="">
+                            	<input type="hidden" name="pageList" value="20181107113845|20181107094625|20181107085121|20181107080107|20181106234012|20181106212053|20181106184827|20181106174212|20181106162300|20181106151741|20181106132718|">
+                            	<input type="hidden" name="sellerMemId" value="cheonhyang0707">
+                            	<input type="hidden" name="ldispCtgrNo" value="1001340">
+                            	<input type="hidden" name="isRenewYn" value="Y">
+                            	<input type="hidden" name="pageSize" value="10">
+                            	<input type="hidden" name="targetFrm" value="">
+                            </form>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -669,10 +899,8 @@
 	</section>
 		
 
-	<%@include file="/iceland/../includes/footer.jsp"%>
-
+<%@include file="/iceland/../includes/footer.jsp"%>
 <%@include file="/iceland/../includes/QuickMenu.jsp"%>
-
 <!--===============================================================================================-->	
 	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
