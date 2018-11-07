@@ -73,15 +73,15 @@ public class CustomerRegistController implements Controller {
 				break;
 		}
 		// 추가컬럼... 입렵받은값에따라 db저장할값 설정 수정 필요!!!!!!
-		int customerBody = Integer.parseInt(request.getParameter("body"));
-		int customerShoulder = Integer.parseInt(request.getParameter("shoulder"));
-		int customerArm = Integer.parseInt(request.getParameter("arm"));
-		int customerLeg = Integer.parseInt(request.getParameter("leg"));
+//		int customerBody = Integer.parseInt(request.getParameter("body"));
+//		int customerShoulder = Integer.parseInt(request.getParameter("shoulder"));
+//		int customerArm = Integer.parseInt(request.getParameter("arm"));
+//		int customerLeg = Integer.parseInt(request.getParameter("leg"));
 		
 		Customer customer = new Customer(customerId, customerName, customerPassword, 
 				customerPhonenumber, customerEmail, customerAddress, customerPostcode, 
 				customerBirthday, customerGender, customerJacketSize, customerPantsSize, 
-				customerHeight, customerBody, customerShoulder, customerArm, customerLeg);
+				customerHeight, 1, 1, 1, 1); // 커스터마이징할 값을 1로 초기화
 		
 		// 고객객체생성
 		try {

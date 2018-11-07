@@ -34,7 +34,11 @@
       		         #{customerGender}, 
     		         #{customerJacketSize}, 
   		             #{customerPantsSize}, 
-    		         #{customerHeight}) 
+    		         #{customerHeight},
+    		         1,
+    		         1,
+    		         1,
+    		         1) 
 	</insert>
 
 </mapper>
