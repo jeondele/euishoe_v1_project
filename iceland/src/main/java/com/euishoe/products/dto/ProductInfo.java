@@ -14,17 +14,21 @@ public class ProductInfo {
 	private String productOrigin; 			// 상품생산지
 	private int productListPrice; 			// 상품글에 적힌 가격
 	private String colorCode;				// 색상코드
-	
+	private int productHitcount;			// 상품조회수
+	private int productBody; 				// 상품몸성향
+	private int productShoulder;			// 상품어깨성향
+	private int productArm; 				// 상품팔성향
+	private int productLeg;					// 상품다리성향
 	
 	// 생성자(Constructor) 선언
 	public ProductInfo() {
 
 	}
 
-
 	public ProductInfo(int productNum, int productListNum, String productName, int productCost, int productPrice,
 			String productBriefInfomation, String productManufacturer, String productReleaseDate, String productOrigin,
-			int productListPrice, String colorCode) {
+			int productListPrice, String colorCode, int productHitcount, int productBody, int productShoulder,
+			int productArm, int productLeg) {
 		super();
 		this.productNum = productNum;
 		this.productListNum = productListNum;
@@ -37,8 +41,12 @@ public class ProductInfo {
 		this.productOrigin = productOrigin;
 		this.productListPrice = productListPrice;
 		this.colorCode = colorCode;
+		this.productHitcount = productHitcount;
+		this.productBody = productBody;
+		this.productShoulder = productShoulder;
+		this.productArm = productArm;
+		this.productLeg = productLeg;
 	}
-
 
 	// setter, getter 선언
 	public int getProductNum() {
@@ -130,15 +138,54 @@ public class ProductInfo {
 		this.colorCode = colorCode;
 	}
 
+	public int getProductHitcount() {
+		return productHitcount;
+	}
 
-	// toString() 선언
+	public void setProductHitcount(int productHitcount) {
+		this.productHitcount = productHitcount;
+	}
+
+	public int getProductBody() {
+		return productBody;
+	}
+
+	public void setProductBody(int productBody) {
+		this.productBody = productBody;
+	}
+
+	public int getProductShoulder() {
+		return productShoulder;
+	}
+
+	public void setProductShoulder(int productShoulder) {
+		this.productShoulder = productShoulder;
+	}
+
+	public int getProductArm() {
+		return productArm;
+	}
+
+	public void setProductArm(int productArm) {
+		this.productArm = productArm;
+	}
+
+	public int getProductLeg() {
+		return productLeg;
+	}
+
+	public void setProductLeg(int productLeg) {
+		this.productLeg = productLeg;
+	}
+
 	@Override
 	public String toString() {
-		return "ProductDetail [productNum=" + productNum + ", productListNum=" + productListNum + ", productName="
+		return "ProductInfo [productNum=" + productNum + ", productListNum=" + productListNum + ", productName="
 				+ productName + ", productCost=" + productCost + ", productPrice=" + productPrice
 				+ ", productBriefInfomation=" + productBriefInfomation + ", productManufacturer=" + productManufacturer
 				+ ", productReleaseDate=" + productReleaseDate + ", productOrigin=" + productOrigin
-				+ ", productListPrice=" + productListPrice + "]";
+				+ ", productListPrice=" + productListPrice + ", colorCode=" + colorCode + ", productHitcount="
+				+ productHitcount + ", productBody=" + productBody + ", productShoulder=" + productShoulder
+				+ ", productArm=" + productArm + ", productLeg=" + productLeg + "]";
 	}
-	
 }
