@@ -71,18 +71,13 @@
   <div class="sec-banner bg0 p-t-80 p-b-50">
     <div class="container">
       <div class="row">
-      
-      
-
-   
         
             <div class="logo">
             <img src="/iceland/images/icons/logo-01.png">
             
             </div>
             
-            
-            <form action="https://httpbin.org/post" method="POST" class="form login">
+            <form action="/iceland/customer/regist.es" method="POST" class="form login">
             <ul>
               <li>
                 <div class="form__label">
@@ -127,21 +122,31 @@
                         </svg><span class="hidden">userName</span></label>
                     <input id="login__userName" type="text" name="userName" class="form__input" placeholder="userName" required> </div>
               </li>
+              
+               <li>
+                <div class="form__label"><h4>휴대폰번호</h4></div>
+                <div class="form__field">
+                    <label for="userName">
+                        <svg class="icon">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
+                        </svg><span class="hidden">userName</span></label>
+                    <input id="login__userName" type="text" name="userPhone" class="form__input" placeholder="휴대폰번호" required> </div>
+              </li>
                 
-          <li>  
+          	 <li>  
              <div class="form__label"><h4>생년월일</h4></div>
                 <div class="form__field">
                     <label for="email">
                         <svg class="icon">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
-                        </svg><span class="hidden">email</span></label>
-                    <input id="birth" type="text" name="email" class="form__input" placeholder="생년월일" required> </div>
+                        </svg><span class="hidden">email</span></label> 
+                    <input id="birth" type="text" name="birth" class="form__input" placeholder="생년월일" required> </div>
               </li>
               
             <li>    
                <div class="form__label"><h4>성별</h4></div>
                 <div class="form__field">
-                    <select>
+                    <select name="gender">
                         <option selected>선택</option>
                         <option>남자</option>
                         <option>여자</option>
@@ -157,7 +162,7 @@
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use>
                         </svg><span class="hidden">email</span></label>
                     <input id="email" type="text" name="email" class="form__input" placeholder="이메일" required><label>@</label>
-                    <select>
+                    <select name="emailHost" id="emailHost">
                         <option selected>선택</option>
                         <option>naver.com</option>
                         <option>daum.net</option>
@@ -169,7 +174,10 @@
                     </div>
                         <div class="form__field">
                           <input type="text">
+                          <!-- 
                           <input class="checkbtn" type="button" value="이메일 인증">
+                           -->
+                          <button type="button" class="checkbtn" id="emailCertify" onclick="send()">이메일 인증</button>
                     </div>
                 </li>
                 
@@ -198,7 +206,7 @@
                 <div class="form__label">
                     <h4>상의사이즈</h4></div>
                 <div class="form__field">
-                    <select>
+                    <select name="jacketSize">
                         <option selected>선택해주세요.</option>
                         <option>90(S)</option>
                         <option>95(M)</option>
@@ -212,7 +220,7 @@
                 <div class="form__label">
                     <h4>하의사이즈</h4></div>
                 <div class="form__field">
-                    <select>
+                    <select name="pantsSize">
                         <option selected>선택해주세요.</option>
                         <option>26</option>
                         <option>28</option>
@@ -227,7 +235,7 @@
                 <div class="form__label">
                     <h4>키(신장)</h4></div>
                 <div class="form__field">
-                    <select>
+                    <select name="height">
                         <option selected>선택해주세요.</option>
                         <option>155이상 ~ 160미만</option>
                         <option>160이상 ~ 165미만</option>
@@ -369,7 +377,32 @@
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="/iceland/js/address.js"></script>
-
+<script src="/iceland/js/ajax.js"></script>
+<!-- ============================================================================================== -->
+	<script type="text/javascript">
+		// 이메일 인증(비동기처리)을 위한 자바스크립트 코드 
+		//emailCertify.addEventListener("click", send);
+		
+		function send(){
+			var emailAdd = document.getElementById("email").value + "@" + document.getElementById("emailHost").value;
+			var target; // 인증완료 확인메시지 띄울 엘리먼트
+			var url = "/iceland/customer/emailCertify.es";
+			ajax({
+				method : "get",
+				url : url,
+				param : "emailAdd="+emailAdd,
+				callback : setResult
+			});
+			//setResult(url);
+		}
+		
+		function setResult(result){
+			var emailResult = result.responseText; // 인증코드값
+			alert("입력하신 이메일로 받은 인증번호를 입력해 주세요");
+			//console.log("이메일인증결과값"+emailResult);
+		}
+	</script>
+<!-- ============================================================================================== -->
 
 </body>
 </html>

@@ -20,13 +20,17 @@ public class CustomerServiceImpl implements CustomerService {
 		this.customerDao = customerDao;
 	}
 
+	// 로그인 인증
 	@Override
 	public Customer certify(String customerId, String customerPassword) throws Exception {
 		return customerDao.certify(customerId, customerPassword);
 	}
 	
-	
-	
-	
+	// 회원가입 서비스
+	@Override
+	public void create(Customer customer) throws Exception {
+		customerDao.create(customer);
+		return;
+	}
 	
 }
