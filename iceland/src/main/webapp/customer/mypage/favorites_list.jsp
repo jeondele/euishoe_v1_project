@@ -64,7 +64,7 @@
 
 .member_sc{
   position: relative;
-  margin: -1px 0 0 -1px;
+  margin: -1px 6px 0 -1px;
   padding-top: 27px;
   background: #bbbfc3;
   z-index: 20;
@@ -76,6 +76,7 @@
 }
 
 .my_nav .lst dt{
+  text-align: center;
   font-size: 18px;
   color: #222;
   margin-top: 23px;
@@ -85,8 +86,7 @@
   
 .home_info{
   position: relative;
-  height: 180px;
-  margin: -40px -40px 0 20%;
+  height: 200px;
   padding: 34px 0 35px;
   border-bottom: 1px solid #e5e5e5;
   background: #f7f8f8;
@@ -100,10 +100,11 @@
 .home_info .lst li{
   position: relative;
   float: left;
-  width: 170px;
+  width: 182px;
   height: 141px;
   border-left: 1px solid #e2e2e2;
   text-align: center;
+  background-color: linen;
 }
 
 
@@ -360,6 +361,49 @@
   table-layout: fixed;
   
 }
+
+
+/*
+박호준 수정
+*/
+.my_cont{
+border: 3px solid black;
+}
+
+.member_sc{
+border-style: hidden groove groove hidden;
+border-color: snow;
+padding: 25px;
+}
+
+.home_info{
+display: inline-block;
+}
+
+.tit{
+text-align: center;
+}
+#zzimProductList{
+display: inline-block;
+    width: 80%;
+}
+div > div > div > ul > li{
+border: 1px dotted darkgray;
+}
+
+ul > li > div > label{
+display:inline-block;
+}
+
+input[type=checkbox]{
+display:inline;
+}
+.fl_box{
+    display: inline;
+}
+.co_paginate{
+text-align:center;
+}
 </style>
 
 </head>
@@ -469,12 +513,13 @@
                 type="checkbox" id="chk_all2" name="chk_all2"
                 title="전체선택"
                 class="_click[defaultZzimHandler.toggleAllZzimCheckBox(oThis, jindo.$('chk_all1')); return true;]">
-              </label>
-              <div class="fl_box">
+                              <div class="fl_box">
                 <a href="/my/p/zzim/product/remove.nhn"
                   class="btn _click[defaultZzimHandler.removeSelectedZzims(oThis); return false;]">선택상품
                   삭제</a>
               </div>
+              </label>
+
             </div>
       </div>
       
