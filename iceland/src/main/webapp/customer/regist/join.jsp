@@ -170,11 +170,10 @@
                         <option>직접입력</option>
                     </select>
 
-
                     </div>
                         <div class="form__field">
-                          <input type="text">
                           <!-- 
+                          <input type="text">
 						  이메일 인증을 위한 비동기 통신용 버튼
                            -->
                           <button type="button" class="checkbtn" id="emailCertify" onclick="send()">이메일 인증</button>
@@ -384,8 +383,11 @@
 		//emailCertify.addEventListener("click", send);
 		
 		function send(){
-			var emailAdd = document.getElementById("email").value + "@" + document.getElementById("emailHost").value;
-			var target; // 인증완료 확인메시지 띄울 엘리먼트
+			if(document.getElementById("emailHost").value.trim()=="직접입력"){
+				var emailAdd = document.getElementById("email").value;
+			}else{
+				emailAdd = document.getElementById("email").value + "@" + document.getElementById("emailHost").value;
+			}
 			var url = "/iceland/customer/emailCertify.es";
 			ajax({
 				method : "get",
@@ -398,8 +400,17 @@
 		// 비동기통신 후 실행될 콜백함수
 		function setResult(result){
 			var emailCertifyCode = result.responseText; // 인증코드값
-			alert("입력하신 이메일로 받은 인증번호를 입력해 주세요");
-			
+			var inputCode = prompt("인증번호를 입력해 주세요" + "");
+			console.log("인증코드값: "+emailCertifyCode);
+			console.log("입력 인증코드값: "+inputCode);
+			if(inputCode.trim() == emailCertifyCode.trim()){
+				// 입력값과 생성된 난수값이 같으면
+				alert("이메일 인증이 완료되었습니다.");
+				document.getElementById('emailCertify').setAttribute('disabled','disabled');
+			}
+			else{
+				alert("인증에 실패하였습니다. 다시 입력해주세요");
+			}
 		}
 	</script>
 <!-- ============================================================================================== -->
