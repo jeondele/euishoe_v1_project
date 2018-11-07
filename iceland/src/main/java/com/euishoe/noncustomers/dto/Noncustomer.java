@@ -7,13 +7,18 @@ package com.euishoe.noncustomers.dto;
  *
  */
 public class Noncustomer {
-	private int noncustomerNum; //비회원번호
-	private String noncustomerEmail; //비회원이메일
-	private String noncustomerName; //비회원이름
-	private String noncustomerPassword; //비회원비밀번호
-	private String noncustomerPhonenumber; //비회원 전화번호
 	
+	// 변수 선언
+	private int noncustomerNum; 				// 비회원번호
+	private String noncustomerEmail; 			// 비회원이메일
+	private String noncustomerName; 			// 비회원이름
+	private String noncustomerPassword; 		// 비회원비밀번호
+	private String noncustomerPhonenumber; 		// 비회원전화번호
+	
+	
+	// 생성자(Constructor) 선언
 	public Noncustomer() {
+	
 	}
 
 	public Noncustomer(int noncustomerNum, String noncustomerEmail, String noncustomerName, String noncustomerPassword,
@@ -26,6 +31,8 @@ public class Noncustomer {
 		this.noncustomerPhonenumber = noncustomerPhonenumber;
 	}
 
+	
+	// setter, getter 메소드 선언
 	public int getNoncustomerNum() {
 		return noncustomerNum;
 	}
@@ -67,6 +74,7 @@ public class Noncustomer {
 	}
 
 	
+	// toString() 선언
 	@Override
 	public String toString() {
 		return "Noncustomer [noncustomerNum=" + noncustomerNum + ", noncustomerEmail=" + noncustomerEmail

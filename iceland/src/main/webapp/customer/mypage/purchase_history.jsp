@@ -55,6 +55,7 @@
 .my_cont{
   position: relative;
   z-index: 30;
+  margin-top: 5%;
 }
 
 .my_container{
@@ -85,7 +86,7 @@
 .home_info{
   position: relative;
   height: 180px;
-  margin: -40px -40px 0;
+  margin: -40px -40px 0 20%;
   padding: 34px 0 35px;
   border-bottom: 1px solid #e5e5e5;
   background: #f7f8f8;
@@ -115,6 +116,253 @@
   cursor: pointer;
 }
 
+
+
+
+.spot{
+  position: relative;
+  z-index: 30;
+  margin-top: 1px;
+  border: 1px solid #dadddf;
+  background-color: #edeff2;
+  margin-left: 20%;
+}
+
+.spot ul{
+  display;
+  overflow: hidden;
+  margin-left: 40px;
+  padding: 24px;
+  zoom : 1;
+}
+
+.spot li{
+  display: inline;
+  float: left;
+  position: relative;
+  width: 150px;
+  
+}
+
+.spot li .inner{
+  position: relative;
+  min-height : 83px;
+  
+}
+
+.ask_sc{
+  position: relative;
+  z-index: 20;
+  margin: -1px 0 46px;
+  padding: 19px 30px;
+  border: 1px solid #dadddf;
+  background-color: #edeff2;
+
+}
+
+.spot .zzim_area{
+  position: absolute;
+  top : 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  padding-left: 25px;
+  background: url() no-repeat right 50%;
+}
+
+.spot .zzim_area .text{
+  overflow: hidden;
+  width: 183px;
+  height: 47px;
+  margin: 44px 0 22px;
+  background-position: 0 -130px;
+}
+
+.spot .zzim_area .zzim_num{
+  font-size : 12px;
+  color: #828282;
+  text-decoration: none;
+  
+}
+
+.tit_mouth{
+  width: 100%;
+  height: 39px;
+  margin: -9px 0;
+  text-align: center;
+}
+
+.plst_sc .goods li{
+  position: relative;
+  padding: 0 30px 10px 0;
+  zoom : 1;
+}
+
+.plst_sc .goods li .p_inr{
+  position: relative;
+  display : flex;
+  padding: 0 120px 0 127px;
+}
+
+.plst_sc .goods li .p_inr .com_thmb{
+  display : inline-block;
+  text-align: center;
+  }
+  
+  .plst_sc .goods li .p_inr .p_info{
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    padding: 15px 0 0;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+  }
+
+/* .mask{
+  position: absolute;
+  top: 0;
+  left : 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+} */
+
+
+.sub_sc{
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  padding: 0 0 30px;
+  background-color: #fff;
+}
+
+.tit_month{
+  width:  100%;
+  height: 40px;
+  text-align: center;
+}
+
+.plst_sc .goods li{
+  position: relative;
+  padding: 10px 30px 10px 0;
+  zoom : 1;
+}
+
+.plst_sc .goods li .p_inr{
+  position: relative;
+  display : flex;
+  padding: 0 120px 0 127px;
+}
+
+.plst_sc .goods li .p_inr .com_thmb{
+  display : inline-block;
+  text-align: center;
+  }
+  
+  .plst_sc .goods li .p_inr .p_info{
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    padding: 15px 0 0;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+ }
+
+.sub_sc{
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  padding: 0 0 30px;
+  background-color: #fff;
+}
+
+.tit_month{
+  width:  100%;
+  height: 40px;
+  text-align: center;
+}
+
+.plst_sc .goods li{
+  position: relative;
+  padding: 10px 30px 10px 0;
+  zoom : 1;
+}
+
+.plst_sc .goods li .p_inr{
+  position: relative;
+  display : flex;
+  padding: 0 120px 0 127px;
+}
+
+.plst_sc .goods li .p_inr .com_thmb{
+  display : inline-block;
+  text-align: center;
+  }
+  
+  .plst_sc .goods li .p_inr .p_info{
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    padding: 15px 0 0;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+  }
+
+.mask{
+  position: absolute;
+  top: 0;
+  left : 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+}
+
+
+.sub_sc{
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  padding: 0 0 30px;
+  background-color: #fff;
+}
+
+.tit_month{
+  width:  100%;
+  height: 40px;
+  text-align: center;
+}
+
+.order_info2 li{
+  float: left;
+  margin-left: 25px;
+  padding-left: 29px;
+}
+
+.order_info2 li dd{
+  float: left;
+  font-size : 17px;
+  font-weight : normal;
+  line-height: 20px;
+}
+
+.order_info2 .ordnum{
+  display: relative;
+}
+
+.tb_list{
+  width: 100%;
+  border: 0;
+  border-top: 1px solid #383d4a;
+  border-bottom: 1px solid #dddde1;
+  table-layout: fixed;
+  
+}
+
+
+
 </style>
 </head>
 <body class="animsition">
@@ -129,242 +377,10 @@
   <!-- Product -->
   <div class="bg0 m-t-23 p-b-140">
     <div class="container">
-      <div class="flex-w flex-sb-m p-b-52">
-        <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-          <button
-            class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
-            data-filter="*">전체</button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-            data-filter=".women">뷰티</button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-            data-filter=".men">헬스</button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-            data-filter=".bag">간편식</button>
-        </div>
-
-        <div class="flex-w flex-c-m m-tb-10">
-          <div
-            class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-            <i
-              class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-            <i
-              class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-            Filter
-          </div>
-
-          <div
-            class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
-            <i
-              class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-            <i
-              class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-            Search
-          </div>
-        </div>
-
-        <!-- Search product -->
-        <div class="dis-none panel-search w-full p-t-10 p-b-15">
-          <div class="bor8 dis-flex p-l-15">
-            <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-              <i class="zmdi zmdi-search"></i>
-            </button>
-
-            <input class="mtext-107 cl2 size-114 plh2 p-r-15"
-              type="text" name="search-product" placeholder="Search">
-          </div>
-        </div>
-
-        <!-- Filter -->
-        <div class="dis-none panel-filter w-full p-t-10">
-          <div
-            class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-            <div class="filter-col1 p-r-15 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Sort By</div>
-
-              <ul>
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Default </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Popularity
-                </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Average
-                    rating </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04 filter-link-active">
-                    Newness </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Price: Low
-                    to High </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Price:
-                    High to Low </a></li>
-              </ul>
-            </div>
-
-            <div class="filter-col2 p-r-15 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Price</div>
-
-              <ul>
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04 filter-link-active">
-                    All </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $0.00 -
-                    $50.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $50.00 -
-                    $100.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $100.00 -
-                    $150.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $150.00 -
-                    $200.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $200.00+ </a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="filter-col3 p-r-15 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Color</div>
-
-              <ul>
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #222;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Black </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #4272d7;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#"
-                  class="filter-link stext-106 trans-04 filter-link-active">
-                    Blue </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #b3b3b3;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Grey </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #00ad5f;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Green </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #fa4251;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Red </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #aaa;"> <i
-                    class="zmdi zmdi-circle-o"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    White </a></li>
-              </ul>
-            </div>
-
-            <div class="filter-col4 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Tags</div>
-
-              <div class="flex-w p-t-4 m-r--5">
-                <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Fashion </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Lifestyle </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Denim </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Streetstyle </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Crafts </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div id="container" class="my_container">
-        <!-- aside -->
-        <div id="aside" class="my_aside">
-          <div class="member_sc">
-            <h2 class="blind">내정보</h2>
-            <a href="#"
-              class="profile_img _click[jindo.$Element('profileEditMenu').toggle(); return false;]"><img
-              width="94" height="94" class="_profile_img"
-              src="https://ssl.pstatic.net/static.checkout/cnsv/m/im/home2nd/my_noimg_v1.png"
-              alt=""> <span class="set">설정변경</span> <span
-              class="mask"></span> </a>
-            <!--N=a:men.set-->
-            <div id="profileEditMenu" class="set_ly"
-              style="display: none;">
-              <div class="cont">
-                <ul class="set_lst">
-                  <li class="li1"><a
-                    href="https://nid.naver.com/user2/api/route.nhn?fromService=shoppingmy&amp;m=routePcProfileModification&amp;returnUrl=http%3A%2F%2Fshopping.naver.com%2Fmy%2Fp%2Fhome.nhn"
-                    class="lnk"> <span class="ico"></span>프로필사진 수정
-                  </a>
-                  <!--N=a:men.setimg--></li>
-                  <li class="li2"><a
-                    href="https://pay.naver.com/mypage/update"
-                    class="lnk"> <span class="ico"></span>결제/배송지 정보
-                      수정
-                  </a>
-                  <!--N=a:men.setorder--></li>
-                </ul>
-              </div>
-              <div class="bg top"></div>
-              <div class="bg btm"></div>
-            </div>
-            <div class="profile_txt">
-              <span class="name _profile_name">dmltn0828님</span> <em
-                class="id">dmlt****</em>
-            </div>
-          </div>
-          <div id="snb" class="my_nav">
-            <dl class="lst">
-              <dt class="on">
-                <a href="/my/p/home.nhn">쇼핑MY</a>
-                <!--N=a:men.home-->
-              </dt>
-              <dt>
-                <a href="/my/p/zzim/index.nhn">찜한 상품</a>
-                <!--N=a:men.zzimtitle-->
-              </dt>
 
-              <dt>
-                <a href="/my/p/qna/index.nhn">상품 Q&amp;A</a>
-                <!--N=a:men.qnatitle-->
-              </dt>
-              <dt>
-                <a href="/my/p/recent/index.nhn">최근 본 상품</a>
-                <!--N=a:men.recent-->
-              </dt>
-            </dl>
-          </div>
-        </div>
-        <!-- //aside -->
 
+  <%@include file="include/mypage_aside.jsp"%>
 
 
         <!-- content -->
@@ -372,20 +388,20 @@
           <div class="home_info">
             <ul class="lst">
               <li class="order"><a
-                href="http://order.pay.naver.com/home?tabMenu=SHOPPING&amp;frm=s_order"
+                href="purchase_history.jsp"
                 class="lnk" target="_blank"> <span class="ico">주문배송</span>
                   <em id="nSaleCount" class="_nPayStatus num_box"><span
                     class="num no0">0</span></em>
               </a>
               </li>
-              <li class="cupon"><a
-                href="http://benefit.pay.naver.com/coupon" class="lnk"
+              <li class="point"><a
+                href="point_history.jsp" class="lnk"
                 target="_blank"> <span class="ico">포인트</span> <em
                   id="nCouponCount" class="_nPayStatus num_box">
                   <span>0</span></em>
               </a>
               </li>
-              <li class="point"><a href="http://pay.naver.com"
+              <li class=""><a href=""
                 class="lnk" target="_blank"> <span class="ico">
                    장바구니</span> <em id="nPoint" class="_nPayStatus num_box"><span></span></em>
               </a>
@@ -395,7 +411,7 @@
                   <em id="shoppingTalk" class="num_box"><span class="num no3"></span></em>
               </a>
               </li>
-             <li class="tok"><a href="">
+             <li class="userinfo"><a href="">
                   <span class="ico">개인정보 수정</span> 
                   <em id="shoppingTalk" class="num_box"><span class="num no3"></span></em>
               </a>
@@ -403,8 +419,7 @@
             </ul>
           </div>
      
-     <div class="spot _summaryRoot">
-
+<div class="spot _summaryRoot">
 <ul>
 <li class="ship1 ">
   <div class="inner">
@@ -456,8 +471,10 @@
   <a href="http://my.shopping.naver.com/my/p/zzim/index.nhn" class="zzim_num"><span class="ico"></span>찜한상품<strong id="_zzimCount">-</strong></a>
 </div></div>
 
-<div id="_listContentArea">
 
+
+<div class="sub_sc" style="min-height: 200px;">
+<div id="_listContentArea">
       <div class="tit_month">
         <h4>2018.08</h4>
       </div>
@@ -471,7 +488,6 @@
       <div class="p_inr">
         
         <a href="http://www.kyobobook.co.kr" class="com_thmb">
-          <span class="mask"></span>
           <img src="https://phinf.pstatic.net/checkout/20160607_72/muBjoin_1465279775557GOpkx_JPEG/_60.jpg" width="60" height="60" alt="교보문고">
         </a><!--N=a:csh.detail-->
         <div class="p_info">
@@ -484,21 +500,106 @@
           </a><!--N=a:csh.detail-->
           <span class="state">결제완료</span>
         </div>
-        <div class="seller">
-          <span>교보문고</span>
-          <em>15441900</em>
-          <a href="http://www.kyobobook.co.kr" target="_blank">문의하기</a><!--N=a:csh.qnas-->
-        </div>
-      </div>
-      <a href="#" class="btn open _click(nmp.front.order.timeline.home.list.toggleDetailView(20180806NP1214381502)) _stopDefault">상품별기능열기</a><!--N=a:csh.open-->
-      <div class="func" id="_detailView20180806NP1214381502" style="display:none">
-          <p><span></span>결제 및 상세 내역 확인 및 취소요청은 <a href="http://www.kyobobook.co.kr" class="link">교보문고</a>에서 확인하실 수 있습니다.<span class="sub">(거래완료는 포인트 적립 완료로 확인 가능합니다.)</span></p>
-        <div class="btn_area">
-          <a href="http://www.kyobobook.co.kr">바로가기</a><!--N=a:csh.more-->
-          <a href="#" class="_click(nmp.front.order.timeline.home.list.removeEtc(20180806131101NSP20180806NP1214381502)) _stopDefault">내역삭제</a><!--N=a:csh.del-->
-        </div>
+        <div class="flex-w flex-c-m m-tb-10">
+          <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+            <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+            <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i> 상세보기
+          </div>
       </div>
     </li>
+    <div class="dis-none panel-filter w-full p-t-10">
+          <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+            <div class="detail-product">
+              <div class="mtext-102 cl2 p-b-15">결제상세정보</div>
+              <ul>
+                <li class="p-b-6">
+                              <div class="bx bx_padding vsb">
+                                <ul class="fl order_info2">
+                                  <li class="first">
+                                    <dl>
+                                      <dt>결제일자</dt>
+                                      <dd>
+                                        <strong>2018.08.06</strong>
+                                      </dd>
+                                    </dl>
+                                  </li>
+                                  <li>
+                                    <dl>
+                                      <dt>결제번호</dt>
+                                      <dd class="ordnum">
+                                        <strong class="pointcol">20180806NP1214381502</strong>
+                                      </dd>
+                                    </dl>
+                                  </li>
+                                </ul>
+                              </div>
+                            </li>
+
+                <li class="p-b-6">
+                <table cellspacing="0" border="1" class="tb_list mgt">
+                          <colgroup>
+                              <col width="">
+                                <col width="140">
+                                  <col width="150">
+                                  <col width="120">
+                                  <col width="110">
+                                </colgroup>
+                                <thead>
+                                  <tr>
+                                    <th scope="col">상품정보</th>
+                                    <th scope="col">상품금액(수량)</th>
+                                    <th scope="col" class="bg_point">결제금액</th>
+                                    <th scope="col" class="bg_point">진행상태</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td class="product">
+                                      <div>
+                                        <dl>
+                                          <dt>
+                                            <em>"상품명"</em>
+                                          </dt>
+                                        </dl>
+                                      </div>
+                                    </td>
+                                    <td class="money"><em
+                                      class="thm">"상품가격"</em>원<br>
+                                      <span>"상품갯수"</span></td>
+                                    <td class="seller bg_point">
+                                      <div class="send">
+                                        <div class="store">
+                                          <div class="inner ">
+                                            <div class="txt_elp">
+                                              <p>
+                                                <a
+                                                  href="http://www.kyobobook.co.kr">교보문고</a>
+                                              </p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="tel">
+                                          <span>1544-1900</span>
+                                        </div>
+                                        <div class="btn">
+                                          <a
+                                            href="http://www.kyobobook.co.kr"
+                                            class="seller_inquiry"><span
+                                            class="blind">판매자 문의</span></a>
+                                          <!-- N=a:ost.ask -->
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td class="bg_point state">결제완료</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    
         </ul>
       </div>
     </div>
@@ -506,7 +607,7 @@
 <input type="hidden" id="_hasMore0" value="false">
 <input type="hidden" id="_interlockNosForDeliveryTracking0" value="">
 </div>
-     
+     </div>
      
         </div>
         <!-- //content -->

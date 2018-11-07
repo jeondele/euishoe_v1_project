@@ -7,41 +7,36 @@ package com.euishoe.products.dto;
  */
 public class Product {
 
-	private String productCode; //상품코드
-	private String colorCode; //상품색깔코드
-	private String jacketCode; //상의코드명
-	private String pantsCode; //하의코드명
-	private int productNum; // 상품번호
-	private int productCount; //상품수량
+	// 변수 선언
+	private String productCode; 			// 상품코드
+	private String jacketCode; 				// 상의코드명
+	private String pantsCode; 				// 하의코드명
+	private int productNum; 				// 상품번호
+	private int productCount; 				// 상품수량
 
+	
+	// 생성자(Constructor) 선언
 	public Product() {
 	}
 
-	public Product(String productCode, String colorCode, String jacketCode, String pantsCode, int productNum,
+	public Product(String productCode, String jacketCode, String pantsCode, int productNum,
 			int productCount) {
 		super();
 		this.productCode = productCode;
-		this.colorCode = colorCode;
 		this.jacketCode = jacketCode;
 		this.pantsCode = pantsCode;
 		this.productNum = productNum;
 		this.productCount = productCount;
 	}
 
+	
+	// setter, getter 선언
 	public String getProductCode() {
 		return productCode;
 	}
 
 	public void setProductCode(String productCode) {
 		this.productCode = productCode;
-	}
-
-	public String getColorCode() {
-		return colorCode;
-	}
-
-	public void setColorCode(String colorCode) {
-		this.colorCode = colorCode;
 	}
 
 	public String getJacketCode() {
@@ -76,9 +71,11 @@ public class Product {
 		this.productCount = productCount;
 	}
 
+	
+	// toString() 선언
 	@Override
 	public String toString() {
-		return "Product [productCode=" + productCode + ", colorCode=" + colorCode + ", jacketCode=" + jacketCode
+		return "Product [productCode=" + productCode + ", jacketCode=" + jacketCode
 				+ ", pantsCode=" + pantsCode + ", productNum=" + productNum + ", productCount=" + productCount + "]";
 	}
 	

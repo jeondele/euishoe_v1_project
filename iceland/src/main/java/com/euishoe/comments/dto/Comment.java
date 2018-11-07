@@ -7,15 +7,23 @@ package com.euishoe.comments.dto;
  *
  */
 public class Comment {
-	//dto
-	private int commentNum;	// 댓글번호
-	private int reviewNum;	// 리뷰번호
-	private int qnaNum;		// 문의번호
-	private String commentContent;	// 댓글내용
-	private int commentLevel;	// 댓글레벨
-	private String commentIsDeleted; // 댓글삭제여부
 	
-	// 생성자
+	// 변수 선언
+	private int commentNum;					// 댓글번호
+	private int reviewNum;					// 리뷰번호
+	private int qnaNum;						// 문의번호
+	private String commentContent;			// 댓글내용
+	private int commentLevel;				// 댓글레벨
+	private String commentIsDeleted; 		// 댓글삭제여부
+	
+
+	// 생성자(Constructor) 선언
+	public Comment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	public Comment(int commentNum, int reviewNum, int qnaNum, String commentContent, int commentLevel,
 			String commentIsDeleted) {
 		super();
@@ -27,7 +35,8 @@ public class Comment {
 		this.commentIsDeleted = commentIsDeleted;
 	}
 
-	// setter, getter
+	
+	// setter, getter 선언
 	public int getCommentNum() {
 		return commentNum;
 	}
@@ -76,7 +85,8 @@ public class Comment {
 		this.commentIsDeleted = commentIsDeleted;
 	}
 
-	// toString 오버라이딩
+	
+	// toString() 선언
 	@Override
 	public String toString() {
 		return "Comment [commentNum=" + commentNum + ", reviewNum=" + reviewNum + ", qnaNum=" + qnaNum

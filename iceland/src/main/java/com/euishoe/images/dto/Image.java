@@ -13,8 +13,6 @@ public class Image {
 	private int reviewNum;
 	private int qnaNum;
 	private String imageRef;
-	private String imageType;
-	
 	
 	// 생성자(Constructor) 선언
 	public Image() {
@@ -23,14 +21,13 @@ public class Image {
 	}
 	
 	
-	public Image(int imageNum, String productCode, int reviewNum, int qnaNum, String imageRef, String imageType) {
+	public Image(int imageNum, String productCode, int reviewNum, int qnaNum, String imageRef) {
 		super();
 		this.imageNum = imageNum;
 		this.productCode = productCode;
 		this.reviewNum = reviewNum;
 		this.qnaNum = qnaNum;
 		this.imageRef = imageRef;
-		this.imageType = imageType;
 	}
 
 
@@ -85,20 +82,10 @@ public class Image {
 	}
 
 
-	public String getImageType() {
-		return imageType;
-	}
-
-
-	public void setImageType(String imageType) {
-		this.imageType = imageType;
-	}
-
-
 	// toString() 선언
 	@Override
 	public String toString() {
 		return "Image [imageNum=" + imageNum + ", productCode=" + productCode + ", reviewNum=" + reviewNum + ", qnaNum="
-				+ qnaNum + ", imageRef=" + imageRef + ", imageType=" + imageType + "]";
+				+ qnaNum + ", imageRef=" + imageRef + "]";
 	}	
 }

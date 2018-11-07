@@ -7,12 +7,16 @@ package com.euishoe.points.dto;
  *
  */
 public class PointHistory {
-	private int pointHistoryNum; //포인트 이력번호
-	private int pointPolicyType; //포인트 정책유형
-	private String customerId; //회원아이디
-	private int pointHistoryScore; //포인트 점수
-	private String pointHistoryUpdateDate; //포인트이력변경일자
 	
+	// 변수 선언
+	private int pointHistoryNum; 			// 포인트이력번호
+	private int pointPolicyType; 			// 포인트정책유형
+	private String customerId; 				// 회원아이디
+	private int pointHistoryScore; 			// 포인트점수
+	private String pointHistoryUpdateDate; 	// 포인트이력변경일자
+	
+	
+	// 생성자(Constructor) 선언
 	public PointHistory() {
 	}
 
@@ -26,6 +30,8 @@ public class PointHistory {
 		this.pointHistoryUpdateDate = pointHistoryUpdateDate;
 	}
 
+	
+	// setter, getter 선언
 	public int getPointHistoryNum() {
 		return pointHistoryNum;
 	}
@@ -66,6 +72,8 @@ public class PointHistory {
 		this.pointHistoryUpdateDate = pointHistoryUpdateDate;
 	}
 
+	
+	// toString() 선언
 	@Override
 	public String toString() {
 		return "PointHistory [pointHistoryNum=" + pointHistoryNum + ", pointPolicyType=" + pointPolicyType

@@ -22,7 +22,7 @@ public class HomeController implements Controller {
 		
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		
-		mav.setView("index.html");
+		mav.setView("index.jsp");
 		
 		return mav;
 	}

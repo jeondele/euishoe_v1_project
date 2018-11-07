@@ -16,7 +16,13 @@ public class Customer {
 	private String customerPostcode;		// 회원우편번호
 	private String customerBirthday;		// 회원생년월일
 	private String customerGender;			// 회원성별
-	
+	private String customerJacketSize;		// 회원상의사이즈
+	private String customerPantsSize;		// 회원하의사이즈
+	private String customerHeight;			// 회원신장
+	private int customerBody;				// 회원몸성향
+	private int customerShoulder;			// 회원어깨성향
+	private int customerArm; 				// 회원팔성향
+	private int customerLeg;				// 회원다리성향
 	
 	// 생성자(Constructor) 선언
 	public Customer() {
@@ -24,10 +30,10 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
 	public Customer(String customerId, String customerName, String customerPassword, String customerPhonenumber,
 			String customerEmail, String customerAddress, String customerPostcode, String customerBirthday,
-			String customerGender) {
+			String customerGender, String customerJacketSize, String customerPantsSize, String customerHeight,
+			int customerBody, int customerShoulder, int customerArm, int customerLeg) {
 		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
@@ -38,8 +44,14 @@ public class Customer {
 		this.customerPostcode = customerPostcode;
 		this.customerBirthday = customerBirthday;
 		this.customerGender = customerGender;
+		this.customerJacketSize = customerJacketSize;
+		this.customerPantsSize = customerPantsSize;
+		this.customerHeight = customerHeight;
+		this.customerBody = customerBody;
+		this.customerShoulder = customerShoulder;
+		this.customerArm = customerArm;
+		this.customerLeg = customerLeg;
 	}
-
 
 	// setter, getter 선언
 	public String getCustomerId() {
@@ -131,16 +143,76 @@ public class Customer {
 		this.customerGender = customerGender;
 	}
 
-
 	
-	// toString() 선언
+	public String getCustomerJacketSize() {
+		return customerJacketSize;
+	}
+
+
+	public void setCustomerJacketSize(String customerJacketSize) {
+		this.customerJacketSize = customerJacketSize;
+	}
+
+
+	public String getCustomerPantsSize() {
+		return customerPantsSize;
+	}
+
+
+	public void setCustomerPantsSize(String customerPantsSize) {
+		this.customerPantsSize = customerPantsSize;
+	}
+
+
+	public String getCustomerHeight() {
+		return customerHeight;
+	}
+
+
+	public void setCustomerHeight(String customerHeight) {
+		this.customerHeight = customerHeight;
+	}
+
+	public int getCustomerBody() {
+		return customerBody;
+	}
+
+	public void setCustomerBody(int customerBody) {
+		this.customerBody = customerBody;
+	}
+
+	public int getCustomerShoulder() {
+		return customerShoulder;
+	}
+
+	public void setCustomerShoulder(int customerShoulder) {
+		this.customerShoulder = customerShoulder;
+	}
+
+	public int getCustomerArm() {
+		return customerArm;
+	}
+
+	public void setCustomerArm(int customerArm) {
+		this.customerArm = customerArm;
+	}
+
+	public int getCustomerLeg() {
+		return customerLeg;
+	}
+
+	public void setCustomerLeg(int customerLeg) {
+		this.customerLeg = customerLeg;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerPassword="
 				+ customerPassword + ", customerPhonenumber=" + customerPhonenumber + ", customerEmail=" + customerEmail
 				+ ", customerAddress=" + customerAddress + ", customerPostcode=" + customerPostcode
-				+ ", customerBirthday=" + customerBirthday + ", customerGender=" + customerGender + "]";
+				+ ", customerBirthday=" + customerBirthday + ", customerGender=" + customerGender
+				+ ", customerJacketSize=" + customerJacketSize + ", customerPantsSize=" + customerPantsSize
+				+ ", customerHeight=" + customerHeight + ", customerBody=" + customerBody + ", customerShoulder="
+				+ customerShoulder + ", customerArm=" + customerArm + ", customerLeg=" + customerLeg + "]";
 	}
-
-
 }

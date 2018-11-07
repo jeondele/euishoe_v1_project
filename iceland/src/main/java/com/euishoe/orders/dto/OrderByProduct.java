@@ -1,12 +1,20 @@
 package com.euishoe.orders.dto;
 
+/**
+ * 상품 주문과 관련된 dto 객체
+ * @author 백욱기
+ *
+ */
 public class OrderByProduct {
 	
-	private int orderByProductNum; //한 개의 상품에 대한 주문번호
-	private String productCode; // 상품코드명 
-	private int orderNum; // 주문번호
-	private int productCount; // 상품수량
+	// 변수 선언
+	private int orderByProductNum; 		// 한 개의 상품에 대한 주문번호
+	private String productCode; 		// 상품코드명 
+	private int orderNum; 				// 주문번호
+	private int productCount; 			// 상품수량
 	
+	
+	// 생성자(Constructor) 선언
 	public OrderByProduct() {
 		super();
 	}
@@ -19,6 +27,8 @@ public class OrderByProduct {
 		this.productCount = productCount;
 	}
 
+	
+	// setter, getter 선언
 	public int getOrderByProductNum() {
 		return orderByProductNum;
 	}
@@ -51,6 +61,8 @@ public class OrderByProduct {
 		this.productCount = productCount;
 	}
 
+	
+	// toString() 선언
 	@Override
 	public String toString() {
 		return "OrderByProduct [orderByProductNum=" + orderByProductNum + ", productCode=" + productCode + ", orderNum="

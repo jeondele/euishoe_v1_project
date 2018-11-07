@@ -7,20 +7,21 @@ package com.euishoe.carts.dto;
  *
  */
 public class Cart {
-	private int cartNum; //장바구니 번호
-	private String productCode; // 상품코드
-	private String customerId; // 회원아이디
-	private int cartCount; // 수량
+	
+	// 변수선언
+	private int cartNum; 					//장바구니 번호
+	private String productCode; 			// 상품코드
+	private String customerId; 				// 회원아이디
+	
 	
 	public Cart() {
 	}
 
-	public Cart(int cartNum, String productCode, String customerId, int cartCount) {
+	public Cart(int cartNum, String productCode, String customerId) {
 		super();
 		this.cartNum = cartNum;
 		this.productCode = productCode;
 		this.customerId = customerId;
-		this.cartCount = cartCount;
 	}
 
 	public int getCartNum() {
@@ -47,18 +48,11 @@ public class Cart {
 		this.customerId = customerId;
 	}
 
-	public int getCartCount() {
-		return cartCount;
-	}
-
-	public void setCartCount(int cartCount) {
-		this.cartCount = cartCount;
-	}
 
 	@Override
 	public String toString() {
 		return "Cart [cartNum=" + cartNum + ", productCode=" + productCode + ", customerId=" + customerId
-				+ ", cartCount=" + cartCount + "]";
+				+ "]";
 	}
 	
 }
