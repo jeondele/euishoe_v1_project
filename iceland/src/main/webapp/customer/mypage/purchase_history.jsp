@@ -48,428 +48,81 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
-
-
-
-<style>
-.my_cont{
-  position: relative;
-  z-index: 30;
-  margin-top: 5%;
-}
-
-.my_container{
-  font-family: '나눔고딕', NanumGothic, '맑은고딕', MalgunGothic, '돋움', Dotum, Helvetica, sans-serif;
-}
-
-.member_sc{
-  position: relative;
-  margin: -1px 0 0 -1px;
-  padding-top: 27px;
-  background: #bbbfc3;
-  z-index: 20;
-
-}
-.my_aside{
-  float : left;
-  width: auto;
-}
-
-.my_nav .lst dt{
-  font-size: 18px;
-  color: #222;
-  margin-top: 23px;
-  padding: 21px 0 0 6px;
-  border-top: 1px solid #eaebec;
-}
-  
-.home_info{
-  position: relative;
-  height: 180px;
-  margin: -40px -40px 0 20%;
-  padding: 34px 0 35px;
-  border-bottom: 1px solid #e5e5e5;
-  background: #f7f8f8;
-  z-index: 30;
-}
-
-.home_info .lst{
-  zoom: 1;
-}
-
-.home_info .lst li{
-  position: relative;
-  float: left;
-  width: 170px;
-  height: 141px;
-  border-left: 1px solid #e2e2e2;
-  text-align: center;
-}
-
-
-.home_info .lst .lnk{
-  position: absolute;
-  left : 0;
-  right : 0;
-  top : 0;
-  bottom : 0;
-  cursor: pointer;
-}
-
-
-
-
-.spot{
-  position: relative;
-  z-index: 30;
-  margin-top: 1px;
-  border: 1px solid #dadddf;
-  background-color: #edeff2;
-  margin-left: 20%;
-}
-
-.spot ul{
-  display;
-  overflow: hidden;
-  margin-left: 40px;
-  padding: 24px;
-  zoom : 1;
-}
-
-.spot li{
-  display: inline;
-  float: left;
-  position: relative;
-  width: 150px;
-  
-}
-
-.spot li .inner{
-  position: relative;
-  min-height : 83px;
-  
-}
-
-.ask_sc{
-  position: relative;
-  z-index: 20;
-  margin: -1px 0 46px;
-  padding: 19px 30px;
-  border: 1px solid #dadddf;
-  background-color: #edeff2;
-
-}
-
-.spot .zzim_area{
-  position: absolute;
-  top : 0;
-  right: 0;
-  height: 100%;
-  width: 50%;
-  padding-left: 25px;
-  background: url() no-repeat right 50%;
-}
-
-.spot .zzim_area .text{
-  overflow: hidden;
-  width: 183px;
-  height: 47px;
-  margin: 44px 0 22px;
-  background-position: 0 -130px;
-}
-
-.spot .zzim_area .zzim_num{
-  font-size : 12px;
-  color: #828282;
-  text-decoration: none;
-  
-}
-
-.tit_mouth{
-  width: 100%;
-  height: 39px;
-  margin: -9px 0;
-  text-align: center;
-}
-
-.plst_sc .goods li{
-  position: relative;
-  padding: 0 30px 10px 0;
-  zoom : 1;
-}
-
-.plst_sc .goods li .p_inr{
-  position: relative;
-  display : flex;
-  padding: 0 120px 0 127px;
-}
-
-.plst_sc .goods li .p_inr .com_thmb{
-  display : inline-block;
-  text-align: center;
-  }
-  
-  .plst_sc .goods li .p_inr .p_info{
-    overflow: hidden;
-    position: relative;
-    max-width: 100%;
-    padding: 15px 0 0;
-    color: #000;
-    white-space: nowrap;
-    text-overflow: ellipsis; 
-  }
-
-/* .mask{
-  position: absolute;
-  top: 0;
-  left : 0;
-  z-index: 20;
-  width: 100%;
-  height: 100%;
-} */
-
-
-.sub_sc{
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  padding: 0 0 30px;
-  background-color: #fff;
-}
-
-.tit_month{
-  width:  100%;
-  height: 40px;
-  text-align: center;
-}
-
-.plst_sc .goods li{
-  position: relative;
-  padding: 10px 30px 10px 0;
-  zoom : 1;
-}
-
-.plst_sc .goods li .p_inr{
-  position: relative;
-  display : flex;
-  padding: 0 120px 0 127px;
-}
-
-.plst_sc .goods li .p_inr .com_thmb{
-  display : inline-block;
-  text-align: center;
-  }
-  
-  .plst_sc .goods li .p_inr .p_info{
-    overflow: hidden;
-    position: relative;
-    max-width: 100%;
-    padding: 15px 0 0;
-    color: #000;
-    white-space: nowrap;
-    text-overflow: ellipsis; 
- }
-
-.sub_sc{
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  padding: 0 0 30px;
-  background-color: #fff;
-}
-
-.tit_month{
-  width:  100%;
-  height: 40px;
-  text-align: center;
-}
-
-.plst_sc .goods li{
-  position: relative;
-  padding: 10px 30px 10px 0;
-  zoom : 1;
-}
-
-.plst_sc .goods li .p_inr{
-  position: relative;
-  display : flex;
-  padding: 0 120px 0 127px;
-}
-
-.plst_sc .goods li .p_inr .com_thmb{
-  display : inline-block;
-  text-align: center;
-  }
-  
-  .plst_sc .goods li .p_inr .p_info{
-    overflow: hidden;
-    position: relative;
-    max-width: 100%;
-    padding: 15px 0 0;
-    color: #000;
-    white-space: nowrap;
-    text-overflow: ellipsis; 
-  }
-
-.mask{
-  position: absolute;
-  top: 0;
-  left : 0;
-  z-index: 20;
-  width: 100%;
-  height: 100%;
-}
-
-
-.sub_sc{
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  padding: 0 0 30px;
-  background-color: #fff;
-}
-
-.tit_month{
-  width:  100%;
-  height: 40px;
-  text-align: center;
-}
-
-.order_info2 li{
-  float: left;
-  margin-left: 25px;
-  padding-left: 29px;
-}
-
-.order_info2 li dd{
-  float: left;
-  font-size : 17px;
-  font-weight : normal;
-  line-height: 20px;
-}
-
-.order_info2 .ordnum{
-  display: relative;
-}
-
-.tb_list{
-  width: 100%;
-  border: 0;
-  border-top: 1px solid #383d4a;
-  border-bottom: 1px solid #dddde1;
-  table-layout: fixed;
-  
-}
-
-
-
-</style>
+<link rel="stylesheet" type="text/css" href="mypage.css">
 </head>
 <body class="animsition">
 
   <%@include file="../../../includes/header.jsp"%>
-
   <%@include file="../../../includes/cart.jsp"%>
-
   <%@include file="../../../includes/slider.jsp"%>
-
-
+  
+  <!-- mypage_include -->
+  <%@include file="include/mypage_aside.jsp"%>
+  <%@include file="include/mypage_header.jsp"%>
+  
+  
   <!-- Product -->
   <div class="bg0 m-t-23 p-b-140">
     <div class="container">
       <div id="container" class="my_container">
 
 
-  <%@include file="include/mypage_aside.jsp"%>
-
-
         <!-- content -->
-        <div id="content" class="my_cont" style="z-index: 30;">
-          <div class="home_info">
-            <ul class="lst">
-              <li class="order"><a
-                href="purchase_history.jsp"
-                class="lnk" target="_blank"> <span class="ico">주문배송</span>
-                  <em id="nSaleCount" class="_nPayStatus num_box"><span
-                    class="num no0">0</span></em>
-              </a>
-              </li>
-              <li class="point"><a
-                href="point_history.jsp" class="lnk"
-                target="_blank"> <span class="ico">포인트</span> <em
-                  id="nCouponCount" class="_nPayStatus num_box">
-                  <span>0</span></em>
-              </a>
-              </li>
-              <li class=""><a href=""
-                class="lnk" target="_blank"> <span class="ico">
-                   장바구니</span> <em id="nPoint" class="_nPayStatus num_box"><span></span></em>
-              </a>
-              </li>
-              <li class="tok"><a href="">
-                  <span class="ico">찜 목록</span> 
-                  <em id="shoppingTalk" class="num_box"><span class="num no3"></span></em>
-              </a>
-              </li>
-             <li class="userinfo"><a href="">
-                  <span class="ico">개인정보 수정</span> 
-                  <em id="shoppingTalk" class="num_box"><span class="num no3"></span></em>
-              </a>
-              </li>
-            </ul>
-          </div>
+   <div id="content" class="my_cont" style="z-index: 30;">
+
      
-<div class="spot _summaryRoot">
-<ul>
-<li class="ship1 ">
-  <div class="inner">
-    <span class="ico"></span>
-    <dl>
-    <dt>배송중/완료</dt>
-    <dd class="com_num _beforeDelivery"><em class="num0">0</em></dd>
-    </dl>
-  </div>
-  <a href="#" class="com_link _beforeDeliveryBtn _mouseover(nmp.front.order.timeline.home.summary.showLayer(BEFORE_DELIVERY)) _click(nmp.front.order.timeline.home.summary.showSummaryList(BEFORE_DELIVERY)) _stopDefault" style="display: none;">현황보기</a><!--N=a:top:pay-->
-</li>
-<li class="ship2 ">
-  <div class="inner">
-    <span class="ico"></span>
-    <dl>
-    <dt>배송중/완료</dt>
-    <dd class="com_num _afterDelivery"><em class="num0">0</em></dd>
-    </dl>
-  </div>
-  <a href="#" class="com_link _afterDeliveryBtn _mouseover(nmp.front.order.timeline.home.summary.showLayer(AFTER_DELIVERY)) _click(nmp.front.order.timeline.home.summary.showSummaryList(AFTER_DELIVERY)) _stopDefault" style="display: none;">현황보기</a><!--N=a:top:delivery-->
-</li>
-<li class="ship3 ">
-  <div class="inner">
-    <span class="ico"></span>
-    <dl>
-    <dt>취소/반품/교환</dt>
-    <dd class="com_num _inClaim"><em class="num0">0</em></dd>
-    </dl>
-  </div>
-  <a href="#" class="com_link _inClaimBtn _mouseover(nmp.front.order.timeline.home.summary.showLayer(IN_CLAIM)) _click(nmp.front.order.timeline.home.summary.showSummaryList(IN_CLAIM)) _stopDefault" style="display: none;">현황보기</a><!--N=a:top:claim-->
-</li>
-</ul>
+      <div class="spot _summaryRoot">
+        <ul>
+            <li class="ship1 ">
+              <div class="inner">
+                <span class="ico"></span>
+                <dl>
+                <dt>배송중/완료</dt>
+                <dd class="com_num _beforeDelivery"><em class="num0">0</em></dd>
+                </dl>
+              </div>
+              <a href="#" class="com_link _beforeDeliveryBtn _mouseover(nmp.front.order.timeline.home.summary.showLayer(BEFORE_DELIVERY)) _click(nmp.front.order.timeline.home.summary.showSummaryList(BEFORE_DELIVERY)) _stopDefault" style="display: none;">현황보기</a><!--N=a:top:pay-->
+            </li>
+            <li class="ship2 ">
+              <div class="inner">
+                <span class="ico"></span>
+                <dl>
+                <dt>배송중/완료</dt>
+                <dd class="com_num _afterDelivery"><em class="num0">0</em></dd>
+                </dl>
+              </div>
+              <a href="#" class="com_link _afterDeliveryBtn _mouseover(nmp.front.order.timeline.home.summary.showLayer(AFTER_DELIVERY)) _click(nmp.front.order.timeline.home.summary.showSummaryList(AFTER_DELIVERY)) _stopDefault" style="display: none;">현황보기</a><!--N=a:top:delivery-->
+            </li>
+          <li class="ship3 ">
+            <div class="inner">
+              <span class="ico"></span>
+              <dl>
+              <dt>취소/반품/교환</dt>
+              <dd class="com_num _inClaim"><em class="num0">0</em></dd>
+              </dl>
+            </div>
+            <a href="#" class="com_link _inClaimBtn _mouseover(nmp.front.order.timeline.home.summary.showLayer(IN_CLAIM)) _click(nmp.front.order.timeline.home.summary.showSummaryList(IN_CLAIM)) _stopDefault" style="display: none;">현황보기</a><!--N=a:top:claim-->
+          </li>
+        </ul>
 
-<div class="ly_tp1 _beforeDeliveryLayer" style="display:none">
-  <span class="edge" style="left:83px"></span>
-  <div class="ly_inr"><ul></ul></div>
-</div>
-<div class="ly_tp1 _afterDeliveryLayer" style="display:none">
-  <span class="edge" style="left:203px"></span>
-  <div class="ly_inr"><ul></ul></div>
-</div>
-<div class="ly_tp1 _inClaimLayer" style="display:none">
-  <span class="edge" style="right:82px"></span>
-  <div class="ly_inr"><ul></ul></div>
-</div>
+    <div class="ly_tp1 _beforeDeliveryLayer" style="display:none">
+      <span class="edge" style="left:83px"></span>
+      <div class="ly_inr"><ul></ul></div>
+    </div>
+    <div class="ly_tp1 _afterDeliveryLayer" style="display:none">
+      <span class="edge" style="left:203px"></span>
+      <div class="ly_inr"><ul></ul></div>
+    </div>
+    <div class="ly_tp1 _inClaimLayer" style="display:none">
+      <span class="edge" style="right:82px"></span>
+      <div class="ly_inr"><ul></ul></div>
+    </div>
 
-<div class="zzim_area">
-  <p class="text">쇼핑 찜.Q&amp;A를 쇼핑MY에서 확인하세요!</p>
-  <a href="http://my.shopping.naver.com/my/p/zzim/index.nhn" class="zzim_num"><span class="ico"></span>찜한상품<strong id="_zzimCount">-</strong></a>
-</div></div>
+    <div class="zzim_area">
+      <p class="text">쇼핑 찜.Q&amp;A를 쇼핑MY에서 확인하세요!</p>
+      <a href="http://my.shopping.naver.com/my/p/zzim/index.nhn" class="zzim_num"><span class="ico"></span>찜한상품<strong id="_zzimCount">-</strong></a>
+    </div>
+</div>
 
 
 
@@ -622,7 +275,6 @@
       </div>
     </div>
   </div>
-
 
   <%@include file="/iceland/../includes/footer.jsp"%>
 
