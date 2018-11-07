@@ -16,7 +16,11 @@
 		       customer_gender      "customerGender", 
 		       customer_jacket_size "customerJacketSize", 
 		       customer_pants_size  "customerPantsSize", 
-		       customer_height      "customerHeight" 
+		       customer_height      "customerHeight",
+		       customer_body		"customerBody",
+		       customer_shoulder	"customerShoulder",
+		       customer_arm			"customerArm",
+		       customer_leg			"customerLeg"
 		FROM   customers 
 		WHERE  customer_id = #{customerId} 
        	AND customer_password = #{customerPassword} 

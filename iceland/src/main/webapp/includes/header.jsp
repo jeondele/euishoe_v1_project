@@ -14,7 +14,7 @@
 
 					<div class="right-top-bar flex-w h-full">
 						<c:choose>
-   							<c:when test="${not empty customer}">
+   							<c:when test="${not empty loginCookie}">
    								<span style="color: white; vertical-align:middle">${customer.customerName} 고객님 환영합니다!</span>
    							</c:when>
    							<c:otherwise></c:otherwise>
@@ -25,8 +25,8 @@
 						</a>
 						
 						<c:choose>
-							<c:when test="${not empty customer}">
-								<a href="/iceland/customer/login/login.jsp" class="flex-c-m trans-04 p-lr-25">
+							<c:when test="${not empty loginCookie}">
+								<a href="/iceland/customer/logout.es" class="flex-c-m trans-04 p-lr-25">
 									로그아웃
 								</a>
 							</c:when>

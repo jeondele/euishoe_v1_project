@@ -88,7 +88,7 @@
                 	<h2>로그인</h2><br>
 		            <h4>euishoe에 오신것을 환영합니다.</h4>
 		            <c:choose>
-		            <c:when test="${not empty result}">
+		            <c:when test="${not empty loginCookie}">
 			            <div id="snackbar"></div>
 		            </c:when>
 		            </c:choose>
@@ -101,7 +101,15 @@
                         <svg class="icon">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
                         </svg><span class="hidden">Username</span></label>
-                    <input id="login__username" type="text" name="username" class="form__input" placeholder="Username" required> </div>
+                    <c:choose>
+                    	<c:when test="${not empty rememberCookie}">
+                    		<input id="login__username" type="text" name="username" class="form__input" placeholder="Username" value="${cookie.rememberCookie.value}" required> 
+                    	</c:when>
+                    	<c:otherwise>
+                    		<input id="login__username" type="text" name="username" class="form__input" placeholder="Username" required>
+                    	</c:otherwise>
+                    </c:choose>
+                </div>
                 <div class="form__field">
                     <label for="login__password">
                         <svg class="icon">
@@ -111,7 +119,14 @@
                     <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required> 
                 </div>
                 <div class="form__field">
-                    <label id="memory_id"><input type="checkbox" name="idRem"/>로그인 정보 기억</label>
+                	<c:choose>
+                    	<c:when test="${not empty rememberCookie}">
+		                    <label id="memory_id"><input type="checkbox" checked="checked" name="idRemember"/>로그인 정보 기억</label>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<label id="memory_id"><input type="checkbox" name="idRemember"/>로그인 정보 기억</label>
+                    	</c:otherwise>
+                    </c:choose>
                 </div>
                 <div class="form__field">
                     <input type="button" value="HOME">
@@ -262,10 +277,10 @@
 
 </body>
 <script type="text/javascript">
-if('<%= request.getAttribute("result") %>' === 'fail') {
+/* if(${cookie} == null) {
 	var target = document.getElementById('snackbar');
-	target.innerHTML = '로그인 실패, 계정 정보를 다시 한번 확인하세요!';
+	target.innerHTML = '로그인 실패! 계정 정보를 확인하세요!';
 	toast();
-}
+} */
 </script>
 </html>
