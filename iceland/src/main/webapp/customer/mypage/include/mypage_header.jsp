@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<div class="home_info">
+<div class="home_info" style="margin-top:20px;">
   <ul class="lst">
     <li class="order"><a
       href="http://order.pay.naver.com/home?tabMenu=SHOPPING&amp;frm=s_order"

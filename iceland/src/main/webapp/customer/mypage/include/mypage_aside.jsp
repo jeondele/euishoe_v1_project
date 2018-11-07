@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
         <!-- aside -->
-        <div id="aside" class="my_aside">
-          <div class="member_sc">
+        <div id="aside" class="my_aside" style="margin-left: 10%;">
+          <div class="member_sc" style="margin-top: 20px;">
             <h2 class="blind">내정보</h2>
             <a href="#"
               class="profile_img _click[jindo.$Element('profileEditMenu').toggle(); return false;]"><img
