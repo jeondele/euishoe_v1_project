@@ -19,6 +19,8 @@ public class Qna {
 	private String qnaIsLock;		// 문의잠금여부
 	private int qnaRank;			// 문의 우선순위
 	private String qnaIsDeleted;	// 문의삭제여부
+	private String qnaRegdate; 		// 문의등록일
+	
 	
 	
 	// 생성자 선언
@@ -29,7 +31,7 @@ public class Qna {
 
 
 	public Qna(int qnaNum, int qnaTypeNum, String customerId, String qnaTitle, String qnaContent, String qnaPassword,
-			String qnaIsAnswered, String qnaIsLock, int qnaRank, String qnaIsDeleted) {
+			String qnaIsAnswered, String qnaIsLock, int qnaRank, String qnaIsDeleted, String qnaRegdate) {
 		super();
 		this.qnaNum = qnaNum;
 		this.qnaTypeNum = qnaTypeNum;
@@ -41,7 +43,10 @@ public class Qna {
 		this.qnaIsLock = qnaIsLock;
 		this.qnaRank = qnaRank;
 		this.qnaIsDeleted = qnaIsDeleted;
+		this.qnaRegdate = qnaRegdate;
 	}
+
+
 
 
 	// setter, getter 선언
@@ -144,6 +149,16 @@ public class Qna {
 		this.qnaIsDeleted = qnaIsDeleted;
 	}
 
+	
+	public String getQnaRegdate() {
+		return qnaRegdate;
+	}
+
+
+	public void setQnaRegdate(String qnaRegdate) {
+		this.qnaRegdate = qnaRegdate;
+	}
+
 
 	// toString() 선언
 	@Override
@@ -151,7 +166,8 @@ public class Qna {
 		return "Qna [qnaNum=" + qnaNum + ", qnaTypeNum=" + qnaTypeNum + ", customerId=" + customerId + ", qnaTitle="
 				+ qnaTitle + ", qnaContent=" + qnaContent + ", qnaPassword=" + qnaPassword + ", qnaIsAnswered="
 				+ qnaIsAnswered + ", qnaIsLock=" + qnaIsLock + ", qnaRank=" + qnaRank + ", qnaIsDeleted=" + qnaIsDeleted
-				+ "]";
+				+ ", qnaRegdate=" + qnaRegdate + "]";
 	}
-	
+
+
 }

@@ -16,6 +16,9 @@ public class Customer {
 	private String customerPostcode;		// 회원우편번호
 	private String customerBirthday;		// 회원생년월일
 	private String customerGender;			// 회원성별
+	private String customerJacketSize;		// 회원상의사이즈
+	private String customerPantsSize;		// 회원하의사이즈
+	private String customerHeight;			// 회원신장
 	
 	
 	// 생성자(Constructor) 선언
@@ -27,7 +30,7 @@ public class Customer {
 	
 	public Customer(String customerId, String customerName, String customerPassword, String customerPhonenumber,
 			String customerEmail, String customerAddress, String customerPostcode, String customerBirthday,
-			String customerGender) {
+			String customerGender, String customerJacketSize, String customerPantsSize, String customerHeight) {
 		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
@@ -38,7 +41,12 @@ public class Customer {
 		this.customerPostcode = customerPostcode;
 		this.customerBirthday = customerBirthday;
 		this.customerGender = customerGender;
+		this.customerJacketSize = customerJacketSize;
+		this.customerPantsSize = customerPantsSize;
+		this.customerHeight = customerHeight;
 	}
+
+
 
 
 	// setter, getter 선언
@@ -131,16 +139,45 @@ public class Customer {
 		this.customerGender = customerGender;
 	}
 
-
 	
+	public String getCustomerJacketSize() {
+		return customerJacketSize;
+	}
+
+
+	public void setCustomerJacketSize(String customerJacketSize) {
+		this.customerJacketSize = customerJacketSize;
+	}
+
+
+	public String getCustomerPantsSize() {
+		return customerPantsSize;
+	}
+
+
+	public void setCustomerPantsSize(String customerPantsSize) {
+		this.customerPantsSize = customerPantsSize;
+	}
+
+
+	public String getCustomerHeight() {
+		return customerHeight;
+	}
+
+
+	public void setCustomerHeight(String customerHeight) {
+		this.customerHeight = customerHeight;
+	}
+
+
 	// toString() 선언
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerPassword="
 				+ customerPassword + ", customerPhonenumber=" + customerPhonenumber + ", customerEmail=" + customerEmail
 				+ ", customerAddress=" + customerAddress + ", customerPostcode=" + customerPostcode
-				+ ", customerBirthday=" + customerBirthday + ", customerGender=" + customerGender + "]";
+				+ ", customerBirthday=" + customerBirthday + ", customerGender=" + customerGender
+				+ ", customerJacketSize=" + customerJacketSize + ", customerPantsSize=" + customerPantsSize
+				+ ", customerHeight=" + customerHeight + "]";
 	}
-
-
 }

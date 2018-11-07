@@ -14,6 +14,7 @@ public class Review {
 	private String productCode;		// 상품코드
 	private String reviewTitle; 	// 리뷰제목
 	private String reviewContent; 	// 리뷰내용
+	private String reviewPassword;  // 리뷰비밀번호
 	private int reviewScore; 		// 리뷰평점
 	private String reviewIsDeleted; // 리뷰삭제여부
 	
@@ -26,13 +27,14 @@ public class Review {
 
 
 	public Review(int reviewNum, String customerId, String productCode, String reviewTitle, String reviewContent,
-			int reviewScore, String reviewIsDeleted) {
+			String reviewPassword, int reviewScore, String reviewIsDeleted) {
 		super();
 		this.reviewNum = reviewNum;
 		this.customerId = customerId;
 		this.productCode = productCode;
 		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
+		this.reviewPassword = reviewPassword;
 		this.reviewScore = reviewScore;
 		this.reviewIsDeleted = reviewIsDeleted;
 	}
@@ -110,12 +112,22 @@ public class Review {
 		this.reviewIsDeleted = reviewIsDeleted;
 	}
 
+	
+	public String getReviewPassword() {
+		return reviewPassword;
+	}
+
+
+	public void setReviewPassword(String reviewPassword) {
+		this.reviewPassword = reviewPassword;
+	}
+
 
 	// toString() 선언
 	@Override
 	public String toString() {
 		return "Review [reviewNum=" + reviewNum + ", customerId=" + customerId + ", productCode=" + productCode
-				+ ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent + ", reviewScore=" + reviewScore
-				+ ", reviewIsDeleted=" + reviewIsDeleted + "]";
+				+ ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent + ", reviewPassword="
+				+ reviewPassword + ", reviewScore=" + reviewScore + ", reviewIsDeleted=" + reviewIsDeleted + "]";
 	}
 }

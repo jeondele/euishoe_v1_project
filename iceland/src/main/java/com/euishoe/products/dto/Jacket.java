@@ -8,10 +8,13 @@ package com.euishoe.products.dto;
  */
 public class Jacket {
 	
-	private String jacketCode; //상의코드명
-	private String sizeCode; //사이즈코드
-	private int jacketCount; //상의코드별 수량
+	// 변수 선언
+	private String jacketCode; 				// 상의코드명
+	private String sizeCode; 				// 사이즈코드
+	private int jacketCount; 				// 상의코드별수량
 	
+	
+	// 생성자(Constructor) 선언
 	public Jacket() {
 	}
 	
@@ -22,6 +25,8 @@ public class Jacket {
 		this.jacketCount = jacketCount;
 	}
 
+	
+	// setter, getter 선언
 	public String getJacketCode() {
 		return jacketCode;
 	}
@@ -46,6 +51,8 @@ public class Jacket {
 		this.jacketCount = jacketCount;
 	}
 
+	
+	// toString() 선언
 	@Override
 	public String toString() {
 		return "Jacket [jacketCode=" + jacketCode + ", sizeCode=" + sizeCode + ", jacketCount=" + jacketCount + "]";
