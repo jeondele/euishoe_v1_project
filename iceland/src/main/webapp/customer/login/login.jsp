@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home</title>
+	<title>Login - 로그인</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================
@@ -46,15 +47,17 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
+	
 <!--===============================================================================================
       로그인 폼
 -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 <link rel="stylesheet" href="<%=application.getContextPath()%>/customer/login/login.css">
+<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/css/toastMessage.css">
     <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Sunflower:300" rel="stylesheet">
-<style>
-</style>
+<script type="text/javascript" src="<%= application.getContextPath() %>/js/toastMessage.js"></script>
+
 </head>
 <body class="animsition">
 	
@@ -81,11 +84,18 @@
             </div>
         
             <div class="right_form">
-                <div><h2>로그인</h2><br>
-                <h4>euishoe에 오신것을 환영합니다.</h4>
+                <div>
+                	<h2>로그인</h2><br>
+		            <h4>euishoe에 오신것을 환영합니다.</h4>
+		            <c:choose>
+		            <c:when test="${not empty result}">
+			            <div id="snackbar"></div>
+		            </c:when>
+		            </c:choose>
+		            
                 </div>
                 
-            <form action="https://httpbin.org/post" method="POST" class="form login">
+            <form action="/iceland/customer/login.es" method="POST" class="form login">
                 <div class="form__field">
                     <label for="login__username">
                         <svg class="icon">
@@ -96,16 +106,20 @@
                     <label for="login__password">
                         <svg class="icon">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use>
-                        </svg><span class="hidden">Password</span></label>
+                        </svg><span class="hidden">Password</span>
+                    </label>
                     <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required> 
                 </div>
-                                        <div class="form__field">
-                    <label id="memory_id"><input type="checkbox"/>로그인 정보 기억</label>
-                    </div>
+                <div class="form__field">
+                    <label id="memory_id"><input type="checkbox" name="idRem"/>로그인 정보 기억</label>
+                </div>
                 <div class="form__field">
                     <input type="button" value="HOME">
-                    <input type="submit" value="Sign In"> </div>
+                    <input type="submit" value="Sign In">
+                </div>
             </form>
+            
+            
             <br>
             <p class="text--center">회원이 아니세요? <a href="/iceland/customer/regist/join.jsp">지금 가입!</a>
                 <svg class="icon">
@@ -247,4 +261,11 @@
 	<script src="/iceland/js/main.js"></script>
 
 </body>
+<script type="text/javascript">
+if('<%= request.getAttribute("result") %>' === 'fail') {
+	var target = document.getElementById('snackbar');
+	target.innerHTML = '로그인 실패, 계정 정보를 다시 한번 확인하세요!';
+	toast();
+}
+</script>
 </html>

@@ -11,7 +11,7 @@
 	</appender>
 
 	<!-- 패키지별 로그 설정 -->
-	<logger name="kr.or.kosta.shoppingmall">
+	<logger name="com.euishoe">
 		<level value="debug" />
 	</logger>
 	

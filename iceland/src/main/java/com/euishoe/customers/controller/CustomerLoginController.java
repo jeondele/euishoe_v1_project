@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.euishoe.common.controller.Controller;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.common.factory.XMLObjectFactory;
+import com.euishoe.customers.dto.Customer;
 import com.euishoe.customers.service.CustomerService;
 import com.euishoe.customers.service.CustomerServiceImpl;
 
@@ -26,8 +27,25 @@ public class CustomerLoginController implements Controller {
 		
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		customerService = (CustomerService)factory.getBean(CustomerServiceImpl.class);
-		
-		mav.setView("/customer/login/login.jsp");
+		Customer customer = null;
+		String customerId = request.getParameter("username");
+		String customerPassword = request.getParameter("password");
+		System.out.println(customerId);
+		System.out.println(customerPassword);
+		try {
+			customer = customerService.certify(customerId, customerPassword);
+			if(customer != null) {
+				request.setAttribute("result", "success");
+				mav.addObject("customer", customer);
+				mav.setView("/index.jsp");
+			} else {
+				System.out.println("1111111111111111111 일로 들어옴?");
+				request.setAttribute("result", "fail");
+				mav.setView("/customer/login/login.jsp");
+			}
+		} catch (Exception e) {
+			throw new ServletException("customerService.certify() 예외 발생", e);
+		}
 		
 		return mav;
 	}

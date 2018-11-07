@@ -3,5 +3,22 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="com.euishoe.Customer">
+<mapper namespace="com.euishoe.customers">
+	<select id="certify" resultType="Customer" parameterType="map">
+		SELECT customer_id          "customerId", 
+       		   customer_name        "customerName", 
+       		   customer_password    "customerPassword", 
+       		   customer_phonenumber "customerPhonenumber",
+       		   customer_email       "customerEmail", 
+       		   customer_address     "customerAddress", 
+		       customer_postcode    "customerPostcode", 
+		       customer_birthday    "customerBirthday", 
+		       customer_gender      "customerGender", 
+		       customer_jacket_size "customerJacketSize", 
+		       customer_pants_size  "customerPantsSize", 
+		       customer_height      "customerHeight" 
+		FROM   customers 
+		WHERE  customer_id = #{customerId} 
+       	AND customer_password = #{customerPassword} 
+	</select>
 </mapper>
