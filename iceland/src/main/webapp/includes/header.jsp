@@ -24,11 +24,8 @@
 							회원가입
 						</a>
 
-						<a href="contact.html" class="flex-c-m trans-04 p-lr-25">
-							MyPage
-						</a>
-						<a href="/iceland/customer/customizing/customizing.jsp" class="flex-c-m trans-04 p-lr-25">
-							Customizing
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							고객센터
 						</a>
 					</div>
 				</div>
@@ -68,6 +65,10 @@
 							<li>
 								<a href="contact.html">Contact</a>
 							</li>
+              
+                            <li>
+                                <a href="contact.html">My page</a>
+                          </li>
 						</ul>
 					</div>	
 
