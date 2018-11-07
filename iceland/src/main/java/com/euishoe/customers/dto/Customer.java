@@ -19,7 +19,10 @@ public class Customer {
 	private String customerJacketSize;		// 회원상의사이즈
 	private String customerPantsSize;		// 회원하의사이즈
 	private String customerHeight;			// 회원신장
-	
+	private int customerBody;				// 회원몸성향
+	private int customerShoulder;			// 회원어깨성향
+	private int customerArm; 				// 회원팔성향
+	private int customerLeg;				// 회원다리성향
 	
 	// 생성자(Constructor) 선언
 	public Customer() {
@@ -29,7 +32,8 @@ public class Customer {
 	
 	public Customer(String customerId, String customerName, String customerPassword, String customerPhonenumber,
 			String customerEmail, String customerAddress, String customerPostcode, String customerBirthday,
-			String customerGender, String customerJacketSize, String customerPantsSize, String customerHeight) {
+			String customerGender, String customerJacketSize, String customerPantsSize, String customerHeight,
+			int customerBody, int customerShoulder, int customerArm, int customerLeg) {
 		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
@@ -43,6 +47,10 @@ public class Customer {
 		this.customerJacketSize = customerJacketSize;
 		this.customerPantsSize = customerPantsSize;
 		this.customerHeight = customerHeight;
+		this.customerBody = customerBody;
+		this.customerShoulder = customerShoulder;
+		this.customerArm = customerArm;
+		this.customerLeg = customerLeg;
 	}
 
 	// setter, getter 선언
@@ -165,8 +173,38 @@ public class Customer {
 		this.customerHeight = customerHeight;
 	}
 
+	public int getCustomerBody() {
+		return customerBody;
+	}
 
-	// toString() 선언
+	public void setCustomerBody(int customerBody) {
+		this.customerBody = customerBody;
+	}
+
+	public int getCustomerShoulder() {
+		return customerShoulder;
+	}
+
+	public void setCustomerShoulder(int customerShoulder) {
+		this.customerShoulder = customerShoulder;
+	}
+
+	public int getCustomerArm() {
+		return customerArm;
+	}
+
+	public void setCustomerArm(int customerArm) {
+		this.customerArm = customerArm;
+	}
+
+	public int getCustomerLeg() {
+		return customerLeg;
+	}
+
+	public void setCustomerLeg(int customerLeg) {
+		this.customerLeg = customerLeg;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerPassword="
@@ -174,6 +212,7 @@ public class Customer {
 				+ ", customerAddress=" + customerAddress + ", customerPostcode=" + customerPostcode
 				+ ", customerBirthday=" + customerBirthday + ", customerGender=" + customerGender
 				+ ", customerJacketSize=" + customerJacketSize + ", customerPantsSize=" + customerPantsSize
-				+ ", customerHeight=" + customerHeight + "]";
+				+ ", customerHeight=" + customerHeight + ", customerBody=" + customerBody + ", customerShoulder="
+				+ customerShoulder + ", customerArm=" + customerArm + ", customerLeg=" + customerLeg + "]";
 	}
 }

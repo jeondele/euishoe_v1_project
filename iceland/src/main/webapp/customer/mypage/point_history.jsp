@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Purchase_history</title>
+<title>point_history</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -48,13 +48,11 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
-
-
-
 <style>
 .my_cont{
   position: relative;
   z-index: 30;
+  margin-top: 5%;
 }
 
 .my_container{
@@ -193,7 +191,7 @@
 
 .plst_sc .goods li{
   position: relative;
-  padding: 10px 30px 10px 0;
+  padding: 0 30px 10px 0;
   zoom : 1;
 }
 
@@ -218,15 +216,56 @@
     text-overflow: ellipsis; 
   }
 
-.mask{
+/* .mask{
   position: absolute;
   top: 0;
   left : 0;
   z-index: 20;
   width: 100%;
   height: 100%;
+} */
+
+
+.sub_sc{
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  padding: 0 0 30px;
+  background-color: #fff;
 }
 
+.tit_month{
+  width:  100%;
+  height: 40px;
+  text-align: center;
+}
+
+.plst_sc .goods li{
+  position: relative;
+  padding: 10px 30px 10px 0;
+  zoom : 1;
+}
+
+.plst_sc .goods li .p_inr{
+  position: relative;
+  display : flex;
+  padding: 0 120px 0 127px;
+}
+
+.plst_sc .goods li .p_inr .com_thmb{
+  display : inline-block;
+  text-align: center;
+  }
+  
+  .plst_sc .goods li .p_inr .p_info{
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    padding: 15px 0 0;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+ }
 
 .sub_sc{
   overflow: hidden;
@@ -293,55 +332,175 @@
   text-align: center;
 }
 
-.plst_sc .goods li{
-  position: relative;
-  padding: 10px 30px 10px 0;
-  zoom : 1;
+.order_info2 li{
+  float: left;
+  margin-left: 25px;
+  padding-left: 29px;
 }
 
-.plst_sc .goods li .p_inr{
-  position: relative;
-  display : flex;
-  padding: 0 120px 0 127px;
+.order_info2 li dd{
+  float: left;
+  font-size : 17px;
+  font-weight : normal;
+  line-height: 20px;
 }
 
-.plst_sc .goods li .p_inr .com_thmb{
-  display : inline-block;
-  text-align: center;
-  }
-  
-  .plst_sc .goods li .p_inr .p_info{
-    overflow: hidden;
-    position: relative;
-    max-width: 100%;
-    padding: 15px 0 0;
-    color: #000;
-    white-space: nowrap;
-    text-overflow: ellipsis; 
-  }
+.order_info2 .ordnum{
+  display: relative;
+}
 
-.mask{
-  position: absolute;
-  top: 0;
-  left : 0;
-  z-index: 20;
+.tb_list{
   width: 100%;
-  height: 100%;
+  border: 0;
+  border-top: 1px solid #383d4a;
+  border-bottom: 1px solid #dddde1;
+  table-layout: fixed;
+  
 }
 
-
-.sub_sc{
-  overflow: hidden;
+.point_spot{
   position: relative;
-  z-index: 10;
-  padding: 0 0 30px;
-  background-color: #fff;
+  margin-top: -1px;
+  margin-left: 20%;
+  padding: 30px 0 30px;
+  border: 1px solid #dadddf;
+  background-color: #edeff2;
 }
 
-.tit_month{
-  width:  100%;
-  height: 40px;
+.spot_area{
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.spot_item{
+  display: table-cell;
   text-align: center;
+  padding: 24px 0 21px;
+}
+
+.none_contents_area{
+  padding : 150px 0 148px;
+  border-bottom : 1px solid #dadddf;
+  background : url() no-repeat 373px 159px;
+  text-align : center;
+}
+
+.none_contents_area .none_txt{
+  margin-top: 100px;
+  font-size: 16px;
+}
+
+.item_content{
+  display: block;
+  position: relative;
+  padding-left: 128px;
+  color: #000;
+  text-decoration: none !important;
+}
+
+.item.add .point{
+  color: green;
+}
+
+.item.add .state{
+  border-color: #7adf68;
+  background-position: 0 -82px;
+  color: #39c934;
+}
+
+.info_space{
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.amount_space{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 120px;
+  margin-top: -37px;
+  line-height: 74px;
+  text-align: right;
+  z-index: 10;
+}
+
+.state_space{
+  position: absolute;
+  top : 50%;
+  left: 0;
+  width: 113px;
+  margin-top: -41px;
+  padding-left: 13px;
+}
+
+.state_space .state{
+  display: block;
+  width: 82px;
+  height: 82px;
+  background: url() no-repeat 0 -200%;
+  line-height: 82px;
+  text-align: center;
+}
+
+
+#content .date{
+  position: relative;
+}
+
+.info_space .date{
+  display: block;
+  margin: 0 0 6px !important;
+  font-size: 14px;
+  color: #a5a5a5 !important;
+}
+
+.info_space .title{
+  display: block;
+  overflow: hidden;
+  max-width: 100%;
+  font-weight: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.info_space .subtext{
+  margin-top: 16px;
+  font-size: 13px;
+  color: #a5a5a5;
+}
+
+.ask_sc{
+  position: relative;
+  border: 1px solid #dadddf;
+  background-color: #edeff2;
+}
+
+.month_area{
+  border:  1px solid #d5d8dc;
+}
+
+.month_list{
+  display: table;
+  overflow: hidden;
+  width : 100%;
+  table-layout: fixed;
+}
+
+.month_list li{
+  display: table-cell;
+  float: left;
+  background-color: #fff;
+  line-height: 30px;
+  text-align: center;
+}
+
+.month_list li a{
+  display: block;
+  padding: 0 8px;
+  font-size: 11px;
+  color: #808080;
 }
 </style>
 </head>
@@ -353,240 +512,12 @@
 
   <%@include file="../../../includes/slider.jsp"%>
 
-
   <!-- Product -->
   <div class="bg0 m-t-23 p-b-140">
     <div class="container">
-      <div class="flex-w flex-sb-m p-b-52">
-        <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-          <button
-            class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
-            data-filter="*">전체</button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-            data-filter=".women">뷰티</button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-            data-filter=".men">헬스</button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-            data-filter=".bag">간편식</button>
-        </div>
-
-        <div class="flex-w flex-c-m m-tb-10">
-          <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-            <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-            <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i> Filter
-          </div>
-
-          <div
-            class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
-            <i
-              class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-            <i
-              class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-            Search
-          </div>
-        </div>
-
-        <!-- Search product -->
-        <div class="dis-none panel-search w-full p-t-10 p-b-15">
-          <div class="bor8 dis-flex p-l-15">
-            <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-              <i class="zmdi zmdi-search"></i>
-            </button>
-
-            <input class="mtext-107 cl2 size-114 plh2 p-r-15"
-              type="text" name="search-product" placeholder="Search">
-          </div>
-        </div>
-
-        <!-- Filter -->
-        <div class="dis-none panel-filter w-full p-t-10">
-          <div
-            class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-            <div class="filter-col1 p-r-15 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Sort By</div>
-
-              <ul>
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Default </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Popularity
-                </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Average
-                    rating </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04 filter-link-active">
-                    Newness </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Price: Low
-                    to High </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Price:
-                    High to Low </a></li>
-              </ul>
-            </div>
-
-            <div class="filter-col2 p-r-15 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Price</div>
-
-              <ul>
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04 filter-link-active">
-                    All </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $0.00 -
-                    $50.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $50.00 -
-                    $100.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $100.00 -
-                    $150.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $150.00 -
-                    $200.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $200.00+ </a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="filter-col3 p-r-15 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Color</div>
-
-              <ul>
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #222;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Black </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #4272d7;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#"
-                  class="filter-link stext-106 trans-04 filter-link-active">
-                    Blue </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #b3b3b3;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Grey </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #00ad5f;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Green </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #fa4251;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Red </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #aaa;"> <i
-                    class="zmdi zmdi-circle-o"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    White </a></li>
-              </ul>
-            </div>
-
-            <div class="filter-col4 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Tags</div>
-
-              <div class="flex-w p-t-4 m-r--5">
-                <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Fashion </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Lifestyle </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Denim </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Streetstyle </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Crafts </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div id="container" class="my_container">
-        <!-- aside -->
-        <div id="aside" class="my_aside">
-          <div class="member_sc">
-            <h2 class="blind">내정보</h2>
-            <a href="#"
-              class="profile_img _click[jindo.$Element('profileEditMenu').toggle(); return false;]"><img
-              width="94" height="94" class="_profile_img"
-              src="https://ssl.pstatic.net/static.checkout/cnsv/m/im/home2nd/my_noimg_v1.png"
-              alt=""> <span class="set">설정변경</span> <span
-              class="mask"></span> </a>
-            <!--N=a:men.set-->
-            <div id="profileEditMenu" class="set_ly" style="display: none;">
-              <div class="cont">
-                <ul class="set_lst">
-                  <li class="li1"><a
-                    href="https://nid.naver.com/user2/api/route.nhn?fromService=shoppingmy&amp;m=routePcProfileModification&amp;returnUrl=http%3A%2F%2Fshopping.naver.com%2Fmy%2Fp%2Fhome.nhn"
-                    class="lnk"> <span class="ico"></span>프로필사진 수정
-                  </a>
-                  <!--N=a:men.setimg--></li>
-                  <li class="li2"><a href="https://pay.naver.com/mypage/update" class="lnk"> <span class="ico"></span>결제/배송지 정보
-                      수정
-                  </a>
-                  <!--N=a:men.setorder--></li>
-                </ul>
-              </div>
-              <div class="bg top"></div>
-              <div class="bg btm"></div>
-            </div>
-            <div class="profile_txt">
-              <span class="name _profile_name">dmltn0828님</span> <em
-                class="id">dmlt****</em>
-            </div>
-          </div>
-          <div id="snb" class="my_nav">
-            <dl class="lst">
-              <dt class="on">
-                <a href="/my/p/home.nhn">쇼핑MY</a>
-                <!--N=a:men.home-->
-              </dt>
-              <dt>
-                <a href="/my/p/zzim/index.nhn">찜한 상품</a>
-                <!--N=a:men.zzimtitle-->
-              </dt>
 
-              <dt>
-                <a href="/my/p/qna/index.nhn">상품 Q&amp;A</a>
-                <!--N=a:men.qnatitle-->
-              </dt>
-              <dt>
-                <a href="/my/p/recent/index.nhn">최근 본 상품</a>
-                <!--N=a:men.recent-->
-              </dt>
-            </dl>
-          </div>
-        </div>
-        <!-- //aside -->
-
-
+        <%@include file="include/mypage_aside.jsp"%>
 
         <!-- content -->
         <div id="content" class="my_cont" style="z-index: 30;">
@@ -624,104 +555,166 @@
             </ul>
           </div>
      
-     <div class="spot _summaryRoot">
-<ul>
-<li class="ship1 ">
-  <div class="inner">
-    <span class="ico"></span>
-    <dl>
-    <dt>배송중/완료</dt>
-    <dd class="com_num _beforeDelivery"><em class="num0">0</em></dd>
-    </dl>
-  </div>
-  <a href="#" class="com_link _beforeDeliveryBtn _mouseover(nmp.front.order.timeline.home.summary.showLayer(BEFORE_DELIVERY)) _click(nmp.front.order.timeline.home.summary.showSummaryList(BEFORE_DELIVERY)) _stopDefault" style="display: none;">현황보기</a><!--N=a:top:pay-->
-</li>
-<li class="ship2 ">
-  <div class="inner">
-    <span class="ico"></span>
-    <dl>
-    <dt>배송중/완료</dt>
-    <dd class="com_num _afterDelivery"><em class="num0">0</em></dd>
-    </dl>
-  </div>
-  <a href="#" class="com_link _afterDeliveryBtn _mouseover(nmp.front.order.timeline.home.summary.showLayer(AFTER_DELIVERY)) _click(nmp.front.order.timeline.home.summary.showSummaryList(AFTER_DELIVERY)) _stopDefault" style="display: none;">현황보기</a><!--N=a:top:delivery-->
-</li>
-<li class="ship3 ">
-  <div class="inner">
-    <span class="ico"></span>
-    <dl>
-    <dt>취소/반품/교환</dt>
-    <dd class="com_num _inClaim"><em class="num0">0</em></dd>
-    </dl>
-  </div>
-  <a href="#" class="com_link _inClaimBtn _mouseover(nmp.front.order.timeline.home.summary.showLayer(IN_CLAIM)) _click(nmp.front.order.timeline.home.summary.showSummaryList(IN_CLAIM)) _stopDefault" style="display: none;">현황보기</a><!--N=a:top:claim-->
-</li>
-</ul>
-
-<div class="ly_tp1 _beforeDeliveryLayer" style="display:none">
-  <span class="edge" style="left:83px"></span>
-  <div class="ly_inr"><ul></ul></div>
-</div>
-<div class="ly_tp1 _afterDeliveryLayer" style="display:none">
-  <span class="edge" style="left:203px"></span>
-  <div class="ly_inr"><ul></ul></div>
-</div>
-<div class="ly_tp1 _inClaimLayer" style="display:none">
-  <span class="edge" style="right:82px"></span>
-  <div class="ly_inr"><ul></ul></div>
-</div>
-
-<div class="zzim_area">
-  <p class="text">쇼핑 찜.Q&amp;A를 쇼핑MY에서 확인하세요!</p>
-  <a href="http://my.shopping.naver.com/my/p/zzim/index.nhn" class="zzim_num"><span class="ico"></span>찜한상품<strong id="_zzimCount">-</strong></a>
-</div></div>
+     <div class="point_spot total _summaryRoot">
+        <ul class="spot_area">
+            <li class="spot_item">
+                <div class="item_cont">
+                    <strong class="title">
+                        <span class="sp_spot text tit_use"><span class="blind">사용가능 포인트</span></span>
+        			<span class="due_num">
+        				<span class="sp_spot text saving">
+        				<span class="blind">(적립예정</span></span>
+        				<em class="text_number" id="_expectedAcmAmt">0</em>
+        				<span class="sp_spot text unit"><span class="blind">원)</span></span>
+        			</span>
+                    </strong>
+                    <div class="amount_area">
+        				<span class="sp_spot icon point1"></span>
+                        <!-- [D] 숫자클래스 num0 ~ num9,
+                            구분자 클래스 comma,
+                            + 클래스 plus,
+                            "원" 클래스 unit -->
+                        <p class="number big_num" id="_total"><em class="num8"><span class="blind">8</span></em><em class="num1"><span class="blind">1</span></em><em class="num7"><span class="blind">7</span></em><em class="unit"><span class="blind">원</span></em></p>
+                        <a href="#" class="spot_button type1 _click(nmp.front.order.timeline.home.summaryPoint.openChargePay()) _stopDefault">충전하기</a> <!--N=a:pnt.charge-->
+                    </div>
+        			<div class="point_change_area">
+        				<a href="#" class="btn _click(nmp.front.order.timeline.home.summaryPoint.openCardPoint()) _stopDefault">전환하기<span class="sp_spot ico_arrow"></span></a> <!--N=a:pnt.excharge-->
+        				<a href="http://event2.pay.naver.com/event/benefit/activeEventList" class="btn">이벤트 적립 받기<span class="sp_spot ico_arrow"></span></a> <!--N=a:pnt.event-->
+        			</div>
+                </div>
+            </li>
+            <li class="spot_item spot_item_state">
+                <ul class="item_cont_state">
+                    <li class="item_state">
+                        <a href="/home/search?tabMenu=POINT_TOTAL&amp;serviceGroup=POINT_TOTAL&amp;statusGroup=POINT_TOTAL__ACM" class="inner_cell">
+                            <div class="inner">
+                                <strong class="sp_spot text tit_saving"><span class="blind">적립 포인트</span></strong>
+                                <div class="amount_area">
+                                    <!-- [D] 숫자클래스 num0 ~ num9,
+                                        구분자 클래스 comma,
+                                        + 클래스 plus,
+                                        "원" 클래스 unit -->
+                                    <p class="number small_num" id="_acmAmt"><em class="num8"><span class="blind">8</span></em><em class="num1"><span class="blind">1</span></em><em class="num7"><span class="blind">7</span></em><em class="unit"><span class="blind">원</span></em></p>
+                                </div>
+                            </div>
+                        </a>
+                        <!--N=a:pnt.savlink-->
+                    </li>
+                    <li class="item_state">
+                        <a href="/home/search?tabMenu=POINT_TOTAL&amp;serviceGroup=POINT_TOTAL&amp;statusGroup=POINT_TOTAL__CHARGE" class="inner_cell">
+                            <div class="inner">
+                                <strong class="sp_spot text tit_charge2"><span class="blind">충전 포인트</span></strong>
+                                <div class="amount_area">
+                                    <!-- [D] 숫자클래스 num0 ~ num9,
+                                        구분자 클래스 comma,
+                                        + 클래스 plus,
+                                        "원" 클래스 unit -->
+                                    <p class="number small_num" id="_chargeAmt"><em class="num0"><span class="blind">0</span></em><em class="unit"><span class="blind">원</span></em></p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        
+        
+        <div class="ask_sc">
+              <table cellpadding="0" cellspacing="0" border="0" class="terms">
+              <colgroup><col><col width="243"><col width="110"><col width="86">
+              </colgroup><tbody>
+              <tr>
+              <td>
+                  <div class="month_area">
+                  <ul class="month_list">
+                    <li class="_rangeQuickSelectorLi" id="_rangeQuickSelectorLi0"><a id="_rangeQuickSelectorA0" href="#" class="_click(nmp.front.order.timeline.home.list.date.clickRangeQuickSelector(0)) _stopDefault">6월</a></li>
+                    <li class="_rangeQuickSelectorLi" id="_rangeQuickSelectorLi1"><a id="_rangeQuickSelectorA1" href="#" class="_click(nmp.front.order.timeline.home.list.date.clickRangeQuickSelector(1)) _stopDefault">7월</a></li>
+                    <li class="_rangeQuickSelectorLi" id="_rangeQuickSelectorLi2"><a id="_rangeQuickSelectorA2" href="#" class="_click(nmp.front.order.timeline.home.list.date.clickRangeQuickSelector(2)) _stopDefault">8월</a> <!--N=a:pnt.4m--></li>
+                    <li class="_rangeQuickSelectorLi" id="_rangeQuickSelectorLi3"><a id="_rangeQuickSelectorA3" href="#" class="_click(nmp.front.order.timeline.home.list.date.clickRangeQuickSelector(3)) _stopDefault">9월</a> <!--N=a:pnt.3m--></li>
+                    <li class="_rangeQuickSelectorLi" id="_rangeQuickSelectorLi4"><a id="_rangeQuickSelectorA4" href="#" class="_click(nmp.front.order.timeline.home.list.date.clickRangeQuickSelector(4)) _stopDefault">10월</a> <!--N=a:pnt.2m--></li>
+                    <li class="_rangeQuickSelectorLi" id="_rangeQuickSelectorLi5"><a id="_rangeQuickSelectorA5" href="#" class="_click(nmp.front.order.timeline.home.list.date.clickRangeQuickSelector(5)) _stopDefault">11월</a> <!--N=a:pnt.1m--></li>
+                  </ul>
+                </div>
+              </td>
+              
+              
+              <td>
+                <div class="select" style="display:none;">
+                  <div id="s1" class="">
+                    <select name="serviceGroup" class="selectbox-source _change(nmp.front.order.timeline.home.list.changeSelectServiceGroup()) _stopDefault">
+                    <option value="ALL">서비스전체</option>
+                        <option value="POINT_TOTAL" selected="selected">포인트전체</option>
+                    </select>
+                    <div class="selectbox-box">
+                      <div class="selectbox-label" unselectable="on">포인트전체</div>
+                    </div>
+                    
+                  </div>
+                  <span class="ico"></span>
+                </div>
+                <div class="select">
+                  <div id="s2" class="">
+                    <select class="selectbox-source">
+                    <option value="ALL" class="selectbox-default">전체상태</option>
+                    <option value="ALL" class="selectbox-option-group-POINT_TOTAL">전체상태</option>
+                    <option value="POINT_TOTAL__ACM" class="selectbox-option-group-POINT_TOTAL">적립</option>
+                    <option value="POINT_TOTAL__USE" class="selectbox-option-group-POINT_TOTAL">사용</option>
+                    <option value="POINT_TOTAL__CHARGE" class="selectbox-option-group-POINT_TOTAL">충전</option>
+                    </select>
+                    <div class="selectbox-box">
+                      <div class="selectbox-label" unselectable="on">전체상태</div>
+                    </div>
+                  </div>
+                  <span class="ico"></span>
+                </div>
+              </td><td class="btn"><a href="#" class="btn_srch _click(nmp.front.order.timeline.home.list.search()) _stopDefault"><span>조회하기</span></a> </td>
+              </tr>
+              </tbody>
+              </table>
+        </div>
+     </div>
 
 
 
 <div class="sub_sc" style="min-height: 895px;">
 <div id="_listContentArea">
+
+        <div class="none_contents_area">
+            <p class="none_txt">조회 조건에 맞는 <span>내역이 없습니다.</span></p>
+        </div>
+
       <div class="tit_month">
         <h4>2018.08</h4>
       </div>
+      <ul class="list_area  ">
+          <li class="list_item">
+              <div class="item add _interlockNo1533345546003973299dget">
+                  <div class="item_content">
+                      <div class="state_space point">
+                          <span class="state _statusName">적립</span>
+                      </div>
+                      <div class="info_space"> <!--N=a:pnt.detail-->
+                          <span class="date">2018.08.04</span>
+                          <strong class="title _titleName">이벤트 적립</strong>
+                          <p class="subtext">구매평작성</p>
+                      </div>
+                  </div>
+          
+                  <div class="amount_space">
+                      <div class="amount_inner">
+                          <span class="point">+50원</span>
+                          <div class="func_area">
+                              <a href="#" class="func_button _click(nmp.front.order.timeline.home.list.removeEtc(20180804101906PNT201808046066254)) _stopDefault">내역삭제</a> <!--N=a:pnt.del-->
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </li>
+    </ul>
 
-    <div class="plst_sc ">
-      <div class="goods">
-        <ul>
-
-
-    <li id="_rowLi20180806131101NSP20180806NP1214381502" class="state8">
-      <div class="p_inr">
-        
-        <a href="http://www.kyobobook.co.kr" class="com_thmb">
-          <span class="mask"></span>
-          <img src="https://phinf.pstatic.net/checkout/20160607_72/muBjoin_1465279775557GOpkx_JPEG/_60.jpg" width="60" height="60" alt="교보문고">
-        </a><!--N=a:csh.detail-->
-        <div class="p_info">
-          <a href="https://pay.naver.com/payments/detail/20180806NP1214381502">
-            <span><strong class="">교보문고</strong> 핵심 ERP 정보관리사 회계 인사 1급(2018) 외 3건</span>
-            <ul>
-            <li><em>62,500</em> 원</li>
-            <li class="date"><em>2018.08.06</em></li>
-            </ul>
-          </a><!--N=a:csh.detail-->
-          <span class="state">결제완료</span>
-        </div>
-        <div class="flex-w flex-c-m m-tb-10">
-          <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-            <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-            <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i> 상세보기
-          </div>
-      </div>
-    </li>
-        </ul>
-      </div>
-    </div>
-<input type="hidden" id="_lastId0" value="20180806131101NSP20180806NP1214381502">
-<input type="hidden" id="_hasMore0" value="false">
-<input type="hidden" id="_interlockNosForDeliveryTracking0" value="">
+ 
 </div>
      </div>
-     
         </div>
         <!-- //content -->
       </div>

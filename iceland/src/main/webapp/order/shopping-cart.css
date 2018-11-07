@@ -1,16 +1,16 @@
-div > div > ul > li{
+form > div > div > div > div > div > div > ul > li{
 	margin-right: 10px;
     padding: 5px;
     background-color: whitesmoke;
     border-radius: 10px;
 }
 
-div > div > ul > li > a{
+form > div > div > div > div > div > div > ul > li > a{
     padding: 3px;
     color: black;
 }
 
-div > div > ul{
+form > div > div > div > div > div > div > ul {
 	margin-bottom:10px;
 	margin-left:22%;
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Purchase_history</title>
+<title>favorites_list</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -55,6 +55,7 @@
 .my_cont{
   position: relative;
   z-index: 30;
+  margin-top: 5%;
 }
 
 .my_container{
@@ -63,7 +64,7 @@
 
 .member_sc{
   position: relative;
-  margin: -1px 0 0 -1px;
+  margin: -1px 6px 0 -1px;
   padding-top: 27px;
   background: #bbbfc3;
   z-index: 20;
@@ -75,6 +76,7 @@
 }
 
 .my_nav .lst dt{
+  text-align: center;
   font-size: 18px;
   color: #222;
   margin-top: 23px;
@@ -84,23 +86,12 @@
   
 .home_info{
   position: relative;
-  height: 180px;
-  margin: -40px -40px 0 20%;
+  height: 200px;
   padding: 34px 0 35px;
   border-bottom: 1px solid #e5e5e5;
   background: #f7f8f8;
   z-index: 30;
 }
-
-.home_group{
-  position: relative;
-  margin-left : 20%;
-  padding: 34px 0 35px;
-  border-bottom: 1px solid #e5e5e5;
-  background: #f7f8f8;
-  z-index: 30;
-}
-
 
 .home_info .lst{
   zoom: 1;
@@ -109,10 +100,11 @@
 .home_info .lst li{
   position: relative;
   float: left;
-  width: 170px;
+  width: 182px;
   height: 141px;
   border-left: 1px solid #e2e2e2;
   text-align: center;
+  background-color: linen;
 }
 
 
@@ -194,29 +186,102 @@
   
 }
 
-.my_cont .tit{
-  position: relative;
-  margin-top: -1px;
-  font-size: 18px;
-  font-weight: 600;
-  padding-bottom: 18px;
-  z-index: 10;
-}
-
-.my_cont .navi{
-  position: absolute;
-  right: 40px;
-  top: 43px;
-  height: 14px;
-  line-height: 14px;
-  z-index: 10;
-
-}
-
 .tit_mouth{
   width: 100%;
   height: 39px;
   margin: -9px 0;
+  text-align: center;
+}
+
+.plst_sc .goods li{
+  position: relative;
+  padding: 0 30px 10px 0;
+  zoom : 1;
+}
+
+.plst_sc .goods li .p_inr{
+  position: relative;
+  display : flex;
+  padding: 0 120px 0 127px;
+}
+
+.plst_sc .goods li .p_inr .com_thmb{
+  display : inline-block;
+  text-align: center;
+  }
+  
+  .plst_sc .goods li .p_inr .p_info{
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    padding: 15px 0 0;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+  }
+
+/* .mask{
+  position: absolute;
+  top: 0;
+  left : 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+} */
+
+
+.sub_sc{
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  padding: 0 0 30px;
+  background-color: #fff;
+}
+
+.tit_month{
+  width:  100%;
+  height: 40px;
+  text-align: center;
+}
+
+.plst_sc .goods li{
+  position: relative;
+  padding: 10px 30px 10px 0;
+  zoom : 1;
+}
+
+.plst_sc .goods li .p_inr{
+  position: relative;
+  display : flex;
+  padding: 0 120px 0 127px;
+}
+
+.plst_sc .goods li .p_inr .com_thmb{
+  display : inline-block;
+  text-align: center;
+  }
+  
+  .plst_sc .goods li .p_inr .p_info{
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    padding: 15px 0 0;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+ }
+
+.sub_sc{
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  padding: 0 0 30px;
+  background-color: #fff;
+}
+
+.tit_month{
+  width:  100%;
+  height: 40px;
   text-align: center;
 }
 
@@ -271,110 +336,76 @@
   text-align: center;
 }
 
-.ctrl_box{
-  position: relative;
-  padding: 10px 0;
-  background: #fafdfd;
-  border-top: 1px solid #dbdbdb;
-  border-bottom: 1px solid #e8e8e8;
-  z-index: 20;
-}
-
-.ctrl_box.v1{
-  margin-bottom: 30px;
-  border-bottom-color: #e8e8e8;
-  border-bottom-color: #dbdbdb;
-  z-index: 5;
-}
-
-.ctrl_box .chk{
-  position: absolute;
-  left: 14px;
-  top: 18px;
-}
-
-.btn{
-  display: inline-block;
-  padding: 0 12px;
-  height: 28px;
-  background: #fff;
-  border: 1px solid #dedede;
-  font-size: 12px;
-  color: #555;
-  text-align: center;
-  line-height: 28px;
-}
-
-.ctrl_box .fr_box .sel{
-  float : left;
-  width : 120px;
-  margin-left: 8px;
-}
-
-.lst_box li{
-  padding : 24px 0;
-}
-
-
-.lst_box li .dsc{
-  overflow: hidden;
-  margin-left: 168px;
-  padding : 7px 182px 0 0;
-}
-
-.ctrl_box .fl_box{
+.order_info2 li{
   float: left;
-  margin-left: 40px;
-  font-size: 0;
-  line-height: 0;
+  margin-left: 25px;
+  padding-left: 29px;
 }
 
-.lst_box li .inner{
-  position: relative;
-}
-
-.lst_box li .thmb_box{
+.order_info2 li dd{
   float: left;
-  position: relative;
-  width: 110px;
-  height: 110px;
-  margin-left: 40px;
-  cursor: pointer;
+  font-size : 17px;
+  font-weight : normal;
+  line-height: 20px;
 }
 
-.my_cont .tit .dsc{
-  display: inline-block;
-  font-size: 12px;
-  margin: 4px 0  0 7px;
-  color: #ababab;
-  font-weight: normal;
-  vertical-align: top;
-  line-height: 16px;
+.order_info2 .ordnum{
+  display: relative;
 }
 
-.lst_box li .btn_box{
-  display: table-cell;
-  display: inline-block;
-  width: 92px;
-  height: 110px;
-  text-align: center;
-  vertical-align: middle;
+.tb_list{
+  width: 100%;
+  border: 0;
+  border-top: 1px solid #383d4a;
+  border-bottom: 1px solid #dddde1;
+  table-layout: fixed;
+  
 }
 
-.lst_box li .item{
-  position: absolute;
-  right: 45px;
-  top : 0;
+
+/*
+박호준 수정
+*/
+.my_cont{
+border: 3px solid black;
 }
 
-.lst_box li .chk{
-  position: absolute;
-  left: 14px;
-  top: 0;
-  z-index: 10;
+.member_sc{
+border-style: hidden groove groove hidden;
+border-color: snow;
+padding: 25px;
 }
 
+.home_info{
+display: inline-block;
+}
+
+.tit{
+text-align: center;
+}
+#zzimProductList{
+display: inline-block;
+    width: 80%;
+}
+div > div > div > ul > li{
+border: 1px dotted darkgray;
+}
+
+ul > li > div > label{
+display:inline-block;
+}
+
+input[type=checkbox]{
+display:inline;
+}
+.fl_box{
+    display: inline;
+}
+.co_paginate{
+text-align:center;
+}
 </style>
+
 </head>
 <body class="animsition">
 
@@ -384,241 +415,13 @@
 
   <%@include file="../../../includes/slider.jsp"%>
 
-
   <!-- Product -->
   <div class="bg0 m-t-23 p-b-140">
     <div class="container">
-      <div class="flex-w flex-sb-m p-b-52">
-        <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-          <button
-            class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
-            data-filter="*">전체</button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-            data-filter=".women">뷰티</button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-            data-filter=".men">헬스</button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-            data-filter=".bag">간편식</button>
-        </div>
-
-        <div class="flex-w flex-c-m m-tb-10">
-          <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-            <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-            <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i> Filter
-          </div>
-
-          <div
-            class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
-            <i
-              class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-            <i
-              class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-            Search
-          </div>
-        </div>
-
-        <!-- Search product -->
-        <div class="dis-none panel-search w-full p-t-10 p-b-15">
-          <div class="bor8 dis-flex p-l-15">
-            <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-              <i class="zmdi zmdi-search"></i>
-            </button>
-
-            <input class="mtext-107 cl2 size-114 plh2 p-r-15"
-              type="text" name="search-product" placeholder="Search">
-          </div>
-        </div>
-
-        <!-- Filter -->
-        <div class="dis-none panel-filter w-full p-t-10">
-          <div
-            class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-            <div class="filter-col1 p-r-15 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Sort By</div>
-
-              <ul>
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Default </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Popularity
-                </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Average
-                    rating </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04 filter-link-active">
-                    Newness </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Price: Low
-                    to High </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> Price:
-                    High to Low </a></li>
-              </ul>
-            </div>
-
-            <div class="filter-col2 p-r-15 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Price</div>
-
-              <ul>
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04 filter-link-active">
-                    All </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $0.00 -
-                    $50.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $50.00 -
-                    $100.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $100.00 -
-                    $150.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $150.00 -
-                    $200.00 </a></li>
-
-                <li class="p-b-6"><a href="#"
-                  class="filter-link stext-106 trans-04"> $200.00+ </a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="filter-col3 p-r-15 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Color</div>
-
-              <ul>
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #222;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Black </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #4272d7;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#"
-                  class="filter-link stext-106 trans-04 filter-link-active">
-                    Blue </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #b3b3b3;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Grey </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #00ad5f;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Green </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #fa4251;"> <i
-                    class="zmdi zmdi-circle"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    Red </a></li>
-
-                <li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-                  style="color: #aaa;"> <i
-                    class="zmdi zmdi-circle-o"></i>
-                </span> <a href="#" class="filter-link stext-106 trans-04">
-                    White </a></li>
-              </ul>
-            </div>
-
-            <div class="filter-col4 p-b-27">
-              <div class="mtext-102 cl2 p-b-15">Tags</div>
-
-              <div class="flex-w p-t-4 m-r--5">
-                <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Fashion </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Lifestyle </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Denim </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Streetstyle </a> <a href="#"
-                  class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                  Crafts </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div id="container" class="my_container">
-        <!-- aside -->
-        <div id="aside" class="my_aside">
-          <div class="member_sc">
-            <h2 class="blind">내정보</h2>
-            <a href="#"
-              class="profile_img _click[jindo.$Element('profileEditMenu').toggle(); return false;]"><img
-              width="94" height="94" class="_profile_img"
-              src="https://ssl.pstatic.net/static.checkout/cnsv/m/im/home2nd/my_noimg_v1.png"
-              alt=""> <span class="set">설정변경</span> <span
-              class="mask"></span> </a>
-            <!--N=a:men.set-->
-            <div id="profileEditMenu" class="set_ly" style="display: none;">
-              <div class="cont">
-                <ul class="set_lst">
-                  <li class="li1"><a
-                    href="https://nid.naver.com/user2/api/route.nhn?fromService=shoppingmy&amp;m=routePcProfileModification&amp;returnUrl=http%3A%2F%2Fshopping.naver.com%2Fmy%2Fp%2Fhome.nhn"
-                    class="lnk"> <span class="ico"></span>프로필사진 수정
-                  </a>
-                  <!--N=a:men.setimg--></li>
-                  <li class="li2"><a href="https://pay.naver.com/mypage/update" class="lnk"> <span class="ico"></span>결제/배송지 정보
-                      수정
-                  </a>
-                  <!--N=a:men.setorder--></li>
-                </ul>
-              </div>
-              <div class="bg top"></div>
-              <div class="bg btm"></div>
-            </div>
-            <div class="profile_txt">
-              <span class="name _profile_name">dmltn0828님</span> <em
-                class="id">dmlt****</em>
-            </div>
-          </div>
-          <div id="snb" class="my_nav">
-            <dl class="lst">
-              <dt class="on">
-                <a href="/my/p/home.nhn">쇼핑MY</a>
-                <!--N=a:men.home-->
-              </dt>
-              <dt>
-                <a href="/my/p/zzim/index.nhn">찜한 상품</a>
-                <!--N=a:men.zzimtitle-->
-              </dt>
-
-              <dt>
-                <a href="/my/p/qna/index.nhn">상품 Q&amp;A</a>
-                <!--N=a:men.qnatitle-->
-              </dt>
-              <dt>
-                <a href="/my/p/recent/index.nhn">최근 본 상품</a>
-                <!--N=a:men.recent-->
-              </dt>
-            </dl>
-          </div>
-        </div>
-        <!-- //aside -->
-
-
-
+       
+        <%@include file="include/mypage_aside.jsp"%>
+        
         <!-- content -->
         <div id="content" class="my_cont" style="z-index: 30;">
           <div class="home_info">
@@ -682,7 +485,6 @@
                     width="110" height="110" alt=""> <span
                     class="bdr">바로가기</span>
                   </a>
-                  <!--N=a:zls.pimg-->
                   <div class="dsc">
                     <em class="date"> 2018.06.09</em>
                     <p>
@@ -690,7 +492,6 @@
                         href="https://shopping.naver.com/outlink/itemdetail/2659343835"
                         class="lnk _click[baClickLog('1000012736', '2659343835', 'shoppingmy', 'DETAIL', 'https://shopping.naver.com/outlink/itemdetail/2659343835', 'myz');]"
                         target="_blank">[단독입고] 여름 10수 워싱 오버핏 무지반팔티셔츠</a>
-                      <!--N=a:zls.pname-->
                     </p>
                     <span class="pay"> <strong>11,000</strong>원
                     </span>
@@ -712,12 +513,13 @@
                 type="checkbox" id="chk_all2" name="chk_all2"
                 title="전체선택"
                 class="_click[defaultZzimHandler.toggleAllZzimCheckBox(oThis, jindo.$('chk_all1')); return true;]">
-              </label>
-              <div class="fl_box">
+                              <div class="fl_box">
                 <a href="/my/p/zzim/product/remove.nhn"
                   class="btn _click[defaultZzimHandler.removeSelectedZzims(oThis); return false;]">선택상품
                   삭제</a>
               </div>
+              </label>
+
             </div>
       </div>
       
@@ -727,11 +529,7 @@
               </div>
             </div>
         </div>
-        
-        
-<!-- //content -->
       </div>
-
 
       <!-- Load more -->
       <div class="flex-c-m flex-w w-full p-t-45">
