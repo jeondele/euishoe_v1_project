@@ -35,9 +35,9 @@ public class MyBatisCustomerTest {
 	
 	@Test
 	public void testCreate() {
-		Customer customer = new Customer("testId", "testName", "1234", "010-1234-5678", "test@test.com", "testAddress", "111", "2018.11.07", "F", "95", "28", "170~175");
+//		Customer customer = new Customer("testId", "testName", "1234", "010-1234-5678", "test@test.com", "testAddress", "111", "2018.11.07", "F", "95", "28", "170~175");
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.insert(NAMESPACE+"create", customer);
+//		sqlSession.insert(NAMESPACE+"create", customer);
 		sqlSession.commit();
 		logger.debug("create customer완료!!!!!!!");
 		sqlSession.close();
