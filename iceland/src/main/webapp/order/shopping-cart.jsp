@@ -42,7 +42,6 @@
 <link rel="stylesheet" type="text/css" href="/iceland/order/shopping-cart.css">
 
 
-
 <style>
 .nav-tabs{
 border-bottom: 1px solid #ddd;
@@ -65,9 +64,7 @@ display: table-row;
 </style>
 </head>
 <body class="animsition">
-
   <%@include file="/iceland/../includes/header.jsp"%>
-
   <%@include file="/iceland/../includes/cart.jsp"%>
 
 

@@ -48,516 +48,27 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
-<style>
-.my_cont{
-  position: relative;
-  z-index: 30;
-  margin-top: 5%;
-}
-
-.my_container{
-  font-family: '나눔고딕', NanumGothic, '맑은고딕', MalgunGothic, '돋움', Dotum, Helvetica, sans-serif;
-}
-
-.member_sc{
-  position: relative;
-  margin: -1px 0 0 -1px;
-  padding-top: 27px;
-  background: #bbbfc3;
-  z-index: 20;
-
-}
-.my_aside{
-  float : left;
-  width: auto;
-}
-
-.my_nav .lst dt{
-  font-size: 18px;
-  color: #222;
-  margin-top: 23px;
-  padding: 21px 0 0 6px;
-  border-top: 1px solid #eaebec;
-}
-  
-.home_info{
-  position: relative;
-  height: 180px;
-  margin: -40px -40px 0 20%;
-  padding: 34px 0 35px;
-  border-bottom: 1px solid #e5e5e5;
-  background: #f7f8f8;
-  z-index: 30;
-}
-
-.home_info .lst{
-  zoom: 1;
-}
-
-.home_info .lst li{
-  position: relative;
-  float: left;
-  width: 170px;
-  height: 141px;
-  border-left: 1px solid #e2e2e2;
-  text-align: center;
-}
-
-
-.home_info .lst .lnk{
-  position: absolute;
-  left : 0;
-  right : 0;
-  top : 0;
-  bottom : 0;
-  cursor: pointer;
-}
-
-
-
-
-.spot{
-  position: relative;
-  z-index: 30;
-  margin-top: 1px;
-  border: 1px solid #dadddf;
-  background-color: #edeff2;
-  margin-left: 20%;
-}
-
-.spot ul{
-  display;
-  overflow: hidden;
-  margin-left: 40px;
-  padding: 24px;
-  zoom : 1;
-}
-
-.spot li{
-  display: inline;
-  float: left;
-  position: relative;
-  width: 150px;
-  
-}
-
-.spot li .inner{
-  position: relative;
-  min-height : 83px;
-  
-}
-
-.ask_sc{
-  position: relative;
-  z-index: 20;
-  margin: -1px 0 46px;
-  padding: 19px 30px;
-  border: 1px solid #dadddf;
-  background-color: #edeff2;
-
-}
-
-.spot .zzim_area{
-  position: absolute;
-  top : 0;
-  right: 0;
-  height: 100%;
-  width: 50%;
-  padding-left: 25px;
-  background: url() no-repeat right 50%;
-}
-
-.spot .zzim_area .text{
-  overflow: hidden;
-  width: 183px;
-  height: 47px;
-  margin: 44px 0 22px;
-  background-position: 0 -130px;
-}
-
-.spot .zzim_area .zzim_num{
-  font-size : 12px;
-  color: #828282;
-  text-decoration: none;
-  
-}
-
-.tit_mouth{
-  width: 100%;
-  height: 39px;
-  margin: -9px 0;
-  text-align: center;
-}
-
-.plst_sc .goods li{
-  position: relative;
-  padding: 0 30px 10px 0;
-  zoom : 1;
-}
-
-.plst_sc .goods li .p_inr{
-  position: relative;
-  display : flex;
-  padding: 0 120px 0 127px;
-}
-
-.plst_sc .goods li .p_inr .com_thmb{
-  display : inline-block;
-  text-align: center;
-  }
-  
-  .plst_sc .goods li .p_inr .p_info{
-    overflow: hidden;
-    position: relative;
-    max-width: 100%;
-    padding: 15px 0 0;
-    color: #000;
-    white-space: nowrap;
-    text-overflow: ellipsis; 
-  }
-
-/* .mask{
-  position: absolute;
-  top: 0;
-  left : 0;
-  z-index: 20;
-  width: 100%;
-  height: 100%;
-} */
-
-
-.sub_sc{
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  padding: 0 0 30px;
-  background-color: #fff;
-}
-
-.tit_month{
-  width:  100%;
-  height: 40px;
-  text-align: center;
-}
-
-.plst_sc .goods li{
-  position: relative;
-  padding: 10px 30px 10px 0;
-  zoom : 1;
-}
-
-.plst_sc .goods li .p_inr{
-  position: relative;
-  display : flex;
-  padding: 0 120px 0 127px;
-}
-
-.plst_sc .goods li .p_inr .com_thmb{
-  display : inline-block;
-  text-align: center;
-  }
-  
-  .plst_sc .goods li .p_inr .p_info{
-    overflow: hidden;
-    position: relative;
-    max-width: 100%;
-    padding: 15px 0 0;
-    color: #000;
-    white-space: nowrap;
-    text-overflow: ellipsis; 
- }
-
-.sub_sc{
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  padding: 0 0 30px;
-  background-color: #fff;
-}
-
-.tit_month{
-  width:  100%;
-  height: 40px;
-  text-align: center;
-}
-
-.plst_sc .goods li{
-  position: relative;
-  padding: 10px 30px 10px 0;
-  zoom : 1;
-}
-
-.plst_sc .goods li .p_inr{
-  position: relative;
-  display : flex;
-  padding: 0 120px 0 127px;
-}
-
-.plst_sc .goods li .p_inr .com_thmb{
-  display : inline-block;
-  text-align: center;
-  }
-  
-  .plst_sc .goods li .p_inr .p_info{
-    overflow: hidden;
-    position: relative;
-    max-width: 100%;
-    padding: 15px 0 0;
-    color: #000;
-    white-space: nowrap;
-    text-overflow: ellipsis; 
-  }
-
-.mask{
-  position: absolute;
-  top: 0;
-  left : 0;
-  z-index: 20;
-  width: 100%;
-  height: 100%;
-}
-
-
-.sub_sc{
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  padding: 0 0 30px;
-  background-color: #fff;
-}
-
-.tit_month{
-  width:  100%;
-  height: 40px;
-  text-align: center;
-}
-
-.order_info2 li{
-  float: left;
-  margin-left: 25px;
-  padding-left: 29px;
-}
-
-.order_info2 li dd{
-  float: left;
-  font-size : 17px;
-  font-weight : normal;
-  line-height: 20px;
-}
-
-.order_info2 .ordnum{
-  display: relative;
-}
-
-.tb_list{
-  width: 100%;
-  border: 0;
-  border-top: 1px solid #383d4a;
-  border-bottom: 1px solid #dddde1;
-  table-layout: fixed;
-  
-}
-
-.point_spot{
-  position: relative;
-  margin-top: -1px;
-  margin-left: 20%;
-  padding: 30px 0 30px;
-  border: 1px solid #dadddf;
-  background-color: #edeff2;
-}
-
-.spot_area{
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-}
-
-.spot_item{
-  display: table-cell;
-  text-align: center;
-  padding: 24px 0 21px;
-}
-
-.none_contents_area{
-  padding : 150px 0 148px;
-  border-bottom : 1px solid #dadddf;
-  background : url() no-repeat 373px 159px;
-  text-align : center;
-}
-
-.none_contents_area .none_txt{
-  margin-top: 100px;
-  font-size: 16px;
-}
-
-.item_content{
-  display: block;
-  position: relative;
-  padding-left: 128px;
-  color: #000;
-  text-decoration: none !important;
-}
-
-.item.add .point{
-  color: green;
-}
-
-.item.add .state{
-  border-color: #7adf68;
-  background-position: 0 -82px;
-  color: #39c934;
-}
-
-.info_space{
-  display: inline-block;
-  width: 100%;
-  vertical-align: middle;
-}
-
-.amount_space{
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: 120px;
-  margin-top: -37px;
-  line-height: 74px;
-  text-align: right;
-  z-index: 10;
-}
-
-.state_space{
-  position: absolute;
-  top : 50%;
-  left: 0;
-  width: 113px;
-  margin-top: -41px;
-  padding-left: 13px;
-}
-
-.state_space .state{
-  display: block;
-  width: 82px;
-  height: 82px;
-  background: url() no-repeat 0 -200%;
-  line-height: 82px;
-  text-align: center;
-}
-
-
-#content .date{
-  position: relative;
-}
-
-.info_space .date{
-  display: block;
-  margin: 0 0 6px !important;
-  font-size: 14px;
-  color: #a5a5a5 !important;
-}
-
-.info_space .title{
-  display: block;
-  overflow: hidden;
-  max-width: 100%;
-  font-weight: normal;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.info_space .subtext{
-  margin-top: 16px;
-  font-size: 13px;
-  color: #a5a5a5;
-}
-
-.ask_sc{
-  position: relative;
-  border: 1px solid #dadddf;
-  background-color: #edeff2;
-}
-
-.month_area{
-  border:  1px solid #d5d8dc;
-}
-
-.month_list{
-  display: table;
-  overflow: hidden;
-  width : 100%;
-  table-layout: fixed;
-}
-
-.month_list li{
-  display: table-cell;
-  float: left;
-  background-color: #fff;
-  line-height: 30px;
-  text-align: center;
-}
-
-.month_list li a{
-  display: block;
-  padding: 0 8px;
-  font-size: 11px;
-  color: #808080;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="mypage.css">
 </head>
 <body class="animsition">
 
   <%@include file="../../../includes/header.jsp"%>
-
   <%@include file="../../../includes/cart.jsp"%>
-
   <%@include file="../../../includes/slider.jsp"%>
 
+
+  <%@include file="include/mypage_aside.jsp"%>
+  <%@include file="include/mypage_header.jsp"%>
   <!-- Product -->
   <div class="bg0 m-t-23 p-b-140">
     <div class="container">
       <div id="container" class="my_container">
 
-        <%@include file="include/mypage_aside.jsp"%>
-
         <!-- content -->
         <div id="content" class="my_cont" style="z-index: 30;">
-          <div class="home_info">
-            <ul class="lst">
-              <li class="order"><a
-                href="http://order.pay.naver.com/home?tabMenu=SHOPPING&amp;frm=s_order"
-                class="lnk" target="_blank"> <span class="ico">주문배송</span>
-                  <em id="nSaleCount" class="_nPayStatus num_box"><span
-                    class="num no0">0</span></em>
-              </a>
-              </li>
-              <li class="cupon"><a
-                href="http://benefit.pay.naver.com/coupon" class="lnk"
-                target="_blank"> <span class="ico">포인트</span> <em
-                  id="nCouponCount" class="_nPayStatus num_box">
-                  <span>0</span></em>
-              </a>
-              </li>
-              <li class="point"><a href="http://pay.naver.com"
-                class="lnk" target="_blank"> <span class="ico">
-                   장바구니</span> <em id="nPoint" class="_nPayStatus num_box"><span></span></em>
-              </a>
-              </li>
-              <li class="tok"><a href="">
-                  <span class="ico">찜 목록</span> 
-                  <em id="shoppingTalk" class="num_box"><span class="num no3"></span></em>
-              </a>
-              </li>
-             <li class="tok"><a href="">
-                  <span class="ico">개인정보 수정</span> 
-                  <em id="shoppingTalk" class="num_box"><span class="num no3"></span></em>
-              </a>
-              </li>
-            </ul>
-          </div>
-     
-     <div class="point_spot total _summaryRoot">
-        <ul class="spot_area">
-            <li class="spot_item">
+              <div class="point_spot total _summaryRoot">
+                 <ul class="spot_area">
+               <li class="spot_item">
                 <div class="item_cont">
                     <strong class="title">
                         <span class="sp_spot text tit_use"><span class="blind">사용가능 포인트</span></span>
@@ -676,48 +187,46 @@
 
 
 
-<div class="sub_sc" style="min-height: 895px;">
-<div id="_listContentArea">
-
-        <div class="none_contents_area">
-            <p class="none_txt">조회 조건에 맞는 <span>내역이 없습니다.</span></p>
-        </div>
-
-      <div class="tit_month">
-        <h4>2018.08</h4>
-      </div>
-      <ul class="list_area  ">
-          <li class="list_item">
-              <div class="item add _interlockNo1533345546003973299dget">
-                  <div class="item_content">
-                      <div class="state_space point">
-                          <span class="state _statusName">적립</span>
-                      </div>
-                      <div class="info_space"> <!--N=a:pnt.detail-->
-                          <span class="date">2018.08.04</span>
-                          <strong class="title _titleName">이벤트 적립</strong>
-                          <p class="subtext">구매평작성</p>
-                      </div>
-                  </div>
-          
-                  <div class="amount_space">
-                      <div class="amount_inner">
-                          <span class="point">+50원</span>
-                          <div class="func_area">
-                              <a href="#" class="func_button _click(nmp.front.order.timeline.home.list.removeEtc(20180804101906PNT201808046066254)) _stopDefault">내역삭제</a> <!--N=a:pnt.del-->
+      <div class="sub_sc" style="min-height: 895px;">
+        <div id="_listContentArea">
+        
+                <div class="none_contents_area">
+                    <p class="none_txt">조회 조건에 맞는 <span>내역이 없습니다.</span></p>
+                </div>
+        
+              <div class="tit_month">
+                <h4>2018.08</h4>
+              </div>
+              <ul class="list_area  ">
+                  <li class="list_item">
+                      <div class="item add _interlockNo1533345546003973299dget">
+                          <div class="item_content">
+                              <div class="state_space point">
+                                  <span class="state _statusName">적립</span>
+                              </div>
+                              <div class="info_space"> <!--N=a:pnt.detail-->
+                                  <span class="date">2018.08.04</span>
+                                  <strong class="title _titleName">이벤트 적립</strong>
+                                  <p class="subtext">구매평작성</p>
+                              </div>
+                          </div>
+                  
+                          <div class="amount_space">
+                              <div class="amount_inner">
+                                  <span class="point">+50원</span>
+                                  <div class="func_area">
+                                      <a href="#" class="func_button _click(nmp.front.order.timeline.home.list.removeEtc(20180804101906PNT201808046066254)) _stopDefault">내역삭제</a> <!--N=a:pnt.del-->
+                                  </div>
+                              </div>
                           </div>
                       </div>
-                  </div>
-              </div>
-          </li>
-    </ul>
-
- 
-</div>
-     </div>
+                  </li>
+              </ul>
+          </div>
         </div>
+    </div>
         <!-- //content -->
-      </div>
+</div>
 
 
       <!-- Load more -->
