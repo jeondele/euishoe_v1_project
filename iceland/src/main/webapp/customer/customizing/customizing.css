@@ -1,0 +1,42 @@
+form > div > div > div > div > div > div > ul > li{
+	margin-right: 10px;
+    padding: 5px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
+form > div > div > div > div > div > div > ul > li > a{
+    padding: 3px;
+    color: black;
+}
+
+form > div > div > div > div > div > div > ul {
+	margin-bottom:10px;
+	margin-left:22%;
+}
+
+.tab-content{
+		margin-top:10px;
+}
+
+input{
+	display:inline-block;
+	margin-bottom: 7px;
+	margin-left:5px;
+}
+
+input[type=radio] {
+	float:left;
+	margin-right: 20px;	
+}
+
+#home{
+    border-radius: 10px;
+    padding: 10px;
+    background-color: lavender;
+    border: 2px solid pink;	
+	
+}
+#zipcodeTxt{
+    margin-top: 10px;
+    }
