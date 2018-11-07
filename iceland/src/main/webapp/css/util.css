@@ -36,14 +36,10 @@ ul, li {
 
 
 /*---------------------------------------------*/
- textarea{
+input, textarea, label {
 	display: block;
 	outline: none;
 }
-
-input,label {
-outline: none;	
-	}
 
 /*---------------------------------------------*/
 button {

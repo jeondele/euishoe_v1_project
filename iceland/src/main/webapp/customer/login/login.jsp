@@ -60,8 +60,6 @@
 
 </head>
 <body class="animsition">
-	
-	
 <%--  <jsp:include page="includes/header.jsp"/> --%>
  <%@include file="../../includes/header.jsp"%>
 
