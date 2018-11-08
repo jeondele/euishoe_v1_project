@@ -3,55 +3,5 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="com.euishoe.carts">
-	<select id="selectCart" resultType="com.euishoe.carts.dto.Cart" parameterType="int">
-		SELECT pi.PRODUCT_NUM,                   
-			   pi.PRODUCT_LIST_NUM,              
-			   pi.PRODUCT_NAME,                
-			   pi.PRODUCT_COST,                 
-			   pi.PRODUCT_PRICE,                 
-			   pi.PRODUCT_BRIEF_INFORMATION,  
-			   pi.PRODUCT_MANUFACTURER,        
-			   pi.PRODUCT_RELEASE_DATE,                
-			   pi.PRODUCT_ORIGIN,              
-			   pi.PRODUCT_LIST_PRICE,            
-		 	   pi.COLOR_CODE,
-		 	   p.product_count,
-		 	   c.cart_num,
-		 	   c.product_code                 
-		FROM carts c INNER JOIN products p 
-							 ON c.product_code = p.product_code
-					 INNER JOIN product_infos pi 
-					 		 ON p.product_num = pi.product_num
-		WHERE c.cart_num = #{cartNum};
-	</select>
-	<select id="listCart" resultType="arraylist">
-		SELECT pi.PRODUCT_NUM,                   
-			   pi.PRODUCT_LIST_NUM,              
-			   pi.PRODUCT_NAME,                
-			   pi.PRODUCT_COST,                 
-			   pi.PRODUCT_PRICE,                 
-			   pi.PRODUCT_BRIEF_INFORMATION,  
-			   pi.PRODUCT_MANUFACTURER,        
-			   pi.PRODUCT_RELEASE_DATE,                
-			   pi.PRODUCT_ORIGIN,              
-			   pi.PRODUCT_LIST_PRICE,            
-		 	   pi.COLOR_CODE,
-		 	   p.product_count,
-		 	   c.cart_num,
-		 	   c.product_code                 
-		FROM carts c INNER JOIN products p 
-							 ON c.product_code = p.product_code
-					 INNER JOIN product_infos pi 
-					 		 ON p.product_num = pi.product_num;
-	</select>
-	<insert id="createCart" parameterType="com.euishoe.cart.dto.Cart">
-		INSERT INTO CARTS(CART_NUM,PRODUCT_CODE,CUSTOMER_ID) VALUES(#{cartNum},#{productCode},#{customerId});
-	</insert>
-	<delete id="deleteCart">
-		DELETE FROM CARTS WHERE cart_num = #{cartNum};
-	</delete>
-	<update id="updateCart">
-		UPDATE CARTS SET
-	</update>
+<mapper namespace="com.euishoe.Cart">
 </mapper>
