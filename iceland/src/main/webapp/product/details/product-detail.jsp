@@ -162,7 +162,7 @@
 									</div>
 								</div>
 
-								<div class="item-slick3" data-thumb="/iceland/images/product-detail-02.jpg">
+<!-- 								<div class="item-slick3" data-thumb="/iceland/images/product-detail-02.jpg">
 									<div class="wrap-pic-w pos-relative">
 										<img src="/iceland/images/product-detail-02.jpg" alt="IMG-PRODUCT">
 
@@ -180,7 +180,7 @@
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>

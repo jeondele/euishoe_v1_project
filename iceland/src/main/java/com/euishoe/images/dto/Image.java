@@ -9,7 +9,11 @@ package com.euishoe.images.dto;
 public class Image {
 	// 변수 선언
 	private int imageNum;
+<<<<<<< HEAD
 	private String productNum;
+=======
+	private int productNum;
+>>>>>>> feature/customer7(es)
 	private int reviewNum;
 	private int qnaNum;
 	private String imageRef;
@@ -17,11 +21,14 @@ public class Image {
 	// 생성자(Constructor) 선언
 	public Image() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	
+<<<<<<< HEAD
 	public Image(int imageNum, String productNum, int reviewNum, int qnaNum, String imageRef) {
+=======
+	public Image(int imageNum, int productNum, int reviewNum, int qnaNum, String imageRef) {
+>>>>>>> feature/customer7(es)
 		super();
 		this.imageNum = imageNum;
 		this.productNum = productNum;
@@ -42,12 +49,20 @@ public class Image {
 	}
 
 
+<<<<<<< HEAD
 	public String getProductNum() {
+=======
+	public int getProductNum() {
+>>>>>>> feature/customer7(es)
 		return productNum;
 	}
 
 
+<<<<<<< HEAD
 	public void setProductNum(String productNum) {
+=======
+	public void setProductNum(int productNum) {
+>>>>>>> feature/customer7(es)
 		this.productNum = productNum;
 	}
 

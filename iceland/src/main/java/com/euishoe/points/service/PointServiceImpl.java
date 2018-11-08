@@ -6,7 +6,10 @@ package com.euishoe.points.service;
  *
  */
 
+import java.util.List;
+
 import com.euishoe.points.dao.PointDao;
+import com.euishoe.points.dto.PointHistory;
 
 public class PointServiceImpl implements PointService {
 	private PointDao pointDao;
@@ -17,6 +20,16 @@ public class PointServiceImpl implements PointService {
 
 	public void setPointDao(PointDao pointDao) {
 		this.pointDao = pointDao;
+	}
+
+	@Override
+	public void create(String customerId) throws Exception {
+		pointDao.create(customerId);
+	}
+
+	@Override
+	public List<PointHistory> CustomerPointList(String customerId) throws Exception {
+		return pointDao.CustomerPointList(customerId);
 	}
 	
 }
