@@ -12,16 +12,16 @@ public class Cart {
 	
 	// 변수선언
 	private int cartNum; 					//장바구니 번호
-	private String productNum; 			// 상품코드
+	private String productCode; 			// 상품코드
 	private String customerId; 				// 회원아이디
 	
 	public Cart() {
 	}
 
-	public Cart(int cartNum, String productNum, String customerId) {
+	public Cart(int cartNum, String productCode, String customerId) {
 		super();
 		this.cartNum = cartNum;
-		this.productNum = productNum;
+		this.productCode = productCode;
 		this.customerId = customerId;
 	}
 
@@ -33,12 +33,12 @@ public class Cart {
 		this.cartNum = cartNum;
 	}
 
-	public String getProductNum() {
-		return productNum;
+	public String getProductCode() {
+		return productCode;
 	}
 
-	public void setProductNum(String productNum) {
-		this.productNum = productNum;
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
 	}
 
 	public String getCustomerId() {
@@ -51,7 +51,7 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [cartNum=" + cartNum + ", productNum=" + productNum + ", customerId=" + customerId
+		return "Cart [cartNum=" + cartNum + ", productCode=" + productCode + ", customerId=" + customerId
 				+ "]";
 	}
 }
