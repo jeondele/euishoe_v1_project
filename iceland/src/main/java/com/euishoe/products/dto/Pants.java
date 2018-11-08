@@ -8,16 +8,18 @@ package com.euishoe.products.dto;
  */
 public class Pants {
 	
-	private String pantsCode; //상의코드명
+	private String pantsCode; //하의코드명
+	private String colorCode; //색상코드
 	private String sizeCode; //사이즈코드
-	private int pantsCount; //상의코드별 수량
+	private int pantsCount; //하의코드별 수량
 	
 	public Pants() {
 	}
 
-	public Pants(String pantsCode, String sizeCode, int pantsCount) {
+	public Pants(String pantsCode, String colorCode, String sizeCode, int pantsCount) {
 		super();
 		this.pantsCode = pantsCode;
+		this.colorCode = colorCode;
 		this.sizeCode = sizeCode;
 		this.pantsCount = pantsCount;
 	}
@@ -28,6 +30,14 @@ public class Pants {
 
 	public void setPantsCode(String pantsCode) {
 		this.pantsCode = pantsCode;
+	}
+
+	public String getColorCode() {
+		return colorCode;
+	}
+
+	public void setColorCode(String colorCode) {
+		this.colorCode = colorCode;
 	}
 
 	public String getSizeCode() {
@@ -48,7 +58,8 @@ public class Pants {
 
 	@Override
 	public String toString() {
-		return "Pants [pantsCode=" + pantsCode + ", sizeCode=" + sizeCode + ", pantsCount=" + pantsCount + "]";
+		return "Pants [pantsCode=" + pantsCode + ", colorCode=" + colorCode + ", sizeCode=" + sizeCode + ", pantsCount="
+				+ pantsCount + "]";
 	}
-	
+
 }

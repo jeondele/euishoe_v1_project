@@ -9,7 +9,7 @@ public class Wishlist {
 	// 변수 선언
 	private int wishlistNum;	// 관심상품번호
 	private String customerId;	// 회원아이디
-	private String productCode;	// 상품코드
+	private String productNum;	// 상품코드
 	
 	// 생성자(Constructor) 선언
 	
@@ -18,11 +18,11 @@ public class Wishlist {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Wishlist(int wishlistNum, String customerId, String productCode) {
+	public Wishlist(int wishlistNum, String customerId, String productNum) {
 		super();
 		this.wishlistNum = wishlistNum;
 		this.customerId = customerId;
-		this.productCode = productCode;
+		this.productNum = productNum;
 	}
 
 
@@ -43,18 +43,18 @@ public class Wishlist {
 		this.customerId = customerId;
 	}
 
-	public String getProductCode() {
-		return productCode;
+	public String getProductNum() {
+		return productNum;
 	}
 
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
+	public void setProductNum(String productNum) {
+		this.productNum = productNum;
 	}
 
 	// toString() 선언
 	@Override
 	public String toString() {
-		return "Wishlist [wishlistNum=" + wishlistNum + ", customerId=" + customerId + ", productCode=" + productCode
+		return "Wishlist [wishlistNum=" + wishlistNum + ", customerId=" + customerId + ", productNum=" + productNum
 				+ "]";
 	}
 	

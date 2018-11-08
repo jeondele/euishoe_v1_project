@@ -9,7 +9,7 @@ package com.euishoe.images.dto;
 public class Image {
 	// 변수 선언
 	private int imageNum;
-	private String productCode;
+	private String productNum;
 	private int reviewNum;
 	private int qnaNum;
 	private String imageRef;
@@ -21,10 +21,10 @@ public class Image {
 	}
 	
 	
-	public Image(int imageNum, String productCode, int reviewNum, int qnaNum, String imageRef) {
+	public Image(int imageNum, String productNum, int reviewNum, int qnaNum, String imageRef) {
 		super();
 		this.imageNum = imageNum;
-		this.productCode = productCode;
+		this.productNum = productNum;
 		this.reviewNum = reviewNum;
 		this.qnaNum = qnaNum;
 		this.imageRef = imageRef;
@@ -42,13 +42,13 @@ public class Image {
 	}
 
 
-	public String getProductCode() {
-		return productCode;
+	public String getProductNum() {
+		return productNum;
 	}
 
 
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
+	public void setProductNum(String productNum) {
+		this.productNum = productNum;
 	}
 
 
@@ -85,7 +85,7 @@ public class Image {
 	// toString() 선언
 	@Override
 	public String toString() {
-		return "Image [imageNum=" + imageNum + ", productCode=" + productCode + ", reviewNum=" + reviewNum + ", qnaNum="
+		return "Image [imageNum=" + imageNum + ", productNum=" + productNum + ", reviewNum=" + reviewNum + ", qnaNum="
 				+ qnaNum + ", imageRef=" + imageRef + "]";
 	}	
 }
