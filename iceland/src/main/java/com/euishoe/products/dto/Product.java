@@ -12,18 +12,19 @@ public class Product {
 	private String jacketCode; 				// 상의코드명
 	private String pantsCode; 				// 하의코드명
 	private int productNum; 				// 상품번호
-
+	private int productCount;				// 상품수량
 	
 	// 생성자(Constructor) 선언
 	public Product() {
 	}
 
-	public Product(String productCode, String jacketCode, String pantsCode, int productNum) {
+	public Product(String productCode, String jacketCode, String pantsCode, int productNum, int productCount) {
 		super();
 		this.productCode = productCode;
 		this.jacketCode = jacketCode;
 		this.pantsCode = pantsCode;
 		this.productNum = productNum;
+		this.productCount = productCount;
 	}
 
 	
@@ -60,11 +61,18 @@ public class Product {
 		this.productNum = productNum;
 	}
 
-	// toString() 선언
+	public int getProductCount() {
+		return productCount;
+	}
+
+	public void setProductCount(int productCount) {
+		this.productCount = productCount;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [productCode=" + productCode + ", jacketCode=" + jacketCode
-				+ ", pantsCode=" + pantsCode + ", productNum=" + productNum + "]";
+		return "Product [productCode=" + productCode + ", jacketCode=" + jacketCode + ", pantsCode=" + pantsCode
+				+ ", productNum=" + productNum + ", productCount=" + productCount + "]";
 	}
 	
 }
