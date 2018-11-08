@@ -16,9 +16,12 @@
 	
 	<!-- 고객관련 -->
 	<bean type="controller" name="/customer/login" class="com.euishoe.customers.controller.CustomerLoginController" />
+	<bean type="controller" name="/customer/logout" class="com.euishoe.customers.controller.CustomerLogoutController" />
 	<bean type="controller" name="/customer/mypage" class="com.euishoe.customers.controller.CustomerPageController" />
 	<bean type="controller" name="/customer/regist" class="com.euishoe.customers.controller.CustomerRegistController" />
 	<bean type="controller" name="/customer/findme" class="com.euishoe.customers.controller.CustomerFindmeController" />
+	<bean type="controller" name="/customer/emailCertify" class="com.euishoe.customers.controller.CustomerEmailCertifyController" />
+	
 	<!-- 주문 -->
 	<bean type="controller" name="/order" class="com.euishoe.orders.controller.OrderController" />
 </beans>

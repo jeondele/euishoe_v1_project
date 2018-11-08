@@ -10,8 +10,8 @@ input[type=checkbox] {
 .my_cont {
 	position: relative;
 	z-index: 30;
-	margin-top: 5%;
 	border: 3px solid black;
+	left: 20%;width: 77%;z-index: 30;height: 750px;
 }
 
 .my_container {
@@ -57,7 +57,7 @@ input[type=checkbox] {
 .home_info .lst li {
 	position: relative;
 	float: left;
-	width: 182px;
+    width: 220px;
 	height: 141px;
 	border-left: 1px solid #e2e2e2;
 	text-align: center;

@@ -2,8 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
+
+<!-- 
+	private String customerId;				// 회원아이디
+	private String customerName;			// 회원이름
+	private String customerPassword;		// 회원비밀번호
+	private String customerPhonenumber;		// 회원전화번호
+	private String customerEmail;			// 회원이메일
+	private String customerAddress;			// 회원주소
+	private String customerPostcode;		// 회원우편번호
+	private String customerBirthday;		// 회원생년월일
+	private String customerGender;			// 회원성별
+	private String customerJacketSize;		// 회원상의사이즈
+	private String customerPantsSize;		// 회원하의사이즈
+	private String customerHeight;			// 회원신장
+ -->
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.euishoe.customers">
+	<!-- 로그인 인증 -->
 	<select id="certify" resultType="Customer" parameterType="map">
 		SELECT customer_id          "customerId", 
        		   customer_name        "customerName", 
@@ -16,9 +32,35 @@
 		       customer_gender      "customerGender", 
 		       customer_jacket_size "customerJacketSize", 
 		       customer_pants_size  "customerPantsSize", 
-		       customer_height      "customerHeight" 
+		       customer_height      "customerHeight",
+		       customer_body		"customerBody",
+		       customer_shoulder	"customerShoulder",
+		       customer_arm			"customerArm",
+		       customer_leg			"customerLeg"
 		FROM   customers 
 		WHERE  customer_id = #{customerId} 
        	AND customer_password = #{customerPassword} 
 	</select>
+
+	<!-- 회원가입 -->
+	<insert id="create" parameterType="com.euishoe.customers.dto.Customer">
+		INSERT INTO customers 
+		VALUES     ( #{customerId}, 
+        		     #{customerName}, 
+             		 #{customerPassword}, 
+       			     #{customerPhonenumber}, 
+             		 #{customerEmail}, 
+             		 #{customerAddress}, 
+             		 #{customerPostcode}, 
+           		     #{customerBirthday}, 
+      		         #{customerGender}, 
+    		         #{customerJacketSize}, 
+  		             #{customerPantsSize}, 
+    		         #{customerHeight},
+    		         1,
+    		         1,
+    		         1,
+    		         1) 
+	</insert>
+
 </mapper>

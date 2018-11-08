@@ -50,6 +50,9 @@
 <link rel="stylesheet" href="/iceland/css/style.css">
     <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Sunflower:300" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/css/toastMessage.css">
+
+<script type="text/javascript" src="<%= application.getContextPath() %>/js/toastMessage.js"></script>
 </head>
 <body class="animsition">
 	
@@ -358,6 +361,11 @@
 				</div>
 			</div>
 	</section>
+<c:choose>
+    <c:when test="${not empty result}">
+     <div id="snackbar"></div>
+    </c:when>
+</c:choose>
 
 <%@include file="includes/footer.jsp"%>
 
@@ -466,4 +474,11 @@
 	<script src="/iceland/js/main.js"></script>
 
 </body>
+<script type="text/javascript">
+/* if () {
+	var target = document.getElementById('snackbar');
+	target.innerHTML = '로그인 성공, 방문을 환영합니다!';
+	toast();
+}  */
+</script>
 </html>

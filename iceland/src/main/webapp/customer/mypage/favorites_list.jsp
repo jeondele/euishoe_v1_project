@@ -49,6 +49,9 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="mypage.css">
+<style>
+
+</style>
 </head>
 <body class="animsition">
   <%@include file="../../../includes/header.jsp"%>
@@ -90,6 +93,7 @@
 
   <%@include file="/iceland/../includes/QuickMenu.jsp"%>
 
+  <%@include file="/iceland/../customer/mypage/include/mypage_sidebar.jsp" %>
   <!--===============================================================================================-->
   <script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
   <!--===============================================================================================-->

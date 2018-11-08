@@ -22,6 +22,7 @@ public class LoginCheckFilter implements Filter {
 	
 	private Logger logger = Logger.getLogger(LoginCheckFilter.class);
 	private String loginPage;
+	private String cookieName;
 
     @Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -39,6 +40,7 @@ public class LoginCheckFilter implements Filter {
 			for (Cookie cookie : cookies) {
 				if(cookie.getName().equals("loginId")) {
 					isLogin = true;
+					cookieName = cookie.getValue();
 					break;
 				}
 			}
@@ -46,8 +48,7 @@ public class LoginCheckFilter implements Filter {
 		
 		//로그인 관련 쿠키가 있으면
 		if(isLogin) {
-			//다음 필터체인으로 이동
-			chain.doFilter(request, response);
+			request.setAttribute("loginId", cookieName);
 		}else {
 			if(loginPage == null) {
 				//로그인 관련 쿠키가 없는데 로그인 페이지도 없으면 익셉션

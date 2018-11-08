@@ -22,6 +22,7 @@ public class MybatisCustomerDao implements CustomerDao {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
 
+	// 로그인 인증
 	@Override
 	public Customer certify(String customerId, String customerPassword) throws Exception {
 		Customer customer = null;
@@ -34,8 +35,15 @@ public class MybatisCustomerDao implements CustomerDao {
 		sqlSession.close();
 		return customer;
 	}
-	
-	
+
+	// 회원가입
+	@Override
+	public void create(Customer customer) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert(NAMESPACE+"create", customer);
+		sqlSession.commit();
+		sqlSession.close();
+	}
 }
 
 
