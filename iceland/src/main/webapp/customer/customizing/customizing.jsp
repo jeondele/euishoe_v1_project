@@ -40,8 +40,7 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="/iceland/customer/customizing/customizing.css">
-
+	href="<%=application.getContextPath()%>/customer/customizing/customizing.css">
 
 
 <style>
