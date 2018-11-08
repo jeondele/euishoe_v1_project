@@ -10,6 +10,7 @@ public class Jacket {
 	
 	// 변수 선언
 	private String jacketCode; 				// 상의코드명
+	private String colorCode;				// 색상코드
 	private String sizeCode; 				// 사이즈코드
 	private int jacketCount; 				// 상의코드별수량
 	
@@ -18,14 +19,14 @@ public class Jacket {
 	public Jacket() {
 	}
 	
-	public Jacket(String jacketCode, String sizeCode, int jacketCount) {
+	public Jacket(String jacketCode, String colorCode, String sizeCode, int jacketCount) {
 		super();
 		this.jacketCode = jacketCode;
+		this.colorCode = colorCode;
 		this.sizeCode = sizeCode;
 		this.jacketCount = jacketCount;
 	}
 
-	
 	// setter, getter 선언
 	public String getJacketCode() {
 		return jacketCode;
@@ -33,6 +34,14 @@ public class Jacket {
 
 	public void setJacketCode(String jacketCode) {
 		this.jacketCode = jacketCode;
+	}
+
+	public String getColorCode() {
+		return colorCode;
+	}
+
+	public void setColorCode(String colorCode) {
+		this.colorCode = colorCode;
 	}
 
 	public String getSizeCode() {
@@ -52,9 +61,9 @@ public class Jacket {
 	}
 
 	
-	// toString() 선언
 	@Override
 	public String toString() {
-		return "Jacket [jacketCode=" + jacketCode + ", sizeCode=" + sizeCode + ", jacketCount=" + jacketCount + "]";
+		return "Jacket [jacketCode=" + jacketCode + ", colorCode=" + colorCode + ", sizeCode=" + sizeCode
+				+ ", jacketCount=" + jacketCount + "]";
 	}
 }
