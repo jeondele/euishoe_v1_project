@@ -171,9 +171,8 @@
                     </select>
 
                     </div>
-                        <div class="form__field">
+                        <div class="form__field" id="emailCertifyDiv">
                           <!-- 
-                          <input type="text">
 						  이메일 인증을 위한 비동기 통신용 버튼
                            -->
                           <button type="button" class="checkbtn" id="emailCertify" onclick="send()">이메일 인증</button>
@@ -381,7 +380,7 @@
 	<script type="text/javascript">
 		// 이메일 인증(비동기처리)을 위한 자바스크립트 코드 
 		//emailCertify.addEventListener("click", send);
-		
+		var emailCertifyCode='';
 		function send(){
 			if(document.getElementById("emailHost").value.trim()=="직접입력"){
 				var emailAdd = document.getElementById("email").value;
@@ -399,17 +398,41 @@
 		
 		// 비동기통신 후 실행될 콜백함수
 		function setResult(result){
-			var emailCertifyCode = result.responseText; // 인증코드값
-			var inputCode = prompt("인증번호를 입력해 주세요" + "");
-			console.log("인증코드값: "+emailCertifyCode);
-			console.log("입력 인증코드값: "+inputCode);
-			if(inputCode.trim() == emailCertifyCode.trim()){
-				// 입력값과 생성된 난수값이 같으면
-				alert("이메일 인증이 완료되었습니다.");
-				document.getElementById('emailCertify').setAttribute('disabled','disabled');
-			}
-			else{
-				alert("인증에 실패하였습니다. 다시 입력해주세요");
+			// 이메일인증컨트롤러에서 임의로 생성된 인증코드값
+			emailCertifyCode = result.responseText; 
+			// 이메일인증을 위한 textfeild와 button을 붙일 div el
+			var emailDiv = document.getElementById('emailCertifyDiv'); 
+			// 기존 이메일인증버튼을 display:none, 사용자에게 코드값을 입력받을 텍스트필드와 확인버튼 생성
+			document.getElementById('emailCertify').style.display="none";
+			var $inputCode = $("<input type='text' id='inputCode'>");
+			var $certifyBtn = $("<button type='button' id='certifyBtn' onclick='sendCode()'>확인</button>");
+			// 생성된 el을 document에 붙임
+			$inputCode.appendTo(emailDiv);
+			$certifyBtn.appendTo(emailDiv);
+			
+		}
+		
+		// 사용자가 입력한 코드값과 생성된 코드값이 일치하는지 확인하기위한 함수
+		function sendCode() {
+			
+			var inputVal = document.getElementById('inputCode').value.trim();
+			console.log("코드값: "+emailCertifyCode);
+			console.log("입력값: "+inputVal);
+			// 입력값이 있다면
+			if(inputVal){
+				if(inputVal == emailCertifyCode.trim()){
+					// 입력값과 생성된 코드값이 일치하다면
+					// 인증완료알림, inputCode readonly, certifyBtn disabled
+					alert('이메일 인증이 완료되었습니다.');
+					$('#inputCode').attr('readonly', 'readonly'); 
+					$('#certifyBtn').attr('disabled', 'disabled'); 
+				}else{
+					// 입력값과 코드값이 일치하지 않다면
+					alert('입력 코드값이 일치하지 않습니다. 다시 입력해주세요.');
+				}
+			}else{
+				// 입력값이 없다면
+				alert('인증번호를 입력해 주세요');
 			}
 		}
 	</script>
