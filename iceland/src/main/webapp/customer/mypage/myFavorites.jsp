@@ -134,7 +134,7 @@
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
-									<th class="column-1">My 주문 & 배송</th>
+									<th class="column-1">내가 찜한 상품</th>
 									<th class="column-2"></th>
 									<th class="column-3"></th>
 									<th class="column-4"></th>
@@ -142,36 +142,51 @@
 								</tr>
 								
 								<tr class="table_head">
-									<th class="column-1">주문번호 / 상품주문번호</th>
-									<th class="column-2 txt-center">상품명</th>
-									<th class="column-3 txt-center">상품금액 (수량)</th>
-									<th class="column-4 txt-center">배송상태 / 도착예정</th>
-									<th class="column-5 txt-left">구매취소하기</th>
+									<th class="column-1">제품</th>
+									<th class="column-2"></th>
+									<th class="column-3">가격</th>
+									<th class="column-4">제조사</th>
+									<th class="column-5">좋아요</th>
 								</tr>
-								
 								<tr class="table_row">
-									<td class="column-1">(주문일자)D(주문번호)<br>(주문일자)D(상품번호)</td>
-									<td class="column-2 txt-center"> 아디다스나이키정장</td>
-									<td class="column-3 txt-center">3600 (XX개)</td>
-									<td class="column-4 txt-center">배송중 / ~ 도착예정</td>
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<img src="/iceland/images/item-cart-04.jpg" alt="IMG">
+										</div>
+									</td>
+									<td class="column-2">Fresh Strawberries</td>
+									<td class="column-3">3600</td>
+									<td class="column-4">
+										나이키아디다스아스파라거스
+									</td>
 									<td class="column-5">
-										<button class="float-r flex-c-m stext-101 cl0 size-210-1 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
-										구매취소</button></td>
+										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+											<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
+											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+										</a>
+									</td>
 								</tr>
-								
+
 								<tr class="table_row">
-									<td class="column-1">(주문일자)D(주문번호)<br>(주문일자)D(상품번호)</td>
-									<td class="column-2 txt-center"> 아디다스나이키정장</td>
-									<td class="column-3 txt-center">3600 (XX개)</td>
-									<td class="column-4 txt-center">배송중 / ~ 도착예정</td>
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<img src="/iceland/images/item-cart-05.jpg" alt="IMG">
+										</div>
+									</td>
+									<td class="column-2">Lightweight Jacket</td>
+									<td class="column-3">1600</td>
+									<td class="column-4">
+										나이키아디다스아스파라거스
+									</td>
 									<td class="column-5">
-										<button class="float-r flex-c-m stext-101 cl0 size-210-1 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
-										구매취소</button></td>
+										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+											<img class="icon-heart1 dis-block trans-04" src="../../images/icons/icon-heart-01.png" alt="ICON">
+											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../../images/icons/icon-heart-02.png" alt="ICON">
+										</a>
+									</td>
 								</tr>
 							</table>
 						</div>
-
-
 					</div>
 				</div>
 			</div>

@@ -134,43 +134,167 @@
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
-									<th class="column-1">My 주문 & 배송</th>
+									<th class="column-1">My Q&A</th>
 									<th class="column-2"></th>
 									<th class="column-3"></th>
 									<th class="column-4"></th>
 									<th class="column-5"></th>
 								</tr>
-								
-								<tr class="table_head">
-									<th class="column-1">주문번호 / 상품주문번호</th>
-									<th class="column-2 txt-center">상품명</th>
-									<th class="column-3 txt-center">상품금액 (수량)</th>
-									<th class="column-4 txt-center">배송상태 / 도착예정</th>
-									<th class="column-5 txt-left">구매취소하기</th>
-								</tr>
-								
+
 								<tr class="table_row">
-									<td class="column-1">(주문일자)D(주문번호)<br>(주문일자)D(상품번호)</td>
-									<td class="column-2 txt-center"> 아디다스나이키정장</td>
-									<td class="column-3 txt-center">3600 (XX개)</td>
-									<td class="column-4 txt-center">배송중 / ~ 도착예정</td>
-									<td class="column-5">
-										<button class="float-r flex-c-m stext-101 cl0 size-210-1 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
-										구매취소</button></td>
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<img src="/iceland/images/item-cart-04.jpg" alt="IMG">
+										</div>
+									</td>
+									<td class="column-2">Fresh Strawberries</td>
+									<td class="column-3">3600</td>
+									<td class="column-4">
+										<div class="wrap-num-product flex-w m-l-auto m-r-0">
+											<div
+												class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+
+											<input class="mtext-104 cl3 txt-center num-product"
+												type="number" name="num-product1" value="1">
+
+											<div
+												class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+									</td>
+									<td class="column-5">3600</td>
 								</tr>
-								
+
 								<tr class="table_row">
-									<td class="column-1">(주문일자)D(주문번호)<br>(주문일자)D(상품번호)</td>
-									<td class="column-2 txt-center"> 아디다스나이키정장</td>
-									<td class="column-3 txt-center">3600 (XX개)</td>
-									<td class="column-4 txt-center">배송중 / ~ 도착예정</td>
-									<td class="column-5">
-										<button class="float-r flex-c-m stext-101 cl0 size-210-1 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
-										구매취소</button></td>
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<img src="/iceland/images/item-cart-05.jpg" alt="IMG">
+										</div>
+									</td>
+									<td class="column-2">Lightweight Jacket</td>
+									<td class="column-3">1600</td>
+									<td class="column-4">
+										<div class="wrap-num-product flex-w m-l-auto m-r-0">
+											<div
+												class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+
+											<input class="mtext-104 cl3 txt-center num-product"
+												type="number" name="num-product2" value="1">
+
+											<div
+												class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+									</td>
+									<td class="column-5">1600</td>
 								</tr>
 							</table>
 						</div>
 
+						<div
+							class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+							<div class="flex-w flex-m m-r-20 m-tb-5">
+								<input
+									class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5"
+									type="text" name="coupon" placeholder="Coupon Code">
+							</div>
+							<div
+								class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
+								선택 삭제</div>
+							<div
+								class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
+								id="delete_All">전체 삭제</div>
+						</div>
+
+						<div
+							class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm"
+							style="display: block">
+							<div class="select-ship">
+								<ul class="nav nav-pills nav-justified">
+									<li class="active"><a data-toggle="tab" href="#home">기본
+											배송지</a></li>
+									<li><a data-toggle="tab" href="#menu1">최근 배송지</a></li>
+									<li><a data-toggle="tab" href="#menu2">새로운 배송지</a></li>
+								</ul>
+							</div>
+							<div class="tab-content">
+								<div id="home" class="tab-pane fade in active show">
+									<div style="display: block">
+										<table>
+											<tbody>
+												<tr>
+													<th>받으시는 분</th>
+													<td><input type="text"></td>
+												</tr>
+
+												<tr>
+													<th>주소</th>
+													<td>
+														<address>
+															<input type="text" id="zipcodeTxt" name="zipcodeTxt"
+																maxlength="6" readonly=""
+																onkeypress="javascript:common.onlyNumberInput(event);"
+																style="ime-mode: disabled; width: 70px;" title="우편번호">
+															<a href="javascript:searchAddr();"
+																onclick="doCommonStat('ORAD002');" id="searchAddrBt"
+																class="defbtn_lsm dtype6"
+																data-log-actionid-label="zip_code_find"><span>주소찾기</span></a><br>
+															<input type="text" id="rcvrBaseAddr" name="rcvrBaseAddr"
+																maxlength="200" title="기본주소 입력"
+																class="inp_address int-selected" readonly=""> <input
+																type="text" id="rcvrBaseAddr" name="rcvrBaseAddr"
+																maxlength="200" title="기본주소 입력"
+																class="inp_address int-selected" readonly="">
+														</address>
+													</td>
+												</tr>
+
+												<tr>
+													<th>휴대전화</th>
+													<td><select id="tmprcvrPrtblNo1" name="tmprcvrPrtblNo"
+														title="휴대전화-국번선택" style="width: 80px;">
+															<option value="010">010</option>
+															<option value="011">011</option>
+															<option value="016">016</option>
+															<option value="017">017</option>
+															<option value="018">018</option>
+															<option value="019">019</option>
+													</select>&nbsp;-&nbsp; <input type="text" id="tmprcvrPrtblNo2"
+														name="tmprcvrPrtblNo" maxlength="4"
+														onkeypress="javascript:common.onlyNumberInput(event);"
+														style="ime-mode: disabled; width: 70px;" title="휴대전화두번째자리"
+														class="">&nbsp;-&nbsp; <input type="text"
+														id="tmprcvrPrtblNo3" name="tmprcvrPrtblNo" maxlength="4"
+														onkeypress="javascript:common.onlyNumberInput(event);"
+														style="ime-mode: disabled; width: 70px;" title="휴대전화세번째자리"
+														class=""> <input type="hidden"
+														id="safeNumberUseYN" name="safeNumberUseYN" value="N"
+														class=""> <span class="safenom_free"
+														id="safenom_free_02"></span></td>
+												</tr>
+
+												<tr>
+													<th>배송시 요청사항</th>
+													<td><input type="text"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+								<div id="menu1" class="tab-pane fade"></div>
+
+								<div id="menu2" class="tab-pane fade"></div>
+
+
+							</div>
+						</div>
 
 					</div>
 				</div>
