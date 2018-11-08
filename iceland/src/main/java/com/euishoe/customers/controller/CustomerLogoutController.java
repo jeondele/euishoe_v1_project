@@ -30,9 +30,19 @@ public class CustomerLogoutController implements Controller {
 		for(Cookie cookie : cookies){
 		    if(cookie.getName().equals("loginId")) {
 		  	    cookie.setMaxAge(0);
+		  	    cookie.setPath("/iceland/");
+		  	    response.addCookie(cookie);
 		  	    mav.addObject("loginCookie", cookie);
-		        response.addCookie(cookie);
-		    }
+		  	    
+		    } 
+		  /*  
+		    if(cookie.getName().equals("idRemember")) {
+		    	cookie.setMaxAge(60 * 60 * 24 * 1000);
+		    	cookie.setPath("/iceland/");
+		    	response.addCookie(cookie);
+		    	mav.addObject("rememberCookie", cookie);
+		    	
+		    }*/
 		} 
 		mav.setView("redirect:/iceland/index.jsp");
 		return mav;

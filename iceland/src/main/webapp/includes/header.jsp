@@ -1,7 +1,13 @@
+<%@page import="org.apache.log4j.Logger"%>
 <%@ page contentType="text/html; charset=utf-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Header -->
 	<header>
+	
+	<input type="hidden" value="${loginCookie.name}">
+	<input type="hidden" value="${loginCookie.value}">
+	<input type="hidden" value="${rememberCookie.name}">
+	<input type="hidden" value="${rememberCookie.value}">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->
@@ -12,9 +18,6 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Help & FAQs
-						</a>
 						<c:choose>
    							<c:when test="${not empty loginCookie}">
    								<span style="color: white; vertical-align:middle">${customer.customerName} 고객님 환영합니다!</span>
@@ -41,14 +44,6 @@
 								</a>
 							</c:otherwise>
 						</c:choose>	
-
-						<a href="/iceland/customer/login.es" class="flex-c-m trans-04 p-lr-25">
-							로그인
-						</a>
-
-						<a href="/iceland/customer/regist/join.jsp" class="flex-c-m trans-04 p-lr-25">
-							회원가입
-						</a>
 
 						<a href="contact.html" class="flex-c-m trans-04 p-lr-25">
 							MyPage

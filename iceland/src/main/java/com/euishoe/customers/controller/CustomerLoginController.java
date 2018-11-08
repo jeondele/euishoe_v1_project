@@ -32,6 +32,7 @@ public class CustomerLoginController implements Controller {
 		String customerPassword = request.getParameter("password");
 		String rememberCustomerId = request.getParameter("idRemember");
 		
+		System.out.println(rememberCustomerId);
 		Customer customer = null;
 		Cookie[] cookies = null;
 		
@@ -39,12 +40,17 @@ public class CustomerLoginController implements Controller {
 			customer = customerService.certify(customerId, customerPassword);
 			if(customer != null) {
 				Cookie cookie = new Cookie("loginId", customerId);
-				
+				cookie.setMaxAge(60 * 60 * 24 * 1000);
+				cookie.setPath("/iceland/");
+				response.addCookie(cookie);
 				mav.addObject("loginCookie", cookie);
 				mav.addObject("customer", customer);
 				
 				if(rememberCustomerId != null) {
 					Cookie rememberCookie = new Cookie("idRemember", customerId);
+					rememberCookie.setMaxAge(60 * 60 * 24 * 1000);
+					rememberCookie.setPath("/iceland/");
+					response.addCookie(rememberCookie);
 					mav.addObject("rememberCookie", rememberCookie);
 				} else {
 					if(request.getCookies() != null) {

@@ -64,7 +64,6 @@
 
 <%@include file="includes/slider.jsp"%>
 
-
 	<!-- Product -->
 	<section class="bg0 p-t-23 p-b-140">
 		<div class="container">
@@ -366,6 +365,8 @@
      <div id="snackbar"></div>
     </c:when>
 </c:choose>
+
+
 
 <%@include file="includes/footer.jsp"%>
 
