@@ -67,6 +67,10 @@
 
 <%@include file="../../includes/slider.jsp"%>
 
+	<input type="hidden" value="${loginCookie.name}">
+	<input type="hidden" value="${loginCookie.value}">
+	<input type="hidden" value="${cookie.rememberCookie.name}">
+	<input type="hidden" value="${cookie.rememberCookie.value}">
 	<!-- Banner -->
 	<div class="sec-banner bg0 p-t-80 p-b-50">
 		<div class="container" id="login_main">
@@ -100,7 +104,7 @@
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
                         </svg><span class="hidden">Username</span></label>
                     <c:choose>
-                    	<c:when test="${not empty rememberCookie}">
+                    	<c:when test="${not empty cookie.rememberCookie}">
                     		<input id="login__username" type="text" name="username" class="form__input" placeholder="Username" value="${cookie.rememberCookie.value}" required> 
                     	</c:when>
                     	<c:otherwise>
@@ -118,7 +122,7 @@
                 </div>
                 <div class="form__field">
                 	<c:choose>
-                    	<c:when test="${not empty rememberCookie}">
+                    	<c:when test="${not empty cookie.rememberCookie}">
 		                    <label id="memory_id"><input type="checkbox" checked="checked" name="idRemember"/>로그인 정보 기억</label>
                     	</c:when>
                     	<c:otherwise>
