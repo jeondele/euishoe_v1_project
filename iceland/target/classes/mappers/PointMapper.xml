@@ -4,4 +4,65 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.euishoe.PointHistory">
+
+	<!-- 회원가입 포인트 지급 -->
+	<insert id="joinPointCreate" parameterType="com.euishoe.points.dto.PointHistory">
+		INSERT INTO point_histories
+		VALUES  (point_histories_seq.nextval,
+        		     1, 
+             		 #{customerId}, 
+       			     2000, 
+             		 TO_CHAR(sysdate, 'YYYY-MM-DD'))
+	</insert>
+
+	<!-- 생일축하 포인트 지급 -->
+	<insert id="birthPointCreate" parameterType="com.euishoe.points.dto.PointHistory">
+		INSERT INTO point_histories
+		VALUES  (point_histories_seq.nextval,
+        		     2, 
+             		 #{customerId}, 
+       			     2000, 
+             		 TO_CHAR(sysdate, 'YYYY-MM-DD'))
+	</insert>
+
+	<!--구매 포인트 지급 -->
+	<insert id="purchasePointCreate" parameterType="com.euishoe.points.dto.PointHistory">
+		INSERT INTO point_histories
+		VALUES  (point_histories_seq.nextval,
+        		     3, 
+             		 #{customerId}, 
+       			     #{pointHistoryScore}, 
+             		 TO_CHAR(sysdate, 'YYYY-MM-DD'))
+	</insert>
+
+	<resultMap type="com.euishoe.points.dto.PointPolicy" id="PointPolicy">
+			<result property="pointPolicyType" column="point_policy_type"/>
+    		<result property="pointPolicyDescription" column="point_policy_description"/>
+    		<result property="pointPolicyPayment" column="point_policy_payment"/>
+	</resultMap>
+	
+	<resultMap type="com.euishoe.points.dto.PointHistory" id="PointHistory">
+		<result property="pointHistoryNum" column="point_history_num"/>
+    	<result property="pointPolicyType" column="point_policy_type"/>
+    	<result property="customerId" column="customer_id"/>
+    	<result property="pointHistoryUpdateDate" column="point_history_update_date"/>
+   		<result property="pointHistoryScore" column="point_history_score"/>
+		<collection property="pointPolicy" resultMap="PointPolicy"/>
+	</resultMap>
+	
+	<select id="selectPointHistoryById" parameterType="com.euishoe.points.dto.PointHistory" resultMap="PointHistory">
+		SELECT ph.customer_id,
+					ph.point_history_num,
+					ph.point_policy_type, 
+					ph.point_history_update_date,
+       				ph.point_history_score,
+       				pp.point_policy_description
+	    FROM   point_histories ph
+		  		   JOIN point_policies pp
+		    	   ON ph.point_policy_type = pp.point_policy_type
+		 WHERE ph.customer_id = #{id}
+	</select>
+
+
+
 </mapper>
