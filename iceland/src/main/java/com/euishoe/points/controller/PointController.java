@@ -44,7 +44,7 @@ public class PointController implements Controller {
 			throw new ServletException("UserService.list() 예외 발생", e);
 		}
 		mav.addObject("CustomerPointList", list);
-		mav.setView("/mypage/point_history.jsp");
+		mav.setView("/mypage/myPoint.jsp");
 		
 		return mav;
 	}
