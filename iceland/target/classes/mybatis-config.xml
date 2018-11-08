@@ -15,6 +15,7 @@
 		<typeAlias type="com.euishoe.orders.dto.Order" alias="Order"/>
 		<typeAlias type="com.euishoe.points.dto.PointHistory" alias="Point"/>
 		<typeAlias type="com.euishoe.products.dto.Product" alias="Product"/>
+		<typeAlias type="com.euishoe.products.dto.ProductInfo" alias="ProductInfo"/>
 		<typeAlias type="com.euishoe.images.dto.Image" alias="Image"/>
 		<typeAlias type="com.euishoe.reviews.dto.Review" alias="Review"/>
 		<typeAlias type="com.euishoe.payments.dto.Payment" alias="Payment"/>
