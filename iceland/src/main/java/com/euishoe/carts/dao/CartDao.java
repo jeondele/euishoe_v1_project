@@ -14,11 +14,11 @@ import com.euishoe.carts.dto.Cart;
 public interface CartDao {
 
 	// 장바구니 페이지 접속시 리스트 분배
-	public List<Map<Integer,Cart>> listCart();
+	public List<Cart> listCart();
 	
 	// 장바구니 등록
-	public void createCart(Cart cart);
+	public void createCart(String cartNum,String productCode,String customerId);
 	
 	// 장바구니 삭제
-	public void deleteCart(int cartNum);
+	public void deleteCart(String cartNum);
 }

@@ -9,6 +9,7 @@
 	
 	<!--  MyBatis에서 사용할 자바클래스(패키지명 포함 풀네임)에 대한 짧은 별칭 등록 -->
 	<typeAliases>
+	    <typeAlias type="com.euishoe.carts.dto.CompositeCart" alias="CompositeCart"/>
 		<typeAlias type="com.euishoe.carts.dto.Cart" alias="Cart"/>
 		<typeAlias type="com.euishoe.customers.dto.Customer" alias="Customer"/>
 		<typeAlias type="com.euishoe.noncustomers.dto.Noncustomer" alias="Noncustomer"/>
@@ -56,6 +57,7 @@
 	<!-- SQL XML Mapper 파일 경로 설정 -->
 	<mappers>
 		<!-- 클래스패스에 위치한 XML 매퍼 파일 지정 -->
+		<mapper resource="mappers/composite/CompositeCart.xml"/>
 		<mapper resource="mappers/CartMapper.xml"  />
 		<mapper resource="mappers/CustomerMapper.xml"  />
 		<mapper resource="mappers/NoncustomerMapper.xml"  />
