@@ -115,6 +115,10 @@ input[type='submit'] {
   cursor: pointer;
 }
 
+input[type='checkbox']{
+	float : left;
+}
+
 .form {
   margin: -14px;
   margin: -0.875rem;
