@@ -114,6 +114,13 @@
 	bottom: 0;
 	cursor: pointer;
 }
+th {
+	text-align: center;
+}
+
+td {
+	text-align: center;
+}
 </style>
 </head>
 <body class="animsition">

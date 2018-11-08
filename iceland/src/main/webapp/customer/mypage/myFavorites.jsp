@@ -114,6 +114,10 @@
 	bottom: 0;
 	cursor: pointer;
 }
+
+td {
+	text-align: center;
+}
 </style>
 </head>
 <body class="animsition">
@@ -142,8 +146,8 @@
 								</tr>
 								
 								<tr class="table_head">
-									<th class="column-1">제품</th>
-									<th class="column-2"></th>
+									<th class="column-1">이미지</th>
+									<th class="column-2">제품명</th>
 									<th class="column-3">가격</th>
 									<th class="column-4">제조사</th>
 									<th class="column-5">좋아요</th>
