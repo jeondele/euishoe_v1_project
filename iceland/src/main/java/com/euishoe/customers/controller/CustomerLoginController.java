@@ -1,6 +1,7 @@
 package com.euishoe.customers.controller;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,28 +22,47 @@ public class CustomerLoginController implements Controller {
 	CustomerService customerService;
 	
 	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		ModelAndView mav = new ModelAndView();
 		
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		customerService = (CustomerService)factory.getBean(CustomerServiceImpl.class);
-		Customer customer = null;
+
 		String customerId = request.getParameter("username");
 		String customerPassword = request.getParameter("password");
-		System.out.println(customerId);
-		System.out.println(customerPassword);
+		String rememberCustomerId = request.getParameter("idRemember");
+		
+		Customer customer = null;
+		Cookie[] cookies = null;
+		
 		try {
 			customer = customerService.certify(customerId, customerPassword);
 			if(customer != null) {
-				request.setAttribute("result", "success");
+				Cookie cookie = new Cookie("loginId", customerId);
+				
+				mav.addObject("loginCookie", cookie);
 				mav.addObject("customer", customer);
+				
+				if(rememberCustomerId != null) {
+					Cookie rememberCookie = new Cookie("idRemember", customerId);
+					mav.addObject("rememberCookie", rememberCookie);
+				} else {
+					if(request.getCookies() != null) {
+						cookies = request.getCookies();
+						for(Cookie cookie2 : cookies) {
+							if(cookie2.getName().equals("idRemember")) {
+								cookie2.setMaxAge(0);
+								mav.addObject("rememberCookie", cookie2);
+							}
+						}
+					}
+				}
 				mav.setView("/index.jsp");
 			} else {
-				System.out.println("1111111111111111111 일로 들어옴?");
-				request.setAttribute("result", "fail");
+				mav.addObject("result", "fail");
 				mav.setView("/customer/login/login.jsp");
 			}
+			
 		} catch (Exception e) {
 			throw new ServletException("customerService.certify() 예외 발생", e);
 		}

@@ -15,6 +15,32 @@
 						<a href="#" class="flex-c-m trans-04 p-lr-25">
 							Help & FAQs
 						</a>
+						<c:choose>
+   							<c:when test="${not empty loginCookie}">
+   								<span style="color: white; vertical-align:middle">${customer.customerName} 고객님 환영합니다!</span>
+   							</c:when>
+   							<c:otherwise></c:otherwise>
+  						</c:choose>
+					
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							Help & FAQs
+						</a>
+						
+						<c:choose>
+							<c:when test="${not empty loginCookie}">
+								<a href="/iceland/customer/logout.es" class="flex-c-m trans-04 p-lr-25">
+									로그아웃
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/iceland/customer/login/login.jsp" class="flex-c-m trans-04 p-lr-25">
+									로그인
+								</a>
+								<a href="/iceland/customer/regist.es" class="flex-c-m trans-04 p-lr-25">
+									회원가입
+								</a>
+							</c:otherwise>
+						</c:choose>	
 
 						<a href="/iceland/customer/login.es" class="flex-c-m trans-04 p-lr-25">
 							로그인
