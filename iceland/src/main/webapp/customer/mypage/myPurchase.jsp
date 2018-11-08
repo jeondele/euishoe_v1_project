@@ -134,44 +134,42 @@
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
-									<th class="column-1">My 주문 & 배송</th>
+									<th class="column-1">구매 완료 내역</th>
 									<th class="column-2"></th>
 									<th class="column-3"></th>
 									<th class="column-4"></th>
 									<th class="column-5"></th>
 								</tr>
-								
+
 								<tr class="table_head">
 									<th class="column-1">주문번호 / 상품주문번호</th>
 									<th class="column-2 txt-center">상품명</th>
 									<th class="column-3 txt-center">상품금액 (수량)</th>
-									<th class="column-4 txt-center">배송상태 / 도착예정</th>
-									<th class="column-5 txt-left">구매취소하기</th>
+									<th class="column-4 txt-center">배송상태 / 도착완료</th>
+									<th class="column-5 txt-left">환불 요청하기</th>
 								</tr>
 								
 								<tr class="table_row">
 									<td class="column-1">(주문일자)D(주문번호)<br>(주문일자)D(상품번호)</td>
 									<td class="column-2 txt-center"> 아디다스나이키정장</td>
 									<td class="column-3 txt-center">3600 (XX개)</td>
-									<td class="column-4 txt-center">배송중 / ~ 도착예정</td>
+									<td class="column-4 txt-center">구매완료 / ~ 도착완료</td>
 									<td class="column-5">
 										<button class="float-r flex-c-m stext-101 cl0 size-210-1 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
-										구매취소</button></td>
+										환불요청</button></td>
 								</tr>
 								
 								<tr class="table_row">
 									<td class="column-1">(주문일자)D(주문번호)<br>(주문일자)D(상품번호)</td>
 									<td class="column-2 txt-center"> 아디다스나이키정장</td>
 									<td class="column-3 txt-center">3600 (XX개)</td>
-									<td class="column-4 txt-center">배송중 / ~ 도착예정</td>
+									<td class="column-4 txt-center">구매완료 / ~ 도착완료</td>
 									<td class="column-5">
 										<button class="float-r flex-c-m stext-101 cl0 size-210-1 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
-										구매취소</button></td>
+										환불요청</button></td>
 								</tr>
 							</table>
 						</div>
-
-
 					</div>
 				</div>
 			</div>

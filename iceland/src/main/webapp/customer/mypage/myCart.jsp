@@ -134,7 +134,7 @@
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
-									<th class="column-1">My 주문 & 배송</th>
+									<th class="column-1">My 장바구니</th>
 									<th class="column-2"></th>
 									<th class="column-3"></th>
 									<th class="column-4"></th>
@@ -142,36 +142,81 @@
 								</tr>
 								
 								<tr class="table_head">
-									<th class="column-1">주문번호 / 상품주문번호</th>
-									<th class="column-2 txt-center">상품명</th>
-									<th class="column-3 txt-center">상품금액 (수량)</th>
-									<th class="column-4 txt-center">배송상태 / 도착예정</th>
-									<th class="column-5 txt-left">구매취소하기</th>
+									<th class="column-1">상품 상세</th>
+									<th class="column-2"></th>
+									<th class="column-3">상품가격 </th>
+									<th class="column-4">수량</th>
+									<th class="column-5">총 금액</th>
 								</tr>
-								
 								<tr class="table_row">
-									<td class="column-1">(주문일자)D(주문번호)<br>(주문일자)D(상품번호)</td>
-									<td class="column-2 txt-center"> 아디다스나이키정장</td>
-									<td class="column-3 txt-center">3600 (XX개)</td>
-									<td class="column-4 txt-center">배송중 / ~ 도착예정</td>
-									<td class="column-5">
-										<button class="float-r flex-c-m stext-101 cl0 size-210-1 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
-										구매취소</button></td>
+									<td class="column-1">
+										<input type="checkbox" name="selectProduct" value="상품코드">
+										<div class="how-itemcart1">
+											<img src="/iceland/images/item-cart-04.jpg" alt="IMG">
+										</div>
+									</td>
+									<td class="column-2">Fresh Strawberries</td>
+									<td class="column-3">3600</td>
+									<td class="column-4">
+										<div class="wrap-num-product flex-w m-l-auto m-r-0">
+											<div
+												class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+
+											<input class="mtext-104 cl3 txt-center num-product"
+												type="number" name="num-product1" value="1">
+
+											<div
+												class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+									</td>
+									<td class="column-5">3600</td>
 								</tr>
-								
+
 								<tr class="table_row">
-									<td class="column-1">(주문일자)D(주문번호)<br>(주문일자)D(상품번호)</td>
-									<td class="column-2 txt-center"> 아디다스나이키정장</td>
-									<td class="column-3 txt-center">3600 (XX개)</td>
-									<td class="column-4 txt-center">배송중 / ~ 도착예정</td>
-									<td class="column-5">
-										<button class="float-r flex-c-m stext-101 cl0 size-210-1 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
-										구매취소</button></td>
+									<td class="column-1">
+										<input type="checkbox" name="selectProduct" value="상품코드">
+										<div class="how-itemcart1">
+											<img src="/iceland/images/item-cart-05.jpg" alt="IMG">
+										</div>
+									</td>
+									<td class="column-2">Lightweight Jacket</td>
+									<td class="column-3">1600</td>
+									<td class="column-4">
+										<div class="wrap-num-product flex-w m-l-auto m-r-0">
+											<div
+												class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+
+											<input class="mtext-104 cl3 txt-center num-product"
+												type="number" name="num-product2" value="1">
+
+											<div
+												class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+									</td>
+									<td class="column-5">1600</td>
 								</tr>
 							</table>
 						</div>
 
-
+						<div
+							class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+							<button class="float-r flex-c-m stext-101 cl0 size-210-2 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
+										구매하러가기</button>
+							<div
+								class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
+								선택 삭제</div>
+							<div
+								class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
+								id="delete_All">전체 삭제</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -290,6 +335,82 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
+	<script>
+			$('.js-pscroll').each(function() {
+				$(this).css('position', 'relative');
+				$(this).css('overflow', 'hidden');
+				var ps = new PerfectScrollbar(this, {
+					wheelSpeed : 1,
+					scrollingThreshold : 1000,
+					wheelPropagation : false,
+				});
 
+				$(window).on('resize', function() {
+					ps.update();
+				})
+			});
+			
+	$('.how-itemcart1').bind("click",function(e){
+		e.currentTarget.parentElement.parentElement.remove();
+	});
+	/*
+	$('.wrap-num-product').bind("click",function(e){
+		console.log(e);
+		console.log(e.previousElementSibling);
+		console.log(e.currentTarget.children[1]);
+		
+	});
+	*/
+	$('.btn-num-product-down').bind("click",function(e){
+		/*
+			갯수 세기
+		*/
+		var num = e.currentTarget.parentElement.children[1].value - 1;
+		var price = e.currentTarget.parentElement.parentElement.parentElement.children[2].innerText;
+		
+		price = parseFloat(price);
+		
+		e.currentTarget.parentElement.parentElement.parentElement.children[4].innerText = (num * price);
+		
+		sumUp();
+	});
+		
+	$('.btn-num-product-up').bind("click",function(e){
+		var num = parseInt(e.currentTarget.parentElement.children[1].value) + 1;
+		var price = e.currentTarget.parentElement.parentElement.parentElement.children[2].innerText;
+		
+		price = parseFloat(price);
+		
+		e.currentTarget.parentElement.parentElement.parentElement.children[4].innerText = (num * price);
+		
+		sumUp();
+		
+	});
+	
+	function sumUp(){
+		var sum = 0;
+		var num = 0;
+		$('.column-5').each(function(index,item){
+			if(index !== 0){
+				num = $(item).text();
+				sum += parseInt(num);
+			}
+		});
+
+		$('.mtext-110').each(function(index,item){
+				$(item).text(sum);
+		})
+	};
+	
+	$('#delete_All').bind('click',function(e){
+		$('.table_row').each(function(index,item){
+			item.remove();
+		})
+		
+		sumUp();
+	});
+	
+	sumUp();
+		</script>
 </body>
 </html>
