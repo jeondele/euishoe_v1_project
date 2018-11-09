@@ -14,7 +14,7 @@ import com.euishoe.carts.dto.Cart;
 public interface CartDao {
 
 	// 장바구니 페이지 접속시 리스트 분배
-	public List<Map<Integer,Cart>> listCart();
+	public List<Map<String, Object>> listCart();
 	
 	// 장바구니 등록
 	public void createCart(Cart cart);

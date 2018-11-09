@@ -3,5 +3,14 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="com.euishoe.Cart">
+<mapper namespace="com.euishoe.cart">
+	<select id="listAll" resultType="map">
+      	 SELECT c.*,
+      	 		p.*,
+      	 		pi.*          
+      	 FROM carts c INNER JOIN products p 
+                      ON c.product_code = p.product_code
+                INNER JOIN product_infos pi 
+                       ON p.product_num = pi.product_num
+   </select>
 </mapper>

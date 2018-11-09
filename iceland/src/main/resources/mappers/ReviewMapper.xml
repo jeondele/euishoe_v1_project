@@ -52,16 +52,7 @@
 		WHERE  id = #{value} 
 	</select>
 	
-	<!-- 별점으로 조회 -->
-	<select id="selectReviewUserById"  parameterType="int" resultType="Review">
-		SELECT id,
-					name,
-		       		passwd, 
-			       	email,
-			       	TO_CHAR(regidate, 'YYYY-MM-DD') AS "regdate"
-		FROM    users 
-		WHERE  id = #{value} 
-	</select>
+	
 	
 	
 </mapper>
