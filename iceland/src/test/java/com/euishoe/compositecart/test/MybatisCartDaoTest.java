@@ -17,7 +17,7 @@ import com.euishoe.carts.dao.CartDao;
 import com.euishoe.carts.dao.MybatisCartDao;
 
 public class MybatisCartDaoTest {
-	private static final String NAMESPACE = "com.euishoe.cart.";
+	private static final String NAMESPACE = "com.euishoe.carts.";
 	String resource = "mybatis-config.xml";
 	SqlSessionFactory sqlSessionFactory;
 
