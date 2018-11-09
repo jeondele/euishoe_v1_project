@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.euishoe.products.dto.ProductInfo"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +65,9 @@
 <%@include file="includes/cart.jsp"%>
 
 <%@include file="includes/slider.jsp"%>
-
+<%-- <%List<ProductInfo> list = (List<ProductInfo>)getServletContext().getAttribute("wishlists");
+  System.out.println(list);
+%> --%>
 	<!-- Product -->
 	<section class="bg0 p-t-23 p-b-140">
 		<div class="container">
