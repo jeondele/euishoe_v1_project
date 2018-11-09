@@ -114,6 +114,51 @@
 	bottom: 0;
 	cursor: pointer;
 }
+
+
+
+.roundedOne {
+    width: 28px;
+    height: 28px;
+    background: #fcfff4;
+    background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    border-radius: 100%;
+    box-shadow: inset 0 1px 1px #fff, 0 1px 3px rgba(0, 0, 0, 0.7);
+	display: inline;
+}
+.roundedOne label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    background: -webkit-linear-gradient(top, #222222 0%, #45484d 100%);
+    background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
+    border-radius: 50px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5), 0 2px 0 #fff;
+}
+.roundedOne label:after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: #27ae60;
+    background: -webkit-linear-gradient(top, #27ae60 0%, #145b32 100%);
+    background: linear-gradient(to bottom, #27ae60 0%, #145b32 100%);
+    border-radius: 100%;
+    box-shadow: inset 0 1px 1px #fff, 0 1px 3px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+}
+.roundedOne label:hover::after {
+    opacity: 0.4;
+}
+.roundedOne input[type=checkbox]:checked + label:after {
+    opacity: 1;
+}
 </style>
 </head>
 <body class="animsition">
@@ -139,83 +184,75 @@
 									<th class="column-3"></th>
 									<th class="column-4"></th>
 									<th class="column-5"></th>
+									<th class="column-6"></th>
 								</tr>
 								
 								<tr class="table_head">
-									<th class="column-1">상품 상세</th>
-									<th class="column-2"></th>
-									<th class="column-3">상품가격 </th>
-									<th class="column-4">수량</th>
-									<th class="column-5">총 금액</th>
+									<th class="column-1 txt-center">선택</th>
+									<th class="column-2 txt-center">상품이미지</th>
+									<th class="column-3 txt-center">상품명</th>
+									<th class="column-4 txt-center">금액</th>
+									<th class="column-5 txt-center">수량</th>
+									<th class="column-6 txt-center">총금액</th>
 								</tr>
 								<tr class="table_row">
-									<td class="column-1">
-										<input type="checkbox" name="selectProduct" value="상품코드">
-										<div class="how-itemcart1">
-											<img src="/iceland/images/item-cart-04.jpg" alt="IMG">
-										</div>
+									<td class="column-1 txt-center">
+										<input type="checkbox" value="None" class="roundedOne" name="check" checked />
 									</td>
-									<td class="column-2">Fresh Strawberries</td>
-									<td class="column-3">3600</td>
-									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
-											<div
-												class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+									<td class="column-2 txt-center">
+										<div class="how-itemcart1"><img src="/iceland/images/item-cart-04.jpg" alt="IMG"/></div>
+									</td>
+									<td class="column-3 txt-center">Fresh Strawberries</td>
+									<td class="column-4 txt-center">3600</td>
+									<td class="column-5 txt-center">
+										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
+											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product"
-												type="number" name="num-product1" value="1">
+											<input class="mtext-104 cl3 txt-center num-product"	type="number" name="num-product1" value="1">
 
-											<div
-												class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
 									</td>
-									<td class="column-5">3600</td>
+									<td class="column-6 txt-center">3600</td>
 								</tr>
 
 								<tr class="table_row">
-									<td class="column-1">
-										<input type="checkbox" name="selectProduct" value="상품코드">
+									<td class="column-1 txt-center">
+										<input type="checkbox" value="None" class="roundedOne" id="" name="check" checked />
+									</td>
+									<td class="column-2 txt-center">
 										<div class="how-itemcart1">
 											<img src="/iceland/images/item-cart-05.jpg" alt="IMG">
 										</div>
 									</td>
-									<td class="column-2">Lightweight Jacket</td>
-									<td class="column-3">1600</td>
-									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
-											<div
-												class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+									<td class="column-3 txt-center">Lightweight Jacket</td>
+									<td class="column-4 txt-center">1600</td>
+									<td class="column-5 txt-center">
+										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
+											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product"
-												type="number" name="num-product2" value="1">
+											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">
 
-											<div
-												class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
 									</td>
-									<td class="column-5">1600</td>
+									<td class="column-6 txt-center">1600</td>
 								</tr>
 							</table>
 						</div>
 
-						<div
-							class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-							<button class="float-r flex-c-m stext-101 cl0 size-210-2 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
-										구매하러가기</button>
-							<div
-								class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-								선택 삭제</div>
-							<div
-								class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
-								id="delete_All">전체 삭제</div>
+						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+							<button class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-5 trans-04 pointer">구매</button>
+							<div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">선택삭제</div>
+							<div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" id="delete_All">전체삭제</div>
 						</div>
 					</div>
 				</div>

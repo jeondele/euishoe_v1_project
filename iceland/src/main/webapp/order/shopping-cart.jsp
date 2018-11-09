@@ -60,7 +60,6 @@ display: table-row;
 }
 
 
-
 </style>
 </head>
 <body class="animsition">
@@ -88,47 +87,60 @@ display: table-row;
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
-									<th class="column-1">Product/Option</th>
+									<th class="column-1">My 장바구니</th>
 									<th class="column-2"></th>
-									<th class="column-3">Price</th>
-									<th class="column-4">Quantity</th>
-									<th class="column-5">Total</th>
+									<th class="column-3"></th>
+									<th class="column-4"></th>
+									<th class="column-5"></th>
+									<th class="column-6"></th>
 								</tr>
-
+								
+								<tr class="table_head">
+									<th class="column-1 txt-center">선택</th>
+									<th class="column-2 txt-center">상품이미지</th>
+									<th class="column-3 txt-center">상품명</th>
+									<th class="column-4 txt-center">금액</th>
+									<th class="column-5 txt-center">수량</th>
+									<th class="column-6 txt-center">총금액</th>
+								</tr>
 								<tr class="table_row">
-									<td class="column-1">
-										<div class="how-itemcart1">
-											<img src="/iceland/images/item-cart-04.jpg" alt="IMG">
-										</div>
+									<td class="column-1 txt-center">
+										<input type="checkbox" value="None" class="roundedOne" name="check" checked />
 									</td>
-									<td class="column-2">Fresh Strawberries</td>
-									<td class="column-3">3600</td>
-									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
+									<td class="column-2 txt-center">
+										<div class="how-itemcart1"><img src="/iceland/images/item-cart-04.jpg" alt="IMG"/></div>
+									</td>
+									<td class="column-3 txt-center">Fresh Strawberries</td>
+									<td class="column-4 txt-center">3600</td>
+									<td class="column-5 txt-center">
+										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
+											<input class="mtext-104 cl3 txt-center num-product"	type="number" name="num-product1" value="1">
 
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
 									</td>
-									<td class="column-5">3600</td>
+									<td class="column-6 txt-center">3600</td>
 								</tr>
 
 								<tr class="table_row">
-									<td class="column-1">
+									<td class="column-1 txt-center">
+										<input type="checkbox" value="None" class="roundedOne" id="" name="check" checked />
+									</td>
+									<td class="column-2 txt-center">
 										<div class="how-itemcart1">
 											<img src="/iceland/images/item-cart-05.jpg" alt="IMG">
 										</div>
 									</td>
-									<td class="column-2">Lightweight Jacket</td>
-									<td class="column-3">1600</td>
-									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
+									<td class="column-3 txt-center">Lightweight Jacket</td>
+									<td class="column-4 txt-center">1600</td>
+									<td class="column-5 txt-center">
+										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
@@ -140,31 +152,23 @@ display: table-row;
 											</div>
 										</div>
 									</td>
-									<td class="column-5">1600</td>
+									<td class="column-6 txt-center">1600</td>
 								</tr>
 							</table>
 						</div>
 
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-							<div class="flex-w flex-m m-r-20 m-tb-5">
-								<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
-							</div>
-                              <div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-                                        선택 삭제
-                            </div>
-							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" id="delete_All">
-								전체 삭제
-							</div>
-						</div>
+                             <div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">선택삭제</div>
+							<div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" id="delete_All">전체삭제</div>
+						</div><br><br>
+						
 
-            <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm" style="display: block">
+            <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
             <div class="select-ship">
-              <ul class="nav nav-pills nav-justified">
-                <li class="active"><a data-toggle="tab" href="#home">기본 배송지</a></li>
-                <li><a data-toggle="tab" href="#menu1">최근 배송지</a></li>
-                <li><a data-toggle="tab" href="#menu2">새로운 배송지</a></li>
-              </ul>
-              </div>
+                <a class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#home">기본 배송지</a>
+                <a class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#menu1">최근 배송지</a>
+                <a class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#menu2">새로운 배송지</a>
+            </div>
               <div class="tab-content">
                 <div id="home" class="tab-pane fade in active show">
                 <div style="display:block">
