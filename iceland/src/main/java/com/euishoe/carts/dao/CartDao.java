@@ -15,6 +15,7 @@ public interface CartDao {
 
 	// 장바구니 페이지 접속시 리스트 분배
 	public List<Cart> listCart();
+	public List<Map<String, Object>> listCart2();
 	
 	// 장바구니 등록
 	public void createCart(String cartNum,String productCode,String customerId);

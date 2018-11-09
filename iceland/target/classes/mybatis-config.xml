@@ -11,6 +11,7 @@
 	<typeAliases>
 	    <typeAlias type="com.euishoe.carts.dto.CompositeCart" alias="CompositeCart"/>
 		<typeAlias type="com.euishoe.carts.dto.Cart" alias="Cart"/>
+		<typeAlias type="com.euishoe.carts.dto.CompositeCart" alias="CompositeCart"/>
 		<typeAlias type="com.euishoe.customers.dto.Customer" alias="Customer"/>
 		<typeAlias type="com.euishoe.noncustomers.dto.Noncustomer" alias="Noncustomer"/>
 		<typeAlias type="com.euishoe.orders.dto.Order" alias="Order"/>
