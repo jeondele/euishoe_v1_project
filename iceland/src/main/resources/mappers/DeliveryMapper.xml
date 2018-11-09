@@ -4,4 +4,23 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.euishoe.Delivery">
+	<insert id="insertDelivery" parameterType="Delivery">
+      	 INSERT INTO deliveries 
+            (delivery_num, 
+             delivery_address, 
+             delivery_recipient, 
+             delivery_recipient_phonenumber, 
+             delivery_requirement, 
+             order_date, 
+             delivery_date, 
+             delivery_status) 
+		 VALUES     (?, 
+		             ?, 
+		             ?, 
+		             ?, 
+		             ?, 
+		             ?, 
+		             ?, 
+		             ?) 
+   </insert>
 </mapper>

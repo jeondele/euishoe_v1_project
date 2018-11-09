@@ -1,5 +1,7 @@
 package com.euishoe.common.listener;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -7,6 +9,9 @@ import javax.servlet.ServletContextListener;
 import org.apache.log4j.Logger;
 
 import com.euishoe.common.factory.XMLObjectFactory;
+import com.euishoe.products.dto.ProductInfo;
+import com.euishoe.wishlists.service.WishlistService;
+import com.euishoe.wishlists.service.WishlistServiceImpl;
 
 
 /**
@@ -29,6 +34,16 @@ public class ServletContextLoadListener implements ServletContextListener {
 		}
 		// 모든 서블릿, JSP들이 공유할 수 있도록 ServletContext에 DaoFactory 저장
 		servletContext.setAttribute("objectFactory", objectFactory);
+		
+		List<ProductInfo> list = null;
+		WishlistService wishlistService;
+		XMLObjectFactory factory = (XMLObjectFactory)servletContext.getAttribute("objectFactory");
+		wishlistService = (WishlistService)factory.getBean(WishlistServiceImpl.class);
+		try {
+			list = wishlistService.selectWishlists("bangry");
+		} catch (Exception e) {}
+		servletContext.setAttribute("wishlists", list);
+		
 		logger.debug("XMLObjectFactory 생성 및 ServletContext에 등록 완료!");
 	}
 	
