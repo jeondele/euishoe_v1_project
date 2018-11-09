@@ -6,7 +6,7 @@
 <mapper namespace="com.euishoe.PointHistory">
 
 	<!-- 회원가입 포인트 지급 -->
-	<insert id="joinPointCreate" parameterType="com.euishoe.points.dto.PointHistory">
+	<insert id="joinPointCreate" parameterType="String">
 		INSERT INTO point_histories
 		VALUES  (point_histories_seq.nextval,
         		     1, 
@@ -50,7 +50,7 @@
 		<collection property="pointPolicy" resultMap="PointPolicy"/>
 	</resultMap>
 	
-	<select id="selectPointHistoryById" parameterType="com.euishoe.points.dto.PointHistory" resultMap="PointHistory">
+	<select id="selectPointHistoryById" parameterType="String" resultMap="PointHistory">
 		SELECT ph.customer_id,
 					ph.point_history_num,
 					ph.point_policy_type, 

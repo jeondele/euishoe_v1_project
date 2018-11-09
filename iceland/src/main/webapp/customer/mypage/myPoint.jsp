@@ -49,8 +49,6 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
 
-
-
 <style>
 .my_cont {
 	position: relative;

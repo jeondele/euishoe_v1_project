@@ -4,25 +4,56 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.euishoe.wishlist">
-	<select id="certify" resultType="Customer" parameterType="map">
-		SELECT customer_id          "customerId", 
-       		   customer_name        "customerName", 
-       		   customer_password    "customerPassword", 
-       		   customer_phonenumber "customerPhonenumber",
-       		   customer_email       "customerEmail", 
-       		   customer_address     "customerAddress", 
-		       customer_postcode    "customerPostcode", 
-		       customer_birthday    "customerBirthday", 
-		       customer_gender      "customerGender", 
-		       customer_jacket_size "customerJacketSize", 
-		       customer_pants_size  "customerPantsSize", 
-		       customer_height      "customerHeight",
-		       customer_body		"customerBody",
-		       customer_shoulder	"customerShoulder",
-		       customer_arm			"customerArm",
-		       customer_leg			"customerLeg"
-		FROM   customers 
+
+	<insert id="insertWishlist" parameterType="map">
+		INSERT INTO wishlists 
+            		(wishlist_num, 
+             		customer_id, 
+             		product_num) 
+		VALUES      (wishlist_num_seq.nextval, 
+             		#{customerId}, 
+             		#{productNum}) 
+	</insert>
+	
+	<select id="certifyWishlist" resultType="Integer" parameterType="map">
+		SELECT wishlist_num "wishlistNum"
+		FROM   wishlists 
 		WHERE  customer_id = #{customerId} 
-       	AND customer_password = #{customerPassword} 
+       	   AND product_num = #{productNum}
 	</select>
+	
+	<select id="selectWishlists" resultType="ProductInfo" parameterType="String">
+		SELECT wl.product_num "productNum",  
+		       product_list_num "productListNum", 
+		       product_name "productName", 
+		       product_cost "productCost", 
+		       product_price "productPrice", 
+		       product_brief_information "productBriefInfomation", 
+		       product_manufacturer "productManufacturer", 
+		       product_release_date "productReleaseDate", 
+		       product_origin "productOrigin", 
+		       product_list_price "productListPrice",
+		       color_code "colorCode", 
+		       product_hitcount "productHitcount", 
+		       product_body "productBody", 
+		       product_shoulder "productShoulder", 
+		       product_arm "productArm", 
+		       product_leg "productLeg", 
+		       product_season "productSeason", 
+		       product_fabric "productFabric", 
+		       product_tpo "productTpo"
+	   FROM   (SELECT wishlist_num, 
+               customer_id, 
+               product_num 
+		       FROM   wishlists 
+		       WHERE  customer_id = #{customerId}) wl 
+		       JOIN product_infos pi 
+		         ON wl.product_num = pi.product_num
+	</select>
+         
+	<delete id="deleteWishlist" parameterType="map">
+		DELETE FROM wishlists 
+		WHERE  customer_id = #{customerId} 
+       	   AND product_num = #{productNum}
+	</delete>
 </mapper>
