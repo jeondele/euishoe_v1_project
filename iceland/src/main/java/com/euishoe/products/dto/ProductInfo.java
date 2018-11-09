@@ -26,7 +26,6 @@ public class ProductInfo {
 	
 	// 생성자(Constructor) 선언
 	public ProductInfo() {
-
 	}
 
 	public ProductInfo(int productNum, int productListNum, String productName, int productCost, int productPrice,

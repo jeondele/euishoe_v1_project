@@ -1,5 +1,7 @@
 package com.euishoe.reviews.dto;
 
+import com.euishoe.products.dto.ProductInfo;
+
 /**
  * 쇼핑몰 상품 상세페이지의 리뷰 dto
  * 
@@ -11,12 +13,14 @@ public class Review {
 	// 변수 선언
 	private int reviewNum; 			// 리뷰번호
 	private String customerId; 		// 회원아이디
-	private String productNum;		// 상품코드
+	private int productNum;		// 상품코드
 	private String reviewTitle; 	// 리뷰제목
 	private String reviewContent; 	// 리뷰내용
 	private String reviewPassword;  // 리뷰비밀번호
 	private int reviewScore; 		// 리뷰평점
 	private String reviewIsDeleted; // 리뷰삭제여부
+	
+	ProductInfo productInfo;
 	
 	
 	// 생성자(Constructor) 선언
@@ -26,7 +30,7 @@ public class Review {
 	}
 
 
-	public Review(int reviewNum, String customerId, String productNum, String reviewTitle, String reviewContent,
+	public Review(int reviewNum, String customerId, int productNum, String reviewTitle, String reviewContent,
 			String reviewPassword, int reviewScore, String reviewIsDeleted) {
 		super();
 		this.reviewNum = reviewNum;
@@ -39,6 +43,16 @@ public class Review {
 		this.reviewIsDeleted = reviewIsDeleted;
 	}
 
+	public Review(String customerId, int productNum, String reviewTitle, String reviewContent,
+			String reviewPassword, int reviewScore) {
+		super();
+		this.customerId = customerId;
+		this.productNum = productNum;
+		this.reviewTitle = reviewTitle;
+		this.reviewContent = reviewContent;
+		this.reviewPassword = reviewPassword;
+		this.reviewScore = reviewScore;
+	}
 
 	// setter, getter 선언
 	public int getReviewNum() {
@@ -63,12 +77,12 @@ public class Review {
 
 
 
-	public String getProductNum() {
+	public int getProductNum() {
 		return productNum;
 	}
 
 
-	public void setProductNum(String productNum) {
+	public void setProductNum(int productNum) {
 		this.productNum = productNum;
 	}
 
@@ -122,6 +136,16 @@ public class Review {
 		this.reviewPassword = reviewPassword;
 	}
 
+
+
+	public ProductInfo getProductInfo() {
+		return productInfo;
+	}
+
+
+	public void setProductInfo(ProductInfo productInfo) {
+		this.productInfo = productInfo;
+	}
 
 	// toString() 선언
 	@Override

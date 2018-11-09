@@ -14,14 +14,17 @@ import com.euishoe.reviews.dto.Review;
 public interface ReviewDao {
 		
 	//댓글 작성
-	public Review create() throws Exception;
+	public void create() throws Exception;
 	
 	//조회
-	public List<Review> listAll() throws Exception;
+	public List<Review> reviewListAll(int productNum) throws Exception;
 	
-	//특정 댓글 조회
-	public List<Review> CustomerPointList(String customerId) throws Exception;
+	//특정 댓글 조회(사용자)
+	public List<Review> reviewListByCustomerId(int productNum, String customerId) throws Exception;
+	
+	//특정 댓글 조회(별점)
+	public List<Review> reviewListByScore(int productNum, int reviewScore) throws Exception;
 	
 	//삭제
-	public void deleteReview() throws Exception;
+	public void deleteReview(int reviewNum) throws Exception;
 }

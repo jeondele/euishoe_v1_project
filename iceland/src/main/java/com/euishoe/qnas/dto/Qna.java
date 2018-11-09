@@ -1,5 +1,7 @@
 package com.euishoe.qnas.dto;
 
+import com.euishoe.products.dto.ProductInfo;
+
 /**
  * 쇼핑몰 문의 dto
  * 
@@ -11,6 +13,7 @@ public class Qna {
 	// 변수 선언
 	private int qnaNum;				// 문의번호
 	private int qnaTypeNum;			// 문의유형번호
+	private int productNum;			// 상품번호
 	private String customerId; 		// 회원아이디
 	private String qnaTitle;		// 문의 제목
 	private String qnaContent; 		// 문의내용
@@ -21,21 +24,21 @@ public class Qna {
 	private String qnaIsDeleted;	// 문의삭제여부
 	private String qnaRegdate; 		// 문의등록일
 	
-	
+	ProductInfo productInfo;
 	
 	// 생성자 선언
 	public Qna() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-
-	public Qna(int qnaNum, int qnaTypeNum, String customerId, String qnaTitle, String qnaContent, String qnaPassword,
-			String qnaIsAnswered, String qnaIsLock, int qnaRank, String qnaIsDeleted, String qnaRegdate) {
+	public Qna(int qnaNum, int qnaTypeNum, String customerId, int productNum,  String qnaTitle, String qnaContent,
+			String qnaPassword, String qnaIsAnswered, String qnaIsLock, int qnaRank, String qnaIsDeleted,
+			String qnaRegdate) {
 		super();
 		this.qnaNum = qnaNum;
 		this.qnaTypeNum = qnaTypeNum;
 		this.customerId = customerId;
+		this.productNum = productNum;
 		this.qnaTitle = qnaTitle;
 		this.qnaContent = qnaContent;
 		this.qnaPassword = qnaPassword;
@@ -46,6 +49,18 @@ public class Qna {
 		this.qnaRegdate = qnaRegdate;
 	}
 
+	public Qna(int qnaTypeNum, String customerId, int productNum,  String qnaTitle, String qnaContent,
+			String qnaPassword, String qnaIsLock, int qnaRank) {
+		super();
+		this.qnaTypeNum = qnaTypeNum;
+		this.customerId = customerId;
+		this.productNum = productNum;
+		this.qnaTitle = qnaTitle;
+		this.qnaContent = qnaContent;
+		this.qnaPassword = qnaPassword;
+		this.qnaIsLock = qnaIsLock;
+		this.qnaRank = qnaRank;
+	}
 
 
 
@@ -53,7 +68,6 @@ public class Qna {
 	public int getQnaNum() {
 		return qnaNum;
 	}
-
 
 	public void setQnaNum(int qnaNum) {
 		this.qnaNum = qnaNum;
@@ -79,6 +93,14 @@ public class Qna {
 		this.customerId = customerId;
 	}
 
+
+	public int getProductNum() {
+		return productNum;
+	}
+
+	public void setProductNum(int productNum) {
+		this.productNum = productNum;
+	}
 
 	public String getQnaTitle() {
 		return qnaTitle;
@@ -158,16 +180,22 @@ public class Qna {
 	public void setQnaRegdate(String qnaRegdate) {
 		this.qnaRegdate = qnaRegdate;
 	}
+	
+	
+	public ProductInfo getProductInfo() {
+		return productInfo;
+	}
 
+	public void setProductInfo(ProductInfo productInfo) {
+		this.productInfo = productInfo;
+	}
 
 	// toString() 선언
 	@Override
 	public String toString() {
-		return "Qna [qnaNum=" + qnaNum + ", qnaTypeNum=" + qnaTypeNum + ", customerId=" + customerId + ", qnaTitle="
-				+ qnaTitle + ", qnaContent=" + qnaContent + ", qnaPassword=" + qnaPassword + ", qnaIsAnswered="
-				+ qnaIsAnswered + ", qnaIsLock=" + qnaIsLock + ", qnaRank=" + qnaRank + ", qnaIsDeleted=" + qnaIsDeleted
-				+ ", qnaRegdate=" + qnaRegdate + "]";
+		return "Qna [qnaNum=" + qnaNum + ", qnaTypeNum=" + qnaTypeNum + ", productNum=" + productNum + ", customerId="
+				+ customerId + ", qnaTitle=" + qnaTitle + ", qnaContent=" + qnaContent + ", qnaPassword=" + qnaPassword
+				+ ", qnaIsAnswered=" + qnaIsAnswered + ", qnaIsLock=" + qnaIsLock + ", qnaRank=" + qnaRank
+				+ ", qnaIsDeleted=" + qnaIsDeleted + ", qnaRegdate=" + qnaRegdate + "]";
 	}
-
-
 }
