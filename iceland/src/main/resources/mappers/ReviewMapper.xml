@@ -114,6 +114,7 @@
 		WHERE review.product_num = #{productNum} AND review.customer_id = #{customerId}
 	</select>
 	
+<<<<<<< HEAD
 	<!-- 별점으로 조회 -->
 	<select id="selectReviewByScore"  parameterType="Map" resultMap="Review">
 		SELECT review.customer_id,
@@ -126,6 +127,9 @@
 		       	   on review.product_num = pi.product_num
 		WHERE  pi.product_num = #{productNum} AND review.review_score = #{reviewScore}
 	</select>
+=======
+	
+>>>>>>> fa68fad2c57de85131f30e3c4106e20ce2a47ae7
 	
 	
 </mapper>

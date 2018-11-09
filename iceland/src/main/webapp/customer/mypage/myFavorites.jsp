@@ -115,9 +115,6 @@
 	cursor: pointer;
 }
 
-td {
-	text-align: center;
-}
 </style>
 </head>
 <body class="animsition">

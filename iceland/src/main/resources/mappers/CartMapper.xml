@@ -3,5 +3,40 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="com.euishoe.Cart">
+<mapper namespace="com.euishoe.carts">
+	<resultMap type="com.euishoe.carts.dto.Cart" id="Cart">
+		<result property="cartNum" column="cart_num"/>
+    	<result property="productCode" column="product_code"/>
+    	<result property="customerId" column="customer_id"/>
+	</resultMap>
+	
+	<select id="listCart" resultMap="Cart">
+        select cart_num, 
+               product_code,
+               customer_id 
+        from carts
+	</select>
+	
+	<insert id="createCart" parameterType="com.euishoe.carts.dto.Cart">
+		INSERT INTO CARTS(CART_NUM,PRODUCT_CODE,CUSTOMER_ID) VALUES(#{cartNum},#{productCode},#{customerId})
+	</insert>
+	<delete id="deleteCart">
+		DELETE FROM CARTS WHERE cart_num = #{cartNum}
+	</delete>
+	
+	<update id="updateCart">
+		UPDATE CARTS SET
+	</update>
+	<select id="listAll" resultType="map">
+      	 SELECT c.*,
+      	 		p.*,
+      	 		pi.*,
+      	 		i.*          
+      	 FROM carts c INNER JOIN products p 
+                      ON c.product_code = p.product_code
+                INNER JOIN product_infos pi 
+                      ON p.product_num = pi.product_num
+                INNER JOIN images i
+                	  ON i.product_num = pi.product_num
+   </select>
 </mapper>

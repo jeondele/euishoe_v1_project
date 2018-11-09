@@ -1,16 +1,18 @@
 package com.euishoe.carts.dao;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.euishoe.carts.dto.Cart;
+import com.euishoe.products.dto.ProductInfo;
 
 public class MybatisCartDao implements CartDao {
 	
-	private static final String NAMESPACE = "com.euishoe.cart.";
+	private static final String NAMESPACE = "com.euishoe.carts.";
 	
 	private SqlSessionFactory sqlSessionFactory;
 
@@ -23,23 +25,25 @@ public class MybatisCartDao implements CartDao {
 	}
 
 	@Override
-	public List<Map<Integer, Cart>> listCart() {
-		Cart cart = null;
-		
-		List<Map<Integer,Cart>> list = new ArrayList<Map<Integer,Cart>>();
-		
-		return null;
+	public List<HashMap<String, Object>> listCart() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<HashMap<String,Object>> list = sqlSession.selectList(NAMESPACE + "listAll");
+		return list;
 	}
 
 	@Override
+	public void createCart(String cartNum, String productCode, String customerId) {
+		
+	}
+
+	@Override
+	public void deleteCart(String cartNum) {
+
+	}
+	
 	public void createCart(Cart cart) {
-		
 	}
 
-	@Override
-	public void deleteCart(int cartNum) {
-		
-	}
 }
 
 

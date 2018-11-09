@@ -1,5 +1,9 @@
 package com.euishoe.carts.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 쇼핑몰 장바구니와 관련된  서비스 인터페이스
  * 
@@ -7,5 +11,5 @@ package com.euishoe.carts.service;
  *
  */
 public interface CartService {
-
+	public List<HashMap<String, Object>> listCart();
 }

@@ -295,8 +295,7 @@ input[type='text'], input[type='password'], select{
                     </td>
                   </tr>
                   <tr style="display:">
-                    <th scope="row" id="">이름 
-                      <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수">
+                    <th scope="row" id="">이름<img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수">
                     </th>
                     <td>
                       <input id="name" name="name" class="ec-member-name" placeholder="" maxlength="30" readonly="readonly" value="박의수" type="text">
@@ -305,8 +304,7 @@ input[type='text'], input[type='password'], select{
 
                   
                   <tr class="">
-                    <th scope="row">주소 
-                      <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="" alt="필수">
+                    <th scope="row">주소<img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="" alt="필수">
                     </th>
                     <td>
                       <input id="postcode1" name="postcode1" class="inputTypeText" placeholder="" readonly="readonly" maxlength="14" value="" type="text">
@@ -318,9 +316,7 @@ input[type='text'], input[type='password'], select{
                   </tr>
 
                   <tr class="">
-                    <th scope="row">휴대전화 
-                      <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="" alt="필수">
-                    </th>
+                    <th scope="row">휴대전화<img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="" alt="필수"></th>
                     <td>
                         <select id="mobile1" name="mobile[]">
                           <option value="010">010</option>
@@ -334,52 +330,41 @@ input[type='text'], input[type='password'], select{
                         -<input id="mobile3" name="mobile[]" maxlength="4" value="" type="text">
                     </td>
                   </tr>
-                  <tr>
-                  <th scope="row">생년월일 <img
-                      src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
-                      class="displaynone" alt="필수"></th>
-                    <td><input id="birth_year" name="birth_year"
-                      class="inputTypeText" placeholder="" maxlength="4"
-                      readonly="readonly" value="" type="text">
-                      년 <input id="birth_month" name="birth_month"
-                      class="inputTypeText" placeholder="" maxlength="2"
-                      readonly="readonly" value="" type="text">
-                      월 <input id="birth_day" name="birth_day"
-                      class="inputTypeText" placeholder="" maxlength="2"
-                      readonly="readonly" value="" type="text">
-                      일 <span class="gIndent20 "><input
-                        id="is_solar_calendar0" name="is_solar_calendar"
-                        disabled="1" value="T" type="radio"
-                        checked="checked"><label
-                        for="is_solar_calendar0">양력</label> <input
-                        id="is_solar_calendar1" name="is_solar_calendar"
-                        disabled="1" value="F" type="radio"><label
-                        for="is_solar_calendar1">음력</label></span></td>
-                  </tr>
                   
-                  
-                  </tr>
                   <tr>
-                    <th scope="row">이메일 
-                    <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"  alt="필수"></th>
+                  <th scope="row">생년월일 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="displaynone" alt="필수"></th>
                     <td>
-                    <input id="email1" name="email1" class="mailId" value="" type="text">
-                    @<input id="email2" name="email2" class="mailAddress" readonly="readonly" value=""type="text">
-                      <select id="email3">
-                        <option value="" selected="selected">-
-                          이메일 선택 -</option>
-                        <option value="naver.com">naver.com</option>
-                        <option value="daum.net">daum.net</option>
-                        <option value="nate.com">nate.com</option>
-                        <option value="hotmail.com">hotmail.com</option>
-                        <option value="yahoo.com">yahoo.com</option>
-                        <option value="empas.com">empas.com</option>
-                        <option value="korea.com">korea.com</option>
-                        <option value="dreamwiz.com">dreamwiz.com</option>
-                        <option value="gmail.com">gmail.com</option>
-                        <option value="etc">직접입력</option>
-                    </select> 
-                    <span id="emailMsg"></span>
+                    	<input id="birth_year" name="birth_year" class="inputTypeText" placeholder="" maxlength="4" readonly="readonly" value="" type="text">
+                      	년 <input id="birth_month" name="birth_month" class="inputTypeText" placeholder="" maxlength="2" readonly="readonly" value="" type="text">
+                      	월 <input id="birth_day" name="birth_day" class="inputTypeText" placeholder="" maxlength="2" readonly="readonly" value="" type="text">
+                      	일 
+                      	<span class="gIndent20 ">
+                      		<input id="is_solar_calendar0" name="is_solar_calendar" disabled="1" value="T" type="radio" checked="checked"><label for="is_solar_calendar0">양력</label>
+                      		<input id="is_solar_calendar1" name="is_solar_calendar" disabled="1" value="F" type="radio"><label for="is_solar_calendar1">음력</label>
+                      	</span>
+                    </td>
+                  </tr>
+                  
+                  
+                  <tr>
+                    <th scope="row">이메일<img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"  alt="필수"></th>
+                    <td>
+                    	<input id="email1" name="email1" class="mailId" value="" type="text">
+                    	@<input id="email2" name="email2" class="mailAddress" readonly="readonly" value=""type="text">
+						<select id="email3">
+	                        <option value="" selected="selected">-이메일 선택-</option>
+	                        <option value="naver.com">naver.com</option>
+	                        <option value="daum.net">daum.net</option>
+	                        <option value="nate.com">nate.com</option>
+	                        <option value="hotmail.com">hotmail.com</option>
+	                        <option value="yahoo.com">yahoo.com</option>
+	                        <option value="empas.com">empas.com</option>
+	                        <option value="korea.com">korea.com</option>
+	                        <option value="dreamwiz.com">dreamwiz.com</option>
+	                        <option value="gmail.com">gmail.com</option>
+	                        <option value="etc">직접입력</option>
+                    	</select> 
+                    	<span id="emailMsg"></span>
                       <p class="displaynone">
                               이메일 주소 변경 시 로그아웃 후 재인증을 하셔야만 로그인이 가능합니다.<br>인증
                               메일은 24시간 동안 유효하며, 유효 시간이 만료된 후에는 가입 정보로 로그인 하셔서

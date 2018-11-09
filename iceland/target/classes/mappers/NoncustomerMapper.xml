@@ -3,5 +3,32 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="com.euishoe.Noncustomer">
+<mapper namespace="com.euishoe.noncustomer">
+
+	<insert id="insertNoncustomer" parameterType="Noncustomer">
+      	 <![CDATA[
+      	 INSERT INTO noncustomers 
+            (noncustomer_num, 
+             noncustomer_email, 
+             noncustomer_name, 
+             noncustomer_password, 
+             noncustomer_phonenumber) 
+		 VALUES     ((SELECT "rn" 
+             FROM   (SELECT Row_number() 
+                              over ( 
+                                ORDER BY dbms_random.random) AS mx, 
+                            "rn" 
+                     FROM   (SELECT ROWNUM "rn" 
+                             FROM   dual 
+                             CONNECT BY ROWNUM <= 100000 
+                             MINUS 
+                             (SELECT noncustomer_num 
+                              FROM   noncustomers))) 
+             WHERE  mx = 1), 
+            #{noncustomerEmail}, 
+            #{noncustomerName}, 
+            #{noncustomerPassword}, 
+            #{noncustomerPhonenumber})
+            ]]>
+   </insert>
 </mapper>

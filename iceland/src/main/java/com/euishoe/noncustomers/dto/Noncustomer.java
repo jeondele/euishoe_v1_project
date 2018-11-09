@@ -21,6 +21,10 @@ public class Noncustomer {
 	
 	}
 
+	public Noncustomer(String noncustomerEmail, String noncustomerName, String noncustomerPassword,
+			String noncustomerPhonenumber) {
+		this(0, noncustomerEmail, noncustomerName, noncustomerPassword,noncustomerPhonenumber);
+	}
 	public Noncustomer(int noncustomerNum, String noncustomerEmail, String noncustomerName, String noncustomerPassword,
 			String noncustomerPhonenumber) {
 		super();
