@@ -1,4 +1,4 @@
-package com.euishoe;
+package com.euishoe.comment.test;
 
 import java.io.IOException;
 import java.io.Reader;

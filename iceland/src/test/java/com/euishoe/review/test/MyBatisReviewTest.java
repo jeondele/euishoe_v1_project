@@ -1,4 +1,4 @@
-package com.euishoe;
+package com.euishoe.review.test;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -13,15 +13,18 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
-import com.euishoe.qnas.dto.Qna;
+
+import com.euishoe.customers.dto.Customer;
+import com.euishoe.points.dto.PointHistory;
+import com.euishoe.reviews.dto.Review;
 
 
-public class MyBatisQnaTest {
-	private static final String NAMESPACE = "com.euishoe.Qna.";
+public class MyBatisReviewTest {
+	private static final String NAMESPACE = "com.euishoe.Review.";
 	String resource = "mybatis-config.xml";
 	SqlSessionFactory sqlSessionFactory;
 	
-	Logger logger = Logger.getLogger(MyBatisQnaTest.class);
+	Logger logger = Logger.getLogger(MyBatisReviewTest.class);
 	
 	@Before
 	public void setup() {
@@ -45,17 +48,16 @@ public class MyBatisQnaTest {
     #{reviewScore}*/
 	
 	//@Test
-	public void testCreateQna() {
+	public void testCreateReview() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("qnaTypeNum", 1);
 		params.put("customerId", "bangry");
 		params.put("productNum", 1);
-		params.put("qnaTitle", "리뷰 테스트 !!!");
-		params.put("qnaContent", "과연 이 프로젝트는 어디까지,,?");
-		params.put("qnaPassword", "2412");
-		params.put("qnaIsLock", "N");
-		sqlSession.insert(NAMESPACE+"createQna1", params);
+		params.put("reviewTitle", "리뷰는 재밌오");
+		params.put("reviewContent", "최고에요~~~!");
+		params.put("reviewPassword", "1111");
+		params.put("reviewScore", 5);
+		sqlSession.insert(NAMESPACE+"createReview", params);
 		sqlSession.commit();
 		logger.debug("리뷰 작성 완료!");
 		sqlSession.close();
@@ -63,61 +65,53 @@ public class MyBatisQnaTest {
 	
 	
 	//@Test
-	public void testCreateQna2() {
+	public void testCreateReview2() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		Qna qna = new Qna(1, "bangry", 2,  "2번 제품 테스트", "가보자", "4444", "Y", 0);
-		sqlSession.insert(NAMESPACE+"createQna2", qna);
+		Review review = new Review("bangry", 1, "리뷰 객체로 전달하기", "우린 잘할겁니다.", "4444", 5);
+		sqlSession.insert(NAMESPACE+"createReview2", review);
 		sqlSession.commit();
-		logger.debug("문의글 작성 완료!");
+		logger.debug("리뷰 작성 완료!");
 		sqlSession.close();
 	}
 	
-	@Test
-	public void testQnaListAll() {
+	//@Test
+	public void testListAll() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Qna> list = sqlSession.selectList(NAMESPACE+"selectAllQna", 1);
-		for (Qna qna : list) {
-	    	  logger.debug(qna);
+		int productNum = 1;
+		List<Review> list = sqlSession.selectList(NAMESPACE+"selectAllReview", productNum);
+		for (Review review : list) {
+	    	  logger.debug(review);
 	      }
 		logger.debug("조회 완료!");
 		sqlSession.close();
 	}
 	
 	
+	
 	//@Test
-	public void testListByCustomerId() {
+	public void testListByRank() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("productNum", 2);
-		params.put("customerId", "bangry");
-		List<Qna> list = sqlSession.selectList(NAMESPACE + "selectQnaUserById", params);
-	      for (Qna qna : list) {
-	    	  logger.debug(qna);
-	      }
-		logger.debug("조회 완료!");
-		sqlSession.close();
-	}
-	
-	//@Test
-	public void testListByIsLock() {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Qna> list = sqlSession.selectList(NAMESPACE + "selectQnaByLock", 1);
-	      for (Qna qna : list) {
-	    	  logger.debug(qna);
-	      }
-		logger.debug("조회 완료!");
-		sqlSession.close();
-	}
-	
-	//@Test
-	public void testListByTypeNum() {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		Map<String, Integer> params = new HashMap<String, Integer>();
 		params.put("productNum", 1);
-		params.put("qnaTypeNum", 1);
-		List<Qna> list = sqlSession.selectList(NAMESPACE + "selectQnaByType", params);
-	      for (Qna qna : list) {
-	    	  logger.debug(qna);
+		params.put("reviewScore", 5);
+		List<Review> list = sqlSession.selectList(NAMESPACE+"selectReviewByScore", params);
+		for (Review review : list) {
+	    	  logger.debug(review);
+	      }
+		logger.debug("조회 완료!");
+		sqlSession.close();
+	}
+
+	
+	//@Test
+	public void testListByCustomer() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("productNum", 1);
+		params.put("customerId", "bangry");
+		List<Review> list = sqlSession.selectList(NAMESPACE + "selectReviewUserById", params);
+	      for (Review review : list) {
+	    	  logger.debug(review);
 	      }
 		logger.debug("조회 완료!");
 		sqlSession.close();
@@ -126,8 +120,8 @@ public class MyBatisQnaTest {
 	//@Test
 	public void testRemove() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		int qnaNum = 2;
-		sqlSession.delete(NAMESPACE + "deleteQna", qnaNum);
+		int reviewNume = 2;
+		sqlSession.delete(NAMESPACE + "deleteReview", reviewNume);
 		sqlSession.commit();
 		logger.debug("삭제 완료!");
 		sqlSession.close();
