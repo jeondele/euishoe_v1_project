@@ -44,11 +44,17 @@ public class MybatisProInfoTest {
 	
 	@Test
 	public void newProductTest() {
-		List<ProductInfo> list = null;
+		List<Map<String, Object>> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		list = sqlSession.selectList(NAMESPACE+"newProductList");
-		for (ProductInfo productInfo : list) {
-			logger.debug("제품정보객체: "+productInfo);
+		System.out.println("사이즈!!!!!!!!!"+list.size());
+		
+		for (Map<String, Object> productInfo : list) {
+			logger.debug("----------------");
+			logger.debug("제품정보객체: "+productInfo.get("PRODUCT_NUM"));
+			/*logger.debug("제품정보객체: "+productInfo);
+			logger.debug("이미지정보: "+productInfo.getImage().getImageRef());*/
+			logger.debug("----------------");
 		}
 	}
 	
