@@ -154,8 +154,8 @@
 									<td class="column-2 txt-center"> 아디다스나이키정장</td>
 									<td class="column-3 txt-center">3600 (XX개)</td>
 									<td class="column-4 txt-center">구매완료 / ~ 도착완료</td>
-									<td class="column-5">
-										<button class="float-r flex-c-m stext-101 cl0 size-210-1 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
+									<td class="column-5 txt-center">
+										<button class="flex-c-m stext-101 cl0 size-210-1 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
 										환불요청</button></td>
 								</tr>
 								
@@ -164,8 +164,8 @@
 									<td class="column-2 txt-center"> 아디다스나이키정장</td>
 									<td class="column-3 txt-center">3600 (XX개)</td>
 									<td class="column-4 txt-center">구매완료 / ~ 도착완료</td>
-									<td class="column-5">
-										<button class="float-r flex-c-m stext-101 cl0 size-210-1 bg3 bor14 hov-btn3 p-lr-5 trans-04 pointer">
+									<td class="column-5 txt-center">
+										<button class="flex-c-m stext-101 cl2 size-118 bg8 bor14 hov-btn3 p-lr-5 trans-04 pointer">
 										환불요청</button></td>
 								</tr>
 							</table>
