@@ -6,7 +6,10 @@ package com.euishoe.products.service;
  *
  */
 
+import java.util.List;
+
 import com.euishoe.products.dao.ProductDao;
+import com.euishoe.products.dto.ProductInfo;
 
 public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
@@ -17,6 +20,16 @@ public class ProductServiceImpl implements ProductService {
 
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
+	}
+
+	@Override
+	public List<ProductInfo> newProductList() throws Exception {
+		return productDao.newProductList();
+	}
+
+	@Override
+	public List<ProductInfo> hitProductList() throws Exception {
+		return productDao.hitProductList();
 	}
 	
 }
