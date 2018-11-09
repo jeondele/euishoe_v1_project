@@ -63,6 +63,4 @@
 		 WHERE ph.customer_id = #{id}
 	</select>
 
-
-
 </mapper>

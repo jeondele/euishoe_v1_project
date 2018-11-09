@@ -4,4 +4,195 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.euishoe.Qna">
+
+<!-- 	// 변수 선언
+	private int qnaNum;				// 문의번호
+	private int qnaTypeNum;			// 문의유형번호
+	private int productNum;			// 상품번호
+	private String customerId; 		// 회원아이디
+	private String qnaTitle;		// 문의 제목
+	private String qnaContent; 		// 문의내용
+	private	String qnaPassword; 	// 문의비밀번호
+	private String qnaIsAnswered;	// 문의답변여부
+	private String qnaIsLock;		// 문의잠금여부
+	private int qnaRank;			// 문의 우선순위
+	private String qnaIsDeleted;	// 문의삭제여부
+	private String qnaRegdate; 		// 문의등록일 -->
+	
+	
+	<!-- CREATE TABLE qnas 
+  ( 
+     qna_num        NUMBER(10), 
+     product_num    NUMBER(10),
+     qna_type_num   NUMBER(10), 
+     customer_id    VARCHAR2(40), 
+     qna_title      VARCHAR2(60), 
+     qna_content    VARCHAR2(4000), 
+     qna_password   VARCHAR2(10), 
+     qna_isanswered CHAR(1), 
+     qna_islock     CHAR(1), 
+     qna_rank       NUMBER(2), 
+     qna_isdeleted  CHAR(1), 
+     qna_regdate    DATE 
+  );  -->
+	<!-- 리뷰 작성  -->
+	<insert id="createQna1" parameterType="Map">		            
+		INSERT INTO qnas
+				            (qna_num,
+				             qna_type_num,
+				             customer_id,
+				             product_num,
+				             qna_title,
+				             qna_content,
+				             qna_password,
+				             qna_isAnswered,
+				             qna_isLock,
+				             qna_rank,
+				             qna_isDeleted,
+				             qna_regdate)
+		VALUES      	(qnas_seq.NEXTVAL,
+				             ${qnaTypeNum},
+							 ${customerId},
+				             ${productNum},
+				             ${qnaTitle},
+				             ${qnaContent},
+				             ${qnaPassword},
+				             'N',
+				             ${qnaIsLock},
+				             '1',
+				             'N',
+				             sysdate)
+	</insert>
+	
+			<!-- 리뷰 작성  -->
+	<insert id="createQna2" parameterType="com.euishoe.qnas.dto.Qna">		            
+		INSERT INTO qnas
+				            (qna_num,
+				             qna_type_num,
+				             customer_id,
+				             product_num,
+				             qna_title,
+				             qna_content,
+				             qna_password,
+				             qna_isLock,
+				             qna_rank,
+				             qna_regdate
+		VALUES      	(qnas_seq.NEXTVAL,
+							${qnaTypeNum},
+							 ${customerId},
+				             ${productNum},
+				             ${qnaTitle},
+				             ${qnaContent},
+				             ${qnaPassword}
+				             ${qnaIsLock},
+				             ${qnaRank},
+				             sysdate)
+	</insert>				             
+	
+	<delete id="deleteQna" parameterType="int">
+		DELETE INTO qnas
+		WHERE qna_num = #{qnaNum}
+	</delete>
+
+
+	 <resultMap type="com.euishoe.products.dto.ProductInfo" id="ProductInfo">
+		<result property="productNum" column="product_num"/>
+    	<result property="productListNum" column="product_list_num"/>
+    	<result property="productName" column="product_name"/>
+    	<result property="productCost" column="product_cost"/>
+    	<result property="productPrice" column="product_price"/>
+    	<result property="productBriefInfomation" column="product_brief_information"/>
+    	<result property="productManufacturer" column="product_manufacturer"/>
+    	<result property="productReleaseDate" column="product_release_date"/>
+    	<result property="productOrigin" column="product_origin"/>
+    	<result property="productListPrice" column="product_list_price"/>
+    	<result property="colorCode" column="color_code"/>
+    	<result property="productHitcount" column="product_hitcount"/>
+    	<result property="productBody" column="product_body"/>
+    	<result property="productShoulder" column="product_shoulder"/>
+    	<result property="productArm" column="product_arm"/>
+    	<result property="productLeg" column="product_leg"/>
+    	<result property="productSeason" column="product_season"/>
+    	<result property="productFabric" column="product_fabric"/>
+    	<result property="productTpo" column="product_tpo"/>
+	</resultMap> 
+	
+	<resultMap type="com.euishoe.qnas.dto.Qna" id="Qna">
+		<result property="qnaNum" column="qna_num"/>
+    	<result property="productNum" column="product_num"/>
+    	<result property="qnaTypeNum" column="qna_type_num"/>
+    	<result property="customerId" column="customer_id"/>
+    	<result property="qnaTitle" column="qna_title"/>
+   		<result property="qnaContent" column="qna_content"/>
+   		<result property="qnaPassword" column="qna_password"/>
+   		<result property="qnaIsAnswered" column="qna_isanswered"/>
+   		<result property="qnaIsLock" column="qna_islock"/>
+   		<result property="qnaRank" column="qna_rank"/>
+   		<result property="qnaIsDeleted" column="qna_isdeleted"/>
+   		<result property="qnaRegdate" column="qna_regdate"/>
+		<collection property="productInfo" resultMap="ProductInfo"/>
+	</resultMap>
+	
+
+<!-- 해당 제품의 모든 문의사항 출력  -->
+	<select id="selectAllQna" parameterType="int" resultMap="Qna">
+		SELECT qna.qna_type_num,
+		           qna.qna_isAnswered,
+		           qna.qna_title,
+		           qna.qna_content,
+		           qna.customer_id,
+		           qna.qna_regdate,
+		           qna.qna_password
+		FROM   qnas qna
+		           JOIN product_infos pi
+		           ON qna.product_num = pi.product_num
+		WHERE pi.product_num = #{productNum}
+	</select>
+
+
+	<!-- 자기가 쓴 리뷰 조회 -->
+	<select id="selectQnaUserById" parameterType="Map" resultMap="Qna">
+		SELECT qna.qna_type_num,
+		           	qna.qna_isAnswered,
+		           	qna.qna_title,
+		           	qna.qna_content,
+		           	qna.customer_id,
+		           	qna.qna_regdate,
+		           	qna.qna_password
+		FROM  	qnas qna
+		            JOIN product_infos pi
+		            ON qna.product_num = pi.product_num
+		WHERE pi.product_num = #{productNum} AND qna.customer_id = #{customerId}
+	</select>
+	
+	<!-- 비밀글 제외조회 -->
+	<select id="selectQnaByLock"  parameterType="int" resultMap="Qna">
+		SELECT qna.qna_type_num,
+		           	qna.qna_isAnswered,
+		           	qna.qna_title,
+		           	qna.qna_content,
+		           	qna.customer_id,
+		           	qna.qna_regdate,
+		           	qna.qna_password
+		FROM  	qnas qna
+		            JOIN product_infos pi
+		            on qna.product_num = pi.product_num
+		WHERE pi.product_num = #{productNum} AND qna.qna_isLock = 'N'
+	</select>
+	
+	<!-- 문의 유형에 따른 글 제외조회 -->
+	<select id="selectQnaByType"  parameterType="Map" resultMap="Qna">
+		SELECT qna.qna_type_num,
+		           	qna.qna_isAnswered,
+		           	qna.qna_title,
+		           	qna.qna_content,
+		           	qna.customer_id,
+		           	qna.qna_regdate,
+		           	qna.qna_password
+		FROM  	qnas qna
+		            JOIN product_infos pi
+		            ON qna.product_num=pi.product_num
+		WHERE pi.product_num=#{productNum} AND qna.qna_type_num=#{qnaTypeNum}
+	</select>
+	
 </mapper>

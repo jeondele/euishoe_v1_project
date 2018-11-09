@@ -22,22 +22,29 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Review create() throws Exception {
-		return null;
+	public void create() throws Exception {
+		reviewDao.create();
 	}
 
 	@Override
-	public List<Review> listAll() throws Exception {
-		return null;
+	public List<Review> listAll(int productNum) throws Exception {
+		return reviewDao.reviewListAll(productNum);
 	}
 
 	@Override
-	public List<Review> CustomerPointList(String customerId) throws Exception {
-		return null;
+	public List<Review> reviewListByCustomerId(int productNum, String customerId) throws Exception {
+		return reviewDao.reviewListByCustomerId(productNum, customerId);
 	}
 
 	@Override
-	public void deleteReview() throws Exception {
+	public List<Review> reviewListByScore(int productNum, int reviewScore) throws Exception {
+		return reviewDao.reviewListByScore(productNum, reviewScore);
+	}
+
+	@Override
+	public void deleteReview(int reviewNum) throws Exception {
 		
 	}
+
+
 }

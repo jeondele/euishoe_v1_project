@@ -6,7 +6,10 @@ package com.euishoe.qnas.service;
  *
  */
 
+import java.util.List;
+
 import com.euishoe.qnas.dao.QnaDao;
+import com.euishoe.qnas.dto.Qna;
 
 public class QnaServiceImpl implements QnaService {
 	private QnaDao qnaDao;
@@ -17,5 +20,36 @@ public class QnaServiceImpl implements QnaService {
 
 	public void setQnaDao(QnaDao qnaDao) {
 		this.qnaDao = qnaDao;
+	}
+
+	@Override
+	public void createQna(int typeNum, String customerId, int productNum, String qnaTitle, String qnaContent,
+			String qnaPassword, String qnaIsLock) throws Exception {
+			qnaDao.createQna(typeNum, customerId, productNum, qnaTitle, qnaContent, qnaPassword, qnaIsLock);
+	}
+
+	@Override
+	public void createQna(Qna qna) throws Exception {
+		qnaDao.createQna(qna);
+	}
+
+	@Override
+	public List<Qna> qnaListAll(int productNum) throws Exception {
+		return qnaDao.qnaListAll(productNum);
+	}
+
+	@Override
+	public List<Qna> qnaListByCustomerId(int productNum, String customerId) throws Exception {
+		return qnaDao.qnaListByCustomerId(productNum, customerId);
+	}
+
+	@Override
+	public List<Qna> qnaListByLock(int productNum) throws Exception {
+		return qnaDao.qnaListByLock(productNum);
+	}
+
+	@Override
+	public void deleteQna(int qnaNum) throws Exception {
+		qnaDao.deleteQna(qnaNum);
 	}
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="com.euishoe.Comment">
+	
+	<!-- 문의게시판 댓글 작성  -->
+	<insert id="writeQNAComment" parameterType="Map">		            
+	INSERT INTO comments 
+	            (comment_num, 
+	           	review_num, 
+	           	qna_num, 
+	           	comment_content, 
+	           	comment_level, 
+	           	comment_isdeleted) 
+	VALUES (comments_seq.nextval, 
+	            null, 
+	            #{qnaNum}, 
+	            #{commentContent}, 
+	            1, 
+	            'N');
+	</insert>
+	
+	<!-- 리뷰게시판 댓글 작성  -->
+	<insert id="writeReviewComment" parameterType="Map">		            
+	INSERT INTO comments 
+	            (comment_num, 
+	             review_num, 
+	             qna_num, 
+	             comment_content, 
+	             comment_level, 
+	             comment_isdeleted) 
+	VALUES     (comments_seq.nextval, 
+	            #{reviewNum}, 
+	            null, 
+	            #{commentContent}, 
+	            1, 
+	            'N');
+	</insert>
+
+	<!-- 리뷰게시판 댓글 조회 -->
+	<select id="selectReviewComment" parameterType="int">
+	SELECT comment_num, 
+	       review_num, 
+	       qna_num, 
+	       comment_content
+	FROM   comments
+	WHERE review_num = #{reviewNum};
+	</select>
+	
+</mapper>

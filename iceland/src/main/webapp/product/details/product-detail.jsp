@@ -494,7 +494,8 @@
 										</div>
 										
 										<!-- Add review -->
-										<form class="w-full" action="">
+										<form class="w-full" action="/iceland/product/details/create.es">
+											<input type="hidden" id="productNum">
 											<h5 class="mtext-108 cl2 p-b-7">
 												리뷰작성
 											</h5>
@@ -508,13 +509,17 @@
 													평점을 골라주세요 !
 												</span>
 
+<script>
+	${star}
+</script>
+
 												<span class="wrap-rating fs-18 cl11 pointer">
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<input class="dis-none" type="number" name="rating" >
+													<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
+													<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
+													<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
+													<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
+													<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
+													<input class="dis-none" type="number" name="rating" id="reviewScore" value="">
 												</span>
 											</div>
 
