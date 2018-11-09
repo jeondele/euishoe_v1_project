@@ -30,10 +30,13 @@
 	<select id="listAll" resultType="map">
       	 SELECT c.*,
       	 		p.*,
-      	 		pi.*          
+      	 		pi.*,
+      	 		i.*          
       	 FROM carts c INNER JOIN products p 
                       ON c.product_code = p.product_code
                 INNER JOIN product_infos pi 
-                       ON p.product_num = pi.product_num
+                      ON p.product_num = pi.product_num
+                INNER JOIN images i
+                	  ON i.product_num = pi.product_num
    </select>
 </mapper>

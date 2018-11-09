@@ -1,5 +1,6 @@
 package com.euishoe.carts.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ import com.euishoe.products.dto.ProductInfo;
 
 public class MybatisCartDao implements CartDao {
 	
-	private static final String NAMESPACE = "com.euishoe.compositecart.";
+	private static final String NAMESPACE = "com.euishoe.carts.";
 	
 	private SqlSessionFactory sqlSessionFactory;
 
@@ -24,35 +25,25 @@ public class MybatisCartDao implements CartDao {
 	}
 
 	@Override
-	public List<Cart> listCart() {
+	public List<HashMap<String, Object>> listCart() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		return sqlSession.selectList(NAMESPACE + "listCart");
+		List<HashMap<String,Object>> list = sqlSession.selectList(NAMESPACE + "listAll");
+		return list;
 	}
 
 	@Override
 	public void createCart(String cartNum, String productCode, String customerId) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteCart(String cartNum) {
-		// TODO Auto-generated method stub
+
 	}
 	
 	public void createCart(Cart cart) {
 	}
 
-
-	@Override
-	public List<Map<String, Object>> listCart2() {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Map<String, Object>> list = null;
-		list = sqlSession.selectList(NAMESPACE+"listAll");
-		sqlSession.commit();
-		sqlSession.close();
-		return list;
-	}
 }
 
 

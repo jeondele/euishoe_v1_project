@@ -61,8 +61,13 @@ public class MybatisCartDaoTest {
 	// 매개변수 하나 전달 : 사원번호 100번인 사람의 salary
 	public void testlistAll() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<CompositeCart> list = sqlSession.selectList("com.euishoe.compositecart." + "listAll");
-		logger.debug(list.get(0).getCustomerId());
+		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE + "listAll");
+//		Map<String,String> map = (Map<String, String>) list.get(0);
+		System.out.println(list.get(0).get("CUSTOMER_ID"));
+		logger.debug(list.get(0));
+//		logger.debug(list.get(1));
+//		logger.debug((Map)list.get(2));
+		
 		sqlSession.close();
 	}
 }
