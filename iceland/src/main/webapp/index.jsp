@@ -57,8 +57,7 @@
 <script type="text/javascript" src="<%= application.getContextPath() %>/js/toastMessage.js"></script>
 </head>
 <body class="animsition">
-	   <input type="hidden" value="${carts.value}">
-    <input type="hidden" value="${wishes.value}">
+
 	
 <%--  <jsp:include page="includes/header.jsp"/> --%>
  <%@include file="includes/header.jsp"%>
