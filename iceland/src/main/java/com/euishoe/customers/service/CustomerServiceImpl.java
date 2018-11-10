@@ -90,7 +90,19 @@ public class CustomerServiceImpl implements CustomerService {
 		cookie.setMaxAge(60 * 60 * 24 * 1000);
 		cookie.setPath("/iceland/");
 		
+		Cookie cookieUserName = null;
+		try {
+			cookieUserName = new Cookie("userName", URLEncoder.encode(customer.getCustomerName(),"utf-8"));
+			cookieUserName.setMaxAge(60 * 60 * 24 * 1000);
+			cookieUserName.setPath("/iceland/");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		response.addCookie(cookie);
+		response.addCookie(cookieUserName);
+		
 		mav.addObject("loginCookie", cookie);
 		mav.addObject("customer", customer);
 

@@ -185,12 +185,12 @@ td {
 		</div>
 	</div>
 
+	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<%@include file="/iceland/../includes/footer.jsp"%>
 
 	<%@include file="/iceland/../includes/QuickMenu.jsp"%>
 
 	<!--===============================================================================================-->
-	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
 	<!--===============================================================================================-->

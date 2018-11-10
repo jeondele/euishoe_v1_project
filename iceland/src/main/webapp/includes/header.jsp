@@ -1,13 +1,19 @@
 <%@page import="org.apache.log4j.Logger"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tt" uri="/WEB-INF/tlds/fordecode.tld"%> 
+<script> 
+var getCookie = function(name) {
+	  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+	  return value? value[2] : null;
+	};
+
+
+</script>
 <!-- Header -->
 	<header>
 	
-	<input type="hidden" value="${loginCookie.name}">
-	<input type="hidden" value="${loginCookie.value}">
-	<input type="hidden" value="${rememberCookie.name}">
-	<input type="hidden" value="${rememberCookie.value}">
+
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->
@@ -19,8 +25,9 @@
 
 					<div class="right-top-bar flex-w h-full">
 						<c:choose>
-   							<c:when test="${not empty loginCookie}">
-   								<span style="color: white; vertical-align:middle">${customer.customerName} 고객님 환영합니다!</span>
+   							<c:when test="${not empty cookie.loginId}">
+   								<span style="color: white; vertical-align:middle">
+   								${tt:testDecode(cookie.userName.value)} 고객님 환영합니다!</span>
    							</c:when>
    							<c:otherwise></c:otherwise>
   						</c:choose>
@@ -30,7 +37,7 @@
 						</a>
 						
 						<c:choose>
-							<c:when test="${not empty loginCookie}">
+							<c:when test="${not empty cookie.loginId}">
 								<a href="/iceland/customer/logout.es" class="flex-c-m trans-04 p-lr-25">
 									로그아웃
 								</a>
