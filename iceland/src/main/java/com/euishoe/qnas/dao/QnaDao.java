@@ -1,8 +1,8 @@
 package com.euishoe.qnas.dao;
 
 import java.util.List;
-
 import com.euishoe.qnas.dto.Qna;
+import kr.or.kosta.blog.common.web.Params;
 
 /**
  * 쇼핑몰 문의와 관련된 Dao 인터페이스
@@ -29,4 +29,10 @@ public interface QnaDao {
 	
 	//삭제
 	public void deleteQna(int qnaNum) throws Exception;
+	
+	//페이징 처리
+	public List<Qna> searchQna(Params params) throws Exception;
+	
+	//조회 목록 개수
+	public int countBySearch(int productNum ,Params params) throws Exception;
 }

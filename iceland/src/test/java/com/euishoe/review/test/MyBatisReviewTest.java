@@ -74,11 +74,13 @@ public class MyBatisReviewTest {
 		sqlSession.close();
 	}
 	
-	//@Test
+	@Test
 	public void testListAll() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		int productNum = 1;
-		List<Review> list = sqlSession.selectList(NAMESPACE+"selectAllReview", productNum);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("listSize", 5);
+		params.put("productNum", 1);
+		List<Review> list = sqlSession.selectList(NAMESPACE+"selectAllReview", params);
 		for (Review review : list) {
 	    	  logger.debug(review);
 	      }
@@ -87,13 +89,14 @@ public class MyBatisReviewTest {
 	}
 	
 	
-	
 	//@Test
 	public void testListByRank() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("listSize", 5);
 		params.put("productNum", 1);
 		params.put("reviewScore", 5);
+		params.put("page", 1);
 		List<Review> list = sqlSession.selectList(NAMESPACE+"selectReviewByScore", params);
 		for (Review review : list) {
 	    	  logger.debug(review);
@@ -103,12 +106,14 @@ public class MyBatisReviewTest {
 	}
 
 	
-	//@Test
+	@Test
 	public void testListByCustomer() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("listSize", 5);
 		params.put("productNum", 1);
 		params.put("customerId", "bangry");
+		params.put("page", 1);
 		List<Review> list = sqlSession.selectList(NAMESPACE + "selectReviewUserById", params);
 	      for (Review review : list) {
 	    	  logger.debug(review);

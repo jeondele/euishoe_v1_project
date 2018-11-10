@@ -87,47 +87,91 @@
 		<collection property="productInfo" resultMap="ProductInfo"/>
 	</resultMap>
 	
-<!-- 해당 제품의 모든 리뷰 출력  -->
-	<select id="selectAllReview" parameterType="int" resultMap="Review">
-		SELECT review.customer_id,
-		       		review.review_title,
-		      	 	review.review_content,
-		       		review.review_password,
-		      		review.review_score
-		FROM  	reviews review
-		      		JOIN product_infos pi
-		     		on review.product_num = pi.product_num
-		WHERE pi.product_num = #{product_num}
+<!-- 해당 제품의 모든 리뷰 출력(페이징)  -->
+	<select id="selectAllReview" parameterType="Map" resultMap="Review">
+		SELECT request_page,
+					customer_id,
+		      		review_title,
+					review_content,
+					review_password,
+					review_score
+       FROM(SELECT CEIL(rownum / #{listSize}) request_page,
+							customer_id,
+							review_title,
+							review_content,
+							review_password,
+							review_score
+							FROM(SELECT review.customer_id,
+											     review.review_title,
+											     review.review_content,
+											     review.review_password,
+											     review.review_score,
+											     pi.product_num
+									 FROM    reviews review
+									 JOIN 	 product_infos pi
+									 ON   	 review.product_num = pi.product_num
+							WHERE pi.product_num = #{productNum}))
+		WHERE request_page = #{page}					
 	</select>
 
 
-	<!-- 자기가 쓴 리뷰 조회 -->
+	<!-- 자기가 쓴 리뷰 조회(페이징) -->
 	<select id="selectReviewUserById" parameterType="Map" resultMap="Review">
-		SELECT review.customer_id,
-			        review.review_title,
-			        review.review_content,
-			        review.review_password,
-			        review.review_score
-		FROM  	reviews review
-		      		JOIN product_infos pi
-		      		on review.product_num = pi.product_num
-		WHERE review.product_num = #{productNum} AND review.customer_id = #{customerId}
+		SELECT customer_id,
+		       		review_title,
+					review_content,
+					review_password,
+					review_score
+       FROM(SELECT CEIL(rownum / #{listSize}) request_page,
+									                    customer_id,
+									                    review_title,
+									                    review_content,
+									                    review_password,
+									                    review_score
+									                    FROM(SELECT review.customer_id,
+												                              review.review_title,
+												                              review.review_content,
+												                              review.review_password,
+												                              review.review_score,
+												                              pi.product_num
+												                  FROM 	  reviews review
+												                  JOIN 	  product_infos pi
+												                  ON   	  review.product_num = pi.product_num)
+				 WHERE product_num = #{productNum} AND customer_id = #{customerId})
+		WHERE request_page = #{page}				 
 	</select>
 	
-	<!-- 별점으로 조회 -->
+	<!-- 별점으로 조회(페이징) -->
 	<select id="selectReviewByScore"  parameterType="Map" resultMap="Review">
-		SELECT review.customer_id,
-			       review.review_title,
-			       review.review_content,
-			       review.review_password,
-			       review.review_score
-		FROM   reviews review
-		       	   JOIN product_infos pi
-		       	   on review.product_num = pi.product_num
-		WHERE  pi.product_num = #{productNum} AND review.review_score = #{reviewScore}
+		SELECT customer_id,
+		       		review_title,
+					review_content,
+					review_password,
+					review_score
+       FROM(SELECT CEIL(rownum / #{listSize}) request_page,
+									                    customer_id,
+									                    review_title,
+									                    review_content,
+									                    review_password,
+									                    review_score
+									                    FROM(SELECT review.customer_id,
+												                              review.review_title,
+												                              review.review_content,
+												                              review.review_password,
+												                              review.review_score,
+												                              pi.product_num
+												                  FROM 	  reviews review
+												                  JOIN 	  product_infos pi
+												                  ON   	  review.product_num = pi.product_num)
+				 WHERE product_num = #{productNum} AND review_score = #{reviewScore})
+	WHERE request_page = #{page}				 
 	</select>
 
 	
-	
+	<select id="countBySearch"  parameterType="int" resultMap="Review">
+		SELECT COUNT(review_num) count
+		FROM   reviews
+		WHERE product_num = #{productNum}
+	</select>
 	
 </mapper>

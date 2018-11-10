@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.euishoe.qnas.dto.Qna;
 
+import kr.or.kosta.blog.common.web.Params;
+
 /**
  * 쇼핑몰 문의와 관련된 서비스 인터페이스
  * 
@@ -28,4 +30,10 @@ public interface QnaService {
 	
 	//삭제
 	public void deleteQna(int qnaNum) throws Exception;
+	
+	//페이징 처리
+	public List<Qna> searchQna(Params params) throws Exception;
+	
+	//조회 목록 개수
+	public int countBySearch(Params params) throws Exception;
 }

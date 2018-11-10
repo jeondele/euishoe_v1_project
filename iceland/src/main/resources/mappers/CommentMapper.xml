@@ -9,17 +9,15 @@
 	<insert id="writeQNAComment" parameterType="Map">		            
 	INSERT INTO comments 
 	            (comment_num, 
-	           	review_num, 
 	           	qna_num, 
 	           	comment_content, 
 	           	comment_level, 
 	           	comment_isdeleted) 
 	VALUES (comments_seq.nextval, 
-	            null, 
 	            #{qnaNum}, 
 	            #{commentContent}, 
 	            1, 
-	            'N');
+	            'N')
 	</insert>
 	
 	<!-- 리뷰게시판 댓글 작성  -->
@@ -27,27 +25,35 @@
 	INSERT INTO comments 
 	            (comment_num, 
 	             review_num, 
-	             qna_num, 
 	             comment_content, 
 	             comment_level, 
 	             comment_isdeleted) 
 	VALUES     (comments_seq.nextval, 
 	            #{reviewNum}, 
-	            null, 
 	            #{commentContent}, 
 	            1, 
-	            'N');
+	            'N')
 	</insert>
 
 	<!-- 리뷰게시판 댓글 조회 -->
-	<select id="selectReviewComment" parameterType="int">
+	<select id="selectReviewComment" parameterType="com.euishoe.comments.dto.Comment">
 	SELECT comment_num, 
 	       review_num, 
-	       qna_num, 
 	       comment_content
 	FROM   comments
-	WHERE review_num = #{reviewNum};
+	WHERE review_num = #{reviewNum}
 	</select>
 	
+<<<<<<< HEAD
+	<!-- Qna 댓글 조회 -->
+	<select id="selectQnaComment" parameterType="int">
+	SELECT comment_num, 
+	       review_num, 
+	       comment_content
+	FROM   comments
+	WHERE qna_num = #{qnaNum}
+	</select>
+=======
 	<!-- 리뷰게시판 삭제 -->
+>>>>>>> c64d298fb439076717fc2664aaf723dc41b4d351
 </mapper>

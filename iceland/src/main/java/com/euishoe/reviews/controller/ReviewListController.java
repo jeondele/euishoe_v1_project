@@ -15,6 +15,8 @@ import com.euishoe.reviews.dto.Review;
 import com.euishoe.reviews.service.ReviewService;
 import com.euishoe.reviews.service.ReviewServiceImpl;
 
+import kr.or.kosta.blog.common.web.Params;
+
 /**
  * /user/list.mall에 대한 요청 처리 컨트롤러
  * @author 김기정
@@ -23,6 +25,7 @@ import com.euishoe.reviews.service.ReviewServiceImpl;
 public class ReviewListController implements Controller {
 	
 	ReviewService reviewService;
+	Params params;
 	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -33,8 +36,9 @@ public class ReviewListController implements Controller {
 		reviewService = (ReviewService)factory.getBean(ReviewServiceImpl.class);
 		int productNum = (int) request.getAttribute("productNum");
 		List<Review> list = null;
+		params = null;
 		try {
-			list = reviewService.listAll(productNum);
+			list = reviewService.listAll(productNum, params);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

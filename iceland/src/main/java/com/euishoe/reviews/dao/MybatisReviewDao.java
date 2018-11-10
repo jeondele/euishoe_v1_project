@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.euishoe.reviews.dto.Review;
 
+import kr.or.kosta.blog.common.web.Params;
+
 public class MybatisReviewDao implements ReviewDao {
 	
 	private static final String NAMESPACE = "com.euishoe.Review.";
@@ -28,29 +30,37 @@ public class MybatisReviewDao implements ReviewDao {
 	}
 
 	@Override
-	public List<Review> reviewListAll(int productNum) throws Exception {
+	public List<Review> reviewListAll(int productNum, Params params) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Review> list = sqlSession.selectList(NAMESPACE+"selectAllReview", productNum);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("productNum", productNum);
+		param.put("listSize", params.getListSize());
+		param.put("page", params.getPage());
+		List<Review> list = sqlSession.selectList(NAMESPACE+"selectAllReview", param);
 		return list;
 	}
 
 	@Override
-	public List<Review> reviewListByCustomerId(int productNum, String customerId) throws Exception {
+	public List<Review> reviewListByCustomerId(int productNum, String customerId, Params params) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("productNum", productNum);
-		params.put("customerId", customerId);
-		List<Review> list = sqlSession.selectList(NAMESPACE + "selectReviewUserById", params);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("productNum", productNum);
+		param.put("customerId", customerId);
+		param.put("listSize", params.getListSize());
+		param.put("page", params.getPage());
+		List<Review> list = sqlSession.selectList(NAMESPACE + "selectReviewUserById", param);
 		return list;
 	}
 
 	@Override
-	public List<Review> reviewListByScore(int productNum, int reviewScore) throws Exception {
+	public List<Review> reviewListByScore(int productNum, int reviewScore, Params params) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("productNum", productNum);
-		params.put("reviewScore", reviewScore);
-		List<Review> list = sqlSession.selectList(NAMESPACE+"selectReviewByScore", params);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("productNum", productNum);
+		param.put("reviewScore", reviewScore);
+		param.put("listSize", params.getListSize());
+		param.put("page", params.getPage());
+		List<Review> list = sqlSession.selectList(NAMESPACE+"selectReviewByScore", param);
 		return list;
 	}
 
@@ -61,6 +71,18 @@ public class MybatisReviewDao implements ReviewDao {
 		sqlSession.commit();
 		sqlSession.close();
 		
+	}
+
+	@Override
+	public List<Review> searchReview(Params params) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int countBySearch(Params params) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
