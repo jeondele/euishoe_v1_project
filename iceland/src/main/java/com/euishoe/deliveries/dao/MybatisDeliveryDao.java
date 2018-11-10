@@ -1,6 +1,11 @@
 package com.euishoe.deliveries.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+
+import com.euishoe.deliveries.dto.Delivery;
 
 public class MybatisDeliveryDao implements DeliveryDao {
 	
@@ -14,6 +19,26 @@ public class MybatisDeliveryDao implements DeliveryDao {
 
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
+	}
+
+	@Override
+	public boolean insertDelivery(Delivery delivery) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int result = 0 ;
+		result = sqlSession.insert(NAMESPACE+"insertDelivery", delivery);
+		sqlSession.commit();
+		sqlSession.close();
+		if(result != 0 ) return true; else return false;
+	}
+	
+	@Override
+	public List<Delivery> deliveryInfo(int orderNum) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Delivery> list = null;
+		list = sqlSession.selectList(NAMESPACE+"deliveryInfo", orderNum);
+		sqlSession.commit();
+		sqlSession.close();
+		return list;
 	}
 }
 

@@ -13,7 +13,7 @@ public class Payment {
 	private String paymentIsRefund;	// 결제환불여부
 	private int paymentDiscount; 	// 결제할인금액
 	private int paymentOriginCost;  // 결제원가
-	private int delivery_charge;	// 배송비
+	private int deliveryCharge;	// 배송비
 	
 	
 	// 생성자(Constructor) 선언
@@ -22,9 +22,13 @@ public class Payment {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Payment(int paymentPoint, String paymentMethod, String paymentIsRefund, int paymentDiscount,
+			int paymentOriginCost, int deliveryCharge) {
+		this(0, paymentPoint, paymentMethod, paymentIsRefund, paymentDiscount, paymentOriginCost, deliveryCharge);
+	}
 	
 	public Payment(int paymentNum, int paymentPoint, String paymentMethod, String paymentIsRefund, int paymentDiscount,
-			int paymentOriginCost, int delivery_charge) {
+			int paymentOriginCost, int deliveryCharge) {
 		super();
 		this.paymentNum = paymentNum;
 		this.paymentPoint = paymentPoint;
@@ -32,7 +36,7 @@ public class Payment {
 		this.paymentIsRefund = paymentIsRefund;
 		this.paymentDiscount = paymentDiscount;
 		this.paymentOriginCost = paymentOriginCost;
-		this.delivery_charge = delivery_charge;
+		this.deliveryCharge = deliveryCharge;
 	}
 
 
@@ -97,13 +101,13 @@ public class Payment {
 	}
 
 
-	public int getDelivery_charge() {
-		return delivery_charge;
+	public int getDeliveryCharge() {
+		return deliveryCharge;
 	}
 
 
-	public void setDelivery_charge(int delivery_charge) {
-		this.delivery_charge = delivery_charge;
+	public void setDeliveryCharge(int deliveryCharge) {
+		this.deliveryCharge = deliveryCharge;
 	}
 
 
@@ -112,7 +116,7 @@ public class Payment {
 	public String toString() {
 		return "Payment [paymentNum=" + paymentNum + ", paymentPoint=" + paymentPoint + ", paymentMethod="
 				+ paymentMethod + ", paymentIsRefund=" + paymentIsRefund + ", paymentDiscount=" + paymentDiscount
-				+ ", paymentOriginCost=" + paymentOriginCost + ", delivery_charge=" + delivery_charge + "]";
+				+ ", paymentOriginCost=" + paymentOriginCost + ", deliveryCharge=" + deliveryCharge + "]";
 	}
 	
 }

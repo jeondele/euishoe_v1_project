@@ -3,5 +3,35 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="com.euishoe.Payment">
+<mapper namespace="com.euishoe.payment">
+	<insert id="insertPayment" parameterType="Payment">
+      	 INSERT INTO payments 
+            (payment_num, 
+             payment_point, 
+             payment_method, 
+             payment_isrefund, 
+             payment_discount, 
+             payment_origin_cost, 
+             delivery_charge) 
+		 VALUES     (payments_seq.nextval, 
+		             #{paymentPoint}, 
+		             #{paymentMethod}, 
+		             #{paymentIsRefund}, 
+		             #{paymentDiscount}, 
+		             #{paymentOriginCost}, 
+		             #{deliveryCharge}) 
+   </insert>	
+   
+   <select id="selectPaymentInfo" resultType="Payment" parameterType="Integer">
+	select p.payment_num "paymentNum",
+		   p.payment_point "paymentPoint",
+		   p.payment_method "paymentMethod",
+		   p.payment_isrefund "paymentIsRefund",
+		   p.payment_discount "paymentDiscount",
+		   p.payment_origin_cost "paymentOriginCost",
+		   p.delivery_charge "deliveryCharge"
+	from orders o join payments p
+	on o.PAYMENT_NUM = p.PAYMENT_NUM
+	where o.ORDER_NUM = #{orderNum}
+	</select> 
 </mapper>
