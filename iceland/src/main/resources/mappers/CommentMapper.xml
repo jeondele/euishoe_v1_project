@@ -49,4 +49,5 @@
 	WHERE review_num = #{reviewNum};
 	</select>
 	
+	<!-- 리뷰게시판 삭제 -->
 </mapper>

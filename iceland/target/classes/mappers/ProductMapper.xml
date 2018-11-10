@@ -40,6 +40,7 @@
 		<collection property="image" resultMap="Image" />
 	</resultMap>
  -->
+	<!-- 프로덕트 검색 기능 -->
 	<select id="newProductList" resultType="map">
 	<![CDATA[
 		SELECT p.product_num, 
