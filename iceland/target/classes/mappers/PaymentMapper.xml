@@ -23,15 +23,15 @@
    </insert>	
    
    <select id="selectPaymentInfo" resultType="Payment" parameterType="Integer">
-	select p.payment_num "paymentNum",
-		   p.payment_point "paymentPoint",
-		   p.payment_method "paymentMethod",
-		   p.payment_isrefund "paymentIsRefund",
-		   p.payment_discount "paymentDiscount",
-		   p.payment_origin_cost "paymentOriginCost",
-		   p.delivery_charge "deliveryCharge"
-	from orders o join payments p
-	on o.PAYMENT_NUM = p.PAYMENT_NUM
-	where o.ORDER_NUM = #{orderNum}
+		select p.payment_num "paymentNum",
+			   p.payment_point "paymentPoint",
+			   p.payment_method "paymentMethod",
+			   p.payment_isrefund "paymentIsRefund",
+			   p.payment_discount "paymentDiscount",
+			   p.payment_origin_cost "paymentOriginCost",
+			   p.delivery_charge "deliveryCharge"
+		from orders o join payments p
+		on o.PAYMENT_NUM = p.PAYMENT_NUM
+		where o.ORDER_NUM = #{orderNum}
 	</select> 
 </mapper>

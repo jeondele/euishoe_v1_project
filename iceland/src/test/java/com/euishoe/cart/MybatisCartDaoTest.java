@@ -61,7 +61,7 @@ public class MybatisCartDaoTest {
 	// 매개변수 하나 전달 : 사원번호 100번인 사람의 salary
 	public void testlistAll() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE + "listAll");
+		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE + "listCartForLogin","bangry");
 //		Map<String,String> map = (Map<String, String>) list.get(0);
 		System.out.println(list.get(0).get("CUSTOMER_ID"));
 		logger.debug(list.get(0));

@@ -168,7 +168,8 @@
 	<%@include file="../../includes/cart.jsp"%>
 
 	<%@include file="../../includes/slider.jsp"%>
-
+    <input type="hidden" id="cart" value='${carts.value}'>
+    <input type="hidden" id="wish" value='${wishes.value}'>
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
 			<div class="m-l--200 row">
@@ -259,6 +260,7 @@
 			</div>
 		</div>
 	</div>
+  
 
 	<%@include file="/iceland/../includes/footer.jsp"%>
 
@@ -448,6 +450,31 @@
 	});
 	
 	sumUp();
+	
+	// json 객체로 cart 가져오기
+	if($('#cart') && $('#wish')){
+	var myCart = eval('(' + $('#cart').val() + ')');
+	var myWish = eval('(' + $('#wish').val() + ')');		
+	}
+	
+	// row 뿌리기
+	var str = "";
+	str += '<tr class="table_row">';
+	str += ' <td class="column-1 txt-center">';
+	str += ' <input type="checkbox" value="None" class="roundedOne" id="" name="check" checked /></td>';
+	str += ' <td class="column-2 txt-center"><div class="how-itemcart1">';
+	str += ' <img src="/iceland/images/item-cart-05.jpg" alt="IMG"></div></td>';
+	str += ' <td class="column-3 txt-center">Lightweight Jacket</td>';
+	str += ' <td class="column-4 txt-center">1600</td><td class="column-5 txt-center">';
+	str += ' <div class="wrap-num-product flex-w m-l-auto m-r-auto">';
+	str += ' <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">';
+	str += ' <i class="fs-16 zmdi zmdi-minus"></i></div>';
+	str += ' <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">';
+	str += ' <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">';
+	str += ' <i class="fs-16 zmdi zmdi-plus"></i></div></div></td>';
+	str += ' <td class="column-6 txt-center">1600</td></tr>';
+
+	$('tbody').append(str);
 		</script>
 </body>
 </html>

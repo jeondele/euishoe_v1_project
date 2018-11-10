@@ -25,17 +25,17 @@
    </insert>	
    
    <select id="deliveryInfo" resultType="Delivery" parameterType="Integer">
-	select d.delivery_num "deliveryNum",
-		   d.delivery_address "deliveryAddress",
-		   d.delivery_recipient "deliveryRecipient",
-		   d.delivery_recipient_phonenumber "deliveryRecipientPhonenumber",
-		   d.delivery_requirement "deliveryRequirement",
-		   d.order_date "orderDate",
-		   d.delivery_date "deliveryDate",
-		   d.delivery_status "deliveryStatus"
-	from orders o join deliveries d
-	on o.DELIVERY_NUM = d.DELIVERY_NUM
-	where o.order_num = #{orderNum}  
+		select d.delivery_num "deliveryNum",
+			   d.delivery_address "deliveryAddress",
+			   d.delivery_recipient "deliveryRecipient",
+			   d.delivery_recipient_phonenumber "deliveryRecipientPhonenumber",
+			   d.delivery_requirement "deliveryRequirement",
+			   d.order_date "orderDate",
+			   d.delivery_date "deliveryDate",
+			   d.delivery_status "deliveryStatus"
+		from orders o join deliveries d
+		on o.DELIVERY_NUM = d.DELIVERY_NUM
+		where o.order_num = #{orderNum}  
 	</select>
 	
 </mapper>

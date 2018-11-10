@@ -51,6 +51,17 @@
 		         ON wl.product_num = pi.product_num
 	</select>
          
+    <select id="listWishesForLogin" resultType="map" parameterType="String"> 
+         SELECT w.*,
+                pi.*,
+                i.*          
+      	 FROM  wishlists w INNER JOIN product_infos pi
+                      ON w.product_num = pi.product_num
+                           INNER JOIN Images i
+                      ON pi.product_num = i.product_num
+         WHERE w.customer_id LIKE #{customerId}
+    </select>
+    
 	<delete id="deleteWishlist" parameterType="map">
 		DELETE FROM wishlists 
 		WHERE  customer_id = #{customerId} 

@@ -51,12 +51,12 @@
 	</resultMap>
 	
 	<select id="selectPointHistoryById" parameterType="String" resultMap="PointHistory">
-		SELECT ph.customer_id,
-					ph.point_history_num,
-					ph.point_policy_type, 
-					ph.point_history_update_date,
-       				ph.point_history_score,
-       				pp.point_policy_description
+		SELECT 	ph.customer_id,
+			   	ph.point_history_num,
+				ph.point_policy_type, 
+				ph.point_history_update_date,
+   				ph.point_history_score,
+   				pp.point_policy_description
 	    FROM   point_histories ph
 		  		   JOIN point_policies pp
 		    	   ON ph.point_policy_type = pp.point_policy_type

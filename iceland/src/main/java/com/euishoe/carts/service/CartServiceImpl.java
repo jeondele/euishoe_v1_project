@@ -22,9 +22,12 @@ public class CartServiceImpl implements CartService {
 	public void setCartDao(CartDao cartDao) {
 		this.cartDao = cartDao;
 	}
-	
-	// 장바구니 리스트 던져주기
-	public List<HashMap<String, Object>> listCart(){
-		return cartDao.listCart();
+
+	@Override
+	public List<HashMap<String, Object>> listCart() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
+	
 }

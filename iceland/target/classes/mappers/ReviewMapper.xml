@@ -166,6 +166,7 @@
 				 WHERE product_num = #{productNum} AND review_score = #{reviewScore})
 	WHERE request_page = #{page}				 
 	</select>
+
 	
 	<select id="countBySearch"  parameterType="int" resultMap="Review">
 		SELECT COUNT(review_num) count

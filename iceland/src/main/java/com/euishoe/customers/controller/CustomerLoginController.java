@@ -1,5 +1,10 @@
 package com.euishoe.customers.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +16,7 @@ import com.euishoe.common.factory.XMLObjectFactory;
 import com.euishoe.customers.dto.Customer;
 import com.euishoe.customers.service.CustomerService;
 import com.euishoe.customers.service.CustomerServiceImpl;
+import com.google.gson.Gson;
 
 /**
  * /user/list.mall에 대한 요청 처리 컨트롤러
@@ -34,35 +40,18 @@ public class CustomerLoginController implements Controller {
 		
 		System.out.println(rememberCustomerId);
 		Customer customer = null;
-		Cookie[] cookies = null;
 		
 		try {
 			customer = customerService.certify(customerId, customerPassword);
+			
+			/*
+			 * 쿠키 생성 
+			 * 	1. 고객 정보 : loginId
+			 * 	2. 장바구니 리스트 : carts
+			 *  3. 위시리스트 : wishes 
+			 * */
+			mav = customerService.login(request, response, mav, customer, rememberCustomerId);
 			if(customer != null) {
-				Cookie cookie = new Cookie("loginId", customerId);
-				cookie.setMaxAge(60 * 60 * 24 * 1000);
-				cookie.setPath("/iceland/");
-				response.addCookie(cookie);
-				mav.addObject("loginCookie", cookie);
-				mav.addObject("customer", customer);
-				
-				if(rememberCustomerId != null) {
-					Cookie rememberCookie = new Cookie("idRemember", customerId);
-					rememberCookie.setMaxAge(60 * 60 * 24 * 1000);
-					rememberCookie.setPath("/iceland/");
-					response.addCookie(rememberCookie);
-					mav.addObject("rememberCookie", rememberCookie);
-				} else {
-					if(request.getCookies() != null) {
-						cookies = request.getCookies();
-						for(Cookie cookie2 : cookies) {
-							if(cookie2.getName().equals("idRemember")) {
-								cookie2.setMaxAge(0);
-								mav.addObject("rememberCookie", cookie2);
-							}
-						}
-					}
-				}
 				mav.setView("/index.jsp");
 			} else {
 				mav.addObject("result", "fail");

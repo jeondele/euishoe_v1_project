@@ -35,40 +35,6 @@ public class CartController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		cartService = (CartService)factory.getBean(CartServiceImpl.class);
 		
-		List<HashMap<String,Object>>list = cartService.listCart();
-		
-		
-		HashMap hashmap = new HashMap<String,String>();
-		for (HashMap<String, Object> hash : list) {
-			hashmap.put("image_ref", hash.get("image_ref"));
-			hashmap.put("PRODUCT_NAME", hash.get("PRODUCT_NAME"));
-			hashmap.put("product_count", hash.get("product_count"));
-			hashmap.put("PRODUCT_PRICE", hash.get("PRODUCT_PRICE"));
-			
-			System.out.println("product_count : "  + hashmap.get("product_count"));
-			System.out.println("PRODUCT_PRICE : "  + hashmap.get("PRODUCT_PRICE"));
-		}
-
-		Gson gson = new Gson();
-		String json = "";
-		try {
-			json = URLEncoder.encode(gson.toJson(hashmap).trim(), "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		Cookie cookie = new Cookie("carts", gson.toJson(hashmap));
-		
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
-		cookie.setMaxAge(60 * 60 * 24 * 1000);
-		cookie.setPath("/iceland/");
-		response.addCookie(cookie);
-		
-		mav.addObject("carts", cookie);
-		
 		return mav;
 	}
 }
