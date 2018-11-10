@@ -18,4 +18,7 @@ public interface ProductDao {
 
 	// 히트제품 4개 정보와 이미지 위치 get(메인화면에 뿌려줄것)
 	public List<ProductInfo> hitProductList() throws Exception;
+	
+	// 전체리스트 출력
+	List<ProductInfo> selectAll() throws Exception;
 }

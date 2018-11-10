@@ -31,5 +31,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductInfo> hitProductList() throws Exception {
 		return productDao.hitProductList();
 	}
+
+	@Override
+	public List<ProductInfo> selectAll() throws Exception {
+		return productDao.selectAll();
+	}
 	
 }

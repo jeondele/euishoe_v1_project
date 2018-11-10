@@ -90,11 +90,9 @@
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5">New Product</h3>
 				<!-- Load more -->
-				<div class="flex-c-m flex-w w-full p-t-45" style="padding: 0px">
 					<a href="/iceland/product.es"><input type="button"
 						class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04"
 						value="Load More" style="margin-left: auto"> </a>
-				</div>
 			</div>
 		</div>
 
@@ -143,11 +141,9 @@
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5">Best Product</h3>
 				<!-- Load more -->
-				<div class="flex-c-m flex-w w-full p-t-45" style="padding: 0px">
-					<input type="button"
+				<a href="/iceland/product.es"><input type="button"
 						class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04"
-						value="Load More" style="margin-left: auto">
-				</div>
+						value="Load More" style="margin-left: auto"> </a>
 			</div>
 		</div>
 

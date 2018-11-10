@@ -1,5 +1,7 @@
 package com.euishoe.products.controller;
 
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.euishoe.common.controller.Controller;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.common.factory.XMLObjectFactory;
+import com.euishoe.products.dto.ProductInfo;
 import com.euishoe.products.service.ProductService;
 import com.euishoe.products.service.ProductServiceImpl;
 
@@ -27,8 +30,12 @@ public class ProductController implements Controller {
 			XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 			productService = (ProductService)factory.getBean(ProductServiceImpl.class);
 			
+			List<ProductInfo> list = null;
+			try {
+				list = productService.selectAll();
+			} catch (Exception e) {}
+			mav.addObject("listAll", list);
 			mav.setView("/product/product.jsp");
-			
 			return mav;
 		}
 }

@@ -36,6 +36,14 @@ public class MybatisProductDao implements ProductDao {
 		list = sqlSession.selectList(NAMESPACE+"hitProductList");
 		return list;
 	}
+	
+	@Override
+	public List<ProductInfo> selectAll() throws Exception {
+		List<ProductInfo> list = null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		list = sqlSession.selectList(NAMESPACE+"selectAll");
+		return list;
+	}
 }
 
 
