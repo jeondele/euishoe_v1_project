@@ -126,6 +126,7 @@
 		       	   on review.product_num = pi.product_num
 		WHERE  pi.product_num = #{productNum} AND review.review_score = #{reviewScore}
 	</select>
+
 	
 	
 	

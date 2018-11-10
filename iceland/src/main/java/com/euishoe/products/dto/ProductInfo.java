@@ -1,5 +1,7 @@
 package com.euishoe.products.dto;
 
+import com.euishoe.images.dto.Image;
+
 public class ProductInfo {
 	
 	// 변수 선언
@@ -22,7 +24,7 @@ public class ProductInfo {
 	private String productSeason;			// 상품계절
 	private String productFabric;			// 상품원단
 	private String productTpo;				// 상품TPO
-	
+	private Image image;					// 상품정보와 join하는 image
 	
 	// 생성자(Constructor) 선언
 	public ProductInfo() {
@@ -31,7 +33,7 @@ public class ProductInfo {
 	public ProductInfo(int productNum, int productListNum, String productName, int productCost, int productPrice,
 			String productBriefInfomation, String productManufacturer, String productReleaseDate, String productOrigin,
 			int productListPrice, String colorCode, int productHitcount, int productBody, int productShoulder,
-			int productArm, int productLeg, String productSeason, String productFabric, String productTpo) {
+			int productArm, int productLeg, String productSeason, String productFabric, String productTpo/*, Image image*/) {
 		super();
 		this.productNum = productNum;
 		this.productListNum = productListNum;
@@ -52,6 +54,7 @@ public class ProductInfo {
 		this.productSeason = productSeason;
 		this.productFabric = productFabric;
 		this.productTpo = productTpo;
+		//this.image = image;
 	}
 
 	// setter, getter 선언
@@ -206,6 +209,15 @@ public class ProductInfo {
 	
 	public void setProductTpo(String productTpo) {
 		this.productTpo = productTpo;
+	}
+
+	// join을 위한 image객체 setter, getter
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	@Override
