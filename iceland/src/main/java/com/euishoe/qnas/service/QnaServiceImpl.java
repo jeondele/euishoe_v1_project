@@ -11,6 +11,8 @@ import java.util.List;
 import com.euishoe.qnas.dao.QnaDao;
 import com.euishoe.qnas.dto.Qna;
 
+import kr.or.kosta.blog.common.web.Params;
+
 public class QnaServiceImpl implements QnaService {
 	private QnaDao qnaDao;
 
@@ -51,5 +53,15 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public void deleteQna(int qnaNum) throws Exception {
 		qnaDao.deleteQna(qnaNum);
+	}
+
+	@Override
+	public List<Qna> searchQna(Params params) throws Exception {
+		return null;
+	}
+
+	@Override
+	public int countBySearch(Params params) throws Exception {
+		return 0;
 	}
 }

@@ -70,6 +70,7 @@
 		<mapper resource="mappers/DeliveryMapper.xml"  />
 		<mapper resource="mappers/WishlistMapper.xml"  />
 		<mapper resource="mappers/QnaMapper.xml"  />
+		<mapper resource="mappers/CommentMapper.xml"  />
 				
 		<!-- URL을 사용한 XML 매퍼 파일 지정 -->
 		<!-- <mapper url="file:///c:/someProject/mapper/SomeMapper.xml" />	 -->

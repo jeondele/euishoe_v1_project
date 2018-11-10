@@ -10,6 +10,8 @@ import java.util.List;
 import com.euishoe.reviews.dao.ReviewDao;
 import com.euishoe.reviews.dto.Review;
 
+import kr.or.kosta.blog.common.web.Params;
+
 public class ReviewServiceImpl implements ReviewService {
 	ReviewDao reviewDao;
 
@@ -27,24 +29,29 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> listAll(int productNum) throws Exception {
-		return reviewDao.reviewListAll(productNum);
-	}
-
-	@Override
-	public List<Review> reviewListByCustomerId(int productNum, String customerId) throws Exception {
-		return reviewDao.reviewListByCustomerId(productNum, customerId);
-	}
-
-	@Override
-	public List<Review> reviewListByScore(int productNum, int reviewScore) throws Exception {
-		return reviewDao.reviewListByScore(productNum, reviewScore);
-	}
-
-	@Override
 	public void deleteReview(int reviewNum) throws Exception {
-		
+		reviewDao.deleteReview(reviewNum);
 	}
 
+
+	@Override
+	public List<Review> listAll(int productNum, Params params) throws Exception {
+		return reviewDao.reviewListAll(productNum, params);
+	}
+
+	@Override
+	public List<Review> reviewListByCustomerId(int productNum, String customerId, Params params) throws Exception {
+		return reviewDao.reviewListByCustomerId(productNum, customerId, params);
+	}
+
+	@Override
+	public List<Review> reviewListByScore(int productNum, int reviewScore, Params params) throws Exception {
+		return reviewDao.reviewListByScore(productNum, reviewScore, params);
+	}
+
+	@Override
+	public int countBySearch(int productNum, Params params) throws Exception {
+		return 0;
+	}
 
 }

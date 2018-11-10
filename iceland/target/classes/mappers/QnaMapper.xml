@@ -133,10 +133,74 @@
 		<collection property="productInfo" resultMap="ProductInfo"/>
 	</resultMap>
 	
+<!-- 		String sql ="SELECT article_id,\r\n" + 
+						"       	  board_id,\r\n" + 
+						"	      	  subject, \r\n" + 
+						"       	 writer, \r\n" + 
+						"       	 content,\r\n" + 
+						"       	 regdate, \r\n" + 
+						"      		 ip, \r\n" + 
+						"       	passwd,\r\n" + 
+						"       	attach_file,\r\n" + 
+						"       	hitcount,\r\n" + 
+						"       	group_no,\r\n" + 
+						"       	level_no,\r\n" + 
+						"       	order_no\r\n" + 
+						"			FROM  (SELECT CEIL(rownum / ?) request_page,\r\n" + 
+						"       							article_id,\r\n" + 
+						"       							board_id,\r\n" + 
+						"       							subject, \r\n" + 
+						"       							writer, \r\n" + 
+						"       							content,\r\n" + 
+						"       							regdate, \r\n" + 
+						"       							ip, \r\n" + 
+						"       							passwd,\r\n" + 
+						"       							attach_file,\r\n" + 
+						"      				 				hitcount,\r\n" + 
+						"      				 				group_no,\r\n" + 
+						"      				 				level_no,\r\n" + 
+						"      				 				order_no\r\n" + 
+						"       							FROM(SELECT article_id,\r\n" + 
+						"                    									 board_id,\r\n" + 
+						"                    									 subject, \r\n" + 
+						"                    									 writer, \r\n" + 
+						"                    									 content,\r\n" + 
+						"                    									 TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') regdate,\r\n" + 
+						"                    									 ip,\r\n" + 
+						"                    									 passwd,\r\n" + 
+						"                    									 attach_file,\r\n" + 
+						"                     									 hitcount,\r\n" + 
+						"                     									 group_no,\r\n" + 
+						"                     									 level_no,\r\n" + 
+						"                     									 order_no\r\n" + 
+						"                    									 FROM article";
+		
+		// 검색 유형별 WHERE 절 동적 추가
+		if(searchType != null){
+			switch (searchType) {
+				case "subject":
+					sql += " WHERE  subject LIKE ? \r\n";
+					searchValue = "%" + searchValue + "%";
+					break;	
+					
+				case "content":  
+					sql += " WHERE  content LIKE ? \r\n";
+					searchValue = "%" + searchValue + "%";
+					break;
+					
+				case "writer":  
+					sql += " WHERE  writer LIKE ? \r\n";
+					searchValue = "%" + searchValue + "%";
+					break;
+			}
+		}
+		sql += "                ORDER BY regdate DESC)) \r\n" +
+				   "WHERE  	request_page = ?"; -->
+
 
 <!-- 해당 제품의 모든 문의사항 출력  -->
-	<select id="selectAllQna" parameterType="int" resultMap="Qna">
-		SELECT qna.qna_type_num,
+	<select id="selectAllQna" parameterType="Map" resultMap="Qna">
+<!-- 		SELECT qna.qna_type_num,
 		           qna.qna_isAnswered,
 		           qna.qna_title,
 		           qna.qna_content,
@@ -146,7 +210,68 @@
 		FROM   qnas qna
 		           JOIN product_infos pi
 		           ON qna.product_num = pi.product_num
-		WHERE pi.product_num = #{productNum}
+		WHERE pi.product_num = #{productNum}  -->
+		
+		SELECT qna_type_num,
+		           qna_isAnswered,
+		           qna_title,
+		           qna_content,
+		           customer_id,
+		           qna_regdate,
+		           qna_password
+       FROM(SELECT CEIL(rownum / #{listSize}) request_page,
+       													qna_type_num,
+									                    qna_isAnswered,
+											            qna_title,
+											            qna_content,
+											            customer_id,
+											            qna_regdate,
+											            qna_password
+									                    FROM(SELECT qna.qna_type_num,
+																           	 qna.qna_isAnswered,
+																           	 qna.qna_title,
+																           	 qna.qna_content,
+																           	 qna.customer_id,
+																           	 qna.qna_regdate,
+																           	 qna.qna_password
+												                  FROM 	 qnas qna
+														          JOIN product_infos pi
+														          ON qna.product_num = pi.product_num)
+				 WHERE pi.product_num = #{productNum} 
+				 <choose>
+					 <when test='#{checkedSecret} != null'>
+					<!-- 비밀글 제외 조회  -->
+					 AND qna_isLock = 'N'
+					 <choose>
+					 	<when test='#{checkedMine} != null'>
+							 <!-- 유저 아이디 검색조건 추가  -->
+							 AND qna.customer_id = #{customerId}
+					 	<choose>
+					 		<when test='#{qnaTypeNum != "전체"}'>
+					 			AND qna_type_num=#{qnaTypeNum}
+					 		</when>
+					 	</choose>
+					 <!-- 문의유형에 따른 조회  -->
+					 </when>
+					 </choose>
+					 </when>
+					 <otherwise>
+					 	<choose>
+					 	<when test='#{checkedMine} != null'>
+							 <!-- 유저 아이디 검색조건 추가  -->
+							 AND qna.customer_id = #{customerId}
+					 	<choose>
+					 		<when test='#{qnaTypeNum != "전체"}'>
+					 			AND qna_type_num=#{qnaTypeNum}
+					 		</when>
+					 	</choose>
+					 <!-- 문의유형에 따른 조회  -->
+					 </when>
+					 </choose>
+					 </otherwise>
+				 </choose>
+				 ORDER BY review_num DESC)
+	WHERE request_page = #{page}	
 	</select>
 
 

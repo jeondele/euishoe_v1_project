@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.euishoe.qnas.dto.Qna;
 
+import kr.or.kosta.blog.common.web.Params;
+
 public class MybatisQnaDao implements QnaDao {
 	
 	private static final String NAMESPACE = "com.euishoe.Qna.";
@@ -81,6 +83,20 @@ public class MybatisQnaDao implements QnaDao {
 		sqlSession.commit();
 		sqlSession.close();
 	}
+
+	@Override
+	public int countBySearch(int productNum, Params params) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.selectOne(NAMESPACE + "deleteQna", productNum);
+		return 0;
+	}
+	
+	@Override
+	public List<Qna> searchQna(Params params) throws Exception {
+		return null;
+	}
+
+
 }
 
 

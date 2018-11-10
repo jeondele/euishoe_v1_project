@@ -3,6 +3,39 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.euishoe.order">
+<!-- CREATE TABLE orders 
+  ( 
+     order_num       NUMBER(15), 
+     customer_id     VARCHAR2(40), 
+     noncustomer_num NUMBER(12), 
+     delivery_num    NUMBER(10), 
+     payment_num     NUMBER(10) 
+  );  
+  
+  	private int orderNo; 				//주문번호
+	private String customerId; 			// 회원아이디
+	private String noncustomerNum;  // 비회원번호
+	private int deliveryNum; 			//배송번호
+	private int paymentNum; 			//결제번호 -->
+
+	<!-- 생일축하 포인트 지급 -->
+	<insert id="orderCreate" parameterType="Map">
+		INSERT INTO orders
+		VALUES  (
+			orders_seq.NEXTVAL,
+		<choose>
+		    <when test="customerId != null">
+		      #{customerId},
+		      null, 
+		    </when>
+		    <when test="noncustomerNum != null">
+		      null,
+		      #{noncustomerNum}, 
+		    </when>
+		  </choose>
+			 #{deliveryNum}, 
+             #{paymentNum})
+	</insert>
 
 	<select id="selectOrderInfo" resultType="map" parameterType="Integer">
 		select o.* , d.*, p.*

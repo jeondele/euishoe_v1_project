@@ -39,14 +39,7 @@ public class MyBatisCommentTest {
 		logger.debug("[logger debug]: sqlSessionFactory생성완료");
 	}
 	
-	
-	/*#{customerId}, 
-    #{productNum}, 
-    #{reviewTitle}, 
-    #{reviewContent}, 
-    #{reviewPassword},
-    #{reviewScore}*/
-	@Test
+	//@Test
 	public void testCreateReviewComment() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -58,6 +51,7 @@ public class MyBatisCommentTest {
 		sqlSession.close();
 	}
 	
+	//@Test
 	public void testCreateQNAComment() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -69,18 +63,15 @@ public class MyBatisCommentTest {
 		sqlSession.close();
 	}
 	
-	//@Test
+	@Test
 	public void testSelectComment() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		int reviewNum = 2;
-		List<Review> list = sqlSession.selectList(NAMESPACE+"selectAllReview", reviewNum);
+		List<Review> list = sqlSession.selectList(NAMESPACE+"selectReviewComment", reviewNum);
 		for (Review review : list) {
 	    	  logger.debug(review);
 	      }
 		logger.debug("조회 완료!");
 		sqlSession.close();
 	}
-	
-	
-	
 }

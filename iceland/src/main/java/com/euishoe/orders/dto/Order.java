@@ -1,5 +1,8 @@
 package com.euishoe.orders.dto;
 
+import com.euishoe.deliveries.dto.Delivery;
+import com.euishoe.payments.dto.Payment;
+
 /**
  * 쇼핑몰 주문 dto
  * 
@@ -15,6 +18,8 @@ public class Order {
 	private int deliveryNum; 			//배송번호
 	private int paymentNum; 			//결제번호
 	
+	Delivery delivery;
+	Payment payment;
 	
 	// 생성자(Contructor 선언)
 	public Order() {
@@ -72,11 +77,27 @@ public class Order {
 		this.paymentNum = paymentNum;
 	}
 
+	public Delivery getDelivery() {
+		return delivery;
+	}
+
+	public void setDelivery(Delivery delivery) {
+		this.delivery = delivery;
+	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
 
 	// toString() 선언
 	@Override
 	public String toString() {
 		return "Order [orderNo=" + orderNo + ", customerId=" + customerId + ", noncustomerNum=" + noncustomerNum
-				+ ", deliveryNum=" + deliveryNum + ", paymentNum=" + paymentNum + "]";
+				+ ", deliveryNum=" + deliveryNum + ", paymentNum=" + paymentNum  + ", 배송번호=" + delivery.getDeliveryNum() +
+				", 결제번호=" + payment.getPaymentNum() + "]";
 	}
 }
