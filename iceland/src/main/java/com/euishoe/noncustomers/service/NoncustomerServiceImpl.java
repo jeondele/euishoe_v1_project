@@ -6,6 +6,7 @@ package com.euishoe.noncustomers.service;
  *
  */
 
+import com.euishoe.deliveries.dto.Delivery;
 import com.euishoe.noncustomers.dao.NoncustomerDao;
 
 public class NoncustomerServiceImpl implements NoncustomerService {
@@ -17,6 +18,12 @@ public class NoncustomerServiceImpl implements NoncustomerService {
 
 	public void setNoncustomerDao(NoncustomerDao noncustomerDao) {
 		this.noncustomerDao = noncustomerDao;
+	}
+
+	//비회원 구매 정보를 저장하기 위한 작업
+	@Override
+	public boolean insertDelivery(Delivery delivery) {
+		return noncustomerDao.insertDelivery(delivery);
 	}
 	
 }

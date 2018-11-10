@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-                        
+
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="com.euishoe.Order">
+<mapper namespace="com.euishoe.order">
+
+	<select id="selectOrderInfo" resultType="map" parameterType="Integer">
+		select o.* , d.*, p.*
+		from orders o join deliveries d
+		on o.DELIVERY_NUM = d.DELIVERY_NUM
+		join payments p
+		on o.PAYMENT_NUM = p.PAYMENT_NUM
+		where o.ORDER_NUM = #{orderNum}
+	</select>
 </mapper>

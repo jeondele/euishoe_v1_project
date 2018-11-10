@@ -7,6 +7,7 @@ package com.euishoe.deliveries.service;
  */
 
 import com.euishoe.deliveries.dao.DeliveryDao;
+import com.euishoe.deliveries.dto.Delivery;
 
 public class DeliveryServiceImpl implements DeliveryService {
 	public DeliveryDao deliveryDao;
@@ -17,6 +18,11 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 	public void setDeliveryDao(DeliveryDao deliveryDao) {
 		this.deliveryDao = deliveryDao;
+	}
+
+	@Override
+	public boolean insertDelivery(Delivery delivery) {
+		return deliveryDao.insertDelivery(delivery);
 	}
 	
 }

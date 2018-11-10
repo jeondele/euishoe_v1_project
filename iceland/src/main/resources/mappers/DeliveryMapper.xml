@@ -3,7 +3,7 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="com.euishoe.Delivery">
+<mapper namespace="com.euishoe.delivery">
 	<insert id="insertDelivery" parameterType="Delivery">
       	 INSERT INTO deliveries 
             (delivery_num, 
@@ -14,13 +14,28 @@
              order_date, 
              delivery_date, 
              delivery_status) 
-		 VALUES     (?, 
-		             ?, 
-		             ?, 
-		             ?, 
-		             ?, 
-		             ?, 
-		             ?, 
-		             ?) 
-   </insert>
+		 VALUES     (deliveries_seq.nextval, 
+		             #{deliveryAddress}, 
+		             #{deliveryRecipient}, 
+		             #{deliveryRecipientPhonenumber}, 
+		             #{deliveryRequirement}, 
+		             #{orderDate}, 
+		             #{deliveryDate}, 
+		             #{deliveryStatus}) 
+   </insert>	
+   
+   <select id="deliveryInfo" resultType="Delivery" parameterType="Integer">
+	select d.delivery_num "deliveryNum",
+		   d.delivery_address "deliveryAddress",
+		   d.delivery_recipient "deliveryRecipient",
+		   d.delivery_recipient_phonenumber "deliveryRecipientPhonenumber",
+		   d.delivery_requirement "deliveryRequirement",
+		   d.order_date "orderDate",
+		   d.delivery_date "deliveryDate",
+		   d.delivery_status "deliveryStatus"
+	from orders o join deliveries d
+	on o.DELIVERY_NUM = d.DELIVERY_NUM
+	where o.order_num = #{orderNum}  
+	</select>
+	
 </mapper>
