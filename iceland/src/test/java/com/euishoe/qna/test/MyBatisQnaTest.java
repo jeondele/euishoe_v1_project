@@ -72,10 +72,28 @@ public class MyBatisQnaTest {
 		sqlSession.close();
 	}
 	
-	@Test
+	
+	//@Test
+	public void testQnaTest() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("listSize", 5);
+		params.put("productNum", 2);
+		params.put("customerId", "bangry");
+		params.put("qnaTypeNum", 1);
+		params.put("page", 1);
+		List<Qna> list = sqlSession.selectList(NAMESPACE+"selectAllTest", params);
+		for (Qna qna : list) {
+	    	  logger.debug(qna);
+	      }
+		logger.debug("조회 완료!");
+		sqlSession.close();
+	}
+	
+	//@Test
 	public void testQnaListAll() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Qna> list = sqlSession.selectList(NAMESPACE+"selectAllQna", 1);
+		List<Qna> list = sqlSession.selectList(NAMESPACE+"selectQnaListAll", 2);
 		for (Qna qna : list) {
 	    	  logger.debug(qna);
 	      }

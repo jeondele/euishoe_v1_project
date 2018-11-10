@@ -15,8 +15,6 @@ public class PointHistory {
 	private String pointHistoryUpdateDate; 	// 포인트이력변경일자
 	private int pointHistoryScore; 			// 포인트점수
 
-	private PointPolicy pointPolicy;
-	private String pointPolicyDescription;
 	
 	// 생성자(Constructor) 선언
 	public PointHistory() {
@@ -42,21 +40,6 @@ public class PointHistory {
 		this.pointHistoryScore = pointHistoryScore;
 	}
 
-	public String getPointPolicyDescription() {
-		return pointPolicyDescription;
-	}
-
-	public void setPointPolicyDescription(String pointPolicyDescription) {
-		this.pointPolicyDescription = pointPolicyDescription;
-	}
-
-	public PointPolicy getPointPolicy() {
-		return pointPolicy;
-	}
-
-	public void setPointPolicy(PointPolicy pointPolicy) {
-		this.pointPolicy = pointPolicy;
-	}
 
 	// setter, getter 선언
 	public int getPointHistoryNum() {
@@ -103,8 +86,7 @@ public class PointHistory {
 	public String toString() {
 		return "PointHistory [pointHistoryNum=" + pointHistoryNum + ", pointPolicyType=" + pointPolicyType
 				+ ", customerId=" + customerId + ", pointHistoryUpdateDate=" + pointHistoryUpdateDate
-				+ ", pointHistoryScore=" + pointHistoryScore + ", pointPolicyDescription=" + pointPolicy.getPointPolicyDescription()
-				+ "]";
+				+ ", pointHistoryScore=" + pointHistoryScore + "]";
 	}
 
 

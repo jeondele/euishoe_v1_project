@@ -19,6 +19,7 @@ import com.euishoe.carts.dao.CartDao;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.customers.dao.CustomerDao;
 import com.euishoe.customers.dto.Customer;
+import com.euishoe.points.dao.PointDao;
 import com.euishoe.wishlists.dao.WishlistDao;
 import com.google.gson.Gson;
 
@@ -26,6 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerDao customerDao;
 	private CartDao cartDao;
 	private WishlistDao wishlistDao;
+	private PointDao pointDao;
 
 	public CustomerDao getCustomerDao() {
 		return customerDao;
@@ -50,6 +52,14 @@ public class CustomerServiceImpl implements CustomerService {
 	public void setWishlistDao(WishlistDao wishlistDao) {
 		this.wishlistDao = wishlistDao;
 	}
+	
+	public PointDao getPointDao() {
+		return pointDao;
+	}
+
+	public void setPointDao(PointDao pointDao) {
+		this.pointDao = pointDao;
+	}
 
 	// 로그인 인증
 	@Override
@@ -61,6 +71,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void create(Customer customer) throws Exception {
 		customerDao.create(customer);
+		pointDao.create(customer.getCustomerId());
 		return;
 	}
 

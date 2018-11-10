@@ -76,13 +76,11 @@ public class MyBatisPointTest {
 	public void testCustomerPoint() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		String customerId = "bangry";
-		List<PointHistory> list = sqlSession.selectList(NAMESPACE + "selectPointHistoryById", customerId);
-	      for (PointHistory history : list) {
-	    	  logger.debug(history);
+		List<Map<String, Object>> list = sqlSession.selectList(NAMESPACE + "selectPointHistoryById", customerId);
+	      for (Map<String, Object> Map : list) {
+	    	  logger.debug(Map);
 	      }
 		logger.debug("조회 완료!");
 		sqlSession.close();
 	}
-	
-	
 }

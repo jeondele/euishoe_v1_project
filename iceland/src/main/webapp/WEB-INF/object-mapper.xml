@@ -5,7 +5,7 @@
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521"/>
 		<property name="username" value="hr"/>
-		<property name="password" value="hr"/>
+		<property name="password" value="1234"/>
 		<property name="initialSize" value="2"/>
 		<property name="maxTotal" value="10"/>
 		<property name="maxIdle" value="5"/>
@@ -43,6 +43,7 @@
 		<property name="customerDao" ref="customerDao"/>
 		<property name="cartDao" ref="cartDao"/>
 		<property name="wishlistDao" ref="wishlistDao"/>
+		<property name="pointDao" ref="pointDao"/>
 	</bean>
 	
 	<!-- noncustomer 맵핑 -->

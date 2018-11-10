@@ -34,33 +34,14 @@
        			     #{pointHistoryScore}, 
              		 TO_CHAR(sysdate, 'YYYY-MM-DD'))
 	</insert>
-
-	<resultMap type="com.euishoe.points.dto.PointPolicy" id="PointPolicy">
-			<result property="pointPolicyType" column="point_policy_type"/>
-    		<result property="pointPolicyDescription" column="point_policy_description"/>
-    		<result property="pointPolicyPayment" column="point_policy_payment"/>
-	</resultMap>
 	
-	<resultMap type="com.euishoe.points.dto.PointHistory" id="PointHistory">
-		<result property="pointHistoryNum" column="point_history_num"/>
-    	<result property="pointPolicyType" column="point_policy_type"/>
-    	<result property="customerId" column="customer_id"/>
-    	<result property="pointHistoryUpdateDate" column="point_history_update_date"/>
-   		<result property="pointHistoryScore" column="point_history_score"/>
-		<collection property="pointPolicy" resultMap="PointPolicy"/>
-	</resultMap>
-	
-	<select id="selectPointHistoryById" parameterType="String" resultMap="PointHistory">
-		SELECT 	ph.customer_id,
-			   	ph.point_history_num,
-				ph.point_policy_type, 
-				ph.point_history_update_date,
-   				ph.point_history_score,
-   				pp.point_policy_description
+	<select id="selectPointHistoryById" parameterType="String" resultType="Map">
+		SELECT 	ph.*,
+   				pp.*
 	    FROM   point_histories ph
-		  		   JOIN point_policies pp
-		    	   ON ph.point_policy_type = pp.point_policy_type
-		 WHERE ph.customer_id = #{id}
+		  		INNER JOIN point_policies pp
+		    	ON ph.point_policy_type = pp.point_policy_type
+		 WHERE customer_id = #{customerId}
 	</select>
 
 </mapper>

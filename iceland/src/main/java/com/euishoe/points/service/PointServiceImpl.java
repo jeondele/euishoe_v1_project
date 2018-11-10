@@ -6,6 +6,7 @@ package com.euishoe.points.service;
  *
  */
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.euishoe.points.dao.PointDao;
@@ -28,8 +29,9 @@ public class PointServiceImpl implements PointService {
 	}
 
 	@Override
-	public List<PointHistory> CustomerPointList(String customerId) throws Exception {
+	public List<HashMap<String, Object>> CustomerPointList(String customerId) throws Exception {
 		return pointDao.CustomerPointList(customerId);
 	}
+
 	
 }
