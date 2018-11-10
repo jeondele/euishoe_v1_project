@@ -17,7 +17,6 @@ import org.junit.Test;
 import com.euishoe.customers.dao.CustomerDao;
 import com.euishoe.customers.dao.MybatisCustomerDao;
 import com.euishoe.customers.dto.Customer;
-import com.euishoe.products.dto.ProductInfo;
 
 public class MybatisProInfoTest {
 	private static final String NAMESPACE = "com.euishoe.products.";
@@ -39,19 +38,34 @@ public class MybatisProInfoTest {
 		logger.debug("sqlSessionFactory 생성 완료!!!!!!");
 		customerDao = new MybatisCustomerDao();
 		((MybatisCustomerDao) customerDao).setSqlSessionFactory(sqlSessionFactory);
-
 	}
+	
+//	@Test
+//	public void newProductTest() {
+//		List<Map<String, Object>> list = null;
+//		SqlSession sqlSession = sqlSessionFactory.openSession();
+//		list = sqlSession.selectList(NAMESPACE+"newProductList");
+//		System.out.println("사이즈!!!!!!!!!"+list.size());
+//		
+//		for (Map<String, Object> productInfo : list) {
+//			logger.debug("----------------");
+//			logger.debug("제품정보객체: " + productInfo);
+//			/*logger.debug("제품정보객체: "+productInfo);
+//			logger.debug("이미지정보: "+productInfo.getImage().getImageRef());*/
+//			logger.debug("----------------");
+//		}
+//	}
 	
 	@Test
 	public void newProductTest() {
 		List<Map<String, Object>> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		list = sqlSession.selectList(NAMESPACE+"newProductList");
+		list = sqlSession.selectList(NAMESPACE+"hitProductList");
 		System.out.println("사이즈!!!!!!!!!"+list.size());
 		
 		for (Map<String, Object> productInfo : list) {
 			logger.debug("----------------");
-			logger.debug("제품정보객체: "+productInfo.get("PRODUCT_NUM"));
+			logger.debug("제품정보객체: " + productInfo);
 			/*logger.debug("제품정보객체: "+productInfo);
 			logger.debug("이미지정보: "+productInfo.getImage().getImageRef());*/
 			logger.debug("----------------");

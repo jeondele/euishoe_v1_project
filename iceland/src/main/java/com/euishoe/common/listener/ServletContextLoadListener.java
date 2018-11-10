@@ -10,8 +10,8 @@ import org.apache.log4j.Logger;
 
 import com.euishoe.common.factory.XMLObjectFactory;
 import com.euishoe.products.dto.ProductInfo;
-import com.euishoe.wishlists.service.WishlistService;
-import com.euishoe.wishlists.service.WishlistServiceImpl;
+import com.euishoe.products.service.ProductService;
+import com.euishoe.products.service.ProductServiceImpl;
 
 
 /**
@@ -35,15 +35,19 @@ public class ServletContextLoadListener implements ServletContextListener {
 		// 모든 서블릿, JSP들이 공유할 수 있도록 ServletContext에 DaoFactory 저장
 		servletContext.setAttribute("objectFactory", objectFactory);
 		
-		List<ProductInfo> list = null;
-		WishlistService wishlistService;
+		ProductService productService;
 		XMLObjectFactory factory = (XMLObjectFactory)servletContext.getAttribute("objectFactory");
-		wishlistService = (WishlistService)factory.getBean(WishlistServiceImpl.class);
+		productService = (ProductService)factory.getBean(ProductServiceImpl.class);
+		List<ProductInfo> newProductSrc = null;
+		List<ProductInfo> hitProductSrc = null;
 		try {
-			list = wishlistService.selectWishlists("bangry");
-		} catch (Exception e) {}
-		servletContext.setAttribute("wishlists", list);
-		
+			newProductSrc = productService.newProductList();
+			hitProductSrc = productService.hitProductList();
+			servletContext.setAttribute("newProductSrc", newProductSrc);
+			servletContext.setAttribute("hitProductSrc", hitProductSrc);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		logger.debug("XMLObjectFactory 생성 및 ServletContext에 등록 완료!");
 	}
 	

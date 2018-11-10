@@ -5,51 +5,18 @@
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.euishoe.products">
 
-<!-- 	<resultMap type="com.euishoe.images.dto.Image" id="Image">
-		<result property="imageNum" column="image_num" />
-		<result property="productNum" column="product_num" />
-		<result property="reviewNum" column="review_num" />
-		<result property="qnaNum" column="qna_num" />
-		<result property="imageRef" column="image_ref" />
-	</resultMap>
-
-	<resultMap type="com.euishoe.products.dto.ProductInfo"
-		id="ProductInfo">
-		<result property="productNum" column="product_num" />
-		<result property="productListNum" column="product_list_num" />
-		<result property="productName" column="product_name" />
-		<result property="productCost" column="product_cost" />
-		<result property="productPrice" column="product_price" />
-		<result property="productBriefInfomation"
-			column="product_brief_infomation" />
-		<result property="productManufacturer"
-			column="product_manufacturer" />
-		<result property="productReleaseDate"
-			column="product_release_date" />
-		<result property="productOrigin" column="product_origin" />
-		<result property="productListPrice" column="product_list_price" />
-		<result property="colorCode" column="color_code" />
-		<result property="productHitcount" column="product_hitcount" />
-		<result property="productBody" column="product_body" />
-		<result property="productShoulder" column="product_shoulder" />
-		<result property="productArm" column="product_arm" />
-		<result property="productLeg" column="product_leg" />
-		<result property="productSeason" column="product_season" />
-		<result property="productFabric" column="product_fabric" />
-		<result property="productTpo" column="product_tpo" />
-		<collection property="image" resultMap="Image" />
-	</resultMap>
- -->
 	<!-- 프로덕트 검색 기능 -->
 	<select id="newProductList" resultType="map">
 	<![CDATA[
-		SELECT p.product_num, 
-		       m.image_ref, 
-		       m.image_num 
+		SELECT p.product_num "productNum",
+		       p.product_name "productName",
+		       p.product_list_price "productListPrice",
+		       m.image_ref "imageRef", 
+		       m.image_num "imageNum"
 		FROM   product_infos p 
 		       join images m 
 		         ON ( m.product_num = p.product_num ) 
-		WHERE  p.product_num IN((SELECT product_num 
+		WHERE  m.IMAGE_REF like '%main$1%' and p.product_num IN((SELECT product_num 
 		                         FROM   (SELECT product_num, 
 		                                        product_release_date 
 		                                 FROM   product_infos 
@@ -61,13 +28,15 @@
 
 	<select id="hitProductList" resultType="map">
 	<![CDATA[
-		SELECT p.product_num, 
-		       m.image_ref,
-		       m.image_num
+		SELECT p.product_num "productNum",
+		       p.product_name "productName",
+		       p.product_list_price "productListPrice",
+		       m.image_ref "imageRef", 
+		       m.image_num "imageNum"
 		FROM   product_infos p 
 		       join images m 
 		         ON ( m.product_num = p.product_num ) 
-		WHERE  p.product_num IN (SELECT product_num 
+		WHERE  m.IMAGE_REF like '%main$1%' and p.product_num IN (SELECT product_num 
 		                         FROM   (SELECT product_num, 
 		                                        product_hitcount 
 		                                 FROM   product_infos 
@@ -76,4 +45,5 @@
 		                         WHERE  ROWNUM <= 4)	
 	]]>
 	</select>
+	
 </mapper>
