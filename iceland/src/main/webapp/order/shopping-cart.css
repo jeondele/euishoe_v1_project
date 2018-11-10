@@ -16,7 +16,7 @@ form > div > div > div > div > div > div > ul {
 }
 
 .tab-content{
-		margin-top:10px;
+	margin-top:10px;
 }
 
 input{
@@ -24,13 +24,9 @@ input{
 	margin-bottom: 7px;
 	margin-left:5px;
 }
-#home{
-    border-radius: 10px;
-    padding: 10px;
-    background-color: lavender;
-    border: 2px solid pink;	
-	
-}
+
+
+
 #zipcodeTxt{
     margin-top: 10px;
     }
