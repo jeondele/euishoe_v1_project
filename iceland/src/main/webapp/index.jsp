@@ -53,7 +53,8 @@
     <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Sunflower:300" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/css/toastMessage.css">
-
+	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
+	
 <script type="text/javascript" src="<%= application.getContextPath() %>/js/toastMessage.js"></script>
 </head>
 <body class="animsition">
@@ -377,7 +378,7 @@
 <%@include file="includes/QuickMenu.jsp"%>
 
 <!--===============================================================================================-->	
-	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
+
 <!--===============================================================================================-->
 	<script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->

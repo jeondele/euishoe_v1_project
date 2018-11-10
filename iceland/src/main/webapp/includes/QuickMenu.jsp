@@ -27,7 +27,7 @@
 								<div class="slick3 gallery-lb">
 									<div class="item-slick3" data-thumb="/iceland/images/product-detail-01.jpg">
 										<div class="wrap-pic-w pos-relative">
-											<img src="/iceland/images/product-detail-01.jpg" alt="IMG-PRODUCT">
+											<img id="productImg" src="/iceland/images/product-detail-01.jpg" alt="IMG-PRODUCT">
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/iceland/images/product-detail-01.jpg">
 												<i class="fa fa-expand"></i>
@@ -65,8 +65,8 @@
 								Lightweight Jacket
 							</h4>
 
-							<span class="mtext-106 cl2">
-								$58.79
+							<span class="mtext-106 cl2" id="productPrice">
+								5800
 							</span>
 
 							<p class="stext-102 cl3 p-t-23">
@@ -127,10 +127,10 @@
 											</div>
 										</div>
                                         <a href="/iceland/product/details/product-detail.jsp">상세페이지</a>
-										<input type="button" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" value="장바구니 담기"
+										<input type="button" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" id="addCart" value="장바구니 담기"
                                                style="margin-left: 10px;"
                                                />
-                                        <input type="button" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" value="즉시구매" style="margin-left: 10px;"/>
+                                        <input type="button" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" value="즉시구매" id="purchase" style="margin-left: 10px;"/>
 											
 									</div>
 								</div>	
@@ -162,4 +162,18 @@
 			</div>
 		</div>
 	</div>
-	
+	<script>
+	$('#addCart').on('click',function(e){
+        console.log(e);
+        
+        // productName,Image,count,price
+        var productName = $('#addCart').parents()[3].childNodes[1].innerText;
+        var productImg = $('#productImg')[0].src
+        var productCount = document.getElementsByName('num-product')[0].value;
+        var productPrice = $('#productPrice').text().trim();
+        
+        var cookieData = document.cookie;
+        
+        
+    });
+	</script>
