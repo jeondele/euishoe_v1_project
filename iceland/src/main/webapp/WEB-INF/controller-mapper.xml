@@ -16,6 +16,7 @@
 	
 	<!-- 고객관련 -->
 	<bean type="controller" name="/customer/login" class="com.euishoe.customers.controller.CustomerLoginController" />
+	<bean type="controller" name="/customer/regist" class="com.euishoe.customers.controller.CustomerRegistController" />
 	<bean type="controller" name="/customer/logout" class="com.euishoe.customers.controller.CustomerLogoutController" />
 	<bean type="controller" name="/customer/mypage" class="com.euishoe.customers.controller.CustomerPageController" />
 	<bean type="controller" name="/customer/mypage/mypurchase" class="com.euishoe.customers.controller.CustomerPurchaseController" />

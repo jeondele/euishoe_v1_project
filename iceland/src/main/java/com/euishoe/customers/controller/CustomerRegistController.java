@@ -30,10 +30,15 @@ public class CustomerRegistController implements Controller {
 		
 		// 회원가입을 위한 customer객체 생성
 		String customerId = request.getParameter("userid");
+		if(customerId == null) {
+			mav.setView("/customer/regist/join.jsp");
+			return mav;
+		}
 		String customerPassword = request.getParameter("password");
 		String customerName = request.getParameter("userName");
 		String customerPhonenumber = request.getParameter("userPhone");
 		String customerEmail = "";
+		
 		if(request.getParameter("emailHost").trim().equals("직접입력")) {
 			customerEmail = request.getParameter("email");
 		}else {

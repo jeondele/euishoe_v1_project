@@ -1,12 +1,6 @@
 package com.euishoe.customers.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.List;
-
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +10,6 @@ import com.euishoe.common.factory.XMLObjectFactory;
 import com.euishoe.customers.dto.Customer;
 import com.euishoe.customers.service.CustomerService;
 import com.euishoe.customers.service.CustomerServiceImpl;
-import com.google.gson.Gson;
 
 /**
  * /user/list.mall에 대한 요청 처리 컨트롤러
@@ -39,17 +32,21 @@ public class CustomerLoginController implements Controller {
 		String rememberCustomerId = request.getParameter("idRemember");
 		
 		System.out.println(rememberCustomerId);
-		Customer customer = null;
+		
+		if(customerId == null) {
+			mav.setView("/customer/login/login.jsp");
+			return mav;
+		}
 		
 		try {
-			customer = customerService.certify(customerId, customerPassword);
-			
+			Customer customer = customerService.certify(customerId, customerPassword);
 			/*
 			 * 쿠키 생성 
 			 * 	1. 고객 정보 : loginId
 			 * 	2. 장바구니 리스트 : carts
 			 *  3. 위시리스트 : wishes 
-			 * */
+			 * 
+			 */
 			mav = customerService.login(request, response, mav, customer, rememberCustomerId);
 			if(customer != null) {
 				mav.setView("/index.jsp");
