@@ -1,9 +1,13 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta name='description' content="Upgrade Your Life - 11번가">
     <meta name='keywords' content="Upgrade Your Life - 11번가">
     <title>Upgrade Your Cloth - EUISHOE</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
     <script type="text/javascript">
     
         // 입력 문자 최대 입력 범위 체크
@@ -142,6 +146,18 @@
             $('.list_lyer').css('display', '');
         }
     </script>
+    
+<style>
+.qnaDtlsCd1, .qnaDtlsCd2, .qnaDtlsCd3, .qnaDtlsCd4, .qnaDtlsCd5 {
+	display: inline; 
+	font-size: 20px;
+}
+
+#email1, #email2, #email3 {
+	display: inline;
+	height: 40px;
+}
+</style>
 </head>
 <body >
 
@@ -150,81 +166,83 @@
 
 <div id="popLayWrap">
     <form name="frmMain" method="post">
-        <div id="popHead">
-            <div class="popHeadEnd">
-                
-                <h1>문의내용 작성</h1>
-                
-            </div>
-        </div>
         <div class="popbody_con">
             <!-- 팝업 내용입력부분 ============================= -->
             <div class="prdc_qna_wrap">
                 <div class="tblwrap">
                     <table class="tbl">
-                        <caption>문의내용 작성</caption>
                         <colgroup>
                             <col style="width:25%">
                             <col style="width:75%">
                         </colgroup>
                         <tbody>
+                        	<tr>
+                        		<th colspan="2">
+                        			<h2 style="display:inline;">문의하기(Q&A)</h2>
+                					<div><br></div>
+                				</th>
+                        	</tr>
                         
                             <tr>
                                 <th scope="row" class="first alignL"><label for="qnaDtlsCd">문의유형</label></th>
                                 <td class="alignL">
-                                    
-                                    <div class="select_wrap"><label for="qnaDtlsCd1"><input type="radio" name="qnaDtlsCd" id="qnaDtlsCd1" value="01" >상품</label><label for="qnaDtlsCd2"><input type="radio" name="qnaDtlsCd" id="qnaDtlsCd2" value="02" >배송</label><label for="qnaDtlsCd3"><input type="radio" name="qnaDtlsCd" id="qnaDtlsCd3" value="03" >반품/취소</label><label for="qnaDtlsCd4"><input type="radio" name="qnaDtlsCd" id="qnaDtlsCd4" value="04" >교환/변경</label><label for="qnaDtlsCd5"><input type="radio" name="qnaDtlsCd" id="qnaDtlsCd5" value="05" >기타</label></div>
-                                    
+                                    <div class="select_wrap">
+                                    	<span for="qnaDtlsCd1" class="qnaDtlsCd1"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd1" value="01">&nbsp;상품</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd2" class="qnaDtlsCd2"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd2" value="02">&nbsp;배송</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd3" class="qnaDtlsCd3"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd3" value="03">&nbsp;반품/취소</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd4" class="qnaDtlsCd4"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd4" value="04">&nbsp;교환/변경</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd5" class="qnaDtlsCd5"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd5" value="05">&nbsp;기타</span>
+                                    </div>
                                 </td>
                             </tr>
                         
-                        
-                        
                       
-                        <tr>
-                            <th scope="row" class="first alignL"><label for="brdInfoCont">내용</label></th>
-                            <td class="alignL">
-                                <textarea name="brdInfoCont" id="brdInfoCont" rows="10" cols="80" placeholder="문의유형을 선택해 주시고,궁금하신 내용을 작성해 주세요."></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="first alignL"><label for="mailId">답변수신 메일</label></th>
-                            <td class="alignL">
-                                <div class="email_insfo">
-                                    <input type="text" name="mailId" id="mailId" value="tkaghk0828" title="이메일 주소 ID" class="text" readonly> @
-                                    <input type="text" name="mailStr" id="mailStr" title="이메일 도메인" class="text" value="gmail.com" readonly>
-                                    
-                                </div>
-                                <span class="sub_notice">답변완료시 등록한 이메일로 알려드립니다.</span>
-                            </td>
-                        </tr>
+	                        <tr>
+	                            <th scope="row" class="first alignL"><label for="brdInfoCont">내용</label></th>
+	                            <td class="alignL">
+	                                <textarea name="brdInfoCont" id="brdInfoCont" rows="10" cols="67" placeholder="문의유형을 선택해 주시고,궁금하신 내용을 작성해 주세요."></textarea>
+	                            </td>
+	                        </tr>
+	                        
+	                        <tr>
+	                            <th scope="row" class="myInfoHeader">이메일</th>
+			                    <td>
+			                    	<div>
+				                    	<input id="email1" name="email1" class="mailId" value="" type="text">&nbsp;@&nbsp;<input id="email2" name="email2" class="mailAddress" readonly="readonly" value="" type="text">
+			                      		<select id="email3" style="vertical-align: middle;">
+					                        <option value="" selected="selected">-
+					                          이메일 선택 -</option>
+					                        <option value="naver.com">naver.com</option>
+					                        <option value="daum.net">daum.net</option>
+					                        <option value="nate.com">nate.com</option>
+					                        <option value="hotmail.com">hotmail.com</option>
+					                        <option value="yahoo.com">yahoo.com</option>
+					                        <option value="empas.com">empas.com</option>
+					                        <option value="korea.com">korea.com</option>
+					                        <option value="dreamwiz.com">dreamwiz.com</option>
+					                        <option value="gmail.com">gmail.com</option>
+				                        	<option value="etc">직접입력</option>
+			                    		</select><br>
+			                    	<span class="sub_notice" style="font-size: 20px;">답변완료시 등록한 이메일로 알려드립니다.</span><br>
+			                  	</div>
+			                  	</td>
+	                        </tr>
+	                        
+	                        <tr>
+		                        <td colspan="2" style="text-align: center;">
+		                        <div><br></div>
+		                        	<input type="submit" id="addQnA" class="flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" value="작성" style="border:none; display:inline;">
+	                				<button type="button" id="cancelQnA" class="flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" style="border:none; display:inline;">취소</button>
+	                			</td>
+                			</tr>
                         </tbody>
-                    </table>
+	                </table>            
                 </div>
 				<div class="chk_wrap" id = "layerSecretYn" style="display:none">
 					 <label for="secretYn">
                           <input type="checkbox" name="secretYn" id="secretYn" value="Y" class="chk"> 비밀글로 문의하기
                      </label>
 				</div>
-                <div class="notice_box">
-                    <h2 class="tit">알아두세요!</h2>
-                    
-                    <ul>
-                    	
-                    	<li>전화번호, 이메일, 배송지 주소, 환불계좌정보 등 개인정보가 포함된 글은, 비밀글로 문의해 주시기  바랍니다.<br>(단, 상품 문의유형은 비밀글 설정 불가)</li>
-						<li>상품 Q&amp;A에 등록한 게시글은 나의 11번가 &gt; 상품 Q&amp;A에서 확인하실 수 있습니다.</li>
-						<li>
-						부적절한 게시물 등록시 ID이용 제한 및 게시물이 삭제될 수 있습니다.
-							<ul>
-								<li>- 전화번호, 이메일 주소 등 연락처를 기재하여 할인/직거래 등을 유도</li>
-								<li>- 비방/욕설/명예훼손, 가격비교정보, 물품과 관련 없는 광고글 등</li>
-								<li>- 다만 상품에 대한 단순 불만, 판매자에게 불리한 내용이라는 이유만으로는 삭제하지 않습니다.</li>
-							</ul>				
-						</li>
-					<!-- 2014-02-21 yjkim : 문구추가 --><li>게시글에 회원님의 이메일, 휴대폰번호와 같은 개인 정보의 입력은 금지되어 있으며, 발생하는 모든 피해에 대해<br> 11번가는 책임지지 않습니다.</li>
-                    </ul>
-                    
-                </div>
             </div>
             <div class="btn_wrap">
                 <input type='hidden' name='com.skt.omp.serviceengine.taglib.TOKEN' value='CVN9UC9CK0SVHZ09MZPPITL4DCVWY9XT' />
@@ -236,9 +254,6 @@
                 <input type="hidden" name="qnaPathLoc" value="">
                 <input type="hidden" name="qnaCd" value="">
                 <input type="hidden" name="callCenterYn" value="">
-                
-                <a href="#this" id="btnSave" class="defbtn_smed dtype4" title="등록"><span>등록</span></a>
-                <a href="#this" id="btnClose" class="defbtn_smed dtype6" title="취소"><span>취소</span></a>
             </div>
         </div>
     </form>

@@ -59,6 +59,9 @@ tr{
 display: table-row;
 }
 
+#rcvr, #rcvrBaseAddr, #rcvrDetailAddr, #phoneNumberSelect, #phoneNumber2, #phoneNumber3, #requireComment {
+height: 40px;
+}
 
 </style>
 </head>
@@ -160,41 +163,45 @@ display: table-row;
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
                              <div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">선택삭제</div>
 							<div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" id="delete_All">전체삭제</div>
-						</div><br><br>
+						</div>
 						
 
             <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
             <div class="select-ship">
-                <a class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#home">기본 배송지</a>
-                <a class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#menu1">최근 배송지</a>
-                <a class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#menu2">새로운 배송지</a>
+                <a class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#home">기본 배송지</a>
+                <span class="float-l">&nbsp;&nbsp;</span>
+                <a class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#menu1">최근 배송지</a>
+                <span class="float-l">&nbsp;&nbsp;</span>
+                <a class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#menu2">새로운 배송지</a>
             </div>
               <div class="tab-content">
-                <div id="home" class="tab-pane fade in active show">
+                <div id="home" class="deliveryAddress" style="width:100%;">
                 <div style="display:block">
                   <table>
+                  <colgroup>
+ 					<col style="width: 110px;">
+                  	<col style="width: 678px;">             
+                  </colgroup>
                   <tbody>
                     <tr>
                       <th>받으시는 분</th>
-                      <td><input type="text"></td>
+                      <td><input type="text" id="rcvr" name="rcvr"></td>
                      </tr>
                      
                      <tr>
                       <th>주소</th>
                       <td>
-                      <address>
-                      <input type="text" id="zipcodeTxt" name="zipcodeTxt" maxlength="6" readonly="" onkeypress="javascript:common.onlyNumberInput(event);" style="ime-mode:disabled;width:70px;" title="우편번호">
-                       <a href="javascript:searchAddr();" onclick="doCommonStat('ORAD002');" id="searchAddrBt" class="defbtn_lsm dtype6" data-log-actionid-label="zip_code_find"><span>주소찾기</span></a><br>
+                      <input type="text" id="postCodeAddr" name="postCodeAddr" maxlength="6" readonly onkeypress="javascript:common.onlyNumberInput(event);" style="ime-mode:disabled;width:70px;" title="우편번호"/>
+                       	<input type="button" class="flex-c-m stext-101 cl2 size-100 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" value="주소찾기" style="display:inline;"/><br>
                         <input type="text" id="rcvrBaseAddr" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" readonly="">
-                        <input type="text" id="rcvrBaseAddr" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" readonly="">
-                      </address>
+                        <input type="text" id="rcvrDetailAddr" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" readonly="">
                       </td>
                      </tr>
                      
                     <tr>
                        <th>휴대전화</th>
-                       <td>
-          <select id="tmprcvrPrtblNo1" name="tmprcvrPrtblNo" title="휴대전화-국번선택" style="width:80px;">
+                       <td>rcvrBaseAddr rcvrDetailAddr phoneNumberSelect phoneNumber2 phoneNumber3, requireComment
+          <select id="phoneNumberSelect" name="phoneNumberSelect" title="휴대전화-국번선택">
             <option value="010">010</option>
             <option value="011">011</option>
             <option value="016">016</option>
@@ -202,16 +209,14 @@ display: table-row;
             <option value="018">018</option>
             <option value="019">019</option>
           </select>&nbsp;-&nbsp;
-          <input type="text" id="tmprcvrPrtblNo2" name="tmprcvrPrtblNo" maxlength="4" onkeypress="javascript:common.onlyNumberInput(event);" style="ime-mode:disabled;width:70px;" title="휴대전화두번째자리" class="">&nbsp;-&nbsp;
-          <input type="text" id="tmprcvrPrtblNo3" name="tmprcvrPrtblNo" maxlength="4" onkeypress="javascript:common.onlyNumberInput(event);" style="ime-mode:disabled;width:70px;" title="휴대전화세번째자리" class="">
-          <input type="hidden" id="safeNumberUseYN" name="safeNumberUseYN" value="N" class="">
-          <span class="safenom_free" id="safenom_free_02"></span>
+          <input type="text" id="phoneNumber2" name="tmprcvrPrtblNo" maxlength="4" onkeypress="javascript:common.onlyNumberInput(event);" title="휴대전화두번째자리" class="">&nbsp;-&nbsp;
+          <input type="text" id="phoneNumber3" name="tmprcvrPrtblNo" maxlength="4" onkeypress="javascript:common.onlyNumberInput(event);" title="휴대전화세번째자리" class="">
         </td>
                      </tr>
                      
                      <tr>
                        <th>배송시 요청사항</th>
-                       <td><input type="text"></td>
+                       <td><input type="text" id="requireComment" name="requireComment"></td>
                      </tr>
                   </tbody>
                   </table>
