@@ -115,7 +115,7 @@
   } );
   </script>
 <style>
-.qnaDtlsCd1, .qnaDtlsCd2, .qnaDtlsCd3, .qnaDtlsCd4, .qnaDtlsCd5 {
+.qnaDtlsCd1, .qnaDtlsCd2, .qnaDtlsCd3, .qnaDtlsCd4, .qnaDtlsCd5, .qnaDtlsCd6, .qnaDtlsCd7 {
 	display: inline; 
 	font-size: 20px;
 }
@@ -126,16 +126,11 @@
 }
 
 .modal {
-        text-align: center;
+    text-align: center;
 }
- 
-@media screen and (min-width: 768px) { 
-        .modal:before {
-                display: inline-block;
-                vertical-align: middle;
-                content: " ";
-                height: 100%;
-        }
+
+.modal-header {
+	padding-left: 110px;
 }
  
 .modal-dialog {
@@ -144,6 +139,55 @@
         vertical-align: middle;
 }
 
+#popLayWrap {
+  top: 30%;
+  margin-top: -100px;
+}
+
+.checkmark{
+    font-size: 16px; 
+  	list-style-type: none;
+  	margin-bottom: 1em; 
+  	padding: 0.25em 0 0 2.5em; 
+  	position: relative;
+}
+
+.checkmark:before {
+	content: " ";
+  	display: block;
+  	border: solid 0.8em green; 
+  	border-radius: .8em; 
+  	height: 0;
+  	width: 0;
+  	position: absolute; 
+  	left: 0.5em;
+  	top: 40%; 
+  	margin-top: -0.5em;
+}
+
+.checkmark:after {
+	
+	content: " ";
+  	display: block;
+  	width: 0.3em; 
+  	height: 0.6em;
+  	border: solid white;
+  	border-width: 0 0.2em 0.2em 0; 
+  	position: absolute;
+  	left: 1em;
+  	top: 40%;
+  	margin-top: -0.2em;
+  	-webkit-transform: rotate(45deg);
+  	-moz-transform: rotate(45deg);
+  	-o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.adminAnswer {
+	font-size: 14px; 
+	color: green; 
+	font-weight:bold;
+}
 </style>
 </head>
 <body class="animsition">
@@ -414,7 +458,7 @@
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 					 				<div class="p-b-30 m-lr-15-sm">
                
-                                          <div class="grade_select zindex">
+               		                        <%--    <div class="grade_select zindex">
                                                     <a class="ui_info_button dn" id="detailViewGrade"> 
                                                                 평점전체
                                                      <span class="arr_icon"></span></a>  
@@ -478,7 +522,7 @@
                                                       </div>
                                                     </div>
                                                   </div>
-                                            
+                                            --%>
                   
                   
 										<!-- Review -->
@@ -583,68 +627,84 @@
                         <div class="tab-pane fade show active" id="qna" role="tabpanel">
                             <div class="prdc_qna">
                             	<div class="bbs_filter">
-                            		<button type="button" id="myQnA" class="float-r flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">내 문의</button>
-                            		<button type="button" id="allQnA" class="float-r flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">전체문의</button>
-                            		<button type="button" id="insertQnA" class="float-r flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" data-toggle="modal" data-target="#popLayWrap">문의하기</button>
-                             	  <select name="selQnaDtlsCd" class="float-l" id="selQnaDtlsCd" style="float:left; height: 40px; font-size: 20px;">
+                            		<button type="button" id="myQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">내 문의</button>
+                            		<button type="button" id="allQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">전체문의</button>
+                            		<button type="button" id="insertQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" data-toggle="modal" data-target="#popLayWrap">문의하기</button>
+                             	  <select name="selQnaDtlsCd" class="float-l" id="selQnaDtlsCd" style="float:left; height: 35px; font-size: 15px;">
                              	  	<option value="" selected="selected">문의유형(전체)</option>
                              	  	<option value="01">상품</option><option value="02">배송</option>
                              	  	<option value="03">반품/취소</option><option value="04">교환/변경</option>
                              	  	<option value="05">기타</option>
                              	  </select>	
                              	  <!-- 동적으로 표시버튼 누르면 바뀌도록 제작 -->
-	                              <button type="button" id="secretQnA" class="float-l flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">비밀글표시</button>
-	                              <button type="button" id="notSecretQnA" class="float-l flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">비밀글제외</button>
+	                              <button type="button" id="secretQnA" class="float-l flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">비밀글표시</button>
+	                              <%-- <button type="button" id="notSecretQnA" class="float-l flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">비밀글제외</button> --%>
                             	</div>
                             
                             <table class="prdc_bbs" summary="이 표는 상품 Q&amp;A 및 내용이 번호,문의유형,문의/답변,작성자,작성일로 구성되어 있습니다.">
-                            	<colgroup><col style="width:85px;"><col style="width:auto"><col style="width:96px;"><col style="width:115px;"></colgroup>
+                            	<colgroup>
+                            		<col width="5%">
+                            		<col width="5%">
+                            		<col width="15%">
+                            		<col width="45%">
+                            		<col width="15%">
+                            		<col width="15%">
+                            		
+                            	</colgroup>
                             	<thead>
                             	<tr>
-                            	<!-- 	<th scope="col">번호</th> -->
-                            		<th scope="col">문의유형</th>
-                            		<th scope="col">문의/답변</th>
-                            		<th scope="col">작성자</th>
-                            		<th scope="col">작성일</th>
+                            		<th scope="col" style="text-align:center;">번호</th>
+                            		<th scope="col" style="text-align:center;">유형</th>
+                            		<th scope="col" style="text-align:center;">답변여부</th>
+                            		<th scope="col">제목</th>
+                            		<th scope="col" style="text-align:center;">작성자</th>
+                            		<th scope="col" style="text-align:center;">작성일</th>
                             	</tr>
                             	</thead>
                             	<tbody>
                             		<tr>
-                            			<td class="td_section">배송</td>
-                            			<td class="txt_view">
-                            			<span class="state">완료</span>
-                            			<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono=""> 언제 오나요? 배송 언제되나요?</a>
-                            		</td>
-                            			<td class="td_write">swe******</td>
-                            			<td class="td_date">2018-11-07 11:38</td>
+                            			<td class="td_num txt-center">1</td>
+                            			<td class="td_section txt-center">배송</td>
+                            			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
+                            			<td>
+                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">언제 오나요? 배송 언제되나요?</a>
+                            			</td>
+                            			<td class="td_write txt-center">swe******</td>
+                            			<td class="td_date txt-center">2018-11-07 11:38</td>
                             		</tr>
-                                  
+                            		<%-- 답변 클릭 시, 보이게 구현 --%>
                             		<tr class="trQna" id="trQnqContDtl2">
-                            			<td colspan="4" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
-                            			<div class="question">
-                            				<span class="ico_question">답변</span>
-                            				  " 답변완료일 시 작성됨 "<br>
-                            			</div>
+                            			<td colspan="6" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
+                            				<div class="question">
+                            					<span class="ico_question">답변</span>
+                            				  	<span class="checkmark"></span>"답변완료일 시 작성됨"<br><br>
+                            				  	<span class="adminAnswer">관리자에 의해 작성 됨</span>&nbsp;|&nbsp;<span style="font-size: 16px; color: green;">2018-11-07 11:38</span>
+                            				</div>
                             			</td>
                             		</tr>
-                                <tr>
-                                  <td class="td_section">배송</td>
-                                  <td class="txt_view">
-                                  <span class="state">미완료</span>
-                                  <a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono=""> 언제 오나요? 배송 언제되나요?</a>
-                                </td>
-                                  <td class="td_write">swe******</td>
-                                  <td class="td_date">2018-11-07 11:38</td>
-                                </tr>
-                                <tr>
-                                  <td class="td_section">배송</td>
-                                  <td class="txt_view">
-                                  <span class="state">미완료</span>
-                                  <a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono=""> 언제 오나요? 배송 언제되나요?</a>
-                                </td>
-                                  <td class="td_write">swe******</td>
-                                  <td class="td_date">2018-11-07 11:38</td>
-                                </tr>
+                            		
+	                                <tr>
+	                                  	<td class="td_num txt-center">2</td>
+                            			<td class="td_section txt-center ">배송</td>
+                            			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
+                            			<td>
+                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">언제 오나요? 배송 언제되나요?</a>
+                            			</td>
+                            			<td class="td_write txt-center">swe******</td>
+                            			<td class="td_date txt-center">2018-11-07 11:38</td>
+                                	</tr>
+                                	
+                                	
+                                	<tr>
+	                                  	<td class="td_num txt-center">3</td>
+                            			<td class="td_section txt-center">상품</td>
+                            			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
+                            			<td>
+                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">쉽지 않네요... 인생...</a>
+                            			</td>
+                            			<td class="td_write txt-center">swe******</td>
+                            			<td class="td_date txt-center">2018-11-07 11:38</td>
+                                	</tr>
                             	</tbody>
                             </table>
                             
@@ -979,28 +1039,11 @@
 		</div>
 	</section>
 	
-	<div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
 	
 	
 	<div id="popLayWrap" class="modal fade" role="dialog">
     <form name="frmMain" method="post">
-		<div class="modal-dialog modal-lg" >	
+		<div class="modal-dialog modal-lg" style="width:690px; height:375px;">	
         	<div class="modal-content">
             <!-- 팝업 내용입력부분 ============================= -->
             	<div class="modal-header">
@@ -1015,30 +1058,32 @@
                         </colgroup>
                         <tbody>
                             <tr>
-                                <th scope="row" class="first alignL"><label for="qnaDtlsCd">문의유형</label></th>
+                                <th scope="row" class="first" style="text-align: center;"><label for="qnaDtlsCd">문의유형</label></th>
                                 <td class="alignL">
                                     <div class="select_wrap">
-                                    	<span for="qnaDtlsCd1" class="qnaDtlsCd1"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd1" value="01">&nbsp;상품</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd2" class="qnaDtlsCd2"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd2" value="02">&nbsp;배송</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd3" class="qnaDtlsCd3"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd3" value="03">&nbsp;반품/취소</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd4" class="qnaDtlsCd4"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd4" value="04">&nbsp;교환/변경</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd5" class="qnaDtlsCd5"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd5" value="05">&nbsp;기타</span>
+                                    	<span for="qnaDtlsCd1" class="qnaDtlsCd1"><input type="radio" name="qnaDtlsCd1" class="qnaDtlsCd1" value="01">&nbsp;상품</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd2" class="qnaDtlsCd2"><input type="radio" name="qnaDtlsCd2" class="qnaDtlsCd2" value="02">&nbsp;배송</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd3" class="qnaDtlsCd3"><input type="radio" name="qnaDtlsCd3" class="qnaDtlsCd3" value="03">&nbsp;반품/취소</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd4" class="qnaDtlsCd4"><input type="radio" name="qnaDtlsCd4" class="qnaDtlsCd4" value="04">&nbsp;교환/변경</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd5" class="qnaDtlsCd5"><input type="radio" name="qnaDtlsCd5" class="qnaDtlsCd5" value="05">&nbsp;기타</span>
                                     </div>
+                                    <br>
                                 </td>
                             </tr>
                         
                       
 	                        <tr>
-	                            <th scope="row" class="first alignL"><label for="brdInfoCont">내용</label></th>
+	                            <th scope="row" class="first" style="text-align: center;"><label for="brdInfoCont">내용</label></th>
 	                            <td class="alignL">
 	                                <textarea name="brdInfoCont" id="brdInfoCont" rows="10" cols="67" placeholder="문의유형을 선택해 주시고,궁금하신 내용을 작성해 주세요."></textarea>
 	                            </td>
 	                        </tr>
 	                        
 	                        <tr>
-	                            <th scope="row" class="myInfoHeader">이메일</th>
+	                            <th scope="row" class="myInfoHeader" style="text-align: center;">이메일</th>
 			                    <td>
 			                    	<div>
+			                    		<br>
 				                    	<input id="email1" name="email1" class="mailId" value="" type="text">&nbsp;@&nbsp;<input id="email2" name="email2" class="mailAddress" readonly="readonly" value="" type="text">
 			                      		<select id="email3" style="vertical-align: middle;">
 					                        <option value="" selected="selected">-
@@ -1054,16 +1099,17 @@
 					                        <option value="gmail.com">gmail.com</option>
 				                        	<option value="etc">직접입력</option>
 			                    		</select><br>
-			                    	<span class="sub_notice" style="font-size: 20px;">답변완료시 등록한 이메일로 알려드립니다.</span><br>
+			                    	<span class="sub_notice" style="font-size: 20px; color:blue;">* 답변완료시 등록한 이메일로 알려드립니다.</span><br>
 			                  	</div>
 			                  	</td>
 	                        </tr>
 	                        
 	                        <tr>
-		                        <td colspan="2" style="text-align: left;">
-			                        <div><br></div>
-									<div class="chk_wrap" id="layerSecretYn">
-										 <span for="secretYn"><input type="checkbox" name="secretYn" id="secretYn" value="Y" class="chk"> 비밀글로 문의하기 </span>
+	                        	<th scope="row" class="myInfoHeader" style="text-align: center;">비밀글 여부</th>
+		                        <td class="alignL">
+                                    <div class="select_wrap">
+                                    	<span for="qnaDtlsCd6" class="qnaDtlsCd6"><input type="radio" name="qnaDtlsCd6" class="qnaDtlsCd6" value="true">&nbsp;사용</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd7" class="qnaDtlsCd7"><input type="radio" name="qnaDtlsCd7" class="qnaDtlsCd7" value="false">&nbsp;미사용</span>&nbsp;&nbsp;
 									</div>
 	                			</td>
                 			</tr>
@@ -1071,12 +1117,10 @@
 	                	</table>            
                 </div>
                 <div class="modal-footer" style="align-items:center;">
-                  	<input type="submit" id="addQnA" class="float-l flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" value="작성" style="border:none; display:inline; text-align:center;">
-       				<button type="button" id="cancelQnA" class="float-l flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" style="border:none; display:inline;" data-dismiss="modal">취소</button>
+                  	<input type="submit" id="addQnA" class="flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" value="작성" style="border:none; display:inline; text-align:center;">
+       				<button type="button" id="cancelQnA" class="flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" style="border:none; display:inline;" data-dismiss="modal">취소</button>
                 </div>
                 
-            	<div class="btn_wrap">
-            	</div>
                </div> 
             </div>
     </form>
