@@ -27,7 +27,7 @@ public class ProductController implements Controller {
 			XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 			productService = (ProductService)factory.getBean(ProductServiceImpl.class);
 			
-			mav.setView("/product/product.html");
+			mav.setView("/product/product.jsp");
 			
 			return mav;
 		}

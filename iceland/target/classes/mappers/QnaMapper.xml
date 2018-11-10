@@ -197,16 +197,9 @@
 		sql += "                ORDER BY regdate DESC)) \r\n" +
 				   "WHERE  	request_page = ?"; -->
 
-
-<<<<<<< HEAD
-<!-- 해당 제품의 모든 문의사항 출력  -->
-	<select id="selectAllQna" parameterType="Map" resultMap="Qna">
-<!-- 		SELECT qna.qna_type_num,
-=======
 	<!-- 해당 제품의 모든 문의사항 출력  -->
 	<select id="selectAllQna" parameterType="int" resultMap="Qna">
 		SELECT qna.qna_type_num,
->>>>>>> c64d298fb439076717fc2664aaf723dc41b4d351
 		           qna.qna_isAnswered,
 		           qna.qna_title,
 		           qna.qna_content,

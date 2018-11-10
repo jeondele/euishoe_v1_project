@@ -22,7 +22,7 @@ public class OrderController implements Controller {
 		
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		
-		mav.setView("/order/shopping-cart.html");
+		mav.setView("/order/shopping-cart.jsp");
 		
 		return mav;
 	}
