@@ -127,8 +127,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body class="animsition">
-    <input type="hidden" value="${loginCookie.name}">
-    <input type="hidden" value="${loginCookie.name}">
+    <input type="hidden" value="${carts}">
+    <input type="hidden" value="${wishes}">
     
 	<%@include file="../../includes/header.jsp"%>
 

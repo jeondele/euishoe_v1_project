@@ -3,6 +3,10 @@ package com.euishoe.customers.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.customers.dto.Customer;
 
 /**
@@ -24,4 +28,7 @@ public interface CustomerService {
 	
 	// 위시리스트 가져오기
 	public List<HashMap<String, Object>> listWish(String customerId);
+	
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response, ModelAndView mav,
+			Customer customer, String rememberCustomerId);
 }
