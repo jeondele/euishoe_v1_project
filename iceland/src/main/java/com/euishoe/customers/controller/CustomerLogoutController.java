@@ -53,7 +53,7 @@ public class CustomerLogoutController implements Controller {
 		    	
 		    }*/
 		} 
-		mav.setView("redirect:/iceland/index.jsp");
+		mav.setView("redirect:/iceland/home.es");
 		return mav;
 	}
 

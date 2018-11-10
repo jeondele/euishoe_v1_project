@@ -36,7 +36,7 @@
 								</a>
 							</c:when>
 							<c:otherwise>
-								<a href="/iceland/customer/login/login.jsp" class="flex-c-m trans-04 p-lr-25">
+								<a href="/iceland/customer/login.es" class="flex-c-m trans-04 p-lr-25">
 									로그인
 								</a>
 								<a href="/iceland/customer/regist.es" class="flex-c-m trans-04 p-lr-25">
@@ -59,7 +59,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="/iceland/index.jsp" class="logo">
+					<a href="/iceland/home.es" class="logo">
 						<img src="/iceland/images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
@@ -67,15 +67,15 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
-								<a href="../index.jsp">Home</a>
+								<a href="/iceland/home.es">Home</a>
 							</li>
 
 							<li>
-								<a href="/iceland/product/product.jsp">Shop</a>
+								<a href="/iceland/product.es">Shop</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="/iceland/order/shopping-cart.jsp">Features</a>
+								<a href="/iceland/order.es">Features</a>
 							</li>
 
 							<li>
