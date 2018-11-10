@@ -166,7 +166,7 @@
 	<%@include file="../../includes/header.jsp"%>
 
 	<%@include file="../../includes/cart.jsp"%>
-
+	<%@include file="../../includes/favorite.jsp"%>
 	<%@include file="../../includes/slider.jsp"%>
     <input type="hidden" id="cart" value='${carts.value}'>
     <input type="hidden" id="wish" value='${wishes.value}'>

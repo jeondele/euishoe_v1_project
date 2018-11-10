@@ -238,7 +238,17 @@
         }    
     });
 
+    
+    
+    /*==================================================================
+    [ Favorite ]*/
+    $('.js-show-favorite').on('click',function(){
+        $('.js-panel-favorite').addClass('show-header-cart');
+    });
 
+    $('.js-hide-favorite').on('click',function(){
+        $('.js-panel-favorite').removeClass('show-header-cart');
+    });
 
 
     /*==================================================================

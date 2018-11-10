@@ -66,7 +66,7 @@ tr {
 	<%@include file="/iceland/../includes/header.jsp"%>
 
 	<%@include file="/iceland/../includes/cart.jsp"%>
-
+	<%@include file="/iceland/../includes/favorite.jsp"%>
 
 	<!-- breadcrumb -->
 	<div class="container">

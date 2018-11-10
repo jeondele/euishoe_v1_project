@@ -1,15 +1,15 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 	<!-- Cart -->
-	<div class="wrap-header-cart js-panel-cart">
-		<div class="s-full js-hide-cart"></div>
+	<div class="wrap-header-cart js-panel-favorite">
+		<div class="s-full js-hide-favorite"></div>
 
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
-					<strong>나의 장바구니</strong>
+					<strong>나의 찜목록</strong>
 				</span>
 
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-favorite">
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>

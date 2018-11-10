@@ -64,7 +64,7 @@
  <%@include file="includes/header.jsp"%>
 
 <%@include file="includes/cart.jsp"%>
-
+<%@include file="includes/favorite.jsp"%>
 <%@include file="includes/slider.jsp"%>
 <%-- <%List<ProductInfo> list = (List<ProductInfo>)getServletContext().getAttribute("wishlists");
   System.out.println(list);

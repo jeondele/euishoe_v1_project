@@ -32,10 +32,10 @@ public class HomeController extends HttpServlet implements Controller  {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		System.out.println("언제들어오냥???:::homecontroller");
 		ModelAndView mav = new ModelAndView();
 		List<ProductInfo> list = null;
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
+		
 		////////////////wish test by si////////////////////////////
 		wishlistService = (WishlistService)factory.getBean(WishlistServiceImpl.class);
 		try {
