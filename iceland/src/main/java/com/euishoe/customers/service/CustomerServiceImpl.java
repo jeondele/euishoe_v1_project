@@ -6,11 +6,18 @@ package com.euishoe.customers.service;
  *
  */
 
+import java.util.HashMap;
+import java.util.List;
+
+import com.euishoe.carts.dao.CartDao;
 import com.euishoe.customers.dao.CustomerDao;
 import com.euishoe.customers.dto.Customer;
+import com.euishoe.wishlists.dao.WishlistDao;
 
 public class CustomerServiceImpl implements CustomerService {
 	private CustomerDao customerDao;
+	private CartDao cartDao;
+	private WishlistDao wishlistDao;
 
 	public CustomerDao getCustomerDao() {
 		return customerDao;
@@ -18,6 +25,22 @@ public class CustomerServiceImpl implements CustomerService {
 
 	public void setCustomerDao(CustomerDao customerDao) {
 		this.customerDao = customerDao;
+	}
+
+	public CartDao getCartDao() {
+		return cartDao;
+	}
+
+	public void setCartDao(CartDao cartDao) {
+		this.cartDao = cartDao;
+	}
+
+	public WishlistDao getWishlistDao() {
+		return wishlistDao;
+	}
+
+	public void setWishlistDao(WishlistDao wishlistDao) {
+		this.wishlistDao = wishlistDao;
 	}
 
 	// 로그인 인증
@@ -33,4 +56,15 @@ public class CustomerServiceImpl implements CustomerService {
 		return;
 	}
 	
+	// 장바구니 가져오기
+	@Override
+	public List<HashMap<String, Object>> listCartForLogin(String customerId){
+		return cartDao.listCartForLogin(customerId);
+	}
+	
+	// 위시리스트 가져오기
+	@Override
+	public List<HashMap<String, Object>> listWish(String customerId){
+		return wishlistDao.listWishesForLogin(customerId);
+	}
 }

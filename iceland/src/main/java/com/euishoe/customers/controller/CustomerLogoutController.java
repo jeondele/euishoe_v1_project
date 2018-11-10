@@ -32,9 +32,18 @@ public class CustomerLogoutController implements Controller {
 		  	    cookie.setMaxAge(0);
 		  	    cookie.setPath("/iceland/");
 		  	    response.addCookie(cookie);
-		  	    mav.addObject("loginCookie", cookie);
-		  	    
-		    } 
+		  	    mav.addObject("loginCookie", cookie);   
+		    }else if(cookie.getName().equals("carts")) {
+		    	cookie.setMaxAge(0);
+		    	cookie.setPath("/iceland/");
+		    	response.addCookie(cookie);
+		    	mav.addObject("carts", cookie);
+		    }else if(cookie.getName().equals("wishes")) {
+		    	cookie.setMaxAge(0);
+		    	cookie.setPath("/iceland/");
+		    	response.addCookie(cookie);
+		  	    mav.addObject("wishes", cookie);   
+		    }
 		  /*  
 		    if(cookie.getName().equals("idRemember")) {
 		    	cookie.setMaxAge(60 * 60 * 24 * 1000);

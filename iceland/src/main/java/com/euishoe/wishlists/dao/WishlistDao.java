@@ -1,6 +1,9 @@
 package com.euishoe.wishlists.dao;
 
+import java.util.HashMap;
 import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
 
 import com.euishoe.products.dto.ProductInfo;
 
@@ -22,4 +25,7 @@ public interface WishlistDao {
 	
 	//해당 상품번호를 , 해당 회원의 위시리스트에서  삭제하는 메소드
 	public boolean deleteWishlist(String customerId, int productNum) throws Exception;
+	
+	// 회원의 위시리스트를 가져오는 메소드
+	public List<HashMap<String, Object>> listWishesForLogin(String customer_id);
 }
