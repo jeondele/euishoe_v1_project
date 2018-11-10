@@ -17,6 +17,7 @@
         from carts
 	</select>
 	
+	
 	<insert id="createCart" parameterType="com.euishoe.carts.dto.Cart">
 		INSERT INTO CARTS(CART_NUM,PRODUCT_CODE,CUSTOMER_ID) VALUES(#{cartNum},#{productCode},#{customerId})
 	</insert>
@@ -24,6 +25,7 @@
 		DELETE FROM CARTS WHERE cart_num = #{cartNum}
 	</delete>
 	
+	<!-- 장바구니에 들어있는지 확인하고, 장바구니 수량 수정  -->
 	<update id="updateCart">
 		UPDATE CARTS SET
 	</update>

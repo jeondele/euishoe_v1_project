@@ -134,7 +134,7 @@
 	</resultMap>
 	
 
-<!-- 해당 제품의 모든 문의사항 출력  -->
+	<!-- 해당 제품의 모든 문의사항 출력  -->
 	<select id="selectAllQna" parameterType="int" resultMap="Qna">
 		SELECT qna.qna_type_num,
 		           qna.qna_isAnswered,
