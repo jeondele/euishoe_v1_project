@@ -2,7 +2,17 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tt" uri="/WEB-INF/tlds/fordecode.tld"%> 
-<script> 
+<script>
+
+/*
+ * 쿠키 세팅,가져오기
+ */
+var setCookie = function(name, value, exp) {
+	  var date = new Date();
+	  date.setTime(date.getTime() + exp*24*60*60*1000);
+	  document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/iceland/';
+	};
+
 var getCookie = function(name) {
 	  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
 	  return value? value[2] : null;
