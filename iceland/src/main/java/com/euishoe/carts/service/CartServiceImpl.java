@@ -23,8 +23,5 @@ public class CartServiceImpl implements CartService {
 		this.cartDao = cartDao;
 	}
 	
-	// 장바구니 리스트 던져주기
-	public List<HashMap<String, Object>> listCart(){
-		return cartDao.listCart();
-	}
+	
 }

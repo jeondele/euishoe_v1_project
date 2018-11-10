@@ -27,7 +27,7 @@
 	<update id="updateCart">
 		UPDATE CARTS SET
 	</update>
-	<select id="listAll" resultType="map">
+	<select id="listCartForLogin" resultType="map" parameterType="String">
       	 SELECT c.*,
       	 		p.*,
       	 		pi.*,
@@ -38,5 +38,6 @@
                       ON p.product_num = pi.product_num
                 INNER JOIN images i
                 	  ON i.product_num = pi.product_num
+         WHERE CUSTOMER_ID LIKE #{customerId}
    </select>
 </mapper>

@@ -30,6 +30,13 @@ public class MybatisCartDao implements CartDao {
 		List<HashMap<String,Object>> list = sqlSession.selectList(NAMESPACE + "listAll");
 		return list;
 	}
+	
+	@Override
+	public List<HashMap<String, Object>> listCartForLogin(String customer_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<HashMap<String,Object>> list = sqlSession.selectList(NAMESPACE + "listCartForLogin", customer_id);
+		return list;
+	}
 
 	@Override
 	public void createCart(String cartNum, String productCode, String customerId) {

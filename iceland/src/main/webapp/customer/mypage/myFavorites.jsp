@@ -116,9 +116,20 @@
 }
 
 </style>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	$($('tbody')[0]).append('<tr class="table_row"> </tr>');
+});
+
+
+</script>
 </head>
 <body class="animsition">
-
+    <input type="hidden" value="${loginCookie.name}">
+    <input type="hidden" value="${loginCookie.name}">
+    
 	<%@include file="../../includes/header.jsp"%>
 
 	<%@include file="../../includes/cart.jsp"%>

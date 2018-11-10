@@ -21,6 +21,15 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
+	<!-- wishlist 맵핑 -->
+	<bean type="dao" name="wishlistDao" class="com.euishoe.wishlists.dao.MybatisWishlistDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="wishlistService" class="com.euishoe.wishlists.service.WishlistServiceImpl">
+		<property name="wishlistDao" ref="wishlistDao"/>
+	</bean>
+	
 	<bean type="service" name="cartService" class="com.euishoe.carts.service.CartServiceImpl">
 		<property name="cartDao" ref="cartDao"/>
 	</bean>
@@ -32,6 +41,8 @@
 	
 	<bean type="service" name="customerService" class="com.euishoe.customers.service.CustomerServiceImpl">
 		<property name="customerDao" ref="customerDao"/>
+		<property name="cartDao" ref="cartDao"/>
+		<property name="wishlistDao" ref="wishlistDao"/>
 	</bean>
 	
 	<!-- noncustomer 맵핑 -->
@@ -106,14 +117,7 @@
 		<property name="deliveryDao" ref="deliveryDao"/>
 	</bean>
 	
-	<!-- wishlist 맵핑 -->
-	<bean type="dao" name="wishlistDao" class="com.euishoe.wishlists.dao.MybatisWishlistDao">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
-	
-	<bean type="service" name="wishlistService" class="com.euishoe.wishlists.service.WishlistServiceImpl">
-		<property name="wishlistDao" ref="wishlistDao"/>
-	</bean>
+
 	
 	<!-- qna 맵핑 -->
 	<bean type="dao" name="qnaDao" class="com.euishoe.qnas.dao.MybatisQnaDao">

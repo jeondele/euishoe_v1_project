@@ -1,5 +1,8 @@
 package com.euishoe.customers.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.euishoe.customers.dto.Customer;
 
 /**
@@ -15,4 +18,10 @@ public interface CustomerService {
 	
 	// 회원 가입 
 	public void create(Customer customer) throws Exception;
+	
+	// 장바구니 가져오기
+	public List<HashMap<String, Object>> listCartForLogin(String customerId);
+	
+	// 위시리스트 가져오기
+	public List<HashMap<String, Object>> listWish(String customerId);
 }
