@@ -15,7 +15,7 @@ import com.euishoe.customers.service.CustomerServiceImpl;
  * @author 김기정
  *
  */
-public class CustomerPageController implements Controller {
+public class CustomerPurchaseController implements Controller {
 	
 	CustomerService customerService;
 	
@@ -27,7 +27,7 @@ public class CustomerPageController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		customerService = (CustomerService)factory.getBean(CustomerServiceImpl.class);
 		
-		mav.setView("/customer/mypage/myPage.jsp");
+		mav.setView("/customer/mypage/myPurchase.jsp");
 		
 		return mav;
 	}

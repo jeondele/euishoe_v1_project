@@ -18,7 +18,12 @@
 	<bean type="controller" name="/customer/login" class="com.euishoe.customers.controller.CustomerLoginController" />
 	<bean type="controller" name="/customer/logout" class="com.euishoe.customers.controller.CustomerLogoutController" />
 	<bean type="controller" name="/customer/mypage" class="com.euishoe.customers.controller.CustomerPageController" />
-	<bean type="controller" name="/customer/regist" class="com.euishoe.customers.controller.CustomerRegistController" />
+	<bean type="controller" name="/customer/mypage/mypurchase" class="com.euishoe.customers.controller.CustomerPurchaseController" />
+	<bean type="controller" name="/customer/mypage/mypoint" class="com.euishoe.customers.controller.CustomerPointController" />
+	<bean type="controller" name="/customer/mypage/myqna" class="com.euishoe.customers.controller.CustomerQnaController" />
+	<bean type="controller" name="/customer/mypage/mycart" class="com.euishoe.customers.controller.CustomerCartController" />
+	<bean type="controller" name="/customer/mypage/myfavorites" class="com.euishoe.customers.controller.CustomerFavoriteController" />
+	<bean type="controller" name="/customer/mypage/myinfo" class="com.euishoe.customers.controller.CustomerInfoController" />
 	<bean type="controller" name="/customer/findme" class="com.euishoe.customers.controller.CustomerFindmeController" />
 	<bean type="controller" name="/customer/emailCertify" class="com.euishoe.customers.controller.CustomerEmailCertifyController" />
 	

@@ -45,7 +45,7 @@
 							</c:otherwise>
 						</c:choose>	
 
-						<a href="/iceland/customer/mypage/mypage.jsp" class="flex-c-m trans-04 p-lr-25">
+						<a href="/iceland/customer/mypage.es" class="flex-c-m trans-04 p-lr-25">
 							MyPage
 						</a>
 						<a href="/iceland/customer/customizing/customizing.jsp" class="flex-c-m trans-04 p-lr-25">
