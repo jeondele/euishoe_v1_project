@@ -317,6 +317,27 @@ $(document).ready(function(){
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
+    <script type="text/javascript">
+    
+	// json 객체로 cart 가져오기
+	/*
+	var myCart = eval('(' + $('#cart').val() + ')');
+	var myWish = eval('(' + $('#wish').val() + ')');
+	*/
+	
+    // row 뿌리기
+    var str = "";
+	str += '<tr class="table_row"><td class="column-1"><div class="how-itemcart1">';
+	str += ' <img src="/iceland/images/item-cart-04.jpg" alt="IMG"></div></td>';
+	str += ' <td class="column-2">Fresh Strawberries</td><td class="column-3">3600</td>';
+	str += ' <td class="column-4"> 나이키아디다스아스파라거스 </td>';
+	str += ' <td class="column-5"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">';
+	str += ' <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">';
+	str += ' <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">';
+	str += ' </a></td></tr>';
+	
+	$('tbody').append(str);
+    </script>
 
 </body>
 </html>
