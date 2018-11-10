@@ -1,5 +1,6 @@
 package com.euishoe.points.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.euishoe.points.dto.PointHistory;
@@ -16,6 +17,6 @@ public interface PointService {
 		public void create(String customerId) throws Exception;
 		
 		//회원별 포인트 지급내역
-		public List<PointHistory> CustomerPointList(String customerId) throws Exception;
+		public List<HashMap<String, Object>> CustomerPointList(String customerId) throws Exception;
 	
 }

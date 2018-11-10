@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@page import="java.util.List"%>
+<%@page import="com.euishoe.reviews.dto.Review"%>
+<%@page import="com.euishoe.qnas.dto.Qna"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,9 +77,7 @@
       
       /*
       	박호준
-      	
       	리뷰 클릭하면 답변 보기
-      	
       */
       function showAnswer(tag) {
         	if(tag.style.display == 'none'){
@@ -196,6 +197,15 @@
 
 <%@include file="/iceland/../includes/cart.jsp"%>	
 <%@include file="/iceland/../includes/favorite.jsp"%>
+
+<%
+List<Review> reviewlist =(List<Review>)getServletContext().getAttribute("ReviewList");
+List<Qna> qnalist = (List<Qna>)getServletContext().getAttribute("QnaList");
+ 
+ System.out.println("1." + reviewlist);
+ System.out.println("2." + qnalist);
+%> 
+
 
 	<!-- breadcrumb -->
 	<div class="container">

@@ -36,7 +36,7 @@ public class ReviewListController implements Controller {
 		reviewService = (ReviewService)factory.getBean(ReviewServiceImpl.class);
 		int productNum = (int) request.getAttribute("productNum");
 		List<Review> list = null;
-		params = null;
+		params = new Params(5, 5, 5, null, null);
 		try {
 			list = reviewService.listAll(productNum, params);
 		} catch (Exception e) {

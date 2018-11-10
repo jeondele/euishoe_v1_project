@@ -1,6 +1,8 @@
 package com.euishoe.points.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -30,12 +32,13 @@ public class MybatisPointDao implements PointDao {
 	}
 
 	@Override
-	public List<PointHistory> CustomerPointList(String customerId) throws Exception {
+	public List<HashMap<String, Object>> CustomerPointList(String customerId) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<PointHistory> list = sqlSession.selectList(NAMESPACE + "selectPointHistoryById", customerId);
-		sqlSession.close();
+		List<HashMap<String, Object>> list = sqlSession.selectList(NAMESPACE + "selectPointHistoryById", customerId);
 		return list;
 	}
+
+
 }
 
 

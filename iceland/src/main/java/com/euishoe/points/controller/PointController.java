@@ -1,5 +1,6 @@
 package com.euishoe.points.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -30,14 +31,14 @@ public class PointController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		pointService = (PointService)factory.getBean(PointServiceImpl.class);
 		
-
-
-		List<PointHistory> list = null;
+		List<HashMap<String, Object>> list = null;
 		Cookie[] cookies = request.getCookies();
 		try {
 			for(Cookie cookie : cookies){
 			    if(cookie.getName().equals("loginId")) {
+			    	System.out.println("1: " + cookie.getValue());
 					list = pointService.CustomerPointList(cookie.getValue());
+					System.out.println("2: " + list.toString());
 			    }
 			} 
 		} catch (Exception e) {

@@ -1,4 +1,7 @@
+<%@page import="com.euishoe.points.dto.PointHistory"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -147,6 +150,9 @@ th {
 	<%@include file="../../includes/favorite.jsp"%>
 	<%@include file="../../includes/slider.jsp"%>
 
+<%List<PointHistory> list = (List<PointHistory>)getServletContext().getAttribute("pointHistoryList");
+  System.out.println(list);%>
+
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
 			<div class="m-l--200 row">
@@ -162,6 +168,7 @@ th {
 									<th class="column-3"></th>
 									<th class="column-4"></th>
 								</tr>
+								
 								<tr class="table_head">
 									<th class="column-1"></th>
 									<th class="column-2">포인트 상세</th>
@@ -169,13 +176,26 @@ th {
 									<th class="column-4">전체 포인트</th>
 									<th class="column-5">적용일자</th>
 								</tr>
-								<tr class="table_row">
-									<td class="column-1 txt-center"><img src="<%= application.getContextPath() %>/images/pointPlus.PNG" alt="적립"/></td>
-									<td class="column-2 txt-center">가입 축하 포인트</td>
-									<td class="column-3 txt-center">+2000</td>
-									<td class="column-4 txt-center">3000</td>
-									<td class="column-5 txt-center">2018.09.01</td>
-								</tr>
+							
+								  <c:choose>
+								    <c:when test="${not empty pointHistoryList}">
+								      <c:forEach var="point" items="${list}">
+									<tr class="table_row">
+										<td class="column-1 txt-center"><img src="<%= application.getContextPath() %>/images/pointPlus.PNG" alt="적립"/></td>
+										<td class="column-2 txt-center">가입 축하 포인트</td>
+										<td class="column-3 txt-center">${point.pointHistoryScore}</td>
+										<td class="column-4 txt-center">${point.pointHistoryScore}</td>
+										<td class="column-5 txt-center">${point.pointHistoryUpdateDate}</td>
+									</tr>
+								    </c:forEach>
+								    </c:when>
+								    <c:otherwise>
+								      <tr>
+								        <td colspan="5">회원이 존재하지 않습니다.</td>
+								      </tr>
+								    </c:otherwise>
+								  </c:choose>
+								
 								<tr class="table_row">
 									<td class="column-1 txt-center"><img src="<%= application.getContextPath() %>/images/pointMinus.PNG" alt="사용"/></td>
 									<td class="column-2 txt-center">포인트 사용</td>
@@ -183,10 +203,6 @@ th {
 									<td class="column-4 txt-center">1000</td>
 									<td class="column-5 txt-center">2018.09.01</td>
 								</tr>
-								
-								
-
-
 											</tbody>
 										</table>
 									</div>
@@ -195,8 +211,6 @@ th {
 								<div id="menu1" class="tab-pane fade"></div>
 
 								<div id="menu2" class="tab-pane fade"></div>
-
-
 							</div>
 						</div>
 
