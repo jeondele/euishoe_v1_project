@@ -68,8 +68,7 @@ height: 40px;
 <body class="animsition">
   <%@include file="/iceland/../includes/header.jsp"%>
   <%@include file="/iceland/../includes/cart.jsp"%>
-
-
+  <%@include file="/iceland/../includes/favorite.jsp"%>
   <!-- breadcrumb -->
   <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">

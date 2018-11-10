@@ -144,7 +144,7 @@ th {
 	<%@include file="../../includes/header.jsp"%>
 
 	<%@include file="../../includes/cart.jsp"%>
-
+	<%@include file="../../includes/favorite.jsp"%>
 	<%@include file="../../includes/slider.jsp"%>
 
 	<div class="bg0 m-t-23 p-b-140">
