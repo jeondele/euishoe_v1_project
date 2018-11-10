@@ -452,10 +452,10 @@
 	sumUp();
 	
 	// json 객체로 cart 가져오기
-	/*
+	if($('#cart') && $('#wish')){
 	var myCart = eval('(' + $('#cart').val() + ')');
-	var myWish = eval('(' + $('#wish').val() + ')');
-	*/
+	var myWish = eval('(' + $('#wish').val() + ')');		
+	}
 	
 	// row 뿌리기
 	var str = "";

@@ -35,12 +35,6 @@ public class CartController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		cartService = (CartService)factory.getBean(CartServiceImpl.class);
 		
-		
-		
-		
-
-
-		
 		return mav;
 	}
 }

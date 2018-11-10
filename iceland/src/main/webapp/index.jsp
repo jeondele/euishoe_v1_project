@@ -477,7 +477,24 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
-
+    <script type="text/javascript">
+    function replaceAll(str, searchStr, replaceStr) {
+    	  return str.split(searchStr).join(replaceStr);
+    	}
+    
+    // 쿠키의 문자열을 수정
+    function jsonDecode(str){
+    	return replaceAll(replaceAll(decodeURI(str),'%3A',':'),'%2C',',');
+    }
+    
+    function makeJson(str){
+	    return eval('(' + str + ')');
+    }
+    
+    function decodeMakeJson(str){
+    	return makeJson(jsonDecode(str));
+    }
+    </script>
 </body>
 <script type="text/javascript">
 /* if () {

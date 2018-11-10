@@ -123,7 +123,7 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		// 쿠키 생성
-		Cookie cartCookie = new Cookie("carts", gson.toJson(hashmapCart));
+		Cookie cartCookie = new Cookie("carts", gson.toJson(json));
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
@@ -161,7 +161,7 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		// 쿠키 생성
-		Cookie wishCookie = new Cookie("wishes", gson.toJson(hashmapWish));
+		Cookie wishCookie = new Cookie("wishes", gson.toJson(json));
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
