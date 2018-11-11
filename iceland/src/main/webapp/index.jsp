@@ -337,6 +337,7 @@
 					break;
 				};
 		    }
+		    
 		    for ( var i in myList) {
 				if((myList[i]['productNum']==$('#productNum').val())&&(myList[i]['imageRef'].match('main'))) {
 					var appendString = appendPic(myList[i]['imageRef']);

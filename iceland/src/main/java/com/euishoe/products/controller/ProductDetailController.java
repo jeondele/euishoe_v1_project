@@ -58,8 +58,7 @@ public class ProductDetailController implements Controller {
 		}
 		mav.addObject("ReviewList", reviewlist);
 		mav.addObject("QnaList", qnalist);
-		mav.setView("product-detail.es");
-		System.out.println("222222222222222222");
+		mav.setView("/product/details/product-detail.jsp");
 		return mav;
 	}
 }
