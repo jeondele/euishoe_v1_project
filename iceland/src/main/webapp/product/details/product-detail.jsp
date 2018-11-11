@@ -2,7 +2,6 @@
 <%@page import="java.util.List"%>
 <%@page import="com.euishoe.reviews.dto.Review"%>
 <%@page import="com.euishoe.qnas.dto.Qna"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,6 +62,74 @@
 <link rel="stylesheet" type="text/css" href="product_detail.css">
 <!--===============================================================================================-->
 
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <!-- toggle  -->
+  <script>
+  $( function() {
+
+    // run the currently selected effect
+    function runRankpoint() {
+      var selectedEffect = $( "#effectTypes" ).val();
+      var options = {};
+      $("#info_content" ).toggle( selectedEffect, options, 500 );
+    };
+
+    
+    function showReview() {
+        var selectedEffect = $( "#effectTypes" ).val();
+        var options = {};
+        $("#dvQnqContDtl1" ).toggle(selectedEffect, options, 500);
+      };
+    
+      function writeReview() {
+          var selectedEffect = $( "#effectTypes" ).val();
+          var options = {};
+          $("#dvQnqContDtl0" ).toggle( selectedEffect, options, 500 );
+        };
+      
+      /*
+      	박호준
+      	리뷰 클릭하면 답변 보기
+      */
+      function showAnswer(tag) {
+        	if(tag.style.display == 'none'){
+        		tag.style.display = 'table-cell';
+        	}else{
+        		tag.style.display = 'none';
+        	}
+          };
+          
+    
+    // Set effect from select menu value
+    $( "#detailViewGrade" ).on( "click", function() {
+      runRankpoint();
+    });
+    
+    
+    $( "#admin_Answer" ).on( "click", function() {
+    	showReview();
+      });
+    
+    $( "#write_Answer" ).on( "click", function() {
+    	writeReview();
+      });
+    
+    /*
+    	박호준
+    	
+    	리뷰 클릭하면 답변 보기
+    */
+    $(".txt_ellipsis" ).on( "click", function(e) {
+    	if($($($(this.parentElement.parentElement).next()[0]).children()[0]).hasClass('qna_expand')){
+    	showAnswer($($(this.parentElement.parentElement).next()[0]).children()[0]);
+    	}
+      });
+    
+  } );
+  </script>
+=======
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- toggle  -->
@@ -136,6 +203,7 @@
 
 	});
 </script>
+>>>>>>> bce099a4e75114d4d8c3ca96fd2369f5aebbc872
 <style>
 .qnaDtlsCd1, .qnaDtlsCd2, .qnaDtlsCd3, .qnaDtlsCd4, .qnaDtlsCd5,
 	.qnaDtlsCd6, .qnaDtlsCd7 {
@@ -598,6 +666,97 @@
 													</div>
 												</div>
 
+<<<<<<< HEAD
+											<span class="stext-102 cl6 size-206">
+												XL, L, M, S
+											</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- 상품 정보 끝 설명 -->
+
+						<!-- - -->
+						<div class="tab-pane fade" id="reviews" role="tabpanel">
+							<div class="row">
+								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+					 				<%-- <div class="p-b-30 m-lr-15-sm">
+               
+               		                            <div class="grade_select zindex">
+                                                    <a class="ui_info_button dn" id="detailViewGrade"> 
+														평점전체<span class="arr_icon"></span></a>  
+                                                    <div class="grade_lay ui_info_content" id="info_content" style="display: none;">
+                                                      <div class="lay_nw_def" style="display:block;position:relative;">
+                                                        <h3 class="lay_tit">평점 선택</h3>
+                                                        <div class="grade_wrap">
+                                                          <ul class="">
+                                                            <li>
+                                                            <input type="radio" value="0" name="pntValue" id="star" checked="">
+                                                            <label for="star" class="all">평점전체</label>
+                                                            </li>
+                                                            
+                                                            <li>
+                                                              <input type="radio" value="5" name="pntValue" id="star05">
+                                                              <label for="star05">
+                                                                <div class="selr_wrap">
+                                                                  <span class="num">5점</span>
+                                                                  <span class="graph_bar"><em class="gh_bar5" style="width:64%;"><span>64%</span></em></span>
+                                                                </div>
+                                                              </label>
+                                                            </li>
+                                                            <li>
+                                                              <input type="radio" value="4" name="pntValue" id="star04">
+                                                              <label for="star04">
+                                                                <div class="selr_wrap">
+                                                                  <span class="num">4점</span>
+                                                                  <span class="graph_bar"><em style="width:26%;"><span>26%</span></em></span>
+                                                                </div>
+                                                              </label>
+                                                            </li>
+                                                            <li>
+                                                              <input type="radio" value="3" name="pntValue" id="star03">
+                                                              <label for="star03">
+                                                                <div class="selr_wrap">
+                                                                  <span class="num">3점</span>
+                                                                  <span class="graph_bar"><em style="width:8%;"><span>8%</span></em></span>
+                                                                </div>
+                                                              </label>
+                                                            </li>
+                                                            <li>
+                                                              <input type="radio" value="2" name="pntValue" id="star02">
+                                                              <label for="star02">
+                                                                <div class="selr_wrap">
+                                                                  <span class="num">2점</span>
+                                                                  <span class="graph_bar"><em style="width:1%;"><span>1%</span></em></span>
+                                                                </div>
+                                                              </label>
+                                                            </li>
+                                                            <li>
+                                                              <input type="radio" value="1" name="pntValue" id="star01">
+                                                              <label for="star01">
+                                                                <div class="selr_wrap">
+                                                                  <span class="num">1점</span>
+                                                                  <span class="graph_bar"><em style="width:1%;"><span>1%</span></em></span>
+                                                                </div>
+                                                              </label>
+                                                            </li>
+                                                          </ul>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                           
+										<!-- Review -->
+								  <c:choose>
+								    <c:when test="${not empty ReviewList}">
+								      <c:forEach var="review" items="${ReviewList}">
+										<div class="flex-w flex-t p-b-68">
+										
+											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+												<img src="/iceland/images/avatar-01.jpg" alt="AVATAR">
+=======
+>>>>>>> bce099a4e75114d4d8c3ca96fd2369f5aebbc872
 											</div>
 
 											<span class="mtext-107 cl2 p-r-20"><a
@@ -903,6 +1062,11 @@
 													data-pagenum="&gt;&gt;" data-keyno="20181107094625">&gt;&gt;</a>
 												</span>
 											</div>
+<<<<<<< HEAD
+										</form>
+									</div> --%>
+=======
+>>>>>>> bce099a4e75114d4d8c3ca96fd2369f5aebbc872
 
 											<form name="pageForm"
 												action="/product/SellerProductDetail.tmall" method="get">
@@ -938,6 +1102,21 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
+		</div>
+		</div>
+
+		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
+			<span class="stext-107 cl6 p-lr-25">
+				SKU: JAK-01
+			</span>
+
+			<span class="stext-107 cl6 p-lr-25">
+				Categories: Jacket, Men
+			</span>
+		</div>
+=======
+>>>>>>> bce099a4e75114d4d8c3ca96fd2369f5aebbc872
 	</section>
 
 
@@ -1512,11 +1691,18 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
+<<<<<<< HEAD
+<%--     <script type="text/javascript">
+    $('.prdc_qna').css('display','none');
+    $($('.nav-item')[3]).on('click',function(){ $('.prdc_qna').css('display','block');});
+    </script>--%>
+=======
 	<script type="text/javascript">
 		$('.prdc_qna').css('display', 'none');
 		$($('.nav-item')[3]).on('click', function() {
 			$('.prdc_qna').css('display', 'block');
 		});
 	</script>
+>>>>>>> bce099a4e75114d4d8c3ca96fd2369f5aebbc872
 </body>
 </html>

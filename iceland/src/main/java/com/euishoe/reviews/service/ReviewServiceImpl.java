@@ -35,8 +35,8 @@ public class ReviewServiceImpl implements ReviewService {
 
 
 	@Override
-	public List<Review> reviewListAll(int productNum, Params params) throws Exception {
-		return reviewDao.reviewListAll(productNum, params);
+	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
+		return reviewDao.reviewDynamicReviewList(productNum, customerId, reviewScore, params);
 	}
 
 	@Override
@@ -50,8 +50,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int countBySearch(int productNum, Params params) throws Exception {
-		return 0;
+	public int countBySearch(int productNum) throws Exception {
+		// TODO Auto-generated method stub
+		return reviewDao.countBySearch(productNum);
 	}
 
 }

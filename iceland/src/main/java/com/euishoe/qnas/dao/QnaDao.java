@@ -37,5 +37,5 @@ public interface QnaDao {
 	public void deleteQna(int qnaNum) throws Exception;
 	
 	//조회 목록 개수
-	public int countBySearch(int productNum ,Params params) throws Exception;
+	public int countBySearch(int productNum) throws Exception;
 }

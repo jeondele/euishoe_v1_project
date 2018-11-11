@@ -415,4 +415,10 @@
 				 ORDER BY qna_num DESC)
 		WHERE request_page=#{page} AND qna_type_num=#{qnaTypeNum}
 	</select>
+	
+	<select id="countBySearch"  parameterType="int" resultType="int">
+		SELECT COUNT(qna_num) count
+		FROM   qnas
+		WHERE  product_num = #{productNum}
+	</select>
 </mapper>

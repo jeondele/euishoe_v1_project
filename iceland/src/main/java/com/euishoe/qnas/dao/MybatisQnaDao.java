@@ -105,8 +105,10 @@ public class MybatisQnaDao implements QnaDao {
 	}
 
 	@Override
-	public int countBySearch(int productNum, Params params) throws Exception {
-		return 0;
+	public int countBySearch(int productNum) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int count = sqlSession.selectOne(NAMESPACE + "countBySearch", productNum);
+		return count;
 	}
 }
 
