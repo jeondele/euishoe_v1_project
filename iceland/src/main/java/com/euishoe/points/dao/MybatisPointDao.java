@@ -11,7 +11,7 @@ import com.euishoe.points.dto.PointHistory;
 
 public class MybatisPointDao implements PointDao {
 	
-	private static final String NAMESPACE = "com.euishoe.point.";
+	private static final String NAMESPACE = "com.euishoe.PointHistory.";
 	
 	private SqlSessionFactory sqlSessionFactory;
 
@@ -34,11 +34,9 @@ public class MybatisPointDao implements PointDao {
 	@Override
 	public List<HashMap<String, Object>> CustomerPointList(String customerId) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<HashMap<String, Object>> list = sqlSession.selectList(NAMESPACE + "selectPointHistoryById", customerId);
+		List<HashMap<String, Object>> list = sqlSession.selectList(NAMESPACE + "selectPointHistoryById", "bangry");
 		return list;
 	}
-
-
 }
 
 

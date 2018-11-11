@@ -202,5 +202,6 @@
         // oldCookie += 
         // setCookie('carts',,1);
         
+        var cookieData = document.cookie;
     });
 	</script>

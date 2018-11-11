@@ -51,10 +51,14 @@ public class ProductDetailController implements Controller {
 		List<Review> reviewlist = null;
 		List<Qna> qnalist = null;
 		
+		System.out.println("222222222222222222");
 		params = new Params(5, 5, 5, null, null);
 		try {
 			reviewlist = reviewService.listAll(productNum, params);
 			qnalist = qnaService.qnaListAll(productNum);
+			
+			System.out.println("1." + reviewlist);
+			System.out.println("2." +qnalist);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,6 +66,7 @@ public class ProductDetailController implements Controller {
 		mav.addObject("ReviewList", reviewlist);
 		mav.addObject("QnaList", qnalist);
 		mav.setView("/product/details/product-detail.jsp");
+		System.out.println("222222222222222222");
 		return mav;
 	}
 }

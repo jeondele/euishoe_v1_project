@@ -2,18 +2,12 @@
 <beans>
 	<!-- home 페이지 -->
 	<bean type="controller" name="/home" class="com.euishoe.home.controller.HomeController" />
-	
 	<!-- contact 페이지 -->
 	<bean type="controller" name="/contact" class="com.euishoe.contact.controller.ContactController" />
-	
 	<!-- about 페이지 -->
 	<bean type="controller" name="/about" class="com.euishoe.about.controller.AboutController" />
-	
 	<!-- 상품 -->
 	<bean type="controller" name="/product" class="com.euishoe.products.controller.ProductController" />
-	<!-- 상품 상세 관리 -->
-	<bean type="controller" name="/product/details" class="com.euishoe.products.controller.ProductDetailController" />
-	
 	<!-- 상품 상세 관리 -->
 	<bean type="controller" name="/product/details" class="com.euishoe.products.controller.ProductDetailController" />
 	
