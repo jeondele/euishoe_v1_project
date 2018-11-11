@@ -17,9 +17,9 @@ import kr.or.kosta.blog.common.web.Params;
  */
 public interface ProductService {
 	// 최신상품4개 상품정보와 이미지 get
-	public List<ProductInfo> newProductList() throws Exception;
+	public List<Map<String, Object>> newProductList() throws Exception;
 	// 히트상품4개 상품정보와 이미지 get
-	public List<ProductInfo> hitProductList() throws Exception;
+	public List<Map<String, Object>> hitProductList() throws Exception;
 	// 전체리스트 출력
 	public List<Map<String, Object>> selectAll() throws Exception;
 	
@@ -35,5 +35,5 @@ public interface ProductService {
 	// 해당 상품번호에 해당하는 정보 출력
 	public List<ProductInfo> selectProductInfoByProductNum(int productNum) throws Exception;
 	// Gson으로 바꾸는 메소드
-	List<String> convertToGson();
+	public List<String> convertToGson(List<Map<String, Object>> list);
 }

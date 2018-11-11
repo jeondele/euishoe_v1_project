@@ -53,12 +53,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductInfo> newProductList() throws Exception {
+	public List<Map<String, Object>> newProductList() throws Exception {
 		return productDao.newProductList();
 	}
 
 	@Override
-	public List<ProductInfo> hitProductList() throws Exception {
+	public List<Map<String, Object>> hitProductList() throws Exception {
 		return productDao.hitProductList();
 	}
 
@@ -92,14 +92,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<String> convertToGson () {
+	public List<String> convertToGson (List<Map<String, Object>> list) {
 		Gson gson = new Gson();
 		List<String> objectList = new ArrayList<String>();
-		List<Map<String, Object>> list = null;
 		String json = null;
-		try {
-			list = selectAll();
-		} catch (Exception e) {}
 		
 		for (Map<String, Object> productInfo : list) {
 			Iterator<String> keyset = productInfo.keySet().iterator();

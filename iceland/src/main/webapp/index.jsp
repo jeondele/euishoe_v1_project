@@ -2,6 +2,8 @@
 <%@page import="com.euishoe.products.dto.ProductInfo"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="tt" uri="/WEB-INF/tlds/fordecode.tld"%> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,13 +102,16 @@
 
 		<div class="row isotope-grid">
 			<c:forEach items="${newProductSrc}" var="newProduct">
+				<c:set var ="newImageRef" value="${newProduct.imageRef}"/>
+				<c:if test="${fn:contains(newImageRef,'main$1')}">
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="${newProduct.imageRef}" alt="IMG-PRODUCT"> <a
 								href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal2">
+								<input type="hidden" value="${newProduct.productNum}">
 								Quick View </a>
 						</div>
 
@@ -130,6 +135,7 @@
 						</div>
 					</div>
 				</div>
+				</c:if>
 			</c:forEach>
 		</div>
 
@@ -151,13 +157,16 @@
 
 		<div class="row isotope-grid">
 			<c:forEach items="${hitProductSrc}" var="hitProduct">
+			<c:set var ="hitImageRef" value="${hitProduct.imageRef}"/>
+				<c:if test="${fn:contains(hitImageRef,'main$1')}">
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="${hitProduct.imageRef}" alt="IMG-PRODUCT"> <a
 								href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal3">
+								<input type="hidden" value="${hitProduct.productNum}">
 								Quick View </a>
 						</div>
 
@@ -181,6 +190,7 @@
 						</div>
 					</div>
 				</div>
+			</c:if>
 			</c:forEach>
 		</div>
 	</section>
@@ -288,6 +298,105 @@
 	<script
 		src="/iceland/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
+		$('.js-show-modal2').on('click',function(e){
+			$("#itemPic").empty();
+	    	var productNum = $(this).find("input").val();
+		    $('#productNum').val(productNum);
+	        e.preventDefault();
+			var myList = ${gsonNewProductSrc};
+		    for ( var i in myList) {
+				if(myList[i]['productNum']==$('#productNum').val()) {
+					$("#productName").html(myList[i]['productName']);
+					$("#productPrice").html("₩ " + myList[i]['productListPrice'] + " 원");
+					$("#productBrief").html(myList[i]['productBriefInfomation']);
+					break;
+				};
+		    }
+		    for ( var i in myList) {
+				if((myList[i]['productNum']==$('#productNum').val())&&(myList[i]['imageRef'].match('main'))) {
+					var appendString = appendPic(myList[i]['imageRef']);
+					var appendBriefString = appendBriefPic(myList[i]['imageRef']);
+					$("#itemPic").append(appendString);
+					break;
+				};
+			}
+		    $('.js-modal1').addClass('show-modal1');
+	    });
+		
+		$('.js-show-modal3').on('click',function(e){
+			$("#itemPic").empty();
+	    	var productNum = $(this).find("input").val();
+		    $('#productNum').val(productNum);
+	        e.preventDefault();
+			var myList = ${gsonHitProductSrc};
+		    for ( var i in myList) {
+				if(myList[i]['productNum']==$('#productNum').val()) {
+					$("#productName").html(myList[i]['productName']);
+					$("#productPrice").html("₩ " + myList[i]['productListPrice'] + " 원");
+					$("#productBrief").html(myList[i]['productBriefInfomation']);
+					break;
+				};
+		    }
+		    for ( var i in myList) {
+				if((myList[i]['productNum']==$('#productNum').val())&&(myList[i]['imageRef'].match('main'))) {
+					var appendString = appendPic(myList[i]['imageRef']);
+					var appendBriefString = appendBriefPic(myList[i]['imageRef']);
+					$("#itemPic").append(appendString);
+					break;
+				};
+			}
+		    $('.js-modal1').addClass('show-modal1');
+	    });
+	
+	    $('.js-hide-modal1').on('click',function(){
+	        $('.js-modal1').removeClass('show-modal1');
+	    });
+		
+		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+			e.preventDefault();
+		});
+	
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+	
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+	
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+	
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+	
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+	
+		/*---------------------------------------------*/
+	
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	
+		function appendPic(url) {
+			var text = "<div class='item-slick3'><div class='wrap-pic-w pos-relative'>"+
+						   "<img id='productImg' src='"+url +"' alt='IMG-PRODUCT'><a class='flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04' href='/iceland/images/product-detail-01.jpg'>"+
+							"<i class='fa fa-expand'></i></a></div></div>";
+			return text;				
+		};
+		
+		function appendBriefPic(url) {
+			var text = "<img src='"+url+"'>";
+			return text;				
+		};
 		$('.js-pscroll').each(function() {
 			$(this).css('position', 'relative');
 			$(this).css('overflow', 'hidden');
@@ -305,6 +414,80 @@
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
 	<script type="text/javascript">
+	$('.js-show-modal1').on('click',function(e){
+		$("#itemPic").empty();
+    	var productNum = $(this).find("input").val();
+	    $('#productNum').val(productNum);
+        e.preventDefault();
+		var myList = <%=request.getAttribute("gsonListAll")%>;
+	    for ( var i in myList) {
+			if(myList[i]['productNum']==$('#productNum').val()) {
+				$("#productName").html(myList[i]['productName']);
+				$("#productPrice").html("₩ " + myList[i]['productListPrice'] + " 원");
+				$("#productBrief").html(myList[i]['productBriefInfomation']);
+				break;
+			};
+	    }
+	    for ( var i in myList) {
+			if((myList[i]['productNum']==$('#productNum').val())&&(myList[i]['imageRef'].match('main'))) {
+				var appendString = appendPic(myList[i]['imageRef']);
+				var appendBriefString = appendBriefPic(myList[i]['imageRef']);
+				$("#itemPic").append(appendString);
+			};
+		}
+	    $('.js-modal1').addClass('show-modal1');
+    });
+
+    $('.js-hide-modal1').on('click',function(){
+        $('.js-modal1').removeClass('show-modal1');
+    });
+	
+	$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+		e.preventDefault();
+	});
+
+	$('.js-addwish-b2').each(function(){
+		var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+		$(this).on('click', function(){
+			swal(nameProduct, "is added to wishlist !", "success");
+
+			$(this).addClass('js-addedwish-b2');
+			$(this).off('click');
+		});
+	});
+
+	$('.js-addwish-detail').each(function(){
+		var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+		$(this).on('click', function(){
+			swal(nameProduct, "is added to wishlist !", "success");
+
+			$(this).addClass('js-addedwish-detail');
+			$(this).off('click');
+		});
+	});
+
+	/*---------------------------------------------*/
+
+	$('.js-addcart-detail').each(function(){
+		var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+		$(this).on('click', function(){
+			swal(nameProduct, "is added to cart !", "success");
+		});
+	});
+
+	function appendPic(url) {
+		var text = "<div class='item-slick3'><div class='wrap-pic-w pos-relative'>"+
+					   "<img id='productImg' src='"+url +"' alt='IMG-PRODUCT'><a class='flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04' href='/iceland/images/product-detail-01.jpg'>"+
+						"<i class='fa fa-expand'></i></a></div></div>";
+		return text;				
+	};
+	
+	function appendBriefPic(url) {
+		var text = "<img src='"+url+"'>";
+		return text;				
+	};
+	
 	function replaceAll(str, searchStr, replaceStr) {
 		return str.split(searchStr).join(replaceStr);
 	}

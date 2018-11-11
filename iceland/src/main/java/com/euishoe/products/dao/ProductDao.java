@@ -14,10 +14,10 @@ import com.euishoe.products.dto.ProductInfo;
 public interface ProductDao {
 	
 	// 신상4개제품 정보와 이미지위치 get(메인화면에 뿌려줄것)
-	public List<ProductInfo> newProductList() throws Exception;
+	public List<Map<String, Object>> newProductList() throws Exception;
 
 	// 히트제품 4개 정보와 이미지 위치 get(메인화면에 뿌려줄것)
-	public List<ProductInfo> hitProductList() throws Exception;
+	public List<Map<String, Object>> hitProductList() throws Exception;
 	
 	// 전체리스트 출력
 	List<Map<String, Object>> selectAll() throws Exception;

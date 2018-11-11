@@ -1,6 +1,9 @@
 package com.euishoe.home.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +17,8 @@ import com.euishoe.products.dto.ProductInfo;
 import com.euishoe.products.service.ProductService;
 import com.euishoe.products.service.ProductServiceImpl;
 import com.euishoe.wishlists.service.WishlistService;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 
 /**
@@ -29,18 +34,36 @@ public class HomeController extends HttpServlet implements Controller  {
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
-		
 		// 상품정보를 얻어오기위한 상품서비스객체 생성
 		productService = (ProductService)factory.getBean(ProductServiceImpl.class);
-		// 신상품정보list
-		List<ProductInfo> newProductSrc = null;
-		// 히트상품정보list
-		List<ProductInfo> hitProductSrc = null;
+		
+		List<String> gsonNewListAll = null;
+		List<String> gsonHitListAll = null;
 		try {
-			newProductSrc = productService.newProductList();
-			hitProductSrc = productService.hitProductList();
-			mav.addObject("newProductSrc", newProductSrc);
-			mav.addObject("hitProductSrc", hitProductSrc);
+			gsonNewListAll = productService.convertToGson(productService.newProductList());
+			gsonHitListAll = productService.convertToGson(productService.hitProductList());
+		} catch (Exception e1) {}
+		
+		ArrayList<HashMap<String, Object>> jsonObjectNewList = new ArrayList<HashMap<String, Object>>();
+		ArrayList<HashMap<String, Object>> jsonObjectHitList = new ArrayList<HashMap<String, Object>>();
+		Gson gson = new Gson();
+		JsonObject object = new JsonObject();
+		
+		for(int i = 0 ; i < gsonNewListAll.size(); i++) {	
+			HashMap<String, Object> convertToJson = gson.fromJson(gsonNewListAll.get(i), HashMap.class);
+			jsonObjectNewList.add(convertToJson);
+	 	}
+		
+		for(int i = 0 ; i < gsonHitListAll.size(); i++) {	
+			HashMap<String, Object> convertToJson = gson.fromJson(gsonHitListAll.get(i), HashMap.class);
+			jsonObjectHitList.add(convertToJson);
+	 	}
+		
+		try {
+			mav.addObject("newProductSrc", jsonObjectNewList);
+			mav.addObject("hitProductSrc", jsonObjectHitList);
+			mav.addObject("gsonNewProductSrc", gsonNewListAll);
+			mav.addObject("gsonHitProductSrc", gsonHitListAll);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

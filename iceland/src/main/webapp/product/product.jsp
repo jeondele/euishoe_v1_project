@@ -442,6 +442,7 @@
 					var appendString = appendPic(myList[i]['imageRef']);
 					var appendBriefString = appendBriefPic(myList[i]['imageRef']);
 					$("#itemPic").append(appendString);
+					break;
 				};
 			}
 		    $('.js-modal1').addClass('show-modal1');
