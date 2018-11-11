@@ -1,24 +1,16 @@
 package com.euishoe.products.controller;
 
 import java.util.List;
-
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.euishoe.comments.service.CommentService;
-import com.euishoe.comments.service.CommentServiceImpl;
 import com.euishoe.common.controller.Controller;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.common.factory.XMLObjectFactory;
 import com.euishoe.products.service.ProductService;
 import com.euishoe.products.service.ProductServiceImpl;
-import com.euishoe.qnas.dto.Qna;
-import com.euishoe.qnas.service.QnaService;
-import com.euishoe.qnas.service.QnaServiceImpl;
 import com.euishoe.reviews.dto.Review;
-import com.euishoe.reviews.service.ReviewService;
-import com.euishoe.reviews.service.ReviewServiceImpl;
 
 import kr.or.kosta.blog.common.web.Params;
 
@@ -42,13 +34,16 @@ public class ProductDetailController implements Controller {
 		
 		int productNum = 2;
 		//int productNum = (int) request.getAttribute("productNum");
+		String qnaisLock = (String)request.getAttribute("qnaisLock");
+		String customerId = (String)request.getAttribute("customerId");
+		int typeNum = (int)request.getAttribute("typeNum");
 		List<Review> reviewlist = null;
-		List<Qna> qnalist = null;
+		List<Map<String, Object>> qnalist = null;
 		params = new Params(1, 5, 1, null, null);
 		
 		try {
 			reviewlist = productService.reviewListAll(productNum, params);
-			qnalist = productService.qnaListAll(productNum);
+			qnalist = productService.qnaDynamicListAll(productNum, qnaisLock, customerId, typeNum, params);
 			
 			System.out.println("1." + reviewlist);
 			System.out.println("2." + qnalist);

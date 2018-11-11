@@ -7,6 +7,7 @@ package com.euishoe.qnas.service;
  */
 
 import java.util.List;
+import java.util.Map;
 
 import com.euishoe.qnas.dao.QnaDao;
 import com.euishoe.qnas.dto.Qna;
@@ -36,18 +37,26 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public List<Qna> qnaListAll(int productNum) throws Exception {
-		return qnaDao.qnaListAll(productNum);
+	public List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum,
+			Params params) throws Exception {
+		return qnaDao.qnaDynamicListAll(productNum, qnaisLock, customerId, TypeNum, params);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> qnaListByCustomerId(int productNum, String customerId, Params params)
+			throws Exception {
+		return qnaDao.qnaListByCustomerId(productNum, customerId, params);
 	}
 
 	@Override
-	public List<Qna> qnaListByCustomerId(int productNum, String customerId) throws Exception {
-		return qnaDao.qnaListByCustomerId(productNum, customerId);
+	public List<Map<String, Object>> qnaListByLock(int productNum, Params params) throws Exception {
+		return qnaDao.qnaListByLock(productNum, params);
 	}
 
 	@Override
-	public List<Qna> qnaListByLock(int productNum) throws Exception {
-		return qnaDao.qnaListByLock(productNum);
+	public List<Map<String, Object>> qnaListByType(int productNum, int typeNum, Params params) throws Exception {
+		return qnaDao.qnaListByType(productNum, typeNum, params);
 	}
 
 	@Override
@@ -56,12 +65,8 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public List<Qna> searchQna(Params params) throws Exception {
-		return null;
-	}
-
-	@Override
-	public int countBySearch(Params params) throws Exception {
+	public int countBySearch(int productNum, Params params) throws Exception {
 		return 0;
 	}
+
 }

@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author 전상일
  *
  */
-public interface Controller {
+public interface AjaxController {
 	
 	/** 실행 규약 메소드 */
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException;
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException;
 	
 }

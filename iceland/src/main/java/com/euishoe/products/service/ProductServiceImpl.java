@@ -7,6 +7,7 @@ package com.euishoe.products.service;
  */
 
 import java.util.List;
+import java.util.Map;
 
 import com.euishoe.products.dao.ProductDao;
 import com.euishoe.products.dto.ProductInfo;
@@ -68,9 +69,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Qna> qnaListAll(int productNum) throws Exception {
-		return qnaDao.qnaListAll(productNum);
+	public List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception {
+		return qnaDao.qnaDynamicListAll(productNum, qnaisLock, customerId, TypeNum, params);
 	}
-	
+
 	
 }

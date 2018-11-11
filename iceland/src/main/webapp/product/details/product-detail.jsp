@@ -391,6 +391,7 @@
 
 					<!-- Tab panes -->
 					<div class="tab-content p-t-43">
+					
 						<!-- 상품 상세 설명 -->
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
@@ -399,6 +400,7 @@
 								</p>
 							</div>
 						</div>
+						<!-- 상품 상세 끝 -->
 
 						<!-- 상품 정보 -->
 						<div class="tab-pane fade show" id="information" role="tabpanel">
@@ -458,6 +460,7 @@
 								</div>
 							</div>
 						</div>
+						<!-- 상품 정보 끝 설명 -->
 
 						<!-- - -->
 						<div class="tab-pane fade" id="reviews" role="tabpanel">
@@ -467,8 +470,7 @@
                
                		                            <div class="grade_select zindex">
                                                     <a class="ui_info_button dn" id="detailViewGrade"> 
-                                                               `` 평점전체
-                                                     <span class="arr_icon"></span></a>  
+														평점전체<span class="arr_icon"></span></a>  
                                                     <div class="grade_lay ui_info_content" id="info_content" style="display: none;">
                                                       <div class="lay_nw_def" style="display:block;position:relative;">
                                                         <h3 class="lay_tit">평점 선택</h3>
@@ -530,13 +532,12 @@
                                                     </div>
                                                   </div>
                                            
-                  
-                  
 										<!-- Review -->
 								  <c:choose>
 								    <c:when test="${not empty ReviewList}">
 								      <c:forEach var="review" items="${ReviewList}">
 										<div class="flex-w flex-t p-b-68">
+										
 											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
 												<img src="/iceland/images/avatar-01.jpg" alt="AVATAR">
 											</div>
@@ -592,8 +593,7 @@
 								    </c:otherwise>
 								  </c:choose>
 										
-										
-										<div class="flex-w flex-t p-b-68">
+									<div class="flex-w flex-t p-b-68">
 											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
 												<img src="/iceland/images/avatar-01.jpg" alt="AVATAR">
 											</div>
@@ -613,50 +613,64 @@
 													"상               품                 평"
 												</p>
                                                   <span class="mtext-107 cl2 p-r-20"><a id="write_Answer">답변달기</a> </span> 
-                                              <div  class="qna_expand" id="dvQnqContDtl0" style="display: none;">
-                                                    <div class="answer">
-                                                      <span class="ico_answer">답변</span>
-                                                             <textarea rows="10" cols="20"></textarea>
-                                                     <div class="btn_action">
-                                                      <a href="#this" id="report" class="nwtxt_link" data-brdinfono="118895345" data-clfcd="01" data-contcd="03">작성하기<span class="ico"></span></a>
-                                                      </div>
-                                                    </div>
+                                              		<div  class="qna_expand" id="dvQnqContDtl0" style="display: none;">
+	                                                    <div class="answer">
+	                                                      <span class="ico_answer">답변</span>
+	                                                             <textarea rows="10" cols="20"></textarea>
+	                                                     <div class="btn_action">
+	                                                      <a href="#this" id="report" class="nwtxt_link" data-brdinfono="118895345" data-clfcd="01" data-contcd="03">작성하기<span class="ico"></span></a>
+	                                                      </div>
+	                                                    </div>
+                                                   </div>        
 
-                                                    </div>        
-
+												 <!-- 후기 관리자 답변 --> 
                                                   <span class="mtext-107 cl2 p-r-20"><a  id="admin_Answer">관리자 답변</a></span>
-                                              <div  class="qna_expand" id="dvQnqContDtl1" style="display: none;">
-                                                    <div class="answer">
+                                             		 <div  class="qna_expand" id="dvQnqContDtl1" style="display: none;">
+                                                    	<div class="answer">
                                                       <span class="ico_answer">답변</span>
-						                                                                      안녕하세요 11번가 나이키입니다.
-						                                                                 고객님께서 문의하신 사항 잘 보았습니다.
-                                                    </div>
-                                                    </div>                                                  
-                                                  
+						                                                                      안녕하세요 11번가 나이키입니다. 고객님께서 문의하신 사항 잘 보았습니다.
+                                                     </div>
+                                                   </div>            
+                                                 <!-- 후기 관리자 끝-->   
+                                             <!-- 리뷰 페이징 시작 -->                                      
+                                              <div class="s_paging_v2">
+			                            		<!-- <a href="#this" class="prev" title="이전목록"><span class="hide">이전목록</span></a> -->
+			                            		<span>
+			                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&lt;&lt;" data-keyno="20181107094625">&lt;&lt;</a>
+			                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&lt;" data-keyno="20181107094625">&lt;</a>
+			                            			<strong>1</strong>
+			                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="2" data-keyno="20181107094625">2</a>
+			                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="3" data-keyno="20181107085121">3</a>
+			                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="4" data-keyno="20181107080107">4</a>
+			                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="5" data-keyno="20181106234012">5</a>
+			                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="6" data-keyno="20181106212053">6</a>
+			                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="7" data-keyno="20181106184827">7</a>
+			                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="8" data-keyno="20181106174212">8</a>
+			                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="9" data-keyno="20181106162300">9</a>
+			                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="10" data-keyno="20181106151741">10</a>
+			                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&gt;" data-keyno="20181107094625">&gt;</a>
+			                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&gt;&gt;" data-keyno="20181107094625">&gt;&gt;</a>
+			                            		</span>
+			                            		</div>   
+			                            	<!-- 리뷰 페이징 끝-->	
 											</div>
 										</div>
 										
-										
-										
 										<!-- Add review -->
 										<form class="w-full" action="/iceland/product/details/create.es">
-											<input type="hidden" id="productNum">
-											<h5 class="mtext-108 cl2 p-b-7">
-												리뷰작성
-											</h5>
-
-											<p class="stext-102 cl6">
-												리뷰 비밀번호를 작성해주세요.
-											</p>
+											<input type="hidden" id="productNum" value="${productNum}">
+											<h5 class="mtext-108 cl2 p-b-7"> 리뷰작성 </h5>
 
 											<div class="flex-w flex-m p-t-50 p-b-23">
 												<span class="stext-102 cl3 m-r-16">
 													평점을 골라주세요 !
 												</span>
+											</div>
+										</form>
+									</div>
 
-
-						<!-- 상품리뷰 -->
-						<div class="tab-pane fade show" id="reviews" role="tabpanel">
+						<!-- 상품문의 -->
+						<div class="tab-pane fade show" id="qna" role="tabpanel">
 			               <div class="prdc_qna">
 	                          	<div class="bbs_filter">
 	                          		<button type="button" id="myReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">내 리뷰</button>
@@ -767,7 +781,6 @@
 	                            	<input type="hidden" name="targetFrm" value="">
 	                            </form>
 	                        </div>
-
 						</div>
                
             			<%-- QnA 창 --%>
@@ -896,6 +909,8 @@
                             </form>
                             </div>
                         </div>
+                        
+                        
 					</div>
 				</div>
 			</div>

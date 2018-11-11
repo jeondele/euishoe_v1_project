@@ -73,18 +73,18 @@ public class MyBatisQnaTest {
 	}
 	
 	
-	//@Test
+	@Test
 	public void testQnaTest() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("listSize", 5);
-		params.put("productNum", 2);
-		params.put("customerId", "bangry");
+		params.put("productNum", 1);
 		params.put("qnaTypeNum", 1);
 		params.put("page", 1);
 		List<Qna> list = sqlSession.selectList(NAMESPACE+"selectAllTest", params);
 		for (Qna qna : list) {
 	    	  logger.debug(qna);
+	    	  System.out.println(qna.getQnaIsLock());
 	      }
 		logger.debug("조회 완료!");
 		sqlSession.close();
@@ -93,10 +93,14 @@ public class MyBatisQnaTest {
 	//@Test
 	public void testQnaListAll() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Qna> list = sqlSession.selectList(NAMESPACE+"selectQnaListAll", 2);
-		for (Qna qna : list) {
-	    	  logger.debug(qna);
-	      }
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("productNum", 2);
+		params.put("listSize", 3);
+		params.put("page", 1);
+		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectQnaListAll", params);
+			for (Map<String, Object> map : list) {
+				logger.debug(map);
+			}
 		logger.debug("조회 완료!");
 		sqlSession.close();
 	}
@@ -107,11 +111,13 @@ public class MyBatisQnaTest {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("productNum", 2);
+		params.put("listSize", 3);
+		params.put("page", 1);
 		params.put("customerId", "bangry");
-		List<Qna> list = sqlSession.selectList(NAMESPACE + "selectQnaUserById", params);
-	      for (Qna qna : list) {
-	    	  logger.debug(qna);
-	      }
+		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectQnaUserById", params);
+			for (Map<String, Object> map : list) {
+				logger.debug(map);
+			}
 		logger.debug("조회 완료!");
 		sqlSession.close();
 	}
@@ -119,10 +125,14 @@ public class MyBatisQnaTest {
 	//@Test
 	public void testListByIsLock() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Qna> list = sqlSession.selectList(NAMESPACE + "selectQnaByLock", 1);
-	      for (Qna qna : list) {
-	    	  logger.debug(qna);
-	      }
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("productNum", 2);
+		params.put("listSize", 3);
+		params.put("page", 1);
+		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectQnaByLock", params);
+			for (Map<String, Object> map : list) {
+				logger.debug(map);
+			}
 		logger.debug("조회 완료!");
 		sqlSession.close();
 	}
@@ -130,13 +140,15 @@ public class MyBatisQnaTest {
 	//@Test
 	public void testListByTypeNum() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		Map<String, Integer> params = new HashMap<String, Integer>();
-		params.put("productNum", 1);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("productNum", 2);
+		params.put("listSize", 3);
+		params.put("page", 1);
 		params.put("qnaTypeNum", 1);
-		List<Qna> list = sqlSession.selectList(NAMESPACE + "selectQnaByType", params);
-	      for (Qna qna : list) {
-	    	  logger.debug(qna);
-	      }
+		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectQnaByType", params);
+			for (Map<String, Object> map : list) {
+				logger.debug(map);
+			}
 		logger.debug("조회 완료!");
 		sqlSession.close();
 	}
