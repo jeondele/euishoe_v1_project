@@ -51,19 +51,6 @@
                     return;
                 }
                
-                /*cvntStr = convertRRN($("#brdInfoCont").val());
-                if (cvntStr.length > 0) {
-                    if (confirm('게시물 내용에 주민등록번호를 입력하실 수 없습니다.\n변경하시겠습니까?')) {
-                        $("#brdInfoCont").val(cvntStr);
-                    }
-                    alert("게시물 내용을 확인하세요.");
-                    $("#brdInfoCont").focus();
-                    return;
-                }*/
-                /* 2015.09.15 개인정보 체크 INNER-9372 */
-                /* 2016.07.25 개인정보 체크 알럿 제거를 인해 주석 */
-                // if (PrivacyUtil.checkPrivacy($("#brdInfoCont").val())) { return; }
-             
                 if ($("#mailId").val().trim().length == 0) {
                     alert("답변 받을 메일주소를 입력하세요.");
                     $("#mailId").val("");
@@ -93,11 +80,7 @@
                     return;
                 }
                 
-                
-                
-                
-//                $(frmMain).attr("action", "https://www.11st.co.kr/product/ProductQnaInsert.tmall?method=insertProductQnA");
-                    $(frmMain).attr("action", '/product/ProductQnaInsert.tmall?method=insertProductQnA');
+				$(frmMain).attr("action", '/product/ProductQnaInsert.tmall?method=insertProductQnA');
                 
                 
                 
@@ -138,7 +121,6 @@
                 }
             });
 
-
         });
 
         function onClickSetSubject(msg){
@@ -167,7 +149,6 @@
 <div id="popLayWrap">
     <form name="frmMain" method="post" action="/iceland/qna/write.es">
         <div class="popbody_con">
-            <!-- 팝업 내용입력부분 ============================= -->
             <div class="prdc_qna_wrap">
                 <div class="tblwrap">
                     <table class="tbl">
@@ -182,7 +163,6 @@
                 					<div><br></div>
                 				</th>
                         	</tr>
-                        
                             <tr>
                                 <th scope="row" class="first alignL"><label for="qnaDtlsCd">문의유형</label></th>
                                 <td class="alignL">
@@ -210,8 +190,7 @@
 			                    	<div>
 				                    	<input id="email1" name="email1" class="mailId" value="" type="text">&nbsp;@&nbsp;<input id="email2" name="email2" class="mailAddress" readonly="readonly" value="" type="text">
 			                      		<select id="email3" style="vertical-align: middle;">
-					                        <option value="" selected="selected">-
-					                          이메일 선택 -</option>
+					                        <option value="" selected="selected">-이메일 선택 -</option>
 					                        <option value="naver.com">naver.com</option>
 					                        <option value="daum.net">daum.net</option>
 					                        <option value="nate.com">nate.com</option>
@@ -260,9 +239,69 @@
 </div>
 
 </body>
+
 </html>
 <script type="text/javascript">
-
+		// 이메일 인증(비동기처리)을 위한 자바스크립트 코드 
+		//emailCertify.addEventListener("click", send);
+		var emailCertifyCode='';
+		function send(){
+			if(document.getElementById("emailHost").value.trim()=="직접입력"){
+				var emailAdd = document.getElementById("email").value;
+			}else{
+				emailAdd = document.getElementById("email").value + "@" + document.getElementById("emailHost").value;
+			}
+			var url = "/iceland/customer/emailCertify.es";
+			ajax({
+				method : "get",
+				url : url,
+				param : "emailAdd="+emailAdd,
+				callback : setResult
+			});
+		}
+		
+		// 비동기통신 후 실행될 콜백함수
+		function setResult(result){
+			// 이메일인증컨트롤러에서 임의로 생성된 인증코드값
+			emailCertifyCode = result.responseText; 
+			// 이메일인증을 위한 textfeild와 button을 붙일 div el
+			var emailDiv = document.getElementById('emailCertifyDiv'); 
+			// 기존 이메일인증버튼을 display:none, 사용자에게 코드값을 입력받을 텍스트필드와 확인버튼 생성
+			document.getElementById('emailCertify').style.display="none";
+			var $inputCode = $("<input type='text' id='inputCode'>");
+			var $certifyBtn = $("<button type='button' id='certifyBtn' onclick='sendCode()'>확인</button>");
+			// 생성된 el을 document에 붙임
+			$inputCode.appendTo(emailDiv);
+			$certifyBtn.appendTo(emailDiv);
+			
+		}
+		
+		// 사용자가 입력한 코드값과 생성된 코드값이 일치하는지 확인하기위한 함수
+		function sendCode() {
+			
+			var inputVal = document.getElementById('inputCode').value.trim();
+			console.log("코드값: "+emailCertifyCode);
+			console.log("입력값: "+inputVal);
+			// 입력값이 있다면
+			if(inputVal){
+				if(inputVal == emailCertifyCode.trim()){
+					// 입력값과 생성된 코드값이 일치하다면
+					// 인증완료알림, inputCode readonly, certifyBtn disabled
+					alert('이메일 인증이 완료되었습니다.');
+					$('#inputCode').attr('readonly', 'readonly'); 
+					$('#certifyBtn').attr('disabled', 'disabled'); 
+				}else{
+					// 입력값과 코드값이 일치하지 않다면
+					alert('입력 코드값이 일치하지 않습니다. 다시 입력해주세요.');
+				}
+			}else{
+				// 입력값이 없다면
+				alert('인증번호를 입력해 주세요');
+			}
+		}
+</script>
+	
+<script type="text/javascript">
     var selectTitle = function (obj) {
         jQuery("#brdInfoSbjct").val(obj.value);
         if ("" == obj.value) {
@@ -306,58 +345,4 @@
     	
     	$('#brdInfoCont').attr('placeholder', qnaTxt[idx - 1] );
     });
-</script>
-
-
-<script>
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-	
-	ga('create', 'UA-68494772-1', 'auto');
-
-</script>
-
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-P3PMQD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>
-	(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','GA_dataLayer','GTM-P3PMQD');
-</script>
-<!-- End Google Tag Manager -->
-
-
-
-
-
-
-
-<script>
-    var rakeLogPageInfo = {"Switch":{"LogDisablePageshow":false,"ImpPC":true,"ImpMW":true,"LogDisable":false},"DeviceId":"","AppSessionIdXsite":"","_$RAKE_TOKEN":"871e1b1427359b4f70af57f1b03b1b89becc23d8","DataMerge":false,"AppSessionId":"","PageInfo":{"page_id":"/my11st/delivery_qna"},"_$RAKE_TOKEN_NPI":"19df1ef211ac21741c82322a9ffe739b4f5a1519","_$RAKE_ENV":"LIVE"};
-
-    var RakeLoadScript = function() {
-        var path = '//www.11st.co.kr/js/rake/rakeLog.js?v=20170808';
-        try {
-            var element = document.createElement('script');
-            element.src = path;
-            element.charset = 'euc-kr';
-            document.head.appendChild(element);
-        } catch(e) {}
-    }
-</script>
-<script src="//www.11st.co.kr/js/rake/Log11stClientSentinelShuttle.js?v=20170808"></script>
-<script>
-    if (document.addEventListener) {
-        document.addEventListener("DOMContentLoaded", RakeLoadScript);
-    } else {
-        document.attachEvent("onreadystatechange", function() {
-            if (document.readyState !== "loading") {
-                RakeLoadScript();
-            }
-        });
-    }
 </script>

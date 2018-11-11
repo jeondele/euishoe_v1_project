@@ -1,22 +1,15 @@
 package com.euishoe.qnas.controller;
 
 import java.util.List;
-
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.euishoe.common.controller.Controller;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.common.factory.XMLObjectFactory;
-import com.euishoe.customers.service.CustomerService;
-import com.euishoe.customers.service.CustomerServiceImpl;
-import com.euishoe.qnas.dto.Qna;
 import com.euishoe.qnas.service.QnaService;
 import com.euishoe.qnas.service.QnaServiceImpl;
-import com.euishoe.reviews.dto.Review;
-import com.euishoe.reviews.service.ReviewService;
-import com.euishoe.reviews.service.ReviewServiceImpl;
 
 import kr.or.kosta.blog.common.web.Params;
 
@@ -37,11 +30,17 @@ public class QnaListController implements Controller {
 		
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		qnaService = (QnaService)factory.getBean(QnaServiceImpl.class);
+		
+		
 		int productNum = (int) request.getAttribute("productNum");
-		List<Qna> list = null;
+		String qnaisLock = (String)request.getAttribute("qnaisLock");
+		String customerId = (String)request.getAttribute("customerId");
+		int typeNum = (int)request.getAttribute("typeNum");
+		
+		List<Map<String, Object>> list = null;
 		params = new Params(5, 5, 5, null, null);
 		try {
-			list = qnaService.qnaListAll(productNum);
+			list = qnaService.qnaDynamicListAll(productNum, qnaisLock, customerId, typeNum, params);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

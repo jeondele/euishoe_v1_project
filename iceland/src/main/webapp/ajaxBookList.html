@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script src="../js/ajax.js"></script>
+
+<script>
+window.onload = function(){
+  document.getElementById("button").onclick = function(){
+    var buttonLabel = this.firstChild.nodeValue;
+    var view = document.getElementById("view");
+    
+    if(buttonLabel == "숨기기"){
+      view.style.display = "none";
+      this.firstChild.nodeValue = "목록 수신";
+    }else{
+      view.style.display = "block";
+      this.firstChild.nodeValue = "숨기기";
+      ajax({
+        url: "jsonBookList.jsp",
+        callback : function(request){
+          var jsonString = request.responseText;
+          //alert(jsonString);
+          // 서버로부터 수신한 JSONString을 테이블로 출력
+        }
+      });
+    }
+  }
+}
+</script>
+	<script type="text/javascript">
+		// 이메일 인증(비동기처리)을 위한 자바스크립트 코드 
+		//emailCertify.addEventListener("click", send);
+		var emailCertifyCode='';
+		function send(){
+			if(document.getElementById("emailHost").value.trim()=="직접입력"){
+				var emailAdd = document.getElementById("email").value;
+			}else{
+				emailAdd = document.getElementById("email").value + "@" + document.getElementById("emailHost").value;
+			}
+			var url = "/iceland/customer/emailCertify.es";
+			ajax({
+				method : "get",
+				url : url,
+				param : "emailAdd="+emailAdd,
+				callback : setResult
+			});
+		}
+		
+		// 비동기통신 후 실행될 콜백함수
+		function setResult(result){
+			// 이메일인증컨트롤러에서 임의로 생성된 인증코드값
+			emailCertifyCode = result.responseText; 
+			// 이메일인증을 위한 textfeild와 button을 붙일 div el
+			var emailDiv = document.getElementById('emailCertifyDiv'); 
+			// 기존 이메일인증버튼을 display:none, 사용자에게 코드값을 입력받을 텍스트필드와 확인버튼 생성
+			document.getElementById('emailCertify').style.display="none";
+			var $inputCode = $("<input type='text' id='inputCode'>");
+			var $certifyBtn = $("<button type='button' id='certifyBtn' onclick='sendCode()'>확인</button>");
+			// 생성된 el을 document에 붙임
+			$inputCode.appendTo(emailDiv);
+			$certifyBtn.appendTo(emailDiv);
+			
+		}
+		
+		// 사용자가 입력한 코드값과 생성된 코드값이 일치하는지 확인하기위한 함수
+		function sendCode() {
+			var inputVal = document.getElementById('inputCode').value.trim();
+			console.log("코드값: "+emailCertifyCode);
+			console.log("입력값: "+inputVal);
+			// 입력값이 있다면
+			if(inputVal){
+				if(inputVal == emailCertifyCode.trim()){
+					// 입력값과 생성된 코드값이 일치하다면
+					// 인증완료알림, inputCode readonly, certifyBtn disabled
+					alert('이메일 인증이 완료되었습니다.');
+					$('#inputCode').attr('readonly', 'readonly'); 
+					$('#certifyBtn').attr('disabled', 'disabled'); 
+				}else{
+					// 입력값과 코드값이 일치하지 않다면
+					alert('입력 코드값이 일치하지 않습니다. 다시 입력해주세요.');
+				}
+			}else{
+				// 입력값이 없다면
+				alert('인증번호를 입력해 주세요');
+			}
+		}
+	</script>
+</head>
+
+<body>
+<h2>서버에서 JSON 데이터 수신 및 출력</h2>
+<button id="button">목록 수신</button>
+<div id="view">
+</div>
+</body>
+</html>

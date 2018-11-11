@@ -84,13 +84,14 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Qna> qnaListAll(int productNum) throws Exception {
-		return qnaDao.qnaListAll(productNum);
+	public List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception {
+		return qnaDao.qnaDynamicListAll(productNum, qnaisLock, customerId, TypeNum, params);
 	}
 	
 	public List<ProductInfo> selectProductInfoByProductNum(int productNum) throws Exception {
 		return productDao.selectProductInfoByProductNum(productNum);
 	}
+
 	
 	@Override
 	public List<String> convertToGson (List<Map<String, Object>> list) {

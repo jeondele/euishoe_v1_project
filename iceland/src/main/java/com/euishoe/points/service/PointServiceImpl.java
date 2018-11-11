@@ -32,6 +32,4 @@ public class PointServiceImpl implements PointService {
 	public List<HashMap<String, Object>> CustomerPointList(String customerId) throws Exception {
 		return pointDao.CustomerPointList(customerId);
 	}
-
-	
 }

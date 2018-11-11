@@ -27,6 +27,8 @@ public class MybatisReviewDao implements ReviewDao {
 
 	@Override
 	public void create() throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
 	}
 
 	@Override

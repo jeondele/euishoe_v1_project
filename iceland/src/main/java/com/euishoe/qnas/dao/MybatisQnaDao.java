@@ -47,29 +47,53 @@ public class MybatisQnaDao implements QnaDao {
 		sqlSession.close();
 	}
 
+
 	@Override
-	public List<Qna> qnaListAll(int productNum) throws Exception {
+	public List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Qna> list = sqlSession.selectList(NAMESPACE+"selectQnaListAll", productNum);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("productNum", productNum);
+		param.put("qnaisLock", qnaisLock);
+		param.put("customerId", customerId);
+		param.put("listSize", params.getListSize());
+		param.put("page", params.getPage());
+		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectDynamicListAll", param);
+		return list;
+	}
+	
+
+	@Override
+	public List<Map<String, Object>> qnaListByCustomerId(int productNum, String customerId, Params params) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("productNum", productNum);
+		param.put("customerId", customerId);
+		param.put("listSize", params.getListSize());
+		param.put("page", params.getPage());
+		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectQnaUserById", param);
 		return list;
 	}
 
 	@Override
-	public List<Qna> qnaListByCustomerId(int productNum, String customerId) throws Exception {
+	public List<Map<String, Object>> qnaListByLock(int productNum, Params params) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("productNum", productNum);
-		params.put("customerId", customerId);
-		List<Qna> list = sqlSession.selectList(NAMESPACE + "selectQnaUserById", params);
-		sqlSession.close();
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("productNum", productNum);
+		param.put("listSize", params.getListSize());
+		param.put("page", params.getPage());
+		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectQnaByLock", param);
 		return list;
 	}
 
 	@Override
-	public List<Qna> qnaListByLock(int productNum) throws Exception {
+	public List<Map<String, Object>> qnaListByType(int productNum, int typeNum, Params params) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Qna> list = sqlSession.selectList(NAMESPACE + "selectQnaByLock", productNum);
-		sqlSession.close();
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("productNum", productNum);
+		param.put("qnaTypeNum", typeNum);
+		param.put("listSize", params.getListSize());
+		param.put("page", params.getPage());
+		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectQnaByType", param);
 		return list;
 	}
 
@@ -78,22 +102,12 @@ public class MybatisQnaDao implements QnaDao {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		sqlSession.delete(NAMESPACE + "deleteQna", qnaNum);
 		sqlSession.commit();
-		sqlSession.close();
 	}
 
 	@Override
 	public int countBySearch(int productNum, Params params) throws Exception {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.selectOne(NAMESPACE + "deleteQna", productNum);
 		return 0;
 	}
-	
-	@Override
-	public List<Qna> searchQna(Params params) throws Exception {
-		return null;
-	}
-
-
 }
 
 

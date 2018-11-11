@@ -18,12 +18,9 @@ var getCookie = function(name) {
 	  return value? value[2] : null;
 	};
 
-
 </script>
 <!-- Header -->
 	<header>
-	
-
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->

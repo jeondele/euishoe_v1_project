@@ -80,7 +80,10 @@ public class MyBatisReviewTest {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("listSize", 5);
 		params.put("productNum", 1);
-		List<Review> list = sqlSession.selectList(NAMESPACE+"selectAllReview", params);
+		params.put("page", 1);
+		params.put("customerId", "bangry");
+		params.put("reviewScore", 5);
+		List<Review> list = sqlSession.selectList(NAMESPACE+"selectDynamicReviewList", params);
 		for (Review review : list) {
 	    	  logger.debug(review);
 	      }
@@ -106,7 +109,7 @@ public class MyBatisReviewTest {
 	}
 
 	
-	@Test
+	//@Test
 	public void testListByCustomer() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();

@@ -14,9 +14,8 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.euishoe.comments.dto.Comment;
 import com.euishoe.customers.dto.Customer;
-import com.euishoe.points.dto.PointHistory;
-import com.euishoe.reviews.dto.Review;
 
 
 public class MyBatisCommentTest {
@@ -64,13 +63,22 @@ public class MyBatisCommentTest {
 	}
 	
 	@Test
-	public void testSelectComment() {
+	public void testSelectReviewComment() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		int reviewNum = 2;
-		List<Review> list = sqlSession.selectList(NAMESPACE+"selectReviewComment", reviewNum);
-		for (Review review : list) {
-	    	  logger.debug(review);
-	      }
+		Comment comment = sqlSession.selectOne(NAMESPACE+"selectReviewComment", reviewNum);
+	    	  logger.debug(comment);
+	    	  System.out.println(comment);
+	    	  logger.debug("조회 완료!");
+		sqlSession.close();
+	}
+	
+	@Test
+	public void testSelectQnaComment() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int qnaNum = 2;
+		Comment comment = sqlSession.selectOne(NAMESPACE+"selectQnaComment", qnaNum);
+	    	  logger.debug(comment);
 		logger.debug("조회 완료!");
 		sqlSession.close();
 	}

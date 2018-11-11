@@ -11,17 +11,13 @@
 		            (review_num, 
 		             customer_id, 
 		             product_num, 
-		             review_title, 
 		             review_content,
-		             review_password,
 		             review_score, 
 		             review_isdeleted) 
 		VALUES  (reviews_seq.NEXTVAL, 
 		             #{customerId}, 
 		             #{productNum}, 
-		             #{reviewTitle}, 
 		             #{reviewContent}, 
-		             #{reviewPassword},
 		             #{reviewScore}, 
 		             'N')
 	</insert>
@@ -88,8 +84,8 @@
 	</resultMap>
 	
 <!-- 해당 제품의 모든 리뷰 출력(페이징)  -->
-	<select id="selectAllReview" parameterType="Map" resultMap="Review">
-		SELECT request_page,
+	<select id="selectDynamicReviewList" parameterType="Map" resultMap="Review">
+		SELECT 		request_page,
 					customer_id,
 		      		review_title,
 					review_content,
@@ -110,7 +106,29 @@
 									 FROM    reviews review
 									 JOIN 	 product_infos pi
 									 ON   	 review.product_num = pi.product_num
-							WHERE pi.product_num = #{productNum}))
+							WHERE pi.product_num = #{productNum}
+					<choose>
+					 <when test="customerId != null">
+					<!-- 비밀글 제외 조회  -->
+					 AND customer_id = #{customerId}
+					 <choose>
+					 	<when test='reviewScore != null'>
+							 <!-- 유저 아이디 검색조건 추가  -->
+							 AND review_score = #{reviewScore}
+						</when>							 
+					 <!-- 문의유형에 따른 조회  -->
+					 </choose>
+					 </when>
+					 <otherwise>
+					 	<choose>
+					 	<when test='reviewScore != null'>
+							 <!-- 유저 아이디 검색조건 추가  -->
+					 			AND review_score = #{reviewScore}
+							 </when>
+					 	</choose>
+					 </otherwise>
+				 </choose>
+				 ORDER BY review_num DESC))
 		WHERE request_page = #{page}					
 	</select>
 
