@@ -75,29 +75,10 @@
 	  
 		// 지우기
 		$('.header-cart-item-img').on('click',function(e){
-			var deleteNum = parseInt($(e.currentTarget).attr('value'));
-	        setCookie('cart' + deleteNum,'',0);
-	        
-	        console.log(1);
-	        // 지운 후 정렬 
-	        var testNum = deleteNum + 1;
-	        
-	        while(getCookie('cart' + testNum)){
-	        	testNum++;
-	        }
-	        console.log(testNum);
-	        
-	        for(var i = deleteNum + 1; i < testNum; i++){
-	        	console.log(i);
-	        	setCookie('cart' + (i-1),getCookie('cart' + i),1);
-	        	if(i == testNum - 1){
-	        		console.log(5);
-	        		setCookie('cart' + i,'',0);
-	        	}
-	        }
+	        console.log($(e.currentTarget).parents()[0]);
+	        console.log($(e.currentTarget).attr('value'));
+	        setCookie('cart' + $(e.currentTarget).attr('value'),'',0);
 	        $(e.currentTarget).parents()[0].remove();
-	        console.log($('#cartButton'));
-	        $('#cartButton').attr('data-notify',testNum - 2);
         });
 		// row 뿌리기
 		

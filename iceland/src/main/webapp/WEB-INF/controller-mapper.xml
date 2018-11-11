@@ -9,7 +9,7 @@
 	<!-- 상품 -->
 	<bean type="controller" name="/product" class="com.euishoe.products.controller.ProductController" />
 	<!-- 상품 상세 관리 -->
-	<bean type="controller" name="/product/details/product-detail" class="com.euishoe.products.controller.ProductDetailController" />
+	<bean type="controller" name="/product/details" class="com.euishoe.products.controller.ProductDetailController" />
 	
 	<!-- 고객관련 -->
 	<bean type="controller" name="/customer/login" class="com.euishoe.customers.controller.CustomerLoginController" />

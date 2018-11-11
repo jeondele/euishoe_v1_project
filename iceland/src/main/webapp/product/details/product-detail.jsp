@@ -393,16 +393,15 @@
 					<div class="tab-content p-t-43">
 						<!-- 상품 상세 설명 -->
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
-								<div class="how-pos2 p-lr-15-md">
-									<p class="stext-102 cl6">
-										Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
-									</p>
-								</div>
+							<div class="how-pos2 p-lr-15-md">
+								<p class="stext-102 cl6">
+									Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
+								</p>
+							</div>
 						</div>
 
 						<!-- 상품 정보 -->
 						<div class="tab-pane fade show" id="information" role="tabpanel">
-							<div class="prdc_qna">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<ul class="p-lr-28 p-lr-15-sm">
@@ -457,7 +456,6 @@
 										</li>
 									</ul>
 								</div>
-							</div>
 							</div>
 						</div>
 
@@ -656,6 +654,7 @@
 													평점을 골라주세요 !
 												</span>
 
+
 						<!-- 상품리뷰 -->
 						<div class="tab-pane fade show" id="reviews" role="tabpanel">
 			               <div class="prdc_qna">
@@ -772,7 +771,7 @@
 						</div>
                
             			<%-- QnA 창 --%>
-                        <div class="tab-pane fade show" id="qna" role="tabpanel">
+                        <div class="tab-pane fade" id="qna" role="tabpanel">
                             <div class="prdc_qna">
                             	<div class="bbs_filter">
                             		<button type="button" id="myQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">내 문의</button>
@@ -897,7 +896,6 @@
                             </form>
                             </div>
                         </div>
-                        
 					</div>
 				</div>
 			</div>
@@ -1450,8 +1448,8 @@
 <!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
     <script type="text/javascript">
-    	$('.prdc_qna').css('display','none');
-    	$($('.nav-item')[3]).on('click',function(){ $('.prdc_qna').css('display','block');});
+    $('.prdc_qna').css('display','none');
+    $($('.nav-item')[3]).on('click',function(){ $('.prdc_qna').css('display','block');});
     </script>
 </body>
 </html>

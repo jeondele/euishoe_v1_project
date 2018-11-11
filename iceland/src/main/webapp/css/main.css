@@ -1833,11 +1833,11 @@ button.mfp-close {
 }
 
 /*---------------------------------------------*/
-.filter-col1 {width: 20%;}
-.filter-col2 {width: 20%;}
-.filter-col3 {width: 20%;}
+.filter-col1 {width: 27%;}
+.filter-col2 {width: 27%;}
+.filter-col3 {width: 26%;}
 .filter-col4 {width: 20%;}
-.filter-col5 {width: 20%;}
+
 /*---------------------------------------------*/
 .filter-link {
   color: #aaa;
@@ -2604,11 +2604,6 @@ input.num-product::-webkit-inner-spin-button {
 
 /*//////////////////////////////////////////////////////////////////
 [ Size ]*/
-.size-filterButton {
-	width: 75px;
-	height:30px;
-}
-
 .size-100 {
 	min-width: 139px;
 	height: 35px;

@@ -51,77 +51,7 @@
 <body class="animsition">
 	
 <%@include file="../../includes/header.jsp"%>
-<script type="text/javascript">
-  function sumToMakeJson(){
-	var prior = 1;
-	while(getCookie('cart' + prior)){
-		prior++;
-	}
-	
-	console.log(prior);
-	
-	var productName = $('#addCart').parents()[3].childNodes[1].innerText;
-    var productImg = $('#productImg')[0].src
-    var productCount = parseInt(document.getElementsByName('num-product')[0].value);
-    var productPrice = parseInt($('#productPrice').text().trim().substring(2,$('#productPrice').text().trim().length - 2));
-    var productNum = parseInt($('#productNum').val());
-    // 객체 생성
-    var data = new Object() ;
-    // String으로 index.jsp 내 객체
-    data.image_ref = productImg;
-    data.PRODUCT_PRICE = productPrice;
-    data.product_count = productCount;
-    data.PRODUCT_NAME = productName ;
-    data.PRODUCT_NUM = productNum;
-     
-    // 리스트에 생성된 객체 삽입
-    var arrayCookie = '"' + encodeURIComponent(JSON.stringify(data)) + '"';
-	setCookie('cart' + prior,arrayCookie,1);
-	
-	$('#cartButton').attr('data-notify',parseInt($('#cartButton').attr('data-notify')) + 1)
-	
-		
-	var str = "";
-		
-    str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img">';
-    str += '<img class="cartItems" src="' + productImg + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
-	str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + productName + '</a>'
-	str += '<span class="header-cart-item-info">' + productCount + ' x ' + productPrice + '</span></div></li>';		
-	$('#miniCarts').append(str);
-		  
-	//checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
-	
-	//$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
-	var Test = '';
-	$('.header-cart-item-img').on('click',function(e){
-		
-		console.log(e);
-		Test = e;
-		console.log($(e.currentTarget).attr('value'));
-		var deleteNum = parseInt($(e.currentTarget).attr('value'));
-        setCookie('cart' + deleteNum,'',0);
-        
-        // 지운 후 정렬 
-        var testNum = deleteNum + 1;
-        
-        while(getCookie('cart' + testNum)){
-        	testNum++;
-        }
-        console.log(testNum);
-        
-        for(var i = deleteNum + 1; i < testNum; i++){
-        	console.log(i);
-        	setCookie('cart' + (i-1),getCookie('cart' + i),1);
-        	if(i == testNum - 1){
-        		console.log(5);
-        		setCookie('cart' + i,'',0);
-        	}
-        }
-        $(e.currentTarget).parents()[0].remove();
-        $('#cartButton').attr('data-notify',prior - 1);
-    });
-}
-</script>	
+
 <%@include file="../../includes/cart.jsp"%>
 <%@include file="..//../includes/favorite.jsp"%>
 <%@include file="../../includes/slider.jsp"%>
@@ -174,211 +104,213 @@
 				</div>
 
 				<!-- Filter -->
-				<div class="dis-none panel-filter w-full p-t-10">
-					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-						<div class="filter-col1 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">By T.P.O</div>
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">전체</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">하객용</a>
-								</li>
-								
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">상견례용</a>
-								</li>
+				<!-- Filter -->
+            <div class="dis-none panel-filter w-full p-t-10">
+               <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+                  <div class="filter-col1 p-r-15 p-b-27">
+                     <div class="mtext-102 cl2 p-b-15">By T.P.O</div>
+                     <ul>
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">전체</a>
+                        </li>
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">하객용</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">상견례용</a>
+                        </li>
 
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">면접용</a>
-								</li>
-								
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">데이트용</a>
-								</li>
-							</ul>
-							<br>
-							<div class="mtext-102 cl2 p-b-15">By Season</div>
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">사계절(All Season)</a>
-								</li>
-								
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">봄(Spring)</a>
-								</li>
-								
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">여름(Summer)</a>
-								</li>
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">면접용</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">데이트용</a>
+                        </li>
+                     </ul>
+                     <br>
+                     <div class="mtext-102 cl2 p-b-15">By Season</div>
+                     <ul>
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">사계절(All Season)</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">봄(Spring)</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">여름(Summer)</a>
+                        </li>
 
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">가을(Fall)</a>
-								</li>
-								
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">겨울(Winter)</a>
-								</li>
-							</ul>
-							
-						</div>
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">가을(Fall)</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">겨울(Winter)</a>
+                        </li>
+                     </ul>
+                     
+                  </div>
 
-						<div class="filter-col2 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">By Price</div>
+                  <div class="filter-col2 p-r-15 p-b-27">
+                     <div class="mtext-102 cl2 p-b-15">By Price</div>
 
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">전체(All Price)</a>
-								</li>
+                     <ul>
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">전체(All Price)</a>
+                        </li>
 
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">50,000 ~ 100,000 원대</a>
-								</li>
-								
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">100,000 ~ 150,000 원대</a>
-								</li>
-								
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">150,000 ~ 200,000 원대</a>
-								</li>
-								
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">200,000 원 이상</a>
-								</li>
-								
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">낮은 가격 순</a>
-								</li>
-								
-								<li class="p-b-6">
-									<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">높은 가격 순</a>
-								</li>
-							</ul>
-							<br>
-							<div class="mtext-102 cl2 p-b-15">By Fabric</div>
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">50,000 ~ 100,000 원대</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">100,000 ~ 150,000 원대</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">150,000 ~ 200,000 원대</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">200,000 원 이상</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">낮은 가격 순</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">높은 가격 순</a>
+                        </li>
+                     </ul>
+                     <br>
+                     <div class="mtext-102 cl2 p-b-15">By Fabric</div>
 
-								<ul>
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">전체(All Fabric)</a>
-									</li>
-	
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">실크(Silk)</a>
-									</li>
-									
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">울(Wool)</a>
-									</li>
-									
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">캐시미어(Cashmere)</a>
-									</li>
-									
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">시어서커(Seersucker)</a>
-									</li>
-									
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">린넨(Linen)</a>
-									</li>
-								</ul>
-							</div>
+                        <ul>
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">전체(All Fabric)</a>
+                           </li>
+   
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">실크(Silk)</a>
+                           </li>
+                           
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">울(Wool)</a>
+                           </li>
+                           
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">캐시미어(Cashmere)</a>
+                           </li>
+                           
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">시어서커(Seersucker)</a>
+                           </li>
+                           
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">린넨(Linen)</a>
+                           </li>
+                        </ul>
+                     </div>
 
-						<div class="filter-col3 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">By Color</div>
-							<ul>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: brown;"><i class="zmdi zmdi-circle"></i></span>
-									<a href="#" class="filter-link stext-106 trans-04" style="color: brown;">Brown</a>
-								</li>
-								
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: black;"><i class="zmdi zmdi-circle"></i></span>
-									<a href="#" class="filter-link stext-106 trans-04" style="color: black;">Black</a>
-								</li>
-								
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #E8E1BE;"><i class="zmdi zmdi-circle"></i></span>
-									<a href="#" class="filter-link stext-106 trans-04" style="color: #E8E1BE;">Beige</a>
-								</li>
-								
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: gray;"><i class="zmdi zmdi-circle"></i></span>
-									<a href="#" class="filter-link stext-106 trans-04" style="color: gray;">Gray</a>
-								</li>
-								
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: navy;"><i class="zmdi zmdi-circle"></i></span>
-									<a href="#" class="filter-link stext-106 trans-04" style="color: navy;">Navy</a>
-								</li>
-								
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: khaki;" ><i class="zmdi zmdi-circle"></i></span>
-									<a href="#" class="filter-link stext-106 trans-04" style="color: khaki;">Khaki</a>
-								</li>
+                  <div class="filter-col3 p-r-15 p-b-27">
+                     <div class="mtext-102 cl2 p-b-15">By Color</div>
+                     <ul>
+                        <li class="p-b-6">
+                           <span class="fs-15 lh-12 m-r-6" style="color: brown;"><i class="zmdi zmdi-circle"></i></span>
+                           <a href="#" class="filter-link stext-106 trans-04" style="color: brown;">Brown</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <span class="fs-15 lh-12 m-r-6" style="color: black;"><i class="zmdi zmdi-circle"></i></span>
+                           <a href="#" class="filter-link stext-106 trans-04" style="color: black;">Black</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <span class="fs-15 lh-12 m-r-6" style="color: #E8E1BE;"><i class="zmdi zmdi-circle"></i></span>
+                           <a href="#" class="filter-link stext-106 trans-04" style="color: #E8E1BE;">Beige</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <span class="fs-15 lh-12 m-r-6" style="color: gray;"><i class="zmdi zmdi-circle"></i></span>
+                           <a href="#" class="filter-link stext-106 trans-04" style="color: gray;">Gray</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <span class="fs-15 lh-12 m-r-6" style="color: navy;"><i class="zmdi zmdi-circle"></i></span>
+                           <a href="#" class="filter-link stext-106 trans-04" style="color: navy;">Navy</a>
+                        </li>
+                        
+                        <li class="p-b-6">
+                           <span class="fs-15 lh-12 m-r-6" style="color: khaki;" ><i class="zmdi zmdi-circle"></i></span>
+                           <a href="#" class="filter-link stext-106 trans-04" style="color: khaki;">Khaki</a>
+                        </li>
 
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: blue;"><i class="zmdi zmdi-circle"></i></span>
-									<a href="#" class="filter-link stext-106 trans-04" style="color: blue;">Blue</a>
-								</li>
+                        <li class="p-b-6">
+                           <span class="fs-15 lh-12 m-r-6" style="color: blue;"><i class="zmdi zmdi-circle"></i></span>
+                           <a href="#" class="filter-link stext-106 trans-04" style="color: blue;">Blue</a>
+                        </li>
 
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #4b4b4b;"><i class="zmdi zmdi-circle"></i></span>
-									<a href="#" class="filter-link stext-106 trans-04" style="color: #4b4b4b;">Charcoal</a>
-								</li>
+                        <li class="p-b-6">
+                           <span class="fs-15 lh-12 m-r-6" style="color: #4b4b4b;"><i class="zmdi zmdi-circle"></i></span>
+                           <a href="#" class="filter-link stext-106 trans-04" style="color: #4b4b4b;">Charcoal</a>
+                        </li>
 
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: lightgray;"><i class="zmdi zmdi-circle"></i></span>
-									<a href="#" class="filter-link stext-106 trans-04" style="color: lightgray;">LightGray</a>
-								</li>
-							</ul>
-						</div>
+                        <li class="p-b-6">
+                           <span class="fs-15 lh-12 m-r-6" style="color: lightgray;"><i class="zmdi zmdi-circle"></i></span>
+                           <a href="#" class="filter-link stext-106 trans-04" style="color: lightgray;">LightGray</a>
+                        </li>
+                     </ul>
+                  </div>
 
-						<div class="filter-col4 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">By BodySize</div>
-							<div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">1. Shoulder Type</div>
-								<ul>
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">좁음</a>
-									</li>
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">보통</a>
-									</li>
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">넓음</a>
-									</li>
-								</ul>	
-							<br>
-							<div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">2. Arm Length</div>
-								<ul>
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">좁음</a>
-									</li>
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">보통</a>
-									</li>
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">넓음</a>
-									</li>
-								</ul>	
-							<br>
-							<div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">3. Leg Length</div>
-								<ul>
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">좁음</a>
-									</li>
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">보통</a>
-									</li>
-									<li class="p-b-6">
-										<a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">넓음</a>
-									</li>
-								</ul>	
-							</div>
-						</div>
-					</div>
+                  <div class="filter-col4 p-b-27">
+                     <div class="mtext-102 cl2 p-b-15">By BodySize</div>
+                     <div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">1. Shoulder Type</div>
+                        <ul>
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">좁음</a>
+                           </li>
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">보통</a>
+                           </li>
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">넓음</a>
+                           </li>
+                        </ul>   
+                     <br>
+                     <div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">2. Arm Length</div>
+                        <ul>
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">좁음</a>
+                           </li>
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">보통</a>
+                           </li>
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">넓음</a>
+                           </li>
+                        </ul>   
+                     <br>
+                     <div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">3. Leg Length</div>
+                        <ul>
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">좁음</a>
+                           </li>
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">보통</a>
+                           </li>
+                           <li class="p-b-6">
+                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">넓음</a>
+                           </li>
+                        </ul>   
+                     </div>
+                  </div>
+               </div>
+			</div>
 
 			<div class="row isotope-grid">
 				<c:forEach items="${jsonObjectList}" var="product">
