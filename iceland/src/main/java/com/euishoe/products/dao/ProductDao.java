@@ -3,7 +3,6 @@ package com.euishoe.products.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.euishoe.customers.dto.Customer;
 import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 
@@ -22,7 +21,6 @@ public interface ProductDao {
 	public List<Map<String, Object>> hitProductList() throws Exception;
 	
 	// 전체리스트 출력
-	List<Map<String, Object>> selectAll() throws Exception;
 	
 	// 해당 상품번호에 해당하는 이미치 주소 리스트 출력
 	public List<String> selectImageRefByProductNum(int productNum) throws Exception;
@@ -34,4 +32,9 @@ public interface ProductDao {
 	// 주문시 product객체 생성
 	public String create(Product product) throws Exception;
 
+	public List<Map<String, Object>> selectAllById(int productNum) throws Exception;
+
+	public List<Map<String, Object>> selectAll2() throws Exception;
+
+	public List<Map<String, Object>> selectAll() throws Exception;
 }

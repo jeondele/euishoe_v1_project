@@ -42,7 +42,7 @@ public class MybatisProductDao implements ProductDao {
 	}
 	
 	@Override
-	public List<Map<String,Object>> selectAll() throws Exception {
+	public List<Map<String,Object>> selectAll2() throws Exception {
 		List<Map<String,Object>> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		list = sqlSession.selectList(NAMESPACE+"selectAll");
@@ -76,6 +76,25 @@ public class MybatisProductDao implements ProductDao {
 		sqlSession.commit();
 		sqlSession.close();
 		return product.getProductCode();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAllById(int productNum) throws Exception {
+		List<Map<String, Object>> list = null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		list = sqlSession.selectList(NAMESPACE+"selectAllById", productNum);
+		sqlSession.commit();
+		sqlSession.close();
+		return list;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAll() throws Exception {
+		List<Map<String,Object>> list = null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		list = sqlSession.selectList(NAMESPACE+"selectAll");
+		sqlSession.close();
+		return list;
 	}
 
 }
