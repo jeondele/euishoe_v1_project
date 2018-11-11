@@ -40,13 +40,72 @@
   
   <script type="text/javascript">
 
+  
+
+  
   var str = "";
   
-  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img">';
-  str += '<img src="/iceland/images/item-cart-02.jpg" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
-  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">Converse All Star</a>'
-  str += '<span class="header-cart-item-info">1 x $39.00</span></div></li>';		
-	
+  $(document).ready(function() {
+		//var obj = decodeURIComponent(getCookie('carts'));
+		
+		var prior = 1;
+		var checksum = 0; 
+		
+		while(getCookie('wish' + prior)){
+			var obj = decodeURIComponent(getCookie('wish' + prior)).substring(1,decodeURIComponent(getCookie('wish' + prior)).length - 1);
+			var jsonObj = JSON.parse(obj);
+			
+			console.log(prior);
+			
+			var str = "";
+			
+			  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img" value='+ prior +'>';
+			  str += '<img src="' + jsonObj.image_ref + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
+			  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + jsonObj.PRODUCT_NAME + '</a>'
+			  str += '<span class="header-cart-item-info">' + jsonObj.product_count + ' x ' + jsonObj.PRODUCT_PRICE + '</span></div></li>';		
+			  $('#miniCarts').append(str);
+			  
+			  checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
+			  prior++;
+		}
+		
+		$('#cartButton').attr('data-notify',prior - 1);
+		$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
+	  
+		// 지우기
+		$('.header-cart-item-img').unbind("click").on('click',function(e){
+            var deleteNum = parseInt($(e.currentTarget).attr('value'));
+            setCookie('cart' + deleteNum,'',0);
+            
+            console.log(1);
+            // 지운 후 정렬 
+            var testNum = deleteNum + 1;
+            
+            while(getCookie('cart' + testNum)){
+                testNum++;
+            }
+            
+            console.log(testNum);
+            
+            for(var i = deleteNum + 1; i < testNum; i++){
+                console.log(i);
+                setCookie('cart' + (i-1),getCookie('cart' + i),1);
+                if(i == testNum - 1){
+                    setCookie('cart' + i,'',0);
+                }
+            }
+            $(e.currentTarget).parents()[0].remove();
+            $('#cartButton').attr('data-notify',testNum - 2);
+
+        });
+		// row 뿌리기
+		
+		
+		// json 객체로 cart 가져오기
+		}
+	);
+  
+  
   </script>
 <!--
 

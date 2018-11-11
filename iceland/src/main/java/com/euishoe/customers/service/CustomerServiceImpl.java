@@ -256,19 +256,21 @@ public class CustomerServiceImpl implements CustomerService {
 						
 					}else {
 						// 상품제목 O, 상품수량 X
-						cartDao.updateCart(hashMap.get("CART_NUM"),count);
+						// count
+						cartDao.updateCart((String) hashMap.get("CART_NUM"),null);
 						willDelete = false;
 					}
 				}else {
 					// 상품제목 X
-					cartDao.createCart(cookiesCart.get(i).("PRODUCT_CODE"), loginId.getValue());
+					//cookiesCart.get(i).("PRODUCT_CODE")
+					cartDao.createCart(null,null, loginId.getValue());
 					willDelete = false;
 					
 				}
 				
 				if(willDelete) {
 					// 삭제
-					cartDao.deleteCart(hashMap.get("CART_NUM"));
+					cartDao.deleteCart((String) hashMap.get("CART_NUM"));
 				}
 			}
 		}
