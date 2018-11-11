@@ -166,7 +166,7 @@
                         <option selected>선택</option>
                         <option>naver.com</option>
                         <option>daum.net</option>
-                        <option>google.com</option>
+                        <option>gmail.com</option>
                         <option>직접입력</option>
                     </select>
 
