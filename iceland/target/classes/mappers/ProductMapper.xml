@@ -70,7 +70,37 @@
 			FROM product_infos p 
 		       		join images m 
 		         ON ( m.product_num = p.product_num )
-		    WHERE  m.IMAGE_REF like '%main$1%'
 	</select>
 	
+	<select id="selectImageRefByProductNum" parameterType="String" resultType="String">
+			SELECT m.image_ref "imageRef"
+			 FROM product_infos p 
+			    join images m 
+			      ON ( m.product_num = p.product_num )
+			WHERE  p.product_num = #{productNum}
+	</select>
+	
+	<select id="selectProductInfoByProductNum" parameterType="String" resultType="ProductInfo">
+			SELECT product_num "productNum",  
+			       product_list_num "productListNum", 
+			       product_name "productName", 
+			       product_cost "productCost", 
+			       product_price "productPrice", 
+			       product_brief_information "productBriefInfomation", 
+			       product_manufacturer "productManufacturer", 
+			       product_release_date "productReleaseDate", 
+			       product_origin "productOrigin", 
+			       product_list_price "productListPrice",
+			       color_code "colorCode", 
+			       product_hitcount "productHitcount", 
+			       product_body "productBody", 
+			       product_shoulder "productShoulder", 
+			       product_arm "productArm", 
+			       product_leg "productLeg", 
+			       product_season "productSeason", 
+			       product_fabric "productFabric", 
+			       product_tpo "productTpo"
+			FROM   product_infos
+			WHERE  product_num = #{productNum}
+	</select>
 </mapper>

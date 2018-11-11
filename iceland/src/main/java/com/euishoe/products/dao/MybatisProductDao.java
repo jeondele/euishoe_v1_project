@@ -1,6 +1,7 @@
 package com.euishoe.products.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -26,6 +27,7 @@ public class MybatisProductDao implements ProductDao {
 		List<ProductInfo> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		list = sqlSession.selectList(NAMESPACE+"newProductList");
+		sqlSession.close();
 		return list;
 	}
 
@@ -34,16 +36,38 @@ public class MybatisProductDao implements ProductDao {
 		List<ProductInfo> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		list = sqlSession.selectList(NAMESPACE+"hitProductList");
+		sqlSession.close();
 		return list;
 	}
 	
 	@Override
-	public List<ProductInfo> selectAll() throws Exception {
-		List<ProductInfo> list = null;
+	public List<Map<String,Object>> selectAll() throws Exception {
+		List<Map<String,Object>> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		list = sqlSession.selectList(NAMESPACE+"selectAll");
+		sqlSession.close();
 		return list;
 	}
+
+	@Override
+	public List<String> selectImageRefByProductNum(int productNum) throws Exception {
+		List<String> list = null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		list = sqlSession.selectList(NAMESPACE+"selectImageRefByProductNum", productNum);
+		sqlSession.close();
+		return list;
+	}
+
+	@Override
+	public List<ProductInfo> selectProductInfoByProductNum(int productNum) throws Exception {
+		List<ProductInfo> list = null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		list = sqlSession.selectList(NAMESPACE+"selectProductInfoByProductNum", productNum);
+		sqlSession.close();
+		return list;
+	}
+	
+	
 }
 
 
