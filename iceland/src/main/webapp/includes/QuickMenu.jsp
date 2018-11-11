@@ -138,18 +138,6 @@
 	
 	<script>
 	$('#addCart').on('click',function(e){
-		var oldCookie = '';
-		$('#addCart').on('click',function(e){
-			sumToMakeJson();
-	    });
-        console.log(e);
-        
-        // productName,Image,count,price
-        var productName = $('#addCart').parents()[3].childNodes[1].innerText;
-        var productImg = $('#productImg')[0].src
-        var productCount = document.getElementsByName('num-product')[0].value;
-        var productPrice = $('#productPrice').text().trim();
-        var cookieData = document.cookie;
 		sumToMakeJson();
     });
 	
