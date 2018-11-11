@@ -24,8 +24,8 @@ public class MybatisProductDao implements ProductDao {
 	}
 
 	@Override
-	public List<ProductInfo> newProductList() throws Exception {
-		List<ProductInfo> list = null;
+	public List<Map<String, Object>> newProductList() throws Exception {
+		List<Map<String, Object>> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		list = sqlSession.selectList(NAMESPACE+"newProductList");
 		sqlSession.close();
@@ -33,8 +33,8 @@ public class MybatisProductDao implements ProductDao {
 	}
 
 	@Override
-	public List<ProductInfo> hitProductList() throws Exception {
-		List<ProductInfo> list = null;
+	public List<Map<String, Object>> hitProductList() throws Exception {
+		List<Map<String, Object>> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		list = sqlSession.selectList(NAMESPACE+"hitProductList");
 		sqlSession.close();

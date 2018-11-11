@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
+<<<<<<< HEAD
 	<!-- DataSource 설정  마이바티스로 하기때문에 사실상 필요 없음-->
 	<bean type="component" name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
@@ -130,7 +131,7 @@
 	<bean type="service" name="deliveryService" class="com.euishoe.deliveries.service.DeliveryServiceImpl">
 		<property name="deliveryDao" ref="deliveryDao"/>
 	</bean>
-
+=======
 	<!-- qna 맵핑 -->
 	<bean type="service" name="qnaService" class="com.euishoe.qnas.service.QnaServiceImpl">
 		<property name="qnaDao" ref="qnaDao"/>

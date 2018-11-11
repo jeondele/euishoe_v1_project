@@ -8,15 +8,30 @@
 	<!-- 프로덕트 검색 기능 -->
 	<select id="newProductList" resultType="map">
 	<![CDATA[
-		SELECT p.product_num "productNum",
-		       p.product_name "productName",
-		       p.product_list_price "productListPrice",
-		       m.image_ref "imageRef", 
-		       m.image_num "imageNum"
+		SELECT 	   p.product_num "productNum",  
+			       p.product_list_num "productListNum", 
+			       p.product_name "productName", 
+			       p.product_cost "productCost", 
+			       p.product_price "productPrice", 
+			       p.product_brief_information "productBriefInfomation", 
+			       p.product_manufacturer "productManufacturer", 
+			       p.product_release_date "productReleaseDate", 
+			       p.product_origin "productOrigin", 
+			       p.product_list_price "productListPrice",
+			       p.color_code "colorCode", 
+			       p.product_hitcount "productHitcount", 
+			       p.product_body "productBody", 
+			       p.product_shoulder "productShoulder", 
+			       p.product_arm "productArm", 
+			       p.product_leg "productLeg", 
+			       p.product_season "productSeason", 
+			       p.product_fabric "productFabric", 
+			       p.product_tpo "productTpo",
+			       m.image_ref "imageRef"
 		FROM   product_infos p 
 		       join images m 
 		         ON ( m.product_num = p.product_num ) 
-		WHERE  m.IMAGE_REF like '%main$1%' and p.product_num IN((SELECT product_num 
+		WHERE  p.product_num IN((SELECT product_num 
 		                         FROM   (SELECT product_num, 
 		                                        product_release_date 
 		                                 FROM   product_infos 
@@ -28,15 +43,30 @@
 
 	<select id="hitProductList" resultType="map">
 	<![CDATA[
-		SELECT p.product_num "productNum",
-		       p.product_name "productName",
-		       p.product_list_price "productListPrice",
-		       m.image_ref "imageRef", 
-		       m.image_num "imageNum"
+		SELECT 	   p.product_num "productNum",  
+			       p.product_list_num "productListNum", 
+			       p.product_name "productName", 
+			       p.product_cost "productCost", 
+			       p.product_price "productPrice", 
+			       p.product_brief_information "productBriefInfomation", 
+			       p.product_manufacturer "productManufacturer", 
+			       p.product_release_date "productReleaseDate", 
+			       p.product_origin "productOrigin", 
+			       p.product_list_price "productListPrice",
+			       p.color_code "colorCode", 
+			       p.product_hitcount "productHitcount", 
+			       p.product_body "productBody", 
+			       p.product_shoulder "productShoulder", 
+			       p.product_arm "productArm", 
+			       p.product_leg "productLeg", 
+			       p.product_season "productSeason", 
+			       p.product_fabric "productFabric", 
+			       p.product_tpo "productTpo",
+			       m.image_ref "imageRef"
 		FROM   product_infos p 
 		       join images m 
 		         ON ( m.product_num = p.product_num ) 
-		WHERE  m.IMAGE_REF like '%main$1%' and p.product_num IN (SELECT product_num 
+		WHERE  p.product_num IN (SELECT product_num 
 		                         FROM   (SELECT product_num, 
 		                                        product_hitcount 
 		                                 FROM   product_infos 

@@ -35,20 +35,23 @@ public class ProductController implements Controller {
 			productService = (ProductService)factory.getBean(ProductServiceImpl.class);
 			
 			List<Map<String,Object>> list = null;
-			List<String> gsonListAll = productService.convertToGson();
+			List<String> gsonListAll = null;
+			try {
+				gsonListAll = productService.convertToGson(productService.selectAll());
+			} catch (Exception e1) {
+			}
 			ArrayList<HashMap<String, Object>> jsonObjectList = new ArrayList<HashMap<String, Object>>();
 			Gson gson = new Gson();
 			JsonObject object = new JsonObject();
 			
 			for(int i = 0 ; i < gsonListAll.size(); i++) {	
-				HashMap<String, Object> xx = gson.fromJson(gsonListAll.get(i), HashMap.class);
-				jsonObjectList.add(xx);
+				HashMap<String, Object> convertToJson = gson.fromJson(gsonListAll.get(i), HashMap.class);
+				jsonObjectList.add(convertToJson);
 		 	}
 			try {
 				list = productService.selectAll2();
 			} catch (Exception e) {}
 			
-			mav.addObject("listAll", list);
 			mav.addObject("gsonListAll", gsonListAll);
 			mav.addObject("jsonObjectList", jsonObjectList);
 			mav.setView("/product/product.jsp");

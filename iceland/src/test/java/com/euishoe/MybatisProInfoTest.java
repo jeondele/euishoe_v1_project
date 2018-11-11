@@ -40,27 +40,11 @@ public class MybatisProInfoTest {
 		((MybatisCustomerDao) customerDao).setSqlSessionFactory(sqlSessionFactory);
 	}
 	
-//	@Test
-//	public void newProductTest() {
-//		List<Map<String, Object>> list = null;
-//		SqlSession sqlSession = sqlSessionFactory.openSession();
-//		list = sqlSession.selectList(NAMESPACE+"newProductList");
-//		System.out.println("사이즈!!!!!!!!!"+list.size());
-//		
-//		for (Map<String, Object> productInfo : list) {
-//			logger.debug("----------------");
-//			logger.debug("제품정보객체: " + productInfo);
-//			/*logger.debug("제품정보객체: "+productInfo);
-//			logger.debug("이미지정보: "+productInfo.getImage().getImageRef());*/
-//			logger.debug("----------------");
-//		}
-//	}
-	
 	@Test
 	public void newProductTest() {
 		List<Map<String, Object>> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		list = sqlSession.selectList(NAMESPACE+"selectAll");
+		list = sqlSession.selectList(NAMESPACE+"newProductList");
 		System.out.println("사이즈!!!!!!!!!"+list.size());
 		
 		for (Map<String, Object> productInfo : list) {
@@ -71,6 +55,22 @@ public class MybatisProInfoTest {
 			logger.debug("----------------");
 		}
 	}
+	
+	/*@Test
+	public void newProductTest() {
+		List<Map<String, Object>> list = null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		list = sqlSession.selectList(NAMESPACE+"selectAll");
+		System.out.println("사이즈!!!!!!!!!"+list.size());
+		
+		for (Map<String, Object> productInfo : list) {
+			logger.debug("----------------");
+			logger.debug("제품정보객체: " + productInfo);
+			logger.debug("제품정보객체: "+productInfo);
+			logger.debug("이미지정보: "+productInfo.getImage().getImageRef());
+			logger.debug("----------------");
+		}
+	}*/
 	
 	//@Test
 	// 매개변수 하나 전달 : 사원번호 100번인 사람의 salary
