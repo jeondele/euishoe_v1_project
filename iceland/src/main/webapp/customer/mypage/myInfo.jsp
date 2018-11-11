@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -392,7 +393,20 @@ input[type='text'], input[type='password'], select{
 	color: #0056b3;
 }
 </style>
+<script type="text/javascript">
+window.onload = function () {
+	// 로그인 되어있는 정보 fix
+	var loginId = getCookie('loginId');	
+	var loginName = getCookie('userName');
+	var decodedName = decodeURI(loginName);
 
+	$('#member_id').attr('value', loginId);
+	$('#name').attr('value', decodedName);
+	$('#mobile').attr('value', )
+};
+		
+		
+</script>
 
 
 
@@ -467,20 +481,20 @@ input[type='text'], input[type='password'], select{
                   <tr class="">
                     <th scope="row" class="myInfoHeader">주소</th>
                     <td>
-                      <input id="postcode1" name="postcode1" class="inputTypeText" placeholder="" readonly="readonly" maxlength="14" value="" type="text">
-                      <button class="flex-c-m stext-101 cl2 size-210-1 bg8 bor14 hov-btn3 p-lr-5 trans-04 pointer myInfoButton">주소찾기</button><br> 
-                      <input id="addr1" name="addr1"  class="inputTypeText" placeholder="도로명주소" readonly="readonly" value="" type="text"> 
-                      <input id="addr2" name="addr2" class="inputTypeText" placeholder="상세주소" value="" type="text">
+                      <input id="postNum" name="postNum" class="inputTypeText" placeholder="우편번호" readonly="readonly" maxlength="14" type="text" style="display:inline">
+                      <input type="button" value="주소찾기" onclick="sample2_execDaumPostcode()" class="flex-c-m stext-101 cl2 size-210-1 bg8 bor14 hov-btn3 p-lr-5 trans-04 pointer myInfoButton" style="display:inline"><br> 
+                      <input id="address" name="address"  class="inputTypeText" placeholder="도로명주소" readonly="readonly" type="text" style="display:inline"> 
+                      <input id="detail_address" name="addr2" class="inputTypeText" placeholder="상세주소" value="" type="text" style="display:inline">
                     </td>
                   </tr>
 
                   <tr class="">
                     <th scope="row" class="myInfoHeader">휴대전화</th>
                     <td>
-                        <input id="mobile" name="mobile[]" maxlength="11" readonly="readonly" value="" type="text">
+                        <input id="mobile" name="mobile[]" maxlength="11" value="" type="text">
                     </td>
                   </tr>
-                  
+                  <!-- 
                   <tr>
                   	<th scope="row" class="myInfoHeader">생년월일</th>
                   	<td>
@@ -488,26 +502,23 @@ input[type='text'], input[type='password'], select{
                       	
                   	</td>
                   </tr>
-                  
+                   -->
                   <tr>
                     <th scope="row" class="myInfoHeader">이메일</th>
                     <td>
-                    	<input id="email1" name="email1" class="mailId" value="" type="text">
-                    	@<input id="email2" name="email2" class="mailAddress" readonly="readonly" value=""type="text">
-                      	<select id="email3">
-	                        <option value="" selected="selected">-
-	                          이메일 선택 -</option>
-	                        <option value="naver.com">naver.com</option>
-	                        <option value="daum.net">daum.net</option>
-	                        <option value="nate.com">nate.com</option>
-	                        <option value="hotmail.com">hotmail.com</option>
-	                        <option value="yahoo.com">yahoo.com</option>
-	                        <option value="empas.com">empas.com</option>
-	                        <option value="korea.com">korea.com</option>
-	                        <option value="dreamwiz.com">dreamwiz.com</option>
-	                        <option value="gmail.com">gmail.com</option>
-	                        <option value="etc">직접입력</option>
-                    	</select>&nbsp;&nbsp;<button class="flex-c-m stext-101 cl2 size-210-1 bg8 bor14 hov-btn3 p-lr-5 trans-04 pointer myInfoButton">이메일 인증</button>
+                    	<input id="email" name="email" class="mailId" value="" type="text" style="display:inline">
+                    	@<!-- <input id="email2" name="email2" class="mailAddress" readonly="readonly" value=""type="text"> -->
+                      	<select id="emailHost">
+	                        <option selected>-이메일 선택 -</option>
+	                        <option>naver.com</option>
+	                        <option>daum.net</option>
+	                        <option>nate.com</option>
+	                        <option>hotmail.com</option>
+	                        <option>yahoo.com</option>
+	                        <option>empas.com</option>
+	                        <option>gmail.com</option>
+	                        <option>직접입력</option>
+                    	</select>&nbsp;&nbsp;<div id="emailCertifyDiv"><button type="button" id="emailCertify" onclick="send()" class="flex-c-m stext-101 cl2 size-210-1 bg8 bor14 hov-btn3 p-lr-5 trans-04 pointer myInfoButton">이메일 인증</button></div>
                     <span id="emailMsg"></span>
                   	</td>
                   </tr>
@@ -532,6 +543,16 @@ input[type='text'], input[type='password'], select{
 	<%@include file="/iceland/../includes/footer.jsp"%>
 
 	<%@include file="/iceland/../includes/QuickMenu.jsp"%>
+
+	<!--===============================================================================================-->
+	<script src="/iceland/js/main.js"></script>
+<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+<img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+</div>
+
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="/iceland/js/address.js"></script>
+<script src="/iceland/js/ajax.js"></script>
 
 	<!--===============================================================================================-->
 	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -641,6 +662,71 @@ input[type='text'], input[type='password'], select{
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
+<!-- ============================================================================================== -->
+	<script type="text/javascript">
+		// 이메일 인증(비동기처리)을 위한 자바스크립트 코드 
+		//emailCertify.addEventListener("click", send);
+		var emailCertifyCode='';
+		function send(){
+			if(document.getElementById("emailHost").value.trim()=="직접입력"){
+				var emailAdd = document.getElementById("email").value;
+			}else{
+				emailAdd = document.getElementById("email").value + "@" + document.getElementById("emailHost").value;
+			}
+			var url = "/iceland/customer/emailCertify.es";
+			ajax({
+				method : "get",
+				url : url,
+				param : "emailAdd="+emailAdd,
+				callback : setResult
+			});
+		}
+		
+		// 비동기통신 후 실행될 콜백함수
+		function setResult(result){
+			// 이메일인증컨트롤러에서 임의로 생성된 인증코드값
+			emailCertifyCode = result.responseText; 
+			// 이메일인증을 위한 textfeild와 button을 붙일 div el
+			var emailDiv = document.getElementById('emailCertifyDiv'); 
+			// 기존 이메일인증버튼을 display:none, 사용자에게 코드값을 입력받을 텍스트필드와 확인버튼 생성
+			document.getElementById('emailCertify').style.display="none";
+			var $inputCode = $("<input type='text' id='inputCode'>");
+			var $certifyBtn = $("<button type='button' id='certifyBtn' class='flex-c-m stext-101 cl2 size-210-1 bg8 bor14 hov-btn3 p-lr-5 trans-04 pointer myInfoButton' onclick='sendCode()'>확인</button>");
+			// 생성된 el을 document에 붙임
+			$inputCode.appendTo(emailDiv);
+			$certifyBtn.appendTo(emailDiv);
+			// 인증번호입력 알람을 보냄
+			alert('인증번호를 이메일로 보냈습니다. 인증번호를 입력해 주세요');
+			
+		}
+		
+		// 사용자가 입력한 코드값과 생성된 코드값이 일치하는지 확인하기위한 함수
+		function sendCode() {
+			
+			var inputVal = document.getElementById('inputCode').value.trim();
+			console.log("코드값: "+emailCertifyCode);
+			console.log("입력값: "+inputVal);
+			// 입력값이 있다면
+			if(inputVal){
+				if(inputVal == emailCertifyCode.trim()){
+					// 입력값과 생성된 코드값이 일치하다면
+					// 인증완료알림, inputCode readonly, certifyBtn disabled
+					alert('이메일 인증이 완료되었습니다.');
+					$('#inputCode').attr('readonly', 'readonly'); 
+					$('#certifyBtn').attr('disabled', 'disabled');
+					$('#emailHost').attr('disabled', 'disabled');
+					$('#email').attr('readonly', 'readonly');
+				}else{
+					// 입력값과 코드값이 일치하지 않다면
+					alert('입력 코드값이 일치하지 않습니다. 다시 입력해주세요.');
+				}
+			}else{
+				// 입력값이 없다면
+				alert('인증번호를 입력해 주세요');
+			}
+		}
+	</script>
+<!-- ============================================================================================== -->
 
 </body>
 </html>
