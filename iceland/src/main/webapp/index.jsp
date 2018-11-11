@@ -97,7 +97,7 @@ function sumToMakeJson(){
     data.image_ref = productImg;
     data.PRODUCT_PRICE = productPrice;
     data.product_count = productCount;
-    data.PRODUCT_NAME = productName ;
+    data.PRODUCT_NAME = productName;
     data.PRODUCT_NUM = productNum;
      
     // 리스트에 생성된 객체 삽입
@@ -118,7 +118,7 @@ function sumToMakeJson(){
     //checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
     
     //$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
-    $('.header-cart-item-img').on('click',function(e){
+    $('.header-cart-item-img').unbind("click").on('click',function(e){
     	console.log(this);
         var deleteNum = parseInt($(e.currentTarget).attr('value'));
         setCookie('cart' + deleteNum,'',0);
@@ -586,55 +586,7 @@ function sumToMakeJson(){
 		return str.substring(3,str.length - 3).split('%2C');
 	}
 	
-	// decodeMakeJson에서 만든 기존 쿠키에 더하기
-	function sumToMakeJson(){
-		var prior = 1;
-		while(getCookie('cart' + prior)){
-			prior++;
-		}
-		
-		console.log(prior);
-		
-		var productName = $('#addCart').parents()[3].childNodes[1].innerText;
-        var productImg = $('#productImg')[0].src
-        var productCount = parseInt(document.getElementsByName('num-product')[0].value);
-        var productPrice = parseInt($('#productPrice').text().trim());
-        var productNum = 0;
-        // 객체 생성
-        var data = new Object() ;
-        // String으로 index.jsp 내 객체
-        data.image_ref = productImg;
-        data.PRODUCT_PRICE = productPrice;
-        data.product_count = productCount;
-        data.PRODUCT_NAME = productName ;
-        data.PRODUCT_NUM = productNum;
-         
-        // 리스트에 생성된 객체 삽입
-        var arrayCookie = '"' + encodeURIComponent(JSON.stringify(data)) + '"';
-		setCookie('cart' + prior,arrayCookie,1);
-		
-		$('#cartButton').attr('data-notify',parseInt($('#cartButton').attr('data-notify')) + 1)
-		
-			
-		var str = "";
-			
-	    str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img">';
-	    str += '<img class="cartItems" src="' + productImg + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
-		str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + productName + '</a>'
-		str += '<span class="header-cart-item-info">' + productCount + ' x ' + productPrice + '</span></div></li>';		
-		$('#miniCarts').append(str);
-			  
-		//checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
-		
-		//$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
-		
-		$('.header-cart-item-img').on('click',function(e){
-	        console.log($(e.currentTarget).parents()[0]);
-	        console.log($(e.currentTarget).attr('value'));
-	        setCookie('cart' + $(e.currentTarget).attr('value'),'',0);
-	        $(e.currentTarget).parents()[0].remove();
-        });
-	}
+	
 	
 	</script>
 </body>
