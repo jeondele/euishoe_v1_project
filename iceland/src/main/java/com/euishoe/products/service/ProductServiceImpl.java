@@ -9,6 +9,7 @@ package com.euishoe.products.service;
 import java.util.List;
 
 import com.euishoe.products.dao.ProductDao;
+import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 
 public class ProductServiceImpl implements ProductService {

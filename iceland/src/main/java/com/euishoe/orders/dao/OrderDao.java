@@ -11,4 +11,7 @@ import java.util.Map;
  */
 public interface OrderDao {
 	public List<Map<String,Object>> selectOrderInfo(int orderNum);
+	
+	// 주문시 orderbyproduct객체 생성
+	public void create(String productCode) throws Exception;
 }

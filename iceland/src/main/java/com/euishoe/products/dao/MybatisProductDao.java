@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 
 public class MybatisProductDao implements ProductDao {
@@ -42,7 +43,18 @@ public class MybatisProductDao implements ProductDao {
 		List<ProductInfo> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		list = sqlSession.selectList(NAMESPACE+"selectAll");
+		sqlSession.close();
 		return list;
+	}
+
+	@Override
+	public String create(Product product) throws Exception {
+		System.out.println("상품다오들어옴!!!!!!!!!!!!!!");
+		System.out.println("상품은??" + product);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert(NAMESPACE+"create", product);
+		sqlSession.close();
+		return product.getProductCode();
 	}
 }
 

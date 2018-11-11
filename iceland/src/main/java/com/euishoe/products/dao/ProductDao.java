@@ -3,6 +3,7 @@ package com.euishoe.products.dao;
 import java.util.List;
 
 import com.euishoe.customers.dto.Customer;
+import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 
 /**
@@ -21,4 +22,7 @@ public interface ProductDao {
 	
 	// 전체리스트 출력
 	List<ProductInfo> selectAll() throws Exception;
+	
+	// 주문시 product객체 생성
+	public String create(Product product) throws Exception;
 }

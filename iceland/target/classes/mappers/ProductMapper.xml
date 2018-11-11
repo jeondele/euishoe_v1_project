@@ -73,4 +73,12 @@
 		    WHERE  m.IMAGE_REF like '%main$1%'
 	</select>
 	
+	<insert id="create" parameterType="com.euishoe.customers.dto.Customer">
+		INSERT INTO products 
+		VALUES     ( #{productCode},  
+		             #{jacketCode}, 
+		             #{pantsCode}, 
+		             #{productNum}, 
+		             #{productCount}) 		
+	</insert>
 </mapper>

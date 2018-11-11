@@ -409,6 +409,8 @@
 			// 생성된 el을 document에 붙임
 			$inputCode.appendTo(emailDiv);
 			$certifyBtn.appendTo(emailDiv);
+			// 인증번호입력 알람을 보냄
+			alert('인증번호를 이메일로 보냈습니다. 인증번호를 입력해 주세요');
 			
 		}
 		
