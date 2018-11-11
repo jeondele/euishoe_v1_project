@@ -23,12 +23,12 @@ public class QnaServiceImpl implements QnaService {
 	public void setQnaDao(QnaDao qnaDao) {
 		this.qnaDao = qnaDao;
 	}
-
+	
 	@Override
-	public void createQna(int typeNum, String customerId, int productNum, String qnaTitle, String qnaContent,
-			String qnaPassword, String qnaIsLock) throws Exception {
-			qnaDao.createQna(typeNum, customerId, productNum, qnaTitle, qnaContent, qnaPassword, qnaIsLock);
+	public void createQna(int typeNum, String customerId, int productNum, String qnaContent, int qnaRank) throws Exception {
+		qnaDao.createQna(typeNum, customerId, productNum, qnaContent, qnaRank);
 	}
+
 
 	@Override
 	public void createQna(Qna qna) throws Exception {

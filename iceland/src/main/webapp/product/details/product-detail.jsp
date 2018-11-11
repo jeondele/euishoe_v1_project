@@ -696,9 +696,9 @@
                             		<button type="button" id="insertQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" data-toggle="modal" data-target="#popLayWrap">문의하기</button>
                              	  <select name="selQnaDtlsCd" class="float-l" id="selQnaDtlsCd" style="float:left; height: 35px; font-size: 15px;">
                              	  	<option value="" selected="selected">문의유형(전체)</option>
-                             	  	<option value="01">상품</option><option value="02">배송</option>
-                             	  	<option value="03">반품/취소</option><option value="04">교환/변경</option>
-                             	  	<option value="05">기타</option>
+                             	  	<option value="1">상품</option><option value="2">배송</option>
+                             	  	<option value="3">반품/취소</option><option value="4">교환/변경</option>
+                             	  	<option value="5">기타</option>
                              	  </select>	
                              	  <!-- 동적으로 표시버튼 누르면 바뀌도록 제작 -->
 	                              <button type="button" id="secretQnA" class="float-l flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">비밀글표시</button>
@@ -713,7 +713,6 @@
                             		<col width="45%">
                             		<col width="15%">
                             		<col width="15%">
-                            		
                             	</colgroup>
                             	<thead>
                             	<tr>

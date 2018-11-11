@@ -78,7 +78,10 @@ public class MyBatisPointTest {
 		String customerId = "bangry";
 		List<Map<String, Object>> list = sqlSession.selectList(NAMESPACE + "selectPointHistoryById", customerId);
 	      for (Map<String, Object> Map : list) {
-	    	  logger.debug(Map);
+	    	  System.out.println(list.get(0).get("POINT_HISTORY_SCORE"));
+	    	  System.out.println(list.get(0).get("POINT_POLICY_DESCRIPTION"));
+	    	  System.out.println(list.get(0).get("totalScore"));
+	    	  System.out.println(list.get(0).keySet());
 	      }
 		logger.debug("조회 완료!");
 		sqlSession.close();

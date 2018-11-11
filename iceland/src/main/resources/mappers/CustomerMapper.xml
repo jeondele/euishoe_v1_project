@@ -39,7 +39,7 @@
 		       customer_leg			"customerLeg"
 		FROM   customers 
 		WHERE  customer_id = #{customerId} 
-       	AND customer_password = #{customerPassword} 
+       	AND    customer_password = #{customerPassword} 
 	</select>
 
 	<!-- 회원가입 -->

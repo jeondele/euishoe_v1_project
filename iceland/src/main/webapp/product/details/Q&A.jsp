@@ -165,7 +165,7 @@
 </form>
 
 <div id="popLayWrap">
-    <form name="frmMain" method="post">
+    <form name="frmMain" method="post" action="/iceland/qna/write.es">
         <div class="popbody_con">
             <!-- 팝업 내용입력부분 ============================= -->
             <div class="prdc_qna_wrap">
@@ -187,11 +187,11 @@
                                 <th scope="row" class="first alignL"><label for="qnaDtlsCd">문의유형</label></th>
                                 <td class="alignL">
                                     <div class="select_wrap">
-                                    	<span for="qnaDtlsCd1" class="qnaDtlsCd1"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd1" value="01">&nbsp;상품</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd2" class="qnaDtlsCd2"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd2" value="02">&nbsp;배송</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd3" class="qnaDtlsCd3"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd3" value="03">&nbsp;반품/취소</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd4" class="qnaDtlsCd4"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd4" value="04">&nbsp;교환/변경</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd5" class="qnaDtlsCd5"><input type="radio" name="qnaDtlsCd" class="qnaDtlsCd5" value="05">&nbsp;기타</span>
+                                    	<span for="qnaDtlsCd1" class="qnaDtlsCd1"><input type="radio" id="qnaDtlsCd" name="qnaDtlsCd" class="qnaDtlsCd1" value="1">&nbsp;상품</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd2" class="qnaDtlsCd2"><input type="radio" id="qnaDtlsCd" name="qnaDtlsCd" class="qnaDtlsCd2" value="2">&nbsp;배송</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd3" class="qnaDtlsCd3"><input type="radio" id="qnaDtlsCd" name="qnaDtlsCd" class="qnaDtlsCd3" value="3">&nbsp;반품/취소</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd4" class="qnaDtlsCd4"><input type="radio" id="qnaDtlsCd" name="qnaDtlsCd" class="qnaDtlsCd4" value="4">&nbsp;교환/변경</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd5" class="qnaDtlsCd5"><input type="radio" id="qnaDtlsCd" name="qnaDtlsCd" class="qnaDtlsCd5" value="5">&nbsp;기타</span>
                                     </div>
                                 </td>
                             </tr>
@@ -240,20 +240,20 @@
                 </div>
 				<div class="chk_wrap" id = "layerSecretYn" style="display:none">
 					 <label for="secretYn">
-                          <input type="checkbox" name="secretYn" id="secretYn" value="Y" class="chk"> 비밀글로 문의하기
+                          <!-- <input type="checkbox" name="secretYn" id="secretYn" value="Y" class="chk"> 비밀글로 문의하기 -->
                      </label>
 				</div>
             </div>
             <div class="btn_wrap">
                 <input type='hidden' name='com.skt.omp.serviceengine.taglib.TOKEN' value='CVN9UC9CK0SVHZ09MZPPITL4DCVWY9XT' />
-                <input type="hidden" name="frontYN" value="Y">
+                <!-- <input type="hidden" name="frontYN" value="Y">
                 <input type="hidden" name="prdNo" value="2205838409">
                 <input type="hidden" name="brdInfoClfNo" value="2205838409">
                 <input type="hidden" name="curPage" value="1">
                 <input type="hidden" name="hostUrl" value="deal.11st.co.kr">
                 <input type="hidden" name="qnaPathLoc" value="">
                 <input type="hidden" name="qnaCd" value="">
-                <input type="hidden" name="callCenterYn" value="">
+                <input type="hidden" name="callCenterYn" value=""> -->
             </div>
         </div>
     </form>
