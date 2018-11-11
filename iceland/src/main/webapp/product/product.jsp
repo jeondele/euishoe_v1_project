@@ -64,8 +64,6 @@ function setCountCartList(){
 	
 }
 
-var Test = '';
-var Test2 = '';
   function sumToMakeJson(){
     var prior = 1;
     while(getCookie('cart' + prior)){
@@ -625,5 +623,56 @@ var Test2 = '';
 	</script>
 <!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
+	<script type="text/javascript">
+	
+	  $('.btn-addwish-b2').unbind("click").on('click',function(e){
+		  console.log(e);
+		  
+		  Test = e;
+		  var str = "btn-addwish-b2 dis-block pos-relative js-addwish-b2";
+		  
+		  if( $(e.currentTarget).attr('class')=== str){
+		  $(e.currentTarget).attr('class',"btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2");
+		  
+		  var array = $(e.currentTarget).parents()[1].innerText.split('₩');
+		  var PRODUCT_NAME = array[0].trim();
+		  var PRODUCT_PRICE = array[1].trim().substring(0,array[1].trim().length - 2);
+		  var image_ref = $(e.currentTarget).parents()[2].children[0].children[0].currentSrc;
+		  
+		  // 찜목록 등록
+		  
+		  /*
+		     image_ref,PRODUCT_NAME,product_manufacturer,PRODUCT_PRICE,PRODUCT_NUM
+		  */
+		  
+		  }else{
+		  $(e.currentTarget).attr('class',"btn-addwish-b2 dis-block pos-relative js-addwish-b2");
+		  // 찜목록 삭제
+		  var deleteNum = parseInt($(e.currentTarget).attr('value'));
+		  // 변경 필요
+          setCookie('wish' + deleteNum,'',0);
+          
+          // 지운 후 정렬 
+          var testNum = deleteNum + 1;
+          
+          while(getCookie('wish' + testNum)){
+              testNum++;
+          }
+          
+          console.log(testNum);
+          
+          for(var i = deleteNum + 1; i < testNum; i++){
+              console.log(i);
+              setCookie('wish' + (i-1),getCookie('wish' + i),1);
+              if(i == testNum - 1){
+                  setCookie('wish' + i,'',0);
+              }
+          }
+          $(e.currentTarget).parents()[0].remove();
+          $('#cartButton').attr('data-notify',testNum - 2);
+
+		  }
+	  });
+	</script>
 </body>
 </html>

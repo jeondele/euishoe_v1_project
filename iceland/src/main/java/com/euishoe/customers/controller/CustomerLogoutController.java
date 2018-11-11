@@ -1,5 +1,8 @@
 package com.euishoe.customers.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -26,14 +29,26 @@ public class CustomerLogoutController implements Controller {
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
 		
+		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
+		customerService = (CustomerService)factory.getBean(CustomerServiceImpl.class);
 		Cookie[] cookies = request.getCookies();
 		for(Cookie cookie : cookies){
+			System.out.println(cookie.getName() + " : " + cookie.getValue());
+			System.out.println(cookie.getName().substring(0, 3));
 		    if(cookie.getName().equals("loginId")) {
 		  	    cookie.setMaxAge(0);
 		  	    cookie.setPath("/iceland/");
 		  	    response.addCookie(cookie);
 		  	    mav.addObject("loginCookie", cookie);   
-		    }else if(cookie.getName().equals("carts")) {
+		    }else if(cookie.getName().substring(0, 4).equals("cart")) {
+		    	customerService.logout(request,response,mav);
+		    	String cookStr = "";
+		    	try {
+					cookStr = URLDecoder.decode(cookie.getValue(), "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+                    System.out.println(cookStr);		    	
 		    	cookie.setMaxAge(0);
 		    	cookie.setPath("/iceland/");
 		    	response.addCookie(cookie);
