@@ -1,4 +1,4 @@
-package com.euishoe.reviews.controller;
+package com.euishoe.qnas.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -12,32 +12,31 @@ import com.euishoe.customers.dto.Customer;
 import com.euishoe.customers.service.CustomerService;
 import com.euishoe.customers.service.CustomerServiceImpl;
 import com.euishoe.qnas.service.QnaService;
-import com.euishoe.reviews.service.ReviewService;
 
 /**
  * /user/list.mall에 대한 로그아웃 요청 처리 컨트롤러
  * @author 김기정
  *
  */
-public class ReviewRemoveController implements Controller {
+public class QnaRemoveController implements Controller {
 
-	ReviewService reviewService;
+	QnaService qnaService;
 	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
-		
-		String reviewNum = request.getParameter("reviewNum");
+		String qnaNum = request.getParameter("qnaNum");
 		try {
-			reviewService.deleteReview(Integer.parseInt(reviewNum));
+			qnaService.deleteQna(Integer.parseInt(qnaNum));
 		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		mav.setView("redirect:/iceland/details/product-detail.jsp");
+		mav.setView("redirect:/iceland/index.jsp");
 		return mav;
 	}
 

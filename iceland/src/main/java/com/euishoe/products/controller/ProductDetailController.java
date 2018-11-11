@@ -58,7 +58,7 @@ public class ProductDetailController implements Controller {
 			qnalist = qnaService.qnaListAll(productNum);
 			
 			System.out.println("1." + reviewlist);
-			System.out.println("2." +qnalist);
+			System.out.println("2." + qnalist);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -177,13 +177,26 @@ th {
 								  <c:choose>
 								    <c:when test="${not empty pointHistoryList}">
 								      <c:forEach var="point" items="${pointHistoryList}">
-									<tr class="table_row">
-										<td class="column-1 txt-center"><img src="<%= application.getContextPath() %>/images/pointPlus.PNG" alt="적립"/></td>
-										<td class="column-2 txt-center">가입 축하 포인트</td>
-										<td class="column-3 txt-center">${point.pointHistoryScore}</td>
-										<td class="column-4 txt-center">${point.pointHistoryScore}</td>
-										<td class="column-5 txt-center">${point.pointHistoryUpdateDate}</td>
-									</tr>
+								      	<c:choose>
+										      <c:when test="${point.get('POINT_HISTORY_SCORE') > 0}">
+												<tr class="table_row">
+													<td class="column-1 txt-center"><img src="<%= application.getContextPath() %>/images/pointPlus.PNG" alt="적립"/></td>
+													<td class="column-2 txt-center">${point.get('POINT_POLICY_DESCRIPTION')}</td>
+													<td class="column-3 txt-center">${point.get('POINT_HISTORY_SCORE')}</td>
+													<td class="column-4 txt-center">${point.get('totalScore')}</td>
+													<td class="column-3 txt-center">${point.get('POINT_HISTORY_UPDATE_DATE')}</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<tr class="table_row">
+													<td class="column-1 txt-center"><img src="<%= application.getContextPath() %>/images/pointMinus.PNG" alt="사용"/></td>
+													<td class="column-2 txt-center">${point.get("POINT_POLICY_DESCRIPTION")}</td>
+													<td class="column-3 txt-center">${point.get("POINT_HISTORY_SCORE")}</td>
+													<td class="column-4 txt-center">${point.get('totalScore')}</td>
+													<td class="column-3 txt-center">${point.get("POINT_HISTORY_UPDATE_DATE")}</td>
+												</tr>
+											</c:otherwise>
+										</c:choose>
 								    </c:forEach>
 								    </c:when>
 								    <c:otherwise>
@@ -193,13 +206,7 @@ th {
 								    </c:otherwise>
 								  </c:choose>
 								
-								<tr class="table_row">
-									<td class="column-1 txt-center"><img src="<%= application.getContextPath() %>/images/pointMinus.PNG" alt="사용"/></td>
-									<td class="column-2 txt-center">포인트 사용</td>
-									<td class="column-3 txt-center">-2000</td>
-									<td class="column-4 txt-center">1000</td>
-									<td class="column-5 txt-center">2018.09.01</td>
-								</tr>
+
 											</tbody>
 										</table>
 									</div>

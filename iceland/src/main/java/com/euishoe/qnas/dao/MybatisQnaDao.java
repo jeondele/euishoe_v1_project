@@ -26,17 +26,14 @@ public class MybatisQnaDao implements QnaDao {
 	}
 
 	@Override
-	public void createQna(int typeNum, String customerId, int productNum, String qnaTitle, String qnaContent,
-			String qnaPassword, String qnaIsLock) throws Exception {
+	public void createQna(int typeNum, String customerId, int productNum, String qnaContent, int qnaRank) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("qnaTypeNum", typeNum);
 		params.put("customerId", customerId);
 		params.put("productNum", productNum);
-		params.put("qnaTitle", qnaTitle);
 		params.put("qnaContent", qnaContent);
-		params.put("qnaPassword", qnaPassword);
-		params.put("qnaIsLock", qnaIsLock);
+		params.put("qnaRank", qnaRank);
 		sqlSession.insert(NAMESPACE+"createQna1", params);
 		sqlSession.commit();
 		sqlSession.close();

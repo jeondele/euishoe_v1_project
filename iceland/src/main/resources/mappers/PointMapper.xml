@@ -46,7 +46,8 @@
 	</insert>
 	
 	<select id="selectPointHistoryById" parameterType="String" resultType="Map">
-		SELECT 	ph.*,
+		SELECT 	sum(ph.point_history_score) OVER(order by point_history_update_date) as "totalScore",
+				ph.*,
    				pp.*
 	    FROM    point_histories ph
 		  		INNER JOIN point_policies pp

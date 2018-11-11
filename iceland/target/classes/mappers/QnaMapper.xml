@@ -54,12 +54,12 @@
 				             ${qnaTypeNum},
 							 ${customerId},
 				             ${productNum},
-				             ${qnaTitle},
+				             null,
 				             ${qnaContent},
-				             ${qnaPassword},
+				             null,
 				             'N',
-				             ${qnaIsLock},
-				             '1',
+				             'N',
+				             ${qnaRank},
 				             'N',
 				             sysdate)
 	</insert>

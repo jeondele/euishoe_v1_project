@@ -65,8 +65,8 @@ public class MyBatisQnaTest {
 	//@Test
 	public void testCreateQna2() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		Qna qna = new Qna(1, "bangry", 2,  "2번 제품 테스트", "가보자", "4444", "Y", 0);
-		sqlSession.insert(NAMESPACE+"createQna2", qna);
+/*		Qna qna = new Qna(1, "bangry", 2,  "2번 제품 테스트", "가보자", "4444", "Y", 0);
+		sqlSession.insert(NAMESPACE+"createQna2", qna);*/
 		sqlSession.commit();
 		logger.debug("문의글 작성 완료!");
 		sqlSession.close();

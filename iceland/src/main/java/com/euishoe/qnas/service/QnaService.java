@@ -14,7 +14,7 @@ import kr.or.kosta.blog.common.web.Params;
  */
 public interface QnaService {
 	//문의글 작성(map)
-	public void createQna(int typeNum, String customerId, int productNum, String qnaTitle, String qnaContent, String qnaPassword, String qnaIsLock) throws Exception;
+	public void createQna(int typeNum, String customerId, int productNum, String qnaContent, int qnaRank) throws Exception;
 	
 	//문의글 작성(qna 객체)
 	public void createQna(Qna qna) throws Exception;
