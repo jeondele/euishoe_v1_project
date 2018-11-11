@@ -135,6 +135,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<script>
 	$('#addCart').on('click',function(e){
 		var oldCookie = '';
