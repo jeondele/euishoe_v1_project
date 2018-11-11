@@ -52,6 +52,20 @@
 	
 <%@include file="../../includes/header.jsp"%>
 <script type="text/javascript">
+
+
+
+function setCountCartList(){
+	var num = 1;
+	while(getCookie('cart' + num)){
+	        num++;
+	}
+	$('#cartButton').attr('data-notify',num - 1);
+	
+}
+
+var Test = '';
+var Test2 = '';
   function sumToMakeJson(){
     var prior = 1;
     while(getCookie('cart' + prior)){
@@ -66,7 +80,7 @@
     var productPrice = parseInt($('#productPrice').text().trim().substring(2,$('#productPrice').text().trim().length - 2));
     var productNum = parseInt($('#productNum').val());
     // 객체 생성
-    var data = new Object() ;
+    var data = new Object();
     // String으로 index.jsp 내 객체
     data.image_ref = productImg;
     data.PRODUCT_PRICE = productPrice;
@@ -83,7 +97,7 @@
         
     var str = "";
         
-    str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img">';
+    str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img" value=' + prior + '>';
     str += '<img class="cartItems" src="' + productImg + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
     str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + productName + '</a>'
     str += '<span class="header-cart-item-info">' + productCount + ' x ' + productPrice + '</span></div></li>';        
@@ -92,12 +106,16 @@
     //checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
     
     //$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
-    var Test = '';
-    $('.header-cart-item-img').on('click',function(e){
-        
+   
+    $('.header-cart-item-img').unbind("click").on('click',function(e){
+    	/*if(doubleSubmitCheck()) return;*/
+
+        console.log(this);
+        Test2 = this;
         console.log(e);
         Test = e;
         console.log($(e.currentTarget).attr('value'));
+        
         var deleteNum = parseInt($(e.currentTarget).attr('value'));
         setCookie('cart' + deleteNum,'',0);
         
@@ -113,12 +131,12 @@
             console.log(i);
             setCookie('cart' + (i-1),getCookie('cart' + i),1);
             if(i == testNum - 1){
-                console.log(5);
                 setCookie('cart' + i,'',0);
             }
         }
+        
         $(e.currentTarget).parents()[0].remove();
-        $('#cartButton').attr('data-notify',prior - 1);
+        setCountCartList();
     });
 }
 </script>    
