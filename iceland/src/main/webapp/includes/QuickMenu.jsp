@@ -164,44 +164,9 @@
 	</div>
 	<script>
 	$('#addCart').on('click',function(e){
-        console.log(e);
-        
-        // productName,Image,count,price
-        var productName = $('#addCart').parents()[3].childNodes[1].innerText;
-        var productImg = $('#productImg')[0].src
-        var productCount = document.getElementsByName('num-product')[0].value;
-        var productPrice = $('#productPrice').text().trim();
-        
-        // 리스트 생성
-        var testList = new Array() ;
-
-            // 객체 생성
-            var data = new Object() ;
-             
-            data.productName = productName ;
-            data.productImg = productImg;
-            data.productCount = productCount;
-            data.productPrice = productPrice;
-             
-            // 리스트에 생성된 객체 삽입
-            testList.push(data);
-            console.log(data);
-            
-        // String 형태로 변환
-        var jsonData = JSON.stringify(testList) ;
-        
-        console.log(decodeMakeJson(getCookie('carts')));
-        
-        var oldCookie = decodeMakeJson(getCookie('carts'));
-        
-        oldCookie += jsonData;
-        
-        console.log(oldCookie);
-
-        
-        // oldCookie += 
-        // setCookie('carts',,1);
-        
-        var cookieData = document.cookie;
+		var oldCookie = '';
+		$('#addCart').on('click',function(e){
+			sumToMakeJson();
+	    });
     });
 	</script>

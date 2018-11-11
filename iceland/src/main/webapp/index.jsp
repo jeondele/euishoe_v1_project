@@ -305,23 +305,60 @@
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
 	<script type="text/javascript">
-		function replaceAll(str, searchStr, replaceStr) {
-			return str.split(searchStr).join(replaceStr);
-		}
+	function replaceAll(str, searchStr, replaceStr) {
+		return str.split(searchStr).join(replaceStr);
+	}
 
-		// 쿠키의 문자열을 수정
-		function jsonDecode(str) {
-			return replaceAll(replaceAll(decodeURI(str), '%3A', ':'), '%2C',
-					',');
-		}
+	// 쿠키의 문자열을 수정
+	function jsonDecode(str) {
+		console.log(str);
+		return decodeURIComponent(str);
+		
+		//replaceAll(replaceAll(replaceAll(replaceAll(decodeURI(str), '%3A', ':'), '%2C',
+		//		','),'%24','$'),'%2','/');
+	}
 
-		function makeJson(str) {
-			return eval('(' + str + ')');
-		}
+	function makeJson(str) {
+		return eval('(' + str + ')');
+	}
 
-		function decodeMakeJson(str) {
-			return makeJson(jsonDecode(str));
-		}
+	// Json 배열로 만들기
+	function decodeMakeJson(str) {
+		// 배열 객체 반환
+		return makeJson(jsonDecode(str));
+	}
+	
+	// Json 분리 %2C : ,
+	function splitJson(str){
+		return str.substring(3,str.length - 3).split('%2C');
+	}
+	
+	// decodeMakeJson에서 만든 기존 쿠키에 더하기
+	function sumToMakeJson(){
+		
+		var elderCookie = decodeMakeJson(getCookie('carts').substring(1,getCookie('carts').length-1));
+
+		console.log(arrayCookie);
+		console.log(elderCookie);
+		var productName = $('#addCart').parents()[3].childNodes[1].innerText;
+        var productImg = $('#productImg')[0].src
+        var productCount = parseInt(document.getElementsByName('num-product')[0].value);
+        var productPrice = parseInt($('#productPrice').text().trim());
+        
+        // 객체 생성
+        var data = new Object() ;
+        // String으로 index.jsp 내 객체
+        data.image_ref = productImg;
+        data.PRODUCT_PRICE = productPrice;
+        data.product_count = productCount;
+        data.PRODUCT_NAME = productName ;
+         
+        // 리스트에 생성된 객체 삽입
+        elderCookie.push(data);
+        var arrayCookie = encodeURIComponent(JSON.stringify(elderCookie));
+		setCookie('carts',arrayCookie,1);
+	}
+	
 	</script>
 </body>
 <script type="text/javascript">
