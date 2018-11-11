@@ -50,7 +50,7 @@ public class MybatisQnaDao implements QnaDao {
 	@Override
 	public List<Qna> qnaListAll(int productNum) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<Qna> list = sqlSession.selectList(NAMESPACE+"selectAllQna", productNum);
+		List<Qna> list = sqlSession.selectList(NAMESPACE+"selectQnaListAll", productNum);
 		return list;
 	}
 

@@ -91,6 +91,16 @@
 		<property name="pointDao" ref="pointDao"/>
 	</bean>
 	
+		
+	<!-- qna 맵핑 -->
+	<bean type="dao" name="qnaDao" class="com.euishoe.qnas.dao.MybatisQnaDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="qnaService" class="com.euishoe.qnas.service.QnaServiceImpl">
+		<property name="qnaDao" ref="qnaDao"/>
+	</bean>
+	
 	<!-- product 맵핑 -->
 	<bean type="dao" name="productDao" class="com.euishoe.products.dao.MybatisProductDao">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
@@ -98,6 +108,8 @@
 	
 	<bean type="service" name="productService" class="com.euishoe.products.service.ProductServiceImpl">
 		<property name="productDao" ref="productDao"/>
+		<property name="reviewDao" ref="reviewDao"/>
+		<property name="qnaDao" ref="qnaDao"/>
 	</bean>
 	
 	<!-- payment 맵핑 -->
@@ -117,15 +129,5 @@
 	<bean type="service" name="deliveryService" class="com.euishoe.deliveries.service.DeliveryServiceImpl">
 		<property name="deliveryDao" ref="deliveryDao"/>
 	</bean>
-	
 
-	
-	<!-- qna 맵핑 -->
-	<bean type="dao" name="qnaDao" class="com.euishoe.qnas.dao.MybatisQnaDao">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
-	
-	<bean type="service" name="qnaService" class="com.euishoe.qnas.service.QnaServiceImpl">
-		<property name="qnaDao" ref="qnaDao"/>
-	</bean>
 </beans>

@@ -38,7 +38,7 @@ public class ReviewListController implements Controller {
 		List<Review> list = null;
 		params = new Params(5, 5, 5, null, null);
 		try {
-			list = reviewService.listAll(productNum, params);
+			list = reviewService.reviewListAll(productNum, params);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

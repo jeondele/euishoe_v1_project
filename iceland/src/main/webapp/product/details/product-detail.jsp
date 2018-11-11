@@ -74,7 +74,6 @@
           var options = {};
           $("#dvQnqContDtl0" ).toggle( selectedEffect, options, 500 );
         };
-        
       
       /*
       	박호준
@@ -105,7 +104,6 @@
     
     /*
     	박호준
-    	
     	리뷰 클릭하면 답변 보기
     */
     $(".txt_ellipsis" ).on( "click", function(e) {
@@ -459,9 +457,9 @@
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 					 				<div class="p-b-30 m-lr-15-sm">
                
-               		                        <%--    <div class="grade_select zindex">
+               		                            <div class="grade_select zindex">
                                                     <a class="ui_info_button dn" id="detailViewGrade"> 
-                                                                평점전체
+                                                               `` 평점전체
                                                      <span class="arr_icon"></span></a>  
                                                     <div class="grade_lay ui_info_content" id="info_content" style="display: none;">
                                                       <div class="lay_nw_def" style="display:block;position:relative;">
@@ -523,7 +521,7 @@
                                                       </div>
                                                     </div>
                                                   </div>
-                                            --%>
+                                           
                   
                   
 										<!-- Review -->
@@ -542,13 +540,12 @@
 														<i class="zmdi zmdi-star"></i>
 														<i class="zmdi zmdi-star"></i>
 														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star-half"></i>
+														<i class="zmdi zmdi-star"></i>
 													</span>
 												</div>
 												<p class="stext-102 cl6">
 													${review.reviewContent}
 												</p>
-												<choose>
                                                   <span class="mtext-107 cl2 p-r-20"><a id="write_Answer">답변보기</a> </span>
                                                   
                                               <div  class="qna_expand" id="dvQnqContDtl0" style="display: none;">

@@ -35,7 +35,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 
 	@Override
-	public List<Review> listAll(int productNum, Params params) throws Exception {
+	public List<Review> reviewListAll(int productNum, Params params) throws Exception {
 		return reviewDao.reviewListAll(productNum, params);
 	}
 
