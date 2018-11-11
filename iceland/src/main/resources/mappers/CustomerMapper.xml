@@ -62,5 +62,15 @@
     		         1,
     		         1) 
 	</insert>
-
+	
+	<!-- 회원정보 수정 -->
+	<update id="modifyInfo" parameterType="com.euishoe.customers.dto.Customer">
+		UPDATE customers 
+		SET    customer_password = #{customerPassword}, 
+		       customer_phonenumber = #{customerPhonenumber}, 
+		       customer_email = #{customerEmail}, 
+		       customer_address = #{customerAddress}, 
+		       customer_postcode = #{customerPostcode} 
+		WHERE  customer_id = #{customerId}	
+	</update>
 </mapper>
