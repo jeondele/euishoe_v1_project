@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -196,57 +197,7 @@
 									<th class="column-5 txt-center">수량</th>
 									<th class="column-6 txt-center">총금액</th>
 								</tr>
-								<tr class="table_row">
-									<td class="column-1 txt-center">
-										<input type="checkbox" value="None" class="roundedOne" name="check" checked />
-									</td>
-									<td class="column-2 txt-center">
-										<div class="how-itemcart1"><img src="/iceland/images/item-cart-04.jpg" alt="IMG"/></div>
-									</td>
-									<td class="column-3 txt-center">Fresh Strawberries</td>
-									<td class="column-4 txt-center">3600</td>
-									<td class="column-5 txt-center">
-										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product"	type="number" name="num-product1" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-									</td>
-									<td class="column-6 txt-center">3600</td>
-								</tr>
-
-								<tr class="table_row">
-									<td class="column-1 txt-center">
-										<input type="checkbox" value="None" class="roundedOne" id="" name="check" checked />
-									</td>
-									<td class="column-2 txt-center">
-										<div class="how-itemcart1">
-											<img src="/iceland/images/item-cart-05.jpg" alt="IMG">
-										</div>
-									</td>
-									<td class="column-3 txt-center">Lightweight Jacket</td>
-									<td class="column-4 txt-center">1600</td>
-									<td class="column-5 txt-center">
-										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-									</td>
-									<td class="column-6 txt-center">1600</td>
-								</tr>
+								
 							</table>
 						</div>
 
@@ -261,13 +212,13 @@
 		</div>
 	</div>
   
+	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 
 	<%@include file="/iceland/../includes/footer.jsp"%>
 
 	<%@include file="/iceland/../includes/QuickMenu.jsp"%>
 
 	<!--===============================================================================================-->
-	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
 	<!--===============================================================================================-->
@@ -451,30 +402,44 @@
 	
 	sumUp();
 	
-	// json 객체로 cart 가져오기
-	if($('#cart') && $('#wish')){
-	var myCart = eval('(' + $('#cart').val() + ')');
-	var myWish = eval('(' + $('#wish').val() + ')');		
-	}
-	
-	// row 뿌리기
-	var str = "";
-	str += '<tr class="table_row">';
-	str += ' <td class="column-1 txt-center">';
-	str += ' <input type="checkbox" value="None" class="roundedOne" id="" name="check" checked /></td>';
-	str += ' <td class="column-2 txt-center"><div class="how-itemcart1">';
-	str += ' <img src="/iceland/images/item-cart-05.jpg" alt="IMG"></div></td>';
-	str += ' <td class="column-3 txt-center">Lightweight Jacket</td>';
-	str += ' <td class="column-4 txt-center">1600</td><td class="column-5 txt-center">';
-	str += ' <div class="wrap-num-product flex-w m-l-auto m-r-auto">';
-	str += ' <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">';
-	str += ' <i class="fs-16 zmdi zmdi-minus"></i></div>';
-	str += ' <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">';
-	str += ' <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">';
-	str += ' <i class="fs-16 zmdi zmdi-plus"></i></div></div></td>';
-	str += ' <td class="column-6 txt-center">1600</td></tr>';
 
-	$('tbody').append(str);
+	var Test = '';
+
+	
+	$(document).ready(function() {
+		var obj = decodeURIComponent(getCookie('carts'));
+		var jsonObj = JSON.parse(obj);
+		// row 뿌리기
+		
+		console.log(jsonObj);
+		Test = jsonObj;
+		
+		for(var i = 0; i < jsonObj.length; i++){
+			
+			var str = "";
+			str += '<tr class="table_row">';
+			str += ' <td class="column-1 txt-center">';
+			str += ' <input type="checkbox" value="None" class="roundedOne" id="" name="check" checked /></td>';
+			str += ' <td class="column-2 txt-center"><div class="how-itemcart1">';
+			str += ' <img src="' + jsonObj[i].image_ref + '" alt="IMG"></div></td>';
+			str += ' <td class="column-3 txt-center">' + jsonObj[i].PRODUCT_NAME + '</td>';
+			str += ' <td class="column-4 txt-center">' + jsonObj[i].PRODUCT_PRICE + '</td><td class="column-5 txt-center">';
+			str += ' <div class="wrap-num-product flex-w m-l-auto m-r-auto">';
+			str += ' <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">';
+			str += ' <i class="fs-16 zmdi zmdi-minus"></i></div>';
+			str += ' <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="' + jsonObj[i].product_count + '">';
+			str += ' <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">';
+			str += ' <i class="fs-16 zmdi zmdi-plus"></i></div></div></td>';
+			str += ' <td class="column-6 txt-center">' + (jsonObj[i].product_count*jsonObj[i].PRODUCT_PRICE) + '</td></tr>';
+
+			$('tbody').append(str);
+		}
+
+		
+		// json 객체로 cart 가져오기
+		}
+	);
+	
 		</script>
 </body>
 </html>
