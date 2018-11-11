@@ -1,8 +1,8 @@
 package com.euishoe.products.dao;
 
 import java.util.List;
+import java.util.Map;
 
-import com.euishoe.customers.dto.Customer;
 import com.euishoe.products.dto.ProductInfo;
 
 /**
@@ -20,5 +20,10 @@ public interface ProductDao {
 	public List<ProductInfo> hitProductList() throws Exception;
 	
 	// 전체리스트 출력
-	List<ProductInfo> selectAll() throws Exception;
+	List<Map<String, Object>> selectAll() throws Exception;
+	
+	// 해당 상품번호에 해당하는 이미치 주소 리스트 출력
+	public List<String> selectImageRefByProductNum(int productNum) throws Exception;
+	// 해당 상품번호에 해당하는 정보 출력
+	public List<ProductInfo> selectProductInfoByProductNum(int productNum) throws Exception;
 }

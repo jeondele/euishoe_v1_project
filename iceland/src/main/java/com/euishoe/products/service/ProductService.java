@@ -1,6 +1,7 @@
 package com.euishoe.products.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.euishoe.products.dto.ProductInfo;
 import com.euishoe.qnas.dto.Qna;
@@ -20,7 +21,7 @@ public interface ProductService {
 	// 히트상품4개 상품정보와 이미지 get
 	public List<ProductInfo> hitProductList() throws Exception;
 	// 전체리스트 출력
-	public List<ProductInfo> selectAll() throws Exception;
+	public List<Map<String, Object>> selectAll() throws Exception;
 	
 	//리뷰 조회
 	public List<Review> reviewListAll(int productNum, Params params) throws Exception;
@@ -28,4 +29,11 @@ public interface ProductService {
 	//제품 문의글 전체 조회
 	public List<Qna> qnaListAll(int productNum) throws Exception;
 	
+	public List<Map<String, Object>> selectAll2() throws Exception;
+	// 해당 상품번호에 해당하는 이미치 주소 리스트 출력
+	public List<String> selectImageRefByProductNum(int productNum) throws Exception;
+	// 해당 상품번호에 해당하는 정보 출력
+	public List<ProductInfo> selectProductInfoByProductNum(int productNum) throws Exception;
+	// Gson으로 바꾸는 메소드
+	List<String> convertToGson();
 }

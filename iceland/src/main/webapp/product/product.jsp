@@ -1,4 +1,13 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.List"%>
+<%@page import="com.google.gson.JsonObject"%>
+<%@page import="java.net.URLDecoder"%>
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="com.google.gson.Gson" %>
+<%@ taglib prefix="tt" uri="/WEB-INF/tlds/fordecode.tld"%> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +15,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
+	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<link rel="icon" type="image/png" href="/iceland/images/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/iceland/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/iceland/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/iceland/fonts/iconic/css/material-design-iconic-font.min.css">
@@ -34,6 +43,9 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
+<!--===============================================================================================-->	
+	
+<!--===============================================================================================-->
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -44,7 +56,6 @@
 <%@include file="..//../includes/favorite.jsp"%>
 <%@include file="../../includes/slider.jsp"%>
 
-	
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
@@ -283,14 +294,17 @@
 			</div>
 
 			<div class="row isotope-grid">
-				<c:forEach items="${listAll}" var="product">
+				<c:forEach items="${jsonObjectList}" var="product">
+				<c:set var ="imageRef" value="${product.imageRef}"/>
+				<c:if test="${fn:contains(imageRef,'main$1')}">
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="${product.imageRef}" alt="IMG-PRODUCT">
+							<img src="${product.get('imageRef')}" alt="IMG-PRODUCT">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 brief-view">
+								<input type="hidden" value="${product.productNum}">
 								Quick View
 							</a>
 						</div>
@@ -298,11 +312,11 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="/iceland/product/details/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									${product.productName}
+									${product.productName} zzz
 								</a>
 
 								<span class="stext-105 cl3">
-									${product.productListPrice}
+									₩ ${product.productListPrice} 원
 								</span>
 							</div>
 
@@ -315,6 +329,7 @@
 						</div>
 					</div>
 				</div>
+				</c:if>
 				</c:forEach>
 			</div>
 
@@ -326,12 +341,12 @@
 	</div>
 		
 
+	<%@include file="/iceland/../includes/QuickMenu.jsp"%>
 	<%@include file="/iceland/../includes/footer.jsp"%>
 
-    <%@include file="/iceland/../includes/QuickMenu.jsp"%>
+    
 
-<!--===============================================================================================-->	
-	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
+
 <!--===============================================================================================-->
 	<script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -339,6 +354,23 @@
 	<script src="/iceland/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="/iceland/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script>
+		function setResult(result){
+			// 이메일인증컨트롤러에서 임의로 생성된 인증코드값
+			emailCertifyCode = result.responseText; 
+			// 이메일인증을 위한 textfeild와 button을 붙일 div el
+			var emailDiv = document.getElementById('emailCertifyDiv'); 
+			// 기존 이메일인증버튼을 display:none, 사용자에게 코드값을 입력받을 텍스트필드와 확인버튼 생성
+			document.getElementById('emailCertify').style.display="none";
+			var $inputCode = $("<input type='text' id='inputCode'>");
+			var $certifyBtn = $("<button type='button' id='certifyBtn' onclick='sendCode()'>확인</button>");
+			// 생성된 el을 document에 붙임
+			$inputCode.appendTo(emailDiv);
+			$certifyBtn.appendTo(emailDiv);
+		}
+	</script>
+<!--===============================================================================================-->
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -377,6 +409,48 @@
 <!--===============================================================================================-->
 	<script src="/iceland/vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
+	   <%--  var Test = '';
+		$('.brief-view').on('click', function(e){
+			Test = e;
+			console.log(e);
+	 		var value = $(this).find('input').val();
+			$('#productNum').value = value;
+			var myList = <%=request.getAttribute("gsonListAll")%>;
+		    for ( var i in myList) {
+				if(myList[i]['productNum']==$('#productNum').val()) {
+					console.log(i);
+					$('#productName').value = myList[i]['productName'];
+				};
+			}
+		}); --%>
+		$('.js-show-modal1').on('click',function(e){
+			$("#itemPic").empty();
+	    	var productNum = $(this).find("input").val();
+		    $('#productNum').val(productNum);
+	        e.preventDefault();
+			var myList = <%=request.getAttribute("gsonListAll")%>;
+		    for ( var i in myList) {
+				if(myList[i]['productNum']==$('#productNum').val()) {
+					$("#productName").html(myList[i]['productName']);
+					$("#productPrice").html("₩ " + myList[i]['productListPrice'] + " 원");
+					$("#productBrief").html(myList[i]['productBriefInfomation']);
+					break;
+				};
+		    }
+		    for ( var i in myList) {
+				if((myList[i]['productNum']==$('#productNum').val())&&(myList[i]['imageRef'].match('main'))) {
+					var appendString = appendPic(myList[i]['imageRef']);
+					var appendBriefString = appendBriefPic(myList[i]['imageRef']);
+					$("#itemPic").append(appendString);
+				};
+			}
+		    $('.js-modal1').addClass('show-modal1');
+	    });
+
+	    $('.js-hide-modal1').on('click',function(){
+	        $('.js-modal1').removeClass('show-modal1');
+	    });
+		
 		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
 			e.preventDefault();
 		});
@@ -411,6 +485,17 @@
 			});
 		});
 	
+		function appendPic(url) {
+			var text = "<div class='item-slick3'><div class='wrap-pic-w pos-relative'>"+
+						   "<img id='productImg' src='"+url +"' alt='IMG-PRODUCT'><a class='flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04' href='/iceland/images/product-detail-01.jpg'>"+
+							"<i class='fa fa-expand'></i></a></div></div>";
+			return text;				
+		};
+		
+		function appendBriefPic(url) {
+			var text = "<img src='"+url+"'>";
+			return text;				
+		};
 	</script>
 <!--===============================================================================================-->
 	<script src="/iceland/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -431,6 +516,5 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
-
 </body>
 </html>

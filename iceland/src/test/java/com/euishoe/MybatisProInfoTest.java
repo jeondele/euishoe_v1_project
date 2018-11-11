@@ -60,7 +60,7 @@ public class MybatisProInfoTest {
 	public void newProductTest() {
 		List<Map<String, Object>> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		list = sqlSession.selectList(NAMESPACE+"hitProductList");
+		list = sqlSession.selectList(NAMESPACE+"selectAll");
 		System.out.println("사이즈!!!!!!!!!"+list.size());
 		
 		for (Map<String, Object> productInfo : list) {
