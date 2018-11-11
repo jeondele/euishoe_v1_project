@@ -54,12 +54,12 @@
 
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
+											<select class="js-select2" name="time" id="jkSize">
 												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
+												<option>S</option>
+												<option>M</option>
+												<option>L</option>
+												<option>XL</option>
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
@@ -72,7 +72,7 @@
 
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
+											<select class="js-select2" name="time" id="ptSize">
 												<option>Choose an option</option>
 												<option>26inch</option>
 												<option>28inch</option>
@@ -153,4 +153,59 @@
 		sumToMakeJson();
     });
 	
+
+	// quickView에서 바로주문
+	$('#purchase').on('click', function(e) {
+		// 사이즈선택 필수
+		var jkSize = $('#jkSize').val().trim();
+		var ptSize = $('#ptSize').val().trim();
+		if(jkSize=="Choose an option" || ptSize=="Choose an option"){
+			console.log('사이즈옵션선택 안함'); //debug
+			alert('상 하의 사이즈 옵션 선택은 필수입니다');
+		}
+		
+		// quickView에서 주문시.. -> 선택값을 통해 product(상품)객체 생성 ->  
+		// 주문번호가 null인 상품주문(order_by_product)객체 생성
+		// 회원, 비회원 확인
+		
+		// product객체 생성을 위한 값(상하의코드, 상품번호, 수량).................임의의 데이터값 넣어준것 수정필요!!!!!!!
+		var jacketCode = 'bgs$jk$s$br';//상품코드$jk$선택사이즈$컬러코드.... pCode + '$jk'+ jkSize + '$' + colorCode;
+		var pantsCode = 'bgs$pt$28$br'; //상품코드$pt$선택사이즈$컬로코드... pCode + '$pt'+ ptSize + '$' + colorCode;
+		var productNum = 3;//productInfo의 키값(int)...						 ${productNum};
+		var productCount = document.getElementsByName('num-product')[0].value;
+		var productCode = 'bgs'+'$S$28$'+productNum;//pCode + '$' + jkSize + '$' + ptSize + '$'+ ${productNum};
+		makeOrder(productCode, jacketCode, pantsCode, productNum, productCount); //product객체 생성, orderByProduct객체 생성
+		
+	});
+
+	// order컨트롤러 가서 객체(product, delievery, payment, order, orderByProduct) 생성..
+	function makeOrder(productCode, jacketCode, pantsCode, productNum, productCount) {
+		// 고객이 선택한 상품정보로 product객체 만들기 by json
+ 		var productInfoJson = new Object();
+		productInfoJson.productCode = productCode.trim();
+		productInfoJson.jacketCode = jacketCode.trim();
+		productInfoJson.pantsCode = pantsCode.trim();
+		productInfoJson.productNum = productNum;
+		productInfoJson.productCount = productCount.trim();
+		
+		var jsonData = JSON.stringify(productInfoJson);   //product 객체를 생성할 json데이터 생성
+
+		// 생성한 json데이터 서버로 보냄..-> 컨트롤러에서 객체생성 후 결제화면으로 이동
+		var url = "/iceland/order.es" //product객체를 생성하고 orderByProduct생성할 OrderController로 이동
+		
+		$.ajax({
+            type: "POST",
+            url: url,
+            async : false,
+            dataType: "json",
+            data: "jsonData="+jsonData,
+            success: function (jsonData) {
+               alert('Success');
+            },
+            error: function () {
+             alert('Error');
+            }
+        });
+
+	}
 	</script>

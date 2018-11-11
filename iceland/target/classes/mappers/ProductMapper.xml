@@ -103,4 +103,14 @@
 			FROM   product_infos
 			WHERE  product_num = #{productNum}
 	</select>
+
+	<insert id="create" parameterType="com.euishoe.customers.dto.Customer">
+		INSERT INTO products 
+		VALUES     ( #{productCode},  
+		             #{jacketCode}, 
+		             #{pantsCode}, 
+		             #{productNum}, 
+		             #{productCount}) 		
+	</insert>
+
 </mapper>

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.euishoe.products.dao.ProductDao;
+import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 import com.euishoe.qnas.dao.QnaDao;
 import com.euishoe.qnas.dto.Qna;

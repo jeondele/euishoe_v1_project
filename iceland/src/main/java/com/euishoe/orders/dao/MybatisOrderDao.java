@@ -29,6 +29,14 @@ public class MybatisOrderDao implements OrderDao {
 		sqlSession.close();
 		return list;
 	}
+
+	@Override //고객이 선택한 상품코드로 orderbyproduct생성
+	public void create(String productCode) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert(NAMESPACE+"create", productCode);
+		sqlSession.commit();
+		sqlSession.close();
+	}
 }
 
 

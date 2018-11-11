@@ -3,6 +3,7 @@ package com.euishoe.products.service;
 import java.util.List;
 import java.util.Map;
 
+import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 import com.euishoe.qnas.dto.Qna;
 import com.euishoe.reviews.dto.Review;
@@ -36,4 +37,5 @@ public interface ProductService {
 	public List<ProductInfo> selectProductInfoByProductNum(int productNum) throws Exception;
 	// Gson으로 바꾸는 메소드
 	List<String> convertToGson();
+
 }

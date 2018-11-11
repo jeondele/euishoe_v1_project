@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 
 public class MybatisProductDao implements ProductDao {
@@ -46,6 +47,7 @@ public class MybatisProductDao implements ProductDao {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		list = sqlSession.selectList(NAMESPACE+"selectAll");
 		sqlSession.close();
+
 		return list;
 	}
 
@@ -66,8 +68,16 @@ public class MybatisProductDao implements ProductDao {
 		sqlSession.close();
 		return list;
 	}
-	
-	
+
+	@Override  // 주문시 product객체 생성
+	public String create(Product product) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert(NAMESPACE+"create", product);
+		sqlSession.commit();
+		sqlSession.close();
+		return product.getProductCode();
+	}
+
 }
 
 
