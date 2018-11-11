@@ -28,11 +28,15 @@ public class ProductDetailController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
-		
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		productService = (ProductService)factory.getBean(ProductServiceImpl.class);
+		String productNum = request.getParameter("productNum");
+		List<Map<String, Object>> list = null;
+		try {
+			list = productService.selectAllById(Integer.valueOf(productNum));
+		} catch (Exception e) {}
 		
-		int productNum = 2;
+		/*int productNum = 2;
 		//int productNum = (int) request.getAttribute("productNum");
 		String qnaisLock = (String)request.getAttribute("qnaisLock");
 		String customerId = (String)request.getAttribute("customerId");
@@ -53,7 +57,9 @@ public class ProductDetailController implements Controller {
 			e.printStackTrace();
 		}
 		mav.addObject("ReviewList", reviewlist);
-		mav.addObject("QnaList", qnalist);
+		mav.addObject("QnaList", qnalist);*/
+		System.out.println(list);
+		mav.addObject("selectAllById", list);
 		mav.setView("/product/details/product-detail.jsp");
 		return mav;
 	}

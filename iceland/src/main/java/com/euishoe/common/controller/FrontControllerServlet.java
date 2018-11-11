@@ -59,6 +59,13 @@ public class FrontControllerServlet extends HttpServlet {
 		// /appName/some.mall -> /some
 		// /appName/board/some.do -> /board/some
 		String contextPath = request.getContextPath();
+		System.out.println(uri+"????????????????///");
+	/*	String[] getParams= uri.split("?");
+		String[] useful = getParams[1].split("=");
+		for (String string : useful) {
+			System.out.println(string);
+		}*/
+		
 		uri = uri.substring(contextPath.length(), uri.lastIndexOf("."));
 		System.out.println("[Info] : 요청 URI: " + uri);
 

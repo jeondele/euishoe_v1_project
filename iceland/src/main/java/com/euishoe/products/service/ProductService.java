@@ -41,4 +41,5 @@ public interface ProductService {
 	
 	//제품 문의글 전체 조회
 	List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception;
+	public List<Map<String, Object>> selectAllById(int productNum) throws Exception;
 }

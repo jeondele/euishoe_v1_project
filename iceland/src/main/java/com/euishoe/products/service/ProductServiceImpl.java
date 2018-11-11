@@ -118,6 +118,8 @@ public class ProductServiceImpl implements ProductService {
 	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params)
 			throws Exception {
 		return reviewDao.reviewDynamicReviewList(productNum, customerId, reviewScore, params);
+	public List<Map<String, Object>> selectAllById(int productNum) throws Exception {
+		return productDao.selectAllById(productNum);
 	}
 
 }
