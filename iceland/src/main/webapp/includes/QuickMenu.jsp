@@ -173,7 +173,5 @@
         var productPrice = $('#productPrice').text().trim();
         
         var cookieData = document.cookie;
-        
-        
     });
 	</script>

@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="com.euishoe.points.dto.PointHistory"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8"%>
@@ -145,13 +146,9 @@ th {
 <body class="animsition">
 
 	<%@include file="../../includes/header.jsp"%>
-
 	<%@include file="../../includes/cart.jsp"%>
 	<%@include file="../../includes/favorite.jsp"%>
 	<%@include file="../../includes/slider.jsp"%>
-
-<%List<PointHistory> list = (List<PointHistory>)getServletContext().getAttribute("pointHistoryList");
-  System.out.println(list);%>
 
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
@@ -179,7 +176,7 @@ th {
 							
 								  <c:choose>
 								    <c:when test="${not empty pointHistoryList}">
-								      <c:forEach var="point" items="${list}">
+								      <c:forEach var="point" items="${pointHistoryList}">
 									<tr class="table_row">
 										<td class="column-1 txt-center"><img src="<%= application.getContextPath() %>/images/pointPlus.PNG" alt="적립"/></td>
 										<td class="column-2 txt-center">가입 축하 포인트</td>

@@ -40,11 +40,15 @@ public class CustomerPointController implements Controller {
 		List<HashMap<String, Object>> list = null;
 		Cookie[] cookies = request.getCookies();
 		try {
-			for(Cookie cookie : cookies){
+/*			for(Cookie cookie : cookies){
 			    if(cookie.getName().equals("loginId")) {
+			    	System.out.println("2." + cookie.getValue());
 					list = pointService.CustomerPointList(cookie.getValue());
+					System.out.println("3." + list.size());
 			    }
-			} 
+			} */
+			list = pointService.CustomerPointList("bangry");
+			System.out.println("3." + list.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

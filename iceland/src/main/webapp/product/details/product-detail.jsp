@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.euishoe.reviews.dto.Review"%>
 <%@page import="com.euishoe.qnas.dto.Qna"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,18 +195,8 @@
 <body class="animsition">
 	
 <%@include file="/iceland/../includes/header.jsp"%>
-
 <%@include file="/iceland/../includes/cart.jsp"%>	
 <%@include file="/iceland/../includes/favorite.jsp"%>
-
-<%
-List<Review> reviewlist =(List<Review>)getServletContext().getAttribute("ReviewList");
-List<Qna> qnalist = (List<Qna>)getServletContext().getAttribute("QnaList");
- 
- System.out.println("1." + reviewlist);
- System.out.println("2." + qnalist);
-%> 
-
 
 	<!-- breadcrumb -->
 	<div class="container">
@@ -536,6 +527,67 @@ List<Qna> qnalist = (List<Qna>)getServletContext().getAttribute("QnaList");
                   
                   
 										<!-- Review -->
+								  <c:choose>
+								    <c:when test="${not empty ReviewList}">
+								      <c:forEach var="review" items="${ReviewList}">
+										<div class="flex-w flex-t p-b-68">
+											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+												<img src="/iceland/images/avatar-01.jpg" alt="AVATAR">
+											</div>
+											<div class="size-207">
+												<div class="flex-w flex-sb-m p-b-17">
+													<span class="mtext-107 cl2 p-r-20">${review.customerId}</span>
+													<span class="fs-18 cl11">
+														<i class="zmdi zmdi-star"></i>
+														<i class="zmdi zmdi-star"></i>
+														<i class="zmdi zmdi-star"></i>
+														<i class="zmdi zmdi-star"></i>
+														<i class="zmdi zmdi-star-half"></i>
+													</span>
+												</div>
+												<p class="stext-102 cl6">
+													${review.reviewContent}
+												</p>
+												<choose>
+                                                  <span class="mtext-107 cl2 p-r-20"><a id="write_Answer">답변보기</a> </span>
+                                                  
+                                              <div  class="qna_expand" id="dvQnqContDtl0" style="display: none;">
+                                                    <div class="answer">
+                                                      <span class="ico_answer">답변</span>
+                                                             <textarea rows="10" cols="20"></textarea>
+                                                     <div class="btn_action">
+                                                      <a href="#this" id="report" class="nwtxt_link" data-brdinfono="118895345" data-clfcd="01" data-contcd="03">작성하기<span class="ico"></span></a>
+                                                      </div>
+                                                    </div>
+
+                                                    </div>        
+
+                                                  <span class="mtext-107 cl2 p-r-20"><a  id="admin_Answer">관리자 답변</a></span>
+                                              <div  class="qna_expand" id="dvQnqContDtl1" style="display: none;">
+                                                    <div class="answer">
+                                                      <span class="ico_answer">답변</span>
+						                                                                      안녕하세요 11번가 나이키입니다.
+						                                                                 고객님께서 문의하신 사항 잘 보았습니다.
+                                                    </div>
+                                                    </div>                                                  
+											</div>
+										</div>
+								    </c:forEach>
+								    </c:when>
+								    <c:otherwise>
+										<div class="flex-w flex-t p-b-68">
+											<div class="size-207">
+												<div class="flex-w flex-sb-m p-b-17">
+													<p class="stext-102 cl6">
+														" 등록된 게시글이 없습니다."
+													</p>
+												</div>                                                     
+											</div>
+										</div>
+								    </c:otherwise>
+								  </c:choose>
+										
+										
 										<div class="flex-w flex-t p-b-68">
 											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
 												<img src="/iceland/images/avatar-01.jpg" alt="AVATAR">
@@ -571,13 +623,15 @@ List<Qna> qnalist = (List<Qna>)getServletContext().getAttribute("QnaList");
                                               <div  class="qna_expand" id="dvQnqContDtl1" style="display: none;">
                                                     <div class="answer">
                                                       <span class="ico_answer">답변</span>
-                                                                      안녕하세요 11번가 나이키입니다.
-                                                                 고객님께서 문의하신 사항 잘 보았습니다.
+						                                                                      안녕하세요 11번가 나이키입니다.
+						                                                                 고객님께서 문의하신 사항 잘 보았습니다.
                                                     </div>
                                                     </div>                                                  
                                                   
 											</div>
 										</div>
+										
+										
 										
 										<!-- Add review -->
 										<form class="w-full" action="/iceland/product/details/create.es">
@@ -1096,8 +1150,7 @@ List<Qna> qnalist = (List<Qna>)getServletContext().getAttribute("QnaList");
 			                    		<br>
 				                    	<input id="email1" name="email1" class="mailId" value="" type="text">&nbsp;@&nbsp;<input id="email2" name="email2" class="mailAddress" readonly="readonly" value="" type="text">
 			                      		<select id="email3" style="vertical-align: middle;">
-					                        <option value="" selected="selected">-
-					                          이메일 선택 -</option>
+					                        <option value="" selected="selected">-이메일 선택 -</option>
 					                        <option value="naver.com">naver.com</option>
 					                        <option value="daum.net">daum.net</option>
 					                        <option value="nate.com">nate.com</option>
