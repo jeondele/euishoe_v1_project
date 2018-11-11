@@ -181,7 +181,7 @@ function sumToMakeJson(){
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="/iceland/product/details.es?productNum=${newProduct.productNum}"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									${newProduct.productName} </a> <span class="stext-105 cl3">
 									₩ ${newProduct.productListPrice} 원 </span>
@@ -236,7 +236,7 @@ function sumToMakeJson(){
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="/iceland/product/details.es?productNum=${hitProduct.productNum}"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									${hitProduct.productName} </a> <span class="stext-105 cl3">
 									₩ ${hitProduct.productListPrice} 원 </span>
@@ -373,6 +373,7 @@ function sumToMakeJson(){
 					$("#productName").html(myList[i]['productName']);
 					$("#productPrice").html("₩ " + myList[i]['productListPrice'] + " 원");
 					$("#productBrief").html(myList[i]['productBriefInfomation']);
+					$("#productNumHref").attr("href", "/iceland/product/details.es?productNum="+$('#productNum').val());
 					break;
 				};
 		    }
@@ -398,6 +399,7 @@ function sumToMakeJson(){
 					$("#productName").html(myList[i]['productName']);
 					$("#productPrice").html("₩ " + myList[i]['productListPrice'] + " 원");
 					$("#productBrief").html(myList[i]['productBriefInfomation']);
+					$("#productNumHref").attr("href", "/iceland/product/details.es?productNum="+$('#productNum').val());
 					break;
 				};
 		    }
@@ -490,6 +492,7 @@ function sumToMakeJson(){
 				$("#productName").html(myList[i]['productName']);
 				$("#productPrice").html("₩ " + myList[i]['productListPrice'] + " 원");
 				$("#productBrief").html(myList[i]['productBriefInfomation']);
+				$("#productNumHref").attr("href", "/iceland/product/details.es?productNum="+$('#productNum').val());
 				break;
 			};
 	    }
