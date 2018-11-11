@@ -3,9 +3,9 @@ package com.euishoe.products.service;
 import java.util.List;
 import java.util.Map;
 
-import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 import com.euishoe.reviews.dto.Review;
+
 import kr.or.kosta.blog.common.web.Params;
 
 /**
@@ -19,10 +19,6 @@ public interface ProductService {
 	public List<Map<String, Object>> newProductList() throws Exception;
 	// 히트상품4개 상품정보와 이미지 get
 	public List<Map<String, Object>> hitProductList() throws Exception;
-	public List<ProductInfo> newProductList() throws Exception;
-	
-	// 히트상품4개 상품정보와 이미지 get
-	public List<ProductInfo> hitProductList() throws Exception;
 	
 	// 전체리스트 출력
 	public List<Map<String, Object>> selectAll() throws Exception;

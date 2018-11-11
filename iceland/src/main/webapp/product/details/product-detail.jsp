@@ -243,12 +243,15 @@
 						<div class="wrap-slick3 flex-sb flex-w">
 							<div class="wrap-slick3-dots"></div>
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
+							<input type="hidden" id="productCode" value="">
 							<div class="slick3 gallery-lb">
+								<c:forEach items="${selectAllById}" var="product">
+								<c:set var ="imageRef" value="${product.imageRef}"/>
+								<c:if test="${fn:contains(imageRef,'main')}">
 								<div class="item-slick3"
-									data-thumb="/iceland/images/product-detail-01.jpg">
+									data-thumb="${product.imageRef}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="/iceland/images/product-detail-01.jpg"
+										<img src="${product.imageRef}"
 											alt="IMG-PRODUCT"> <a
 											class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
 											href="/iceland/images/product-detail-01.jpg"> <i
@@ -256,6 +259,8 @@
 										</a>
 									</div>
 								</div>
+								</c:if>
+								</c:forEach>
 
 								<!-- 								<div class="item-slick3" data-thumb="/iceland/images/product-detail-02.jpg">
 									<div class="wrap-pic-w pos-relative">
@@ -285,7 +290,7 @@
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">${selectAllById.get(1).productName} </h4>
 
-						<span class="mtext-106 cl2"> ${selectAllById.get(1).productListPrice} </span>
+						<span class="mtext-106 cl2"> ₩ ${selectAllById.get(1).productListPrice} 원</span>
 
 						<p class="stext-102 cl3 p-t-23">${selectAllById.get(1).productBriefInfomation}</p>
 
@@ -296,12 +301,12 @@
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
+										<select id="clothSize" onclick="changeProductCode();" class="js-select2" name="time">
 											<option>Choose an option</option>
-											<option>Size S</option>
-											<option>Size M</option>
-											<option>Size L</option>
-											<option>Size XL</option>
+											<option value="s">Size S</option>
+											<option value="m">Size M</option>
+											<option value="l">Size L</option>
+											<option value="xl">Size XL</option>
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
@@ -313,13 +318,13 @@
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
+										<select id="pantsSize" onclick="changeProductCode();" class="js-select2" name="time">
 											<option>Choose an option</option>
-											<option>26inch</option>
-											<option>28inch</option>
-											<option>30inch</option>
-											<option>32inch</option>
-											<option>34inch</option>
+											<option value="26">26inch</option>
+											<option value="28">28inch</option>
+											<option value="30">30inch</option>
+											<option value="32">32inch</option>
+											<option value="34">34inch</option>
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
@@ -408,8 +413,6 @@
 								<c:if test="${fn:contains(imageRef,'detail')}">
 								<center><img src="${imageRef}" alt="IMG-PRODUCT"></center>
 								</c:if>
-								
-							
 								</c:forEach>
 							</p>
 						</div>
@@ -421,25 +424,24 @@
 							<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 								<ul class="p-lr-28 p-lr-15-sm">
 									<li class="flex-w flex-t p-b-7"><span
-										class="stext-102 cl3 size-205"> Weight </span> <span
-										class="stext-102 cl6 size-206"> 0.79 kg </span></li>
+										class="stext-102 cl3 size-205"> 입기 좋은 용도 </span> <span
+										class="stext-102 cl6 size-206"> ${selectAllById.get(1).productTpo} </span></li>
 
 									<li class="flex-w flex-t p-b-7"><span
-										class="stext-102 cl3 size-205"> Dimensions </span> <span
-										class="stext-102 cl6 size-206"> 110 x 33 x 100 cm </span></li>
+										class="stext-102 cl3 size-205"> 착용 적정 계절</span> <span
+										class="stext-102 cl6 size-206"> ${selectAllById.get(1).productSeason} </span></li>
 
 									<li class="flex-w flex-t p-b-7"><span
-										class="stext-102 cl3 size-205"> Materials </span> <span
-										class="stext-102 cl6 size-206"> 60% cotton </span></li>
+										class="stext-102 cl3 size-205"> 원단 </span> <span
+										class="stext-102 cl6 size-206"> ${selectAllById.get(1).productFabric} </span></li>
 
 									<li class="flex-w flex-t p-b-7"><span
-										class="stext-102 cl3 size-205"> Color </span> <span
-										class="stext-102 cl6 size-206"> Black, Blue, Grey,
-											Green, Red, White </span></li>
+										class="stext-102 cl3 size-205"> 제조사 </span> <span
+										class="stext-102 cl6 size-206"> ${selectAllById.get(1).productManufacturer} </span></li>
 
 									<li class="flex-w flex-t p-b-7"><span
-										class="stext-102 cl3 size-205"> Size </span> <span
-										class="stext-102 cl6 size-206"> XL, L, M, S </span></li>
+										class="stext-102 cl3 size-205"> 출시일자 </span> <span
+										class="stext-102 cl6 size-206"> ${selectAllById.get(1).productReleaseDate} </span></li>
 								</ul>
 							</div>
 						</div>
@@ -1420,6 +1422,14 @@
 				dropdownParent : $(this).next('.dropDownSelect2')
 			});
 		})
+	</script>
+	<script>
+		function changeProductCode() {
+			var cloth = $("#clothSize option:selected").val();
+			var pants = $("#pantsSize option:selected").val();
+			var imageRef = ${selectAllById.get(1).imageRef};
+			var str = imageRef.substring(str.lastIndexOf('/'));
+		};
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/vendor/daterangepicker/moment.min.js"></script>
