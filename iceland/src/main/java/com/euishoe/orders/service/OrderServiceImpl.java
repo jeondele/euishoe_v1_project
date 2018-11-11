@@ -32,11 +32,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override  // 주문을 위한 product객체 생성
 	public void createProduct(Product product) throws Exception {
-		System.out.println("오더서비스들어옴");
-		System.out.println("보내준 상품:"+product);
-		System.out.println("보내준상품코드값:"+product.getProductCode());
 		String productCode = product.getProductCode();
-		System.out.println("다오없기만해봐:"+productDao);
 		productDao.create(product);
 		createOBP(productCode);
 		

@@ -47,12 +47,11 @@ public class MybatisProductDao implements ProductDao {
 		return list;
 	}
 
-	@Override
+	@Override  // 주문시 product객체 생성
 	public String create(Product product) throws Exception {
-		System.out.println("상품다오들어옴!!!!!!!!!!!!!!");
-		System.out.println("상품은??" + product);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		sqlSession.insert(NAMESPACE+"create", product);
+		sqlSession.commit();
 		sqlSession.close();
 		return product.getProductCode();
 	}

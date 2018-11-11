@@ -84,10 +84,10 @@
 										<div class="rs1-select2 bor8 bg0">
 											<select class="js-select2" name="time" id="jkSize">
 												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
+												<option>S</option>
+												<option>M</option>
+												<option>L</option>
+												<option>XL</option>
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
@@ -205,6 +205,7 @@
         var cookieData = document.cookie;
     });
 	
+	// quickView에서 바로주문
 	$('#purchase').on('click', function(e) {
 		// 사이즈선택 필수
 		var jkSize = $('#jkSize').val().trim();
@@ -218,12 +219,12 @@
 		// 주문번호가 null인 상품주문(order_by_product)객체 생성
 		// 회원, 비회원 확인
 		
-		// product객체 생성을 위한 값(상하의코드, 상품번호, 수량)
-		var jacketCode = 'bgs$jk$s$br';//상품코드$jk$선택사이즈$컬러코드
-		var pantsCode = 'bgs$pt$28$br'; //상품코드$pt$선택사이즈$컬로코드
-		var productNum = 3;//productInfo의 키값(int)
+		// product객체 생성을 위한 값(상하의코드, 상품번호, 수량).................임의의 데이터값 넣어준것 수정필요!!!!!!!
+		var jacketCode = 'bgs$jk$s$br';//상품코드$jk$선택사이즈$컬러코드.... pCode + '$jk'+ jkSize + '$' + colorCode;
+		var pantsCode = 'bgs$pt$28$br'; //상품코드$pt$선택사이즈$컬로코드... pCode + '$pt'+ ptSize + '$' + colorCode;
+		var productNum = 3;//productInfo의 키값(int)...						 ${productNum};
 		var productCount = document.getElementsByName('num-product')[0].value;
-		var productCode = /*상품코드*/'bgs'+'$S$28$'+productNum;//상품코드$상의코드$하의코드$productNum
+		var productCode = 'bgs'+'$S$28$'+productNum;//pCode + '$' + jkSize + '$' + ptSize + '$'+ ${productNum};
 		makeOrder(productCode, jacketCode, pantsCode, productNum, productCount); //product객체 생성, orderByProduct객체 생성
 		
 	});
@@ -237,16 +238,16 @@
 		productInfoJson.pantsCode = pantsCode.trim();
 		productInfoJson.productNum = productNum;
 		productInfoJson.productCount = productCount.trim();
-		console.log('obj값: '+productInfoJson.toString);
-		var jsonData = JSON.stringify(productInfoJson); //json데이터 생성
-		console.log("JSONobj출력: "+jsonData);
- 		// 생성한 json데이터 서버로 보냄..-> 컨트롤러에서 객체생성 후 결제화면으로 이동
+		
+		var jsonData = JSON.stringify(productInfoJson);   //product 객체를 생성할 json데이터 생성
+
+		// 생성한 json데이터 서버로 보냄..-> 컨트롤러에서 객체생성 후 결제화면으로 이동
 		var url = "/iceland/order.es" //product객체를 생성하고 orderByProduct생성할 OrderController로 이동
 		
 		$.ajax({
             type: "POST",
             url: url,
-            //async : false,
+            async : false,
             dataType: "json",
             data: "jsonData="+jsonData,
             success: function (jsonData) {
@@ -256,16 +257,7 @@
              alert('Error');
             }
         });
-		
-		
-		/**
-		var url = "/iceland/order/order.es" //product객체를 생성하고 orderByProduct생성할 OrderController로 이동
-		ajax({
-			method : "get",
-			url : url,
-			param : "productInfo=" + jsonData,
-			callback : result
-		});*/
+
 	}
 
 	</script>
