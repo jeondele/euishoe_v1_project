@@ -1,6 +1,7 @@
 package com.euishoe.products.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -36,11 +37,15 @@ public class ProductDetailController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
-		
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		productService = (ProductService)factory.getBean(ProductServiceImpl.class);
+		String productNum = request.getParameter("productNum");
+		List<Map<String, Object>> list = null;
+		try {
+			list = productService.selectAllById(Integer.valueOf(productNum));
+		} catch (Exception e) {}
 		
-		int productNum = 2;
+		/*int productNum = 2;
 		//int productNum = (int) request.getAttribute("productNum");
 		List<Review> reviewlist = null;
 		List<Qna> qnalist = null;
@@ -57,7 +62,9 @@ public class ProductDetailController implements Controller {
 			e.printStackTrace();
 		}
 		mav.addObject("ReviewList", reviewlist);
-		mav.addObject("QnaList", qnalist);
+		mav.addObject("QnaList", qnalist);*/
+		System.out.println(list);
+		mav.addObject("selectAllById", list);
 		mav.setView("/product/details/product-detail.jsp");
 		return mav;
 	}

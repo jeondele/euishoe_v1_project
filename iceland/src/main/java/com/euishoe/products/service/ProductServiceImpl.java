@@ -110,4 +110,10 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return objectList;
 	}
+
+	@Override
+	public List<Map<String, Object>> selectAllById(int productNum) throws Exception {
+		return productDao.selectAllById(productNum);
+	}
+
 }
