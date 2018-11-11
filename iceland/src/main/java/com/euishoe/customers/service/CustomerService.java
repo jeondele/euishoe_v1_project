@@ -32,6 +32,8 @@ public interface CustomerService {
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response, ModelAndView mav,
 			Customer customer, String rememberCustomerId);
 	
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, ModelAndView mav);	
+	
 	// 회원정보 수정
 	public void modifyInfo(Customer customer) throws Exception;
 }

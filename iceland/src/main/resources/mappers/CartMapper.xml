@@ -21,6 +21,7 @@
 	<insert id="createCart" parameterType="com.euishoe.carts.dto.Cart">
 		INSERT INTO CARTS(CART_NUM,PRODUCT_CODE,CUSTOMER_ID) VALUES(#{cartNum},#{productCode},#{customerId})
 	</insert>
+	
 	<delete id="deleteCart">
 		DELETE FROM CARTS WHERE cart_num = #{cartNum}
 	</delete>

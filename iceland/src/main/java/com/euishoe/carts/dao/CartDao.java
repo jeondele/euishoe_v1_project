@@ -23,6 +23,9 @@ public interface CartDao {
 	// 장바구니 삭제
 	public void deleteCart(String cartNum);
 	
+	// 장바구니 삭제
+	public void updateCart(String cartNum);
+	
 	// 로그인 후 장바구니 등록을 위한 리스트 불러오기
 	public List<HashMap<String, Object>> listCartForLogin(String customer_id);
 }
