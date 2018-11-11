@@ -45,4 +45,12 @@
 		on o.PAYMENT_NUM = p.PAYMENT_NUM
 		where o.ORDER_NUM = #{orderNum}
 	</select>
+	
+	<!-- 주문생성 -->
+	<insert id="create" parameterType="String">
+		INSERT INTO order_by_products 
+		VALUES      (order_by_products_seq.nextval, 
+		             #{productCode}, 
+		             NULL) 	
+	</insert>
 </mapper>
