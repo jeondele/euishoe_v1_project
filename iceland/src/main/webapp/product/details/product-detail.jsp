@@ -66,15 +66,12 @@
         var options = {};
         $("#dvQnqContDtl1" ).toggle(selectedEffect, options, 500);
       };
-      
-      
     
       function writeReview() {
           var selectedEffect = $( "#effectTypes" ).val();
           var options = {};
           $("#dvQnqContDtl0" ).toggle( selectedEffect, options, 500 );
         };
-        
       
       /*
       	박호준
@@ -466,7 +463,7 @@
 						<div class="tab-pane fade" id="reviews" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-					 				<div class="p-b-30 m-lr-15-sm">
+					 				<%-- <div class="p-b-30 m-lr-15-sm">
                
                		                            <div class="grade_select zindex">
                                                     <a class="ui_info_button dn" id="detailViewGrade"> 
@@ -667,7 +664,7 @@
 												</span>
 											</div>
 										</form>
-									</div>
+									</div> --%>
 
 						<!-- 상품문의 -->
 						<div class="tab-pane fade show" id="qna" role="tabpanel">
@@ -914,6 +911,8 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		</div>
 		</div>
 
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
@@ -1462,9 +1461,9 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
-    <script type="text/javascript">
+<%--     <script type="text/javascript">
     $('.prdc_qna').css('display','none');
     $($('.nav-item')[3]).on('click',function(){ $('.prdc_qna').css('display','block');});
-    </script>
+    </script>--%>
 </body>
 </html>

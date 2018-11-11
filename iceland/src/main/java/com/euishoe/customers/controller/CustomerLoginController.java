@@ -30,7 +30,7 @@ public class CustomerLoginController implements Controller {
 		String customerId = request.getParameter("username");
 		String customerPassword = request.getParameter("password");
 		String rememberCustomerId = request.getParameter("idRemember");
-		
+		String old_url = request.getHeader("referer");
 		System.out.println(rememberCustomerId);
 		
 		if(customerId == null) {
@@ -49,7 +49,7 @@ public class CustomerLoginController implements Controller {
 			 */
 			mav = customerService.login(request, response, mav, customer, rememberCustomerId);
 			if(customer != null) {
-				mav.setView("/index.jsp");
+				mav.setView(old_url);
 			} else {
 				mav.addObject("result", "fail");
 				mav.setView("/customer/login/login.jsp");

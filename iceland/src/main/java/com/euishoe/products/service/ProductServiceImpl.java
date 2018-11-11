@@ -54,6 +54,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public String create(Product product) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public List<Map<String, Object>> newProductList() throws Exception {
 		return productDao.newProductList();
 	}
@@ -78,15 +84,6 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.selectAll();
 	}
 	
-	@Override
-	public List<Review> reviewListAll(int productNum, Params params) throws Exception {
-		return reviewDao.reviewListAll(productNum, params);
-	}
-
-	@Override
-	public List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception {
-		return qnaDao.qnaDynamicListAll(productNum, qnaisLock, customerId, TypeNum, params);
-	}
 	
 	public List<ProductInfo> selectProductInfoByProductNum(int productNum) throws Exception {
 		return productDao.selectProductInfoByProductNum(productNum);
@@ -111,4 +108,16 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return objectList;
 	}
+
+	@Override
+	public List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception {
+		return qnaDao.qnaDynamicListAll(productNum, qnaisLock, customerId, TypeNum, params);
+	}
+	
+	@Override
+	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params)
+			throws Exception {
+		return reviewDao.reviewDynamicReviewList(productNum, customerId, reviewScore, params);
+	}
+
 }

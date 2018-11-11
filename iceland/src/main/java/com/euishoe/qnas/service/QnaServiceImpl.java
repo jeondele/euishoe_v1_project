@@ -65,8 +65,8 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public int countBySearch(int productNum, Params params) throws Exception {
-		return 0;
+	public int countBySearch(int productNum) throws Exception {
+		return qnaDao.countBySearch(productNum);
 	}
 
 }

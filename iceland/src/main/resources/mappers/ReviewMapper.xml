@@ -186,10 +186,10 @@
 	</select>
 
 	
-	<select id="countBySearch"  parameterType="int" resultMap="Review">
+	<select id="countBySearch"  parameterType="int" resultType="int">
 		SELECT COUNT(review_num) count
 		FROM   reviews
-		WHERE product_num = #{productNum}
+		WHERE  product_num = #{productNum}
 	</select>
 	
 </mapper>
