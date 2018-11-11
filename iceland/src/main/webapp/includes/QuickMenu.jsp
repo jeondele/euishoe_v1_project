@@ -100,7 +100,7 @@
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
-                                        <a href="/iceland/product/details/product-detail.jsp">상세페이지</a>
+                                        <a href="/iceland/product/details.es">상세페이지</a>
 										<input type="button" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" id="addCart" value="장바구니 담기"
                                                style="margin-left: 10px;"
                                                />
@@ -151,6 +151,7 @@
         var productPrice = $('#productPrice').text().trim();
         var cookieData = document.cookie;
 		sumToMakeJson();
+		/*  */
     });
 	
 
