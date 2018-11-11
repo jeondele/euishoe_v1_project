@@ -125,6 +125,10 @@
 	height: 40px;
 }
 
+#reviewPassword {
+	height: 30px;
+}
+
 .modal {
     text-align: center;
 }
@@ -139,10 +143,12 @@
         vertical-align: middle;
 }
 
-#popLayWrap {
+#popLayWrap, #popLayWrap2 {
   top: 30%;
   margin-top: -100px;
 }
+
+
 
 .checkmark{
     font-size: 16px; 
@@ -384,7 +390,7 @@
 
 					<!-- Tab panes -->
 					<div class="tab-content p-t-43">
-						<!-- - -->
+						<!-- 상품 상세 설명 -->
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
@@ -393,8 +399,8 @@
 							</div>
 						</div>
 
-						<!-- - -->
-						<div class="tab-pane fade" id="information" role="tabpanel">
+						<!-- 상품 정보 -->
+						<div class="tab-pane fade show" id="information" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<ul class="p-lr-28 p-lr-15-sm">
@@ -452,179 +458,122 @@
 							</div>
 						</div>
 
-						<!-- - -->
-						<div class="tab-pane fade" id="reviews" role="tabpanel">
-							<div class="row">
-								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-					 				<div class="p-b-30 m-lr-15-sm">
-               
-               		                        <%--    <div class="grade_select zindex">
-                                                    <a class="ui_info_button dn" id="detailViewGrade"> 
-                                                                평점전체
-                                                     <span class="arr_icon"></span></a>  
-                                                    <div class="grade_lay ui_info_content" id="info_content" style="display: none;">
-                                                      <div class="lay_nw_def" style="display:block;position:relative;">
-                                                        <h3 class="lay_tit">평점 선택</h3>
-                                                        <div class="grade_wrap">
-                                                          <ul class="">
-                                                            <li>
-                                                            <input type="radio" value="0" name="pntValue" id="star" checked="">
-                                                            <label for="star" class="all">평점전체</label>
-                                                            </li>
-                                                            
-                                                            <li>
-                                                              <input type="radio" value="5" name="pntValue" id="star05">
-                                                              <label for="star05">
-                                                                <div class="selr_wrap">
-                                                                  <span class="num">5점</span>
-                                                                  <span class="graph_bar"><em class="gh_bar5" style="width:64%;"><span>64%</span></em></span>
-                                                                </div>
-                                                              </label>
-                                                            </li>
-                                                            <li>
-                                                              <input type="radio" value="4" name="pntValue" id="star04">
-                                                              <label for="star04">
-                                                                <div class="selr_wrap">
-                                                                  <span class="num">4점</span>
-                                                                  <span class="graph_bar"><em style="width:26%;"><span>26%</span></em></span>
-                                                                </div>
-                                                              </label>
-                                                            </li>
-                                                            <li>
-                                                              <input type="radio" value="3" name="pntValue" id="star03">
-                                                              <label for="star03">
-                                                                <div class="selr_wrap">
-                                                                  <span class="num">3점</span>
-                                                                  <span class="graph_bar"><em style="width:8%;"><span>8%</span></em></span>
-                                                                </div>
-                                                              </label>
-                                                            </li>
-                                                            <li>
-                                                              <input type="radio" value="2" name="pntValue" id="star02">
-                                                              <label for="star02">
-                                                                <div class="selr_wrap">
-                                                                  <span class="num">2점</span>
-                                                                  <span class="graph_bar"><em style="width:1%;"><span>1%</span></em></span>
-                                                                </div>
-                                                              </label>
-                                                            </li>
-                                                            <li>
-                                                              <input type="radio" value="1" name="pntValue" id="star01">
-                                                              <label for="star01">
-                                                                <div class="selr_wrap">
-                                                                  <span class="num">1점</span>
-                                                                  <span class="graph_bar"><em style="width:1%;"><span>1%</span></em></span>
-                                                                </div>
-                                                              </label>
-                                                            </li>
-                                                          </ul>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                            --%>
-                  
-                  
-										<!-- Review -->
-										<div class="flex-w flex-t p-b-68">
-											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img src="/iceland/images/avatar-01.jpg" alt="AVATAR">
-											</div>
-											<div class="size-207">
-												<div class="flex-w flex-sb-m p-b-17">
-													<span class="mtext-107 cl2 p-r-20">작 성 자</span>
-
-													<span class="fs-18 cl11">
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star-half"></i>
-													</span>
-												</div>
-												<p class="stext-102 cl6">
-													"상               품                 평"
-												</p>
-                                                  <span class="mtext-107 cl2 p-r-20"><a id="write_Answer">답변달기</a> </span> 
-                                              <div  class="qna_expand" id="dvQnqContDtl0" style="display: none;">
-                                                    <div class="answer">
-                                                      <span class="ico_answer">답변</span>
-                                                             <textarea rows="10" cols="20"></textarea>
-                                                     <div class="btn_action">
-                                                      <a href="#this" id="report" class="nwtxt_link" data-brdinfono="118895345" data-clfcd="01" data-contcd="03">작성하기<span class="ico"></span></a>
-                                                      </div>
-                                                    </div>
-
-                                                    </div>        
-
-                                                  <span class="mtext-107 cl2 p-r-20"><a  id="admin_Answer">관리자 답변</a></span>
-                                              <div  class="qna_expand" id="dvQnqContDtl1" style="display: none;">
-                                                    <div class="answer">
-                                                      <span class="ico_answer">답변</span>
-                                                                      안녕하세요 11번가 나이키입니다.
-                                                                 고객님께서 문의하신 사항 잘 보았습니다.
-                                                    </div>
-                                                    </div>                                                  
-                                                  
-											</div>
-										</div>
-										
-										<!-- Add review -->
-										<form class="w-full" action="/iceland/product/details/create.es">
-											<input type="hidden" id="productNum">
-											<h5 class="mtext-108 cl2 p-b-7">
-												리뷰작성
-											</h5>
-
-											<p class="stext-102 cl6">
-												리뷰 비밀번호를 작성해주세요.
-											</p>
-
-											<div class="flex-w flex-m p-t-50 p-b-23">
-												<span class="stext-102 cl3 m-r-16">
-													평점을 골라주세요 !
-												</span>
-
-<script>
-	${star}
-</script>
-
-												<span class="wrap-rating fs-18 cl11 pointer">
-													<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
-													<input class="dis-none" type="number" name="rating" id="reviewScore" value="">
-												</span>
-											</div>
-
-											<div class="row p-b-25">
-												<div class="col-12 p-b-5">
-													<label class="stext-102 cl3" for="review">내용</label>
-													<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="reviewContent" name="reviewContent"></textarea>
-												</div>
-
-												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="name">작성자</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="customerId" type="text" name="customerId">
-												</div>
-
-												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="email">비밀번호</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="reviewPassword" type="text" name="reviewPassword">
-												</div>
-											</div>
-
-											<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="">
-												작성하기</button>
-										</form>
-									</div>
-								</div>
-							</div>
+						<!-- 상품리뷰 -->
+						<div class="tab-pane fade show" id="reviews" role="tabpanel">
+			               <div class="prdc_qna">
+	                          	<div class="bbs_filter">
+	                          		<button type="button" id="myReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">내 리뷰</button>
+	                          		<button type="button" id="allReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">전체리뷰</button>
+	                          		<button type="button" id="insertReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" data-toggle="modal" data-target="#popLayWrap2">리뷰작성</button>
+	                          	</div>
+			                            
+	                            <table class="prdc_bbs" summary="이 표는 상품 Q&amp;A 및 내용이 번호,문의유형,문의/답변,작성자,작성일로 구성되어 있습니다.">
+	                            	<colgroup>
+	                            		<col width="5%">
+	                            		<col width="15%">
+	                            		<col width="50%">
+	                            		<col width="15%">
+	                            		<col width="15%">
+	                            		
+	                            	</colgroup>
+	                            	<thead>
+	                            	<tr>
+	                            		<th scope="col" style="text-align:center;">번호</th>
+	                            		<th scope="col" style="text-align:center;">관리자답변</th>
+	                            		<th scope="col">제목</th>
+	                            		<th scope="col" style="text-align:center;">작성자</th>
+	                            		<th scope="col" style="text-align:center;">작성일</th>
+	                            	</tr>
+	                            	</thead>
+	                            	<tbody>
+	                            		<tr>
+	                            			<td class="td_num txt-center">1</td>
+	                            			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
+	                            			<td>
+	                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">매우 만족</a>
+	                            			</td>
+	                            			<td class="td_write txt-center">swe******</td>
+	                            			<td class="td_date txt-center">2018-11-07 11:38</td>
+	                            		</tr>
+	                            		<%-- 답변 클릭 시, 보이게 구현 --%>
+	                            		<tr class="trQna" id="trQnqContDtl2">
+	                            			<td colspan="6" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
+	                            				<div class="question">
+	                            					<span class="ico_question">답변</span>
+	                            				  	<span class="checkmark"></span>"답변완료일 시 작성됨"<br><br>
+	                            				  	<span class="adminAnswer">소중한 리뷰 감사드립니다~</span>&nbsp;|&nbsp;<span style="font-size: 16px; color: green;">2018-11-07 11:38</span>
+	                            				</div>
+	                            			</td>
+	                            		</tr>
+	                            		
+		                                <tr>
+		                                  	<td class="td_num txt-center">2</td>
+	                            			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
+	                            			<td>
+	                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">언제 오나요? 배송 언제되나요?</a>
+	                            			</td>
+	                            			<td class="td_write txt-center">swe******</td>
+	                            			<td class="td_date txt-center">2018-11-07 11:38</td>
+	                                	</tr>
+	                                	
+	                                	
+	                                	<tr>
+		                                  	<td class="td_num txt-center">3</td>
+	                            			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
+	                            			<td>
+	                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">쉽지 않네요... 인생...</a>
+	                            			</td>
+	                            			<td class="td_write txt-center">swe******</td>
+	                            			<td class="td_date txt-center">2018-11-07 11:38</td>
+	                                	</tr>
+	                            	</tbody>
+	                            </table>
+			                            
+			                            
+			                            	
+                            	<div class="s_paging_v2">
+                            		<!-- <a href="#this" class="prev" title="이전목록"><span class="hide">이전목록</span></a> -->
+                            		<span>
+                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&lt;&lt;" data-keyno="20181107094625">&lt;&lt;</a>
+                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&lt;" data-keyno="20181107094625">&lt;</a>
+                            			<strong>1</strong>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="2" data-keyno="20181107094625">2</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="3" data-keyno="20181107085121">3</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="4" data-keyno="20181107080107">4</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="5" data-keyno="20181106234012">5</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="6" data-keyno="20181106212053">6</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="7" data-keyno="20181106184827">7</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="8" data-keyno="20181106174212">8</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="9" data-keyno="20181106162300">9</a>
+                            			<a href="#this" id="paging_page" data-pagetype="page" data-pagenum="10" data-keyno="20181106151741">10</a>
+                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&gt;" data-keyno="20181107094625">&gt;</a>
+                                        <a href="#this" id="paging_page" data-pagetype="page" data-pagenum="&gt;&gt;" data-keyno="20181107094625">&gt;&gt;</a>
+                            		</span>
+                            	</div>
+			                            
+	                            <form name="pageForm" action="/product/SellerProductDetail.tmall" method="get">
+	                            	<input type="hidden" name="method" value="getProductQnAList">
+	                            	<input type="hidden" name="brdInfoClfNo" value="2205838409">
+	                            	<input type="hidden" name="curPage" value="1">
+	                            	<input type="hidden" name="qnaDtlsCd" value="">
+	                            	<input type="hidden" name="pageTypCd" value="first">
+	                            	<input type="hidden" name="secretYn" value="N">
+	                            	<input type="hidden" name="myQnaYn" value="N">
+	                            	<input type="hidden" name="isMart" value="N">
+	                            	<input type="hidden" name="isSohoPrd" value="false">
+	                            	<input type="hidden" name="keyNo" value="">
+	                            	<input type="hidden" name="pageList" value="20181107113845|20181107094625|20181107085121|20181107080107|20181106234012|20181106212053|20181106184827|20181106174212|20181106162300|20181106151741|20181106132718|">
+	                            	<input type="hidden" name="sellerMemId" value="cheonhyang0707">
+	                            	<input type="hidden" name="ldispCtgrNo" value="1001340">
+	                            	<input type="hidden" name="isRenewYn" value="Y">
+	                            	<input type="hidden" name="pageSize" value="10">
+	                            	<input type="hidden" name="targetFrm" value="">
+	                            </form>
+	                        </div>
 						</div>
-            
-                        <div class="tab-pane fade show active" id="qna" role="tabpanel">
+               
+            			<%-- QnA 창 --%>
+                        <div class="tab-pane fade" id="qna" role="tabpanel">
                             <div class="prdc_qna">
                             	<div class="bbs_filter">
                             		<button type="button" id="myQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">내 문의</button>
@@ -1039,8 +988,81 @@
 		</div>
 	</section>
 	
-	
-	
+	<div id="popLayWrap2" class="modal fade" role="dialog">
+    <form name="frmMain" method="post">
+		<div class="modal-dialog modal-lg" style="width:600px; height:375px;">	
+        	<div class="modal-content">
+            <!-- 팝업 내용입력부분 ============================= -->
+            	<div class="modal-header">
+	      			<h2 class="modal-title" style="display:inline;">리뷰작성</h2>
+					<div><br></div>
+	            </div>
+	            <div class="modal-body">
+	                 <table class="tbl">
+                        <colgroup>
+                            <col style="width:25%">
+                            <col style="width:75%">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="first" style="text-align: center;"><label for="qnaDtlsCd">평점 선택</label></th>
+                                <td class="alignL">
+                                    <div class="select_wrap">
+                                    	<span class="wrap-rating fs-18 cl11 pointer" style="font-size: 20px;">
+											<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
+											<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
+											<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
+											<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
+											<i class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
+											<input class="dis-none" type="number" name="rating" id="reviewScore" value="">
+										</span>
+                                    </div>
+                                </td>
+<script>
+	${star}
+</script>
+                                
+                            </tr>
+	                        <tr>
+	                            <th scope="row" class="first" style="text-align: center;"><label for="brdInfoCont">내용</label></th>
+	                            <td class="alignL">
+	                            <br>
+	                                <textarea name="brdInfoCont" id="brdInfoCont" rows="10" cols="67" placeholder="리뷰 평점을 선택하시고, 구매평을 자유롭게 남겨주세요"></textarea>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                        	<th scope="row" class="myInfoHeader" style="text-align: center;">비밀글 여부</th>
+		                        <td class="alignL">
+		                        	<br>
+	                                    <div class="select_wrap">
+	                                    	<span for="qnaDtlsCd6" class="qnaDtlsCd6"><input type="radio" name="qnaDtlsCd6" class="qnaDtlsCd6" value="true">&nbsp;사용</span>&nbsp;&nbsp;
+	                                    	<span for="qnaDtlsCd7" class="qnaDtlsCd7"><input type="radio" name="qnaDtlsCd7" class="qnaDtlsCd7" value="false">&nbsp;미사용</span>&nbsp;&nbsp;
+										</div>
+									<br>
+	                			</td>
+                			</tr>
+                			<%-- 비밀글 사용여부에 따라 비밀번호 활성 / 비활성 --%>
+                      		<tr>
+	                            <th scope="row" class="first" style="text-align: center;"><label for="brdInfoCont">비밀번호</label></th>
+	                            <td class="alignL">
+	                                <input type="password" id="reviewPassword" name="reviewPassword">
+	                            </td>
+	                        </tr>
+                        	</tbody>
+	                	</table>            
+                </div>
+                <div class="modal-footer" style="align-items:center;">
+                  	<input type="submit" id="addReview" class="flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" value="작성" style="border:none; display:inline; text-align:center;">
+       				<button type="button" id="cancelReview" class="flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" style="border:none; display:inline;" data-dismiss="modal">취소</button>
+                </div>
+                
+               </div> 
+            </div>
+    	</form>
+	</div>
+
+
+	<%-- 후기 작성 Modal 창 --%>
 	<div id="popLayWrap" class="modal fade" role="dialog">
     <form name="frmMain" method="post">
 		<div class="modal-dialog modal-lg" style="width:690px; height:375px;">	
