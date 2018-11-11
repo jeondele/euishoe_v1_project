@@ -6,6 +6,7 @@
 <title>my page</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 <link rel="icon" type="image/png"
 	href="/iceland/images/icons/favicon.png" />
@@ -203,8 +204,8 @@
 
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 							<button class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-5 trans-04 pointer">구매</button>
-							<div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">선택삭제</div>
-							<div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" id="delete_All">전체삭제</div>
+							<div id="deleteOneCart" class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">선택삭제</div>
+							<div id="deleteAllCart" class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">전체삭제</div>
 						</div>
 					</div>
 				</div>
@@ -212,7 +213,7 @@
 		</div>
 	</div>
   
-	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
+
 
 	<%@include file="/iceland/../includes/footer.jsp"%>
 
@@ -392,53 +393,73 @@
 		})
 	};
 	
-	$('#delete_All').bind('click',function(e){
-		$('.table_row').each(function(index,item){
-			item.remove();
-		})
-		
-		sumUp();
-	});
 	
 	sumUp();
 	
 
-	var Test = '';
-
-	
 	$(document).ready(function() {
-		var obj = decodeURIComponent(getCookie('carts'));
-		var jsonObj = JSON.parse(obj);
-		// row 뿌리기
 		
-		console.log(jsonObj);
-		Test = jsonObj;
+		var prior = 1;
+		var checksum = 0; 
 		
-		for(var i = 0; i < jsonObj.length; i++){
+		while(getCookie('cart' + prior)){
+			var obj = decodeURIComponent(getCookie('cart' + prior)).substring(1,decodeURIComponent(getCookie('cart' + prior)).length - 1);
+			var jsonObj = JSON.parse(obj);
+			
+			console.log(prior);
 			
 			var str = "";
 			str += '<tr class="table_row">';
 			str += ' <td class="column-1 txt-center">';
 			str += ' <input type="checkbox" value="None" class="roundedOne" id="" name="check" checked /></td>';
 			str += ' <td class="column-2 txt-center"><div class="how-itemcart1">';
-			str += ' <img src="' + jsonObj[i].image_ref + '" alt="IMG"></div></td>';
-			str += ' <td class="column-3 txt-center">' + jsonObj[i].PRODUCT_NAME + '</td>';
-			str += ' <td class="column-4 txt-center">' + jsonObj[i].PRODUCT_PRICE + '</td><td class="column-5 txt-center">';
+			str += ' <img src="' + jsonObj.image_ref + '" alt="IMG"></div></td>';
+			str += ' <td class="column-3 txt-center">' + jsonObj.PRODUCT_NAME + '</td>';
+			str += ' <td class="column-4 txt-center">' + jsonObj.PRODUCT_PRICE + '</td><td class="column-5 txt-center">';
 			str += ' <div class="wrap-num-product flex-w m-l-auto m-r-auto">';
 			str += ' <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">';
 			str += ' <i class="fs-16 zmdi zmdi-minus"></i></div>';
-			str += ' <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="' + jsonObj[i].product_count + '">';
+			str += ' <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="' + jsonObj.product_count + '">';
 			str += ' <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">';
 			str += ' <i class="fs-16 zmdi zmdi-plus"></i></div></div></td>';
-			str += ' <td class="column-6 txt-center">' + (jsonObj[i].product_count*jsonObj[i].PRODUCT_PRICE) + '</td></tr>';
-
+			str += ' <td class="column-6 txt-center">' + (jsonObj.product_count*jsonObj.PRODUCT_PRICE) + '</td></tr>';
+			
 			$('tbody').append(str);
+			prior++;
 		}
 
-		
+			
 		// json 객체로 cart 가져오기
 		}
 	);
+	
+	// 부분삭제
+	$('#deleteOneCart').on('click',function(e){
+       for(var i = 0; i < $('.roundedOne').length; i++){
+		if($($('.roundedOne')[i]).prop('checked')){
+			setCookie('cart' + (1 + i),'',0);
+			$('.table_row')[i].remove();
+		}
+       }
+		console.log('부분삭제 완료');
+	});
+	
+	// 전체삭제
+	$('#deleteAllCart').on('click',function(e){
+		var prior = 1;
+		while(getCookie('cart' + prior)){
+			setCookie('cart' + prior,'',0);
+			prior++;
+		}
+		console.log('전체삭제 완료');
+		
+		$('.table_row').each(function(index,item){
+			item.remove();
+		})
+		
+		$('#cartButton').attr('data-notify',0);
+		sumUp();
+	});
 	
 		</script>
 </body>

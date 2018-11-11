@@ -122,83 +122,71 @@ public class CustomerServiceImpl implements CustomerService {
 
 		// 장바구니 리스트
 		List<HashMap<String, Object>> listCart = listCartForLogin(customer.getCustomerId());
-		List<HashMap<String, Object>> Carts = new ArrayList<HashMap<String, Object>>();
+		
 		// 리스트 내 객체를 담을 HashMap
 		HashMap hashmapCart = new HashMap<String, String>();
+		int prior = 1;
+		String json = "";
+		Gson gson = new Gson();
 		for (HashMap<String, Object> hash : listCart) {
 			hashmapCart.put("image_ref", hash.get("IMAGE_REF"));
 			hashmapCart.put("PRODUCT_NAME", hash.get("PRODUCT_NAME"));
 			hashmapCart.put("product_count", hash.get("PRODUCT_COUNT"));
 			hashmapCart.put("PRODUCT_PRICE", hash.get("PRODUCT_PRICE"));
-
-			Carts.add(hashmapCart);
+			hashmapCart.put("PRODUCT_NUM", hash.get("PRODUCT_NUM"));
 			
-			// response 확인
-			System.out.println("product_count : " + hashmapCart.get("product_count"));
-			System.out.println("PRODUCT_PRICE : " + hashmapCart.get("PRODUCT_PRICE"));
+			// utf-8방식으로 인코딩 후 JSON 객체 만들기
+			try {
+				json = URLEncoder.encode(gson.toJson(hashmapCart).trim(), "utf-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			// 쿠키 생성
+			Cookie cartCookie = new Cookie("cart" + prior++, gson.toJson(json));
+
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=UTF-8");
+
+			cartCookie.setMaxAge(60 * 60 * 24 * 1000);
+			cartCookie.setPath("/iceland/");
+			response.addCookie(cartCookie);
 		}
-
-		// utf-8방식으로 인코딩 후 JSON 객체 만들기
-		Gson gson = new Gson();
-		String json = "";
-		
-		System.out.println(gson.toJson(Carts).trim());
-		try {
-			json = URLEncoder.encode(gson.toJson(Carts).trim(), "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// 쿠키 생성
-		Cookie cartCookie = new Cookie("carts", gson.toJson(json));
-
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=UTF-8");
-
-		cartCookie.setMaxAge(60 * 60 * 24 * 1000);
-		cartCookie.setPath("/iceland/");
-		response.addCookie(cartCookie);
-
-		mav.addObject("carts", cartCookie);
 
 		/* 위시리스트 쿠키 생성 */
 		List<HashMap<String, Object>> listWish = listWish(customer.getCustomerId());
 
 		// 리스트 내 객체를 담을 HashMap
 		HashMap hashmapWish = new HashMap<String, String>();
-		List<HashMap<String, Object>> wishes = new ArrayList<HashMap<String, Object>>();
+		prior = 1;
 		
-		for (HashMap<String, Object> hash : listCart) {
+		for (HashMap<String, Object> hash : listWish) {
 			hashmapWish.put("image_ref", hash.get("image_ref"));
 			hashmapWish.put("PRODUCT_NAME", hash.get("PRODUCT_NAME"));
 			hashmapWish.put("product_manufacturer", hash.get("product_manufacturer"));
 			hashmapWish.put("PRODUCT_PRICE", hash.get("PRODUCT_PRICE"));
+			hashmapWish.put("PRODUCT_NUM", hash.get("PRODUCT_NUM"));
 			
-			wishes.add(hashmapWish);
+			try {
+				json = URLEncoder.encode(gson.toJson(hashmapWish).trim(), "utf-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			// 쿠키 생성
+			Cookie wishCookie = new Cookie("wish" + prior++, gson.toJson(json));
+
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=UTF-8");
+
+			wishCookie.setMaxAge(60 * 60 * 24 * 1000);
+			wishCookie.setPath("/iceland/");
+			response.addCookie(wishCookie);
 		}
 
 		// utf-8방식으로 인코딩 후 JSON 객체 만들기
-		json = "";
-
-		try {
-			json = URLEncoder.encode(gson.toJson(wishes).trim(), "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// 쿠키 생성
-		Cookie wishCookie = new Cookie("wishes", gson.toJson(json));
-
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=UTF-8");
-
-		wishCookie.setMaxAge(60 * 60 * 24 * 1000);
-		wishCookie.setPath("/iceland/");
-		response.addCookie(wishCookie);
-
-		mav.addObject("wishes", wishCookie);
 
 		// 아이디 기억 버튼
 		if (rememberCustomerId != null) {

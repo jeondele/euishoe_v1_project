@@ -164,9 +164,6 @@
 	</div>
 	<script>
 	$('#addCart').on('click',function(e){
-		var oldCookie = '';
-		$('#addCart').on('click',function(e){
-			sumToMakeJson();
-	    });
+		sumToMakeJson();
     });
 	</script>
