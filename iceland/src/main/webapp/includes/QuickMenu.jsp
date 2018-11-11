@@ -149,6 +149,7 @@
         var productCount = document.getElementsByName('num-product')[0].value;
         var productPrice = $('#productPrice').text().trim();
         var cookieData = document.cookie;
+		sumToMakeJson();
     });
 	
 	</script>

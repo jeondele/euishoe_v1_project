@@ -40,35 +40,54 @@
   
   <script type="text/javascript">
   
-  var str = "";
-  
 
   
+  var str = "";
+  
   $(document).ready(function() {
-		var obj = decodeURIComponent(getCookie('carts'));
-		var jsonObj = JSON.parse(obj);
+		//var obj = decodeURIComponent(getCookie('carts'));
+		
+        console.log(2);
+		
+		var prior = 1;
 		var checksum = 0; 
-		// row 뿌리기
 		
-		console.log(jsonObj);
-		
-		for(var i = 0; i < jsonObj.length; i++){
+		while(getCookie('cart' + prior)){
+			var obj = decodeURIComponent(getCookie('cart' + prior)).substring(1,decodeURIComponent(getCookie('cart' + prior)).length - 1);
+			var jsonObj = JSON.parse(obj);
+			
+			console.log(prior);
 			
 			var str = "";
 			
-			  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img">';
-			  str += '<img src="' + jsonObj[i].image_ref + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
-			  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + jsonObj[i].PRODUCT_NAME + '</a>'
-			  str += '<span class="header-cart-item-info">' + jsonObj[i].product_count + ' x ' + jsonObj[i].PRODUCT_PRICE + '</span></div></li>';		
+			  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img" value='+ prior +'>';
+			  str += '<img src="' + jsonObj.image_ref + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
+			  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + jsonObj.PRODUCT_NAME + '</a>'
+			  str += '<span class="header-cart-item-info">' + jsonObj.product_count + ' x ' + jsonObj.PRODUCT_PRICE + '</span></div></li>';		
 			  $('#miniCarts').append(str);
 			  
-			  checksum += jsonObj[i].product_count * jsonObj[i].PRODUCT_PRICE;
+			  checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
+			  prior++;
 		}
-
+		
+		$('#cartButton').attr('data-notify',prior - 1);
 		$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
+	  
+		// 지우기
+		$('.header-cart-item-img').on('click',function(e){
+	        console.log($(e.currentTarget).parents()[0]);
+	        console.log($(e.currentTarget).attr('value'));
+	        setCookie('cart' + $(e.currentTarget).attr('value'),'',0);
+	        $(e.currentTarget).parents()[0].remove();
+        });
+		// row 뿌리기
+		
+		
 		// json 객체로 cart 가져오기
 		}
 	);
+  
+  
   </script>
 <!--
 
