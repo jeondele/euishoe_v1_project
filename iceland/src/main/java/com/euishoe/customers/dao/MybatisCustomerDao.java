@@ -44,6 +44,15 @@ public class MybatisCustomerDao implements CustomerDao {
 		sqlSession.commit();
 		sqlSession.close();
 	}
+
+	@Override
+	public void modifyInfo(Customer customer) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update(NAMESPACE+"modifyInfo", customer);
+		sqlSession.commit();
+		sqlSession.close();
+		
+	}
 }
 
 

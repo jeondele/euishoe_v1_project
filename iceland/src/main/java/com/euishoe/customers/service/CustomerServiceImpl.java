@@ -210,4 +210,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return mav;
 
 	}
+
+	@Override  // 회원정보 수정
+	public void modifyInfo(Customer customer) throws Exception {
+		customerDao.modifyInfo(customer);
+	}
 }
