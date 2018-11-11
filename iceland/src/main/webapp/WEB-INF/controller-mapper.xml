@@ -9,7 +9,7 @@
 	<!-- 상품 -->
 	<bean type="controller" name="/product" class="com.euishoe.products.controller.ProductController" />
 	<!-- 상품 상세 관리 -->
-	<bean type="controller" name="/product/details" class="com.euishoe.products.controller.ProductDetailController" />
+	<bean type="controller" name="/product/details/product-detail" class="com.euishoe.products.controller.ProductDetailController" />
 	
 	<!-- 고객관련 -->
 	<bean type="controller" name="/customer/login" class="com.euishoe.customers.controller.CustomerLoginController" />
@@ -27,13 +27,13 @@
 	
 	<!--review-->
 	<bean type="controller" name="/review/write" class="com.euishoe.reviews.controller.ReviewCreateController" />
-	<bean type="controller" name="/review/delete" class="com.euishoe.reviews.controller.ReviewRemoveContorller" />
-	<bean type="controller" name="/review/ajaxList" class="com.euishoe.reviews.controller.ReviewListContorller" />
+	<bean type="controller" name="/review/remove" class="com.euishoe.reviews.controller.ReviewRemoveController" />
+	<bean type="controller" name="/review/ajaxList" class="com.euishoe.reviews.controller.ReviewListController" />
 	
 	<!--qna-->
 	<bean type="controller" name="/qna/write" class="com.euishoe.qnas.controller.QnaCreateController" />
-	<bean type="controller" name="/qna/delete" class="com.euishoe.qnas.controller.QnaRemoveContorller" />
-	<bean type="controller" name="/qna/ajaxList" class="com.euishoe.qnas.controller.QnaListContorller" />
+	<bean type="controller" name="/qna/remove" class="com.euishoe.qnas.controller.QnaRemoveController" />
+	<bean type="controller" name="/qna/ajaxList" class="com.euishoe.qnas.controller.QnaListController" />
 	
 	<!-- 주문 -->
 	<bean type="controller" name="/order" class="com.euishoe.orders.controller.OrderController" />

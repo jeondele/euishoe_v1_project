@@ -18,7 +18,7 @@ public interface ReviewService {
 	public void create() throws Exception;
 	
 	//조회
-	public List<Review> listAll(int productNum, Params params) throws Exception;
+	public List<Review> reviewListAll(int productNum, Params params) throws Exception;
 	
 	//특정 댓글 조회(사용자)
 	public List<Review> reviewListByCustomerId(int productNum, String customerId, Params params) throws Exception;

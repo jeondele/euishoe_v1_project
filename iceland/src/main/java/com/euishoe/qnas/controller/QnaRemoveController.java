@@ -12,6 +12,7 @@ import com.euishoe.customers.dto.Customer;
 import com.euishoe.customers.service.CustomerService;
 import com.euishoe.customers.service.CustomerServiceImpl;
 import com.euishoe.qnas.service.QnaService;
+import com.euishoe.qnas.service.QnaServiceImpl;
 
 /**
  * /user/list.mall에 대한 로그아웃 요청 처리 컨트롤러
@@ -26,6 +27,9 @@ public class QnaRemoveController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
+		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
+		qnaService = (QnaService)factory.getBean(QnaServiceImpl.class);
+		
 		String qnaNum = request.getParameter("qnaNum");
 		try {
 			qnaService.deleteQna(Integer.parseInt(qnaNum));

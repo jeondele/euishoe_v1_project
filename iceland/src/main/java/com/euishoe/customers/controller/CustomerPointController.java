@@ -20,35 +20,34 @@ import com.euishoe.reviews.dto.Review;
 
 /**
  * /user/list.mall에 대한 요청 처리 컨트롤러
+ * 
  * @author 김기정
  *
  */
 public class CustomerPointController implements Controller {
-	
+
 	CustomerService customerService;
 	PointService pointService;
-	
+
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
-		
-		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
-		customerService = (CustomerService)factory.getBean(CustomerServiceImpl.class);
-		pointService = (PointService)factory.getBean(PointServiceImpl.class);
-		
+
+		XMLObjectFactory factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
+		customerService = (CustomerService) factory.getBean(CustomerServiceImpl.class);
+		pointService = (PointService) factory.getBean(PointServiceImpl.class);
+
 		List<HashMap<String, Object>> list = null;
 		Cookie[] cookies = request.getCookies();
 		try {
-/*			for(Cookie cookie : cookies){
-			    if(cookie.getName().equals("loginId")) {
-			    	System.out.println("2." + cookie.getValue());
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginId")) {
+					System.out.println("2." + cookie.getValue());
 					list = pointService.CustomerPointList(cookie.getValue());
 					System.out.println("3." + list.size());
-			    }
-			} */
-			list = pointService.CustomerPointList("bangry");
-			System.out.println("3." + list.size());
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

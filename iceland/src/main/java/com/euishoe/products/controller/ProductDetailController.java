@@ -30,9 +30,6 @@ import kr.or.kosta.blog.common.web.Params;
 public class ProductDetailController implements Controller {
 	
 	ProductService productService;
-	ReviewService reviewService;
-	QnaService qnaService;
-	CommentService commentService;
 	Params params;
 	
 	@Override
@@ -42,20 +39,16 @@ public class ProductDetailController implements Controller {
 		
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		productService = (ProductService)factory.getBean(ProductServiceImpl.class);
-		reviewService = (ReviewService)factory.getBean(ReviewServiceImpl.class);
-		qnaService = (QnaService)factory.getBean(QnaServiceImpl.class);
-		commentService = (CommentService)factory.getBean(CommentServiceImpl.class);
 		
 		int productNum = 2;
 		//int productNum = (int) request.getAttribute("productNum");
 		List<Review> reviewlist = null;
 		List<Qna> qnalist = null;
+		params = new Params(1, 5, 1, null, null);
 		
-		System.out.println("222222222222222222");
-		params = new Params(5, 5, 5, null, null);
 		try {
-			reviewlist = reviewService.listAll(productNum, params);
-			qnalist = qnaService.qnaListAll(productNum);
+			reviewlist = productService.reviewListAll(productNum, params);
+			qnalist = productService.qnaListAll(productNum);
 			
 			System.out.println("1." + reviewlist);
 			System.out.println("2." + qnalist);
@@ -65,7 +58,7 @@ public class ProductDetailController implements Controller {
 		}
 		mav.addObject("ReviewList", reviewlist);
 		mav.addObject("QnaList", qnalist);
-		mav.setView("/product/details/product-detail.jsp");
+		mav.setView("product-detail.es");
 		System.out.println("222222222222222222");
 		return mav;
 	}

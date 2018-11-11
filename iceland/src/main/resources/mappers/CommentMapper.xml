@@ -41,7 +41,7 @@
 	       review_num, 
 	       comment_content
 	FROM   comments
-	WHERE review_num = #{reviewNum}
+	WHERE  review_num = #{reviewNum}
 	</select>
 	
 	<!-- Qna 댓글 조회 -->
@@ -50,7 +50,7 @@
 	       review_num, 
 	       comment_content
 	FROM   comments
-	WHERE qna_num = #{qnaNum}
+	WHERE  qna_num = #{qnaNum}
 	</select>
 	<!-- 리뷰게시판 삭제 -->
 </mapper>
