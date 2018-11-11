@@ -51,7 +51,77 @@
 <body class="animsition">
 	
 <%@include file="../../includes/header.jsp"%>
-
+<script type="text/javascript">
+  function sumToMakeJson(){
+	var prior = 1;
+	while(getCookie('cart' + prior)){
+		prior++;
+	}
+	
+	console.log(prior);
+	
+	var productName = $('#addCart').parents()[3].childNodes[1].innerText;
+    var productImg = $('#productImg')[0].src
+    var productCount = parseInt(document.getElementsByName('num-product')[0].value);
+    var productPrice = parseInt($('#productPrice').text().trim().substring(2,$('#productPrice').text().trim().length - 2));
+    var productNum = parseInt($('#productNum').val());
+    // 객체 생성
+    var data = new Object() ;
+    // String으로 index.jsp 내 객체
+    data.image_ref = productImg;
+    data.PRODUCT_PRICE = productPrice;
+    data.product_count = productCount;
+    data.PRODUCT_NAME = productName ;
+    data.PRODUCT_NUM = productNum;
+     
+    // 리스트에 생성된 객체 삽입
+    var arrayCookie = '"' + encodeURIComponent(JSON.stringify(data)) + '"';
+	setCookie('cart' + prior,arrayCookie,1);
+	
+	$('#cartButton').attr('data-notify',parseInt($('#cartButton').attr('data-notify')) + 1)
+	
+		
+	var str = "";
+		
+    str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img">';
+    str += '<img class="cartItems" src="' + productImg + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
+	str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + productName + '</a>'
+	str += '<span class="header-cart-item-info">' + productCount + ' x ' + productPrice + '</span></div></li>';		
+	$('#miniCarts').append(str);
+		  
+	//checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
+	
+	//$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
+	var Test = '';
+	$('.header-cart-item-img').on('click',function(e){
+		
+		console.log(e);
+		Test = e;
+		console.log($(e.currentTarget).attr('value'));
+		var deleteNum = parseInt($(e.currentTarget).attr('value'));
+        setCookie('cart' + deleteNum,'',0);
+        
+        // 지운 후 정렬 
+        var testNum = deleteNum + 1;
+        
+        while(getCookie('cart' + testNum)){
+        	testNum++;
+        }
+        console.log(testNum);
+        
+        for(var i = deleteNum + 1; i < testNum; i++){
+        	console.log(i);
+        	setCookie('cart' + (i-1),getCookie('cart' + i),1);
+        	if(i == testNum - 1){
+        		console.log(5);
+        		setCookie('cart' + i,'',0);
+        	}
+        }
+        $(e.currentTarget).parents()[0].remove();
+        $('#cartButton').attr('data-notify',prior - 1);
+    });
+}
+</script>	
 <%@include file="../../includes/cart.jsp"%>
 <%@include file="..//../includes/favorite.jsp"%>
 <%@include file="../../includes/slider.jsp"%>
