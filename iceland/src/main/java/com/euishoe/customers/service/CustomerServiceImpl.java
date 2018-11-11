@@ -8,6 +8,7 @@ package com.euishoe.customers.service;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -121,15 +122,17 @@ public class CustomerServiceImpl implements CustomerService {
 
 		// 장바구니 리스트
 		List<HashMap<String, Object>> listCart = listCartForLogin(customer.getCustomerId());
-
+		List<HashMap<String, Object>> Carts = new ArrayList<HashMap<String, Object>>();
 		// 리스트 내 객체를 담을 HashMap
 		HashMap hashmapCart = new HashMap<String, String>();
 		for (HashMap<String, Object> hash : listCart) {
-			hashmapCart.put("image_ref", hash.get("image_ref"));
+			hashmapCart.put("image_ref", hash.get("IMAGE_REF"));
 			hashmapCart.put("PRODUCT_NAME", hash.get("PRODUCT_NAME"));
-			hashmapCart.put("product_count", hash.get("product_count"));
+			hashmapCart.put("product_count", hash.get("PRODUCT_COUNT"));
 			hashmapCart.put("PRODUCT_PRICE", hash.get("PRODUCT_PRICE"));
 
+			Carts.add(hashmapCart);
+			
 			// response 확인
 			System.out.println("product_count : " + hashmapCart.get("product_count"));
 			System.out.println("PRODUCT_PRICE : " + hashmapCart.get("PRODUCT_PRICE"));
@@ -138,8 +141,10 @@ public class CustomerServiceImpl implements CustomerService {
 		// utf-8방식으로 인코딩 후 JSON 객체 만들기
 		Gson gson = new Gson();
 		String json = "";
+		
+		System.out.println(gson.toJson(Carts).trim());
 		try {
-			json = URLEncoder.encode(gson.toJson(hashmapCart).trim(), "utf-8");
+			json = URLEncoder.encode(gson.toJson(Carts).trim(), "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -162,22 +167,22 @@ public class CustomerServiceImpl implements CustomerService {
 
 		// 리스트 내 객체를 담을 HashMap
 		HashMap hashmapWish = new HashMap<String, String>();
+		List<HashMap<String, Object>> wishes = new ArrayList<HashMap<String, Object>>();
+		
 		for (HashMap<String, Object> hash : listCart) {
 			hashmapWish.put("image_ref", hash.get("image_ref"));
 			hashmapWish.put("PRODUCT_NAME", hash.get("PRODUCT_NAME"));
 			hashmapWish.put("product_manufacturer", hash.get("product_manufacturer"));
 			hashmapWish.put("PRODUCT_PRICE", hash.get("PRODUCT_PRICE"));
-
-			// 테스트 데이터 확인
-			System.out.println("product_count : " + hashmapWish.get("product_count"));
-			System.out.println("PRODUCT_PRICE : " + hashmapWish.get("PRODUCT_PRICE"));
+			
+			wishes.add(hashmapWish);
 		}
 
 		// utf-8방식으로 인코딩 후 JSON 객체 만들기
 		json = "";
 
 		try {
-			json = URLEncoder.encode(gson.toJson(hashmapWish).trim(), "utf-8");
+			json = URLEncoder.encode(gson.toJson(wishes).trim(), "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

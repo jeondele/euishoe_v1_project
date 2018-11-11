@@ -30,16 +30,19 @@
 		UPDATE CARTS SET
 	</update>
 	<select id="listCartForLogin" resultType="map" parameterType="String">
-      	 SELECT c.*,
-      	 		p.*,
-      	 		pi.*,
-      	 		i.*          
-      	 FROM carts c INNER JOIN products p 
-                      ON c.product_code = p.product_code
-                INNER JOIN product_infos pi 
-                      ON p.product_num = pi.product_num
-                INNER JOIN images i
-                	  ON i.product_num = pi.product_num
-         WHERE CUSTOMER_ID LIKE #{customerId}
+ SELECT c.*, 
+       p.*, 
+       pi.*, 
+       i.*, 
+       substr(i.image_ref, -10, 6) str 
+FROM   carts c 
+       INNER JOIN products p 
+               ON c.product_code = p.product_code 
+       INNER JOIN product_infos pi 
+               ON p.product_num = pi.product_num 
+       INNER JOIN images i 
+               ON i.product_num = pi.product_num 
+WHERE  customer_id LIKE #{customerId}
+       AND substr(i.image_ref, -10, 6) LIKE 'main$1' 
    </select>
 </mapper>
