@@ -95,21 +95,41 @@ function clearAddrInput() {
 function cntChange() {
 	// 현재수량
 	var curCnt = $('#cnt').val();
+	
 	// 수량 up클릭시
 	$('#cntUp').click(function() {
 		// 수량 ++
-		var cnt = Number($('#cnt').val())+1; //number타입
+		var cnt = Number($('#cnt').val()) + 1; //number타입
 		$('#cnt').val(cnt);
-		console.log(typeOf cnt);
+		//console.log(typeOf cnt);
 		// 품목당 총 가격
 		// 단품가격
  		var price = Number($('#price').text());
 		var totalPrice = cnt*price;
 		$('#totalPrice').text(totalPrice); 
+		
+		sumPrice();
 	});
 	
 	// 수량 down클릭시
+	$('#cntDown').click(function() {
+		if(curCnt != 1){
+			var cnt = Number($('#cnt').val()) - 1;
+			$('#cnt').val(cnt);
+			
+			sumPrice();
+		}else if(curCnt == 1){
+			return;
+		}
+	});
 	
+}
+
+// 품목당 총 가격
+function sumPrice(){
+	var price = Number($('#.price').val());
+	var sum = price * Number($('#.cnt'));
+	$('#totalPrice').val(sum);
 }
 
 </script>
