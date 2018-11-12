@@ -52,12 +52,9 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- 상품 문의, 상품 리뷰 css-->
 <link rel="stylesheet" type="text/css" href="product_detail.css">
 <!--===============================================================================================-->
@@ -129,7 +126,6 @@
     
   } );
   </script>
-=======
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- toggle  -->
@@ -203,7 +199,6 @@
 
 	});
 </script>
->>>>>>> bce099a4e75114d4d8c3ca96fd2369f5aebbc872
 <style>
 .qnaDtlsCd1, .qnaDtlsCd2, .qnaDtlsCd3, .qnaDtlsCd4, .qnaDtlsCd5,
 	.qnaDtlsCd6, .qnaDtlsCd7 {
@@ -514,7 +509,7 @@
 					</div>
 
 					<!-- - -->
-					<div class="tab-pane fade" id="reviewss" role="tabpanel">
+					<div class="tab-pane fade" id="reviews" role="tabpanel">
 						<div class="row">
 							<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 								<div class="p-b-30 m-lr-15-sm">
@@ -666,12 +661,9 @@
 													</div>
 												</div>
 
-<<<<<<< HEAD
 											<span class="stext-102 cl6 size-206">
 												XL, L, M, S
 											</span>
-										</li>
-									</ul>
 								</div>
 							</div>
 						</div>
@@ -755,8 +747,6 @@
 										
 											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
 												<img src="/iceland/images/avatar-01.jpg" alt="AVATAR">
-=======
->>>>>>> bce099a4e75114d4d8c3ca96fd2369f5aebbc872
 											</div>
 
 											<span class="mtext-107 cl2 p-r-20"><a
@@ -1062,11 +1052,7 @@
 													data-pagenum="&gt;&gt;" data-keyno="20181107094625">&gt;&gt;</a>
 												</span>
 											</div>
-<<<<<<< HEAD
-										</form>
-									</div> --%>
-=======
->>>>>>> bce099a4e75114d4d8c3ca96fd2369f5aebbc872
+									</div> 
 
 											<form name="pageForm"
 												action="/product/SellerProductDetail.tmall" method="get">
@@ -1102,9 +1088,6 @@
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
-		</div>
-		</div>
 
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
 			<span class="stext-107 cl6 p-lr-25">
@@ -1115,8 +1098,6 @@
 				Categories: Jacket, Men
 			</span>
 		</div>
-=======
->>>>>>> bce099a4e75114d4d8c3ca96fd2369f5aebbc872
 	</section>
 
 
@@ -1691,18 +1672,15 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
-<<<<<<< HEAD
 <%--     <script type="text/javascript">
     $('.prdc_qna').css('display','none');
     $($('.nav-item')[3]).on('click',function(){ $('.prdc_qna').css('display','block');});
     </script>--%>
-=======
 	<script type="text/javascript">
 		$('.prdc_qna').css('display', 'none');
 		$($('.nav-item')[3]).on('click', function() {
 			$('.prdc_qna').css('display', 'block');
 		});
 	</script>
->>>>>>> bce099a4e75114d4d8c3ca96fd2369f5aebbc872
 </body>
 </html>
