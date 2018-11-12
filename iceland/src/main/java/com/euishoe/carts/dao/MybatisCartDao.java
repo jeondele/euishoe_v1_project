@@ -38,10 +38,6 @@ public class MybatisCartDao implements CartDao {
 		return list;
 	}
 
-	@Override
-	public void createCart(String cartNum, String productCode, String customerId) {
-		
-	}
 
 	@Override
 	public void deleteCart(String cartNum) {
@@ -54,13 +50,11 @@ public class MybatisCartDao implements CartDao {
 	@Override
 	public void updateCart(String cartNum) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void updateCart(String cartNum, Object object2) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -7,7 +7,7 @@
 		<div class="flex-w flex-t bor12 p-t-15 p-b-15"><a href="/iceland/customer/mypage.es">My 주문 & 배송</a></div>
 		<div class="flex-w flex-t bor12 p-t-15 p-b-15"><a href="/iceland/customer/mypage/mypurchase.es">구매 완료 내역</a></div>
 		<div class="flex-w flex-t bor12 p-t-15 p-b-15"><a href="/iceland/customer/mypage/mycart.es">My 장바구니</a></div>
-		<div class="flex-w flex-t bor12 p-t-15 p-b-15"><a href="/iceland/customer/mypage/mypurchase.es">내가 찜한 상품</a></div>
+		<div class="flex-w flex-t bor12 p-t-15 p-b-15"><a href="/iceland/customer/mypage/myfavorites.es">내가 찜한 상품</a></div>
 		<div class="flex-w flex-t bor12 p-t-15 p-b-15"><a href="/iceland/customer/mypage/mypoint.es">My 포인트</a></div>
 		<div class="flex-w flex-t bor12 p-t-15 p-b-15"><a href="/iceland/customer/mypage/myqna.es">My Q&A</a></div>
 		<div class="flex-w flex-t bor12 p-t-15 p-b-15"><a href="/iceland/customer/mypage/myinfo.es">내 정보 수정</a></div>

@@ -30,7 +30,7 @@ public class OrderController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		orderService = (OrderService)factory.getBean(OrderServiceImpl.class);
 		
-		// 주문을 위한 product객체생성, orderbyproduct객체 생성
+		/*// 주문을 위한 product객체생성, orderbyproduct객체 생성
 		Product product = new Product();  //프론트에서 보낸 json객체를 통해 생성할 product객체
 		Gson gson = new Gson();
 		Object obj = request.getParameter("jsonData");
@@ -40,7 +40,7 @@ public class OrderController implements Controller {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		mav.setView("/order/shopping-cart.jsp"); // 결제창으로 설정
 		
 		return mav;

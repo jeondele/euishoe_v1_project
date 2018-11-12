@@ -89,7 +89,7 @@ height: 40px;
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
-									<th class="column-1">My 장바구니</th>
+									<th class="column-1">My 주문</th>
 									<th class="column-2"></th>
 									<th class="column-3"></th>
 									<th class="column-4"></th>
@@ -169,7 +169,7 @@ height: 40px;
             <div class="select-ship">
                 <a class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#home">기본 배송지</a>
                 <span class="float-l">&nbsp;&nbsp;</span>
-                <a class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#menu1">최근 배송지</a>
+               
                 <span class="float-l">&nbsp;&nbsp;</span>
                 <a class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#menu2">새로운 배송지</a>
             </div>
@@ -240,7 +240,7 @@ height: 40px;
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 						<h4 class="mtext-109 cl2 p-b-30">
-							Cart Totals
+							MY 결제
 						</h4>
 
 						<div class="flex-w flex-t bor12 p-b-13">
@@ -263,41 +263,46 @@ height: 40px;
 									결제방법
 								</span>
 							</div>
-
-							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
-								<p class="stext-111 cl6 p-t-2">
-									There are no shipping methods available. Please double check your address, or contact us if you need any help.
-								</p>
-								
-								<div class="p-t-15">
-									<span class="stext-112 cl8">
-										Calculate Shipping
-									</span>
-
-									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-										<select class="js-select2" name="time">
-											<option>Select a country...</option>
-											<option>USA</option>
-											<option>UK</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-
-									<div class="bor8 bg0 m-b-12">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="State /  country">
-									</div>
-
-									<div class="bor8 bg0 m-b-22">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Postcode / Zip">
-									</div>
-									
-									<div class="flex-w">
-										<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-											Update Totals
-										</div>
-									</div>
-										
+							<div class="size-208 p-t-15 w-full-ssm">
+								<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+									<select class="js-select2" name="payMethod">
+										<option value = "noBank">무통장 입금</option>
+										<option value = "cart">카드결제</option>
+										<option value = "phone">휴대폰 결제</option>
+									</select>
 								</div>
+							</div>
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									사용가능 포인트
+								</span>
+							</div>
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									사용가능 포인트 입력 
+								</span>
+							</div>
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									사용할 포인트
+								</span>
+							</div>
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									사용할 포인트 입력
+								</span>
+							</div>
+							
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									배송비
+								</span>
+							</div>
+							
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									2500 원
+								</span>
 							</div>
 						</div>
 
