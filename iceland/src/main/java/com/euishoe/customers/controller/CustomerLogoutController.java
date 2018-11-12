@@ -31,6 +31,9 @@ public class CustomerLogoutController implements Controller {
 		
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		customerService = (CustomerService)factory.getBean(CustomerServiceImpl.class);
+		
+		customerService.logout(request,response,mav);
+		
 		Cookie[] cookies = request.getCookies();
 		for(Cookie cookie : cookies){
 			System.out.println(cookie.getName() + " : " + cookie.getValue());
@@ -41,7 +44,6 @@ public class CustomerLogoutController implements Controller {
 		  	    response.addCookie(cookie);
 		  	    mav.addObject("loginCookie", cookie);   
 		    }else if(cookie.getName().substring(0, 4).equals("cart")) {
-		    	customerService.logout(request,response,mav);
 		    	String cookStr = "";
 		    	try {
 					cookStr = URLDecoder.decode(cookie.getValue(), "UTF-8");

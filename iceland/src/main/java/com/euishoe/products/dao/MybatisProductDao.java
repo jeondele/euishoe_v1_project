@@ -107,6 +107,13 @@ public class MybatisProductDao implements ProductDao {
 		return list;
 	}
 
+	@Override
+	public void createOne(Map map) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert(NAMESPACE+"createOne", map);
+		sqlSession.close();
+	}
+
 }
 
 
