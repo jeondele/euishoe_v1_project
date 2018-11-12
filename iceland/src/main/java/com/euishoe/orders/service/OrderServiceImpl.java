@@ -19,6 +19,7 @@ public class OrderServiceImpl implements OrderService {
 	private OrderDao orderDao;
 	private ProductDao productDao;
 	private CustomerDao customerDao;
+	
 	public OrderDao getOrderDao() {
 		return orderDao;
 	}

@@ -8,6 +8,7 @@ package com.euishoe.products.dto;
 public class Product {
 
 	// 변수 선언
+	private int productCodeNum;
 	private String productCode; 			// 상품코드
 	private String jacketCode; 				// 상의코드명
 	private String pantsCode; 				// 하의코드명
@@ -18,8 +19,15 @@ public class Product {
 	public Product() {
 	}
 
+	
 	public Product(String productCode, String jacketCode, String pantsCode, int productNum, int productCount) {
+		this(0, productCode, jacketCode, pantsCode, productNum, productCount);
+	}
+	
+	
+	public Product(int productCodeNum, String productCode, String jacketCode, String pantsCode, int productNum, int productCount) {
 		super();
+		this.productCodeNum = productCodeNum;
 		this.productCode = productCode;
 		this.jacketCode = jacketCode;
 		this.pantsCode = pantsCode;
@@ -27,7 +35,16 @@ public class Product {
 		this.productCount = productCount;
 	}
 
-	
+	public int getProductCodeNum() {
+		return productCodeNum;
+	}
+
+
+	public void setProductCodeNum(int productCodeNum) {
+		this.productCodeNum = productCodeNum;
+	}
+
+
 	// setter, getter 선언
 	public String getProductCode() {
 		return productCode;
@@ -71,8 +88,8 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [productCode=" + productCode + ", jacketCode=" + jacketCode + ", pantsCode=" + pantsCode
-				+ ", productNum=" + productNum + ", productCount=" + productCount + "]";
+		return "Product [productCodeNum=" + productCodeNum + ", productCode=" + productCode + ", jacketCode="
+				+ jacketCode + ", pantsCode=" + pantsCode + ", productNum=" + productNum + ", productCount="
+				+ productCount + "]";
 	}
-	
 }

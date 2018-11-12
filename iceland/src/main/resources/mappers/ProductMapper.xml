@@ -243,5 +243,15 @@
 		             #{productNum}, 
 		             #{productCount}) 		
 	</insert>
+	
+    <insert id="createOne" parameterType="map">
+		INSERT INTO products 
+		VALUES     ( CONCAT(#{productCode},PRODUCT_SEQ.nextval),  
+		             #{jacketCode}, 
+		             #{pantsCode}, 
+		             #{productNum}, 
+		             #{productCount}) 		
+	</insert>
+	
 
 </mapper>

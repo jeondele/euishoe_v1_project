@@ -7,6 +7,7 @@ package com.euishoe.customers.service;
  */
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.customers.dao.CustomerDao;
 import com.euishoe.customers.dto.Customer;
 import com.euishoe.points.dao.PointDao;
+import com.euishoe.products.dao.ProductDao;
 import com.euishoe.wishlists.dao.WishlistDao;
 import com.google.gson.Gson;
 
@@ -29,6 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 	private CartDao cartDao;
 	private WishlistDao wishlistDao;
 	private PointDao pointDao;
+	private ProductDao productDao;
 
 	public CustomerDao getCustomerDao() {
 		return customerDao;
@@ -217,7 +220,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, ModelAndView mav) {
-		
+		System.out.println(11);
 		Cookie loginId = null;
 		Cookie[] cookies = request.getCookies();
 		ArrayList<Cookie> cookiesCart = new ArrayList<Cookie>();
@@ -254,20 +257,30 @@ public class CustomerServiceImpl implements CustomerService {
 			String nameForDelete = (String) hashMap.get("PRODUCT_NAME");
 			
 			for(int i = 0; i < cnt; i++) {
+				System.out.println("실험" + cookiesCart.get(i).getValue());
 				if(cookiesCart.get(i).equals(hashMap.get("PRODUCT_NAME"))) {
 					if(cookiesCart.get(i).equals(hashMap.get("PRODUCT_COUNT"))) {
 						// 상품제목 O, 상품수량 O
+						System.out.println("상품제목이 같다.");
 						willDelete = false;
 						
 					}else {
 						// 상품제목 O, 상품수량 X
 						// count
+						
 						cartDao.updateCart((String) hashMap.get("CART_NUM"),null);
 						willDelete = false;
 					}
 				}else {
 					// 상품제목 X
 					//cookiesCart.get(i).("PRODUCT_CODE")
+					System.out.println("상품 제목이 틀림" + cookiesCart.get(i).getValue());
+					try {
+						System.out.println(URLDecoder.decode(cookiesCart.get(i).getValue(), "utf-8"));
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					};
+					/*productDao.createOne();*/
 					cartDao.createCart(null, loginId.getValue());
 					willDelete = false;
 					
