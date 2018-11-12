@@ -122,7 +122,6 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Map<String, Object>> selectAllById(int productNum) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return productDao.selectAllById(productNum);
 	}
 }
