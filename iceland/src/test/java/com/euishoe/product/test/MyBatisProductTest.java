@@ -39,12 +39,24 @@ public class MyBatisProductTest {
 		logger.debug("[logger debug]: sqlSessionFactory생성완료");
 	}
 	
-	@Test
+	/*@Test
 	public void testFilter() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<Map<String, Object>> params = null;
 		FilterParam filterParam= new FilterParam("bizcasual", null, "100000", "150000", null, null,0, 0, 0, 0, null, null, null);
 		params = sqlSession.selectList(NAMESPACE+"filter", filterParam);
+		for (Map<String, Object> map : params) {
+			logger.debug(map);
+		}
+		sqlSession.commit();
+		sqlSession.close();
+	}*/
+	
+	@Test
+	public void testFilter() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Map<String, Object>> params = null;
+		params = sqlSession.selectList(NAMESPACE+"newProductList");
 		for (Map<String, Object> map : params) {
 			logger.debug(map);
 		}
