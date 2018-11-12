@@ -7,7 +7,9 @@
     </span>
   </div>
 	<input id="productNum" type="hidden" value = "">
-	
+	<input type="hidden" id="productCode" value="">
+	<input type="hidden" id="pantsCode" value="">
+	<input type="hidden" id="jacketCode" value="">
 	<!-- Modal1 -->
 	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div  class="overlay-modal1 js-hide-modal1"></div>
@@ -56,10 +58,10 @@
 										<div class="rs1-select2 bor8 bg0">
 											<select class="js-select2" name="time" id="jkSize">
 												<option>Choose an option</option>
-												<option>S</option>
-												<option>M</option>
-												<option>L</option>
-												<option>XL</option>
+												<option value="s">S</option>
+												<option value="m">M</option>
+												<option value="l">L</option>
+												<option value="xl"> XL</option>
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
@@ -74,11 +76,11 @@
 										<div class="rs1-select2 bor8 bg0">
 											<select class="js-select2" name="time" id="ptSize">
 												<option>Choose an option</option>
-												<option>26inch</option>
-												<option>28inch</option>
-												<option>30inch</option>
-												<option>32inch</option>
-												<option>34inch</option>
+												<option value="26">26inch</option>
+												<option value="28">28inch</option>
+												<option value="30">30inch</option>
+												<option value="32">32inch</option>
+												<option value="34">34inch</option>
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
@@ -135,6 +137,27 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		$('#jkSize, #ptSize').on('change', function(e) {
+			var cloth = $("#jkSize option:selected").val();
+			var pants = $("#ptSize option:selected").val();
+			var imageRef = $("#productImg").attr("src");
+			var str = imageRef.substring(imageRef.lastIndexOf('/'));
+			var productName = str.split('$')[0].replace("/","").replace("_","$");
+			var productBrand =  productName.split('$')[0];
+			var productColor =  productName.split('$')[1];
+			var productCode = productBrand+'$'+ cloth +'$'+ pants +'$'+ productColor;
+			var pantsCode = productBrand+'$'+ cloth +'$'+ productColor;
+			var jacketCode = productBrand+'$'+ pants +'$'+ productColor;
+			$('#productCode').val(productCode);
+			$('#pantsCode').val(pantsCode);
+			$('#jacketCode').val(jacketCode);
+			alert($('#productCode').val());
+			alert($('#pantsCode').val());
+			alert($('#jacketCode').val());
+		});
+	</script>
 	
 	<script>
 	$('#addCart').on('click',function(e){

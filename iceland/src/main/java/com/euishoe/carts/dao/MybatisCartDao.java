@@ -63,6 +63,12 @@ public class MybatisCartDao implements CartDao {
 		
 	}
 
+	@Override
+	public void createCart(String productCode, String customerId) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
 
