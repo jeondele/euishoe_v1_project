@@ -15,6 +15,7 @@ import com.euishoe.products.dto.ProductInfo;
  */
 public interface ProductDao {
 	
+	public void createOne(Map map) throws Exception;
 	// 신상4개제품 정보와 이미지위치 get(메인화면에 뿌려줄것)
 	public List<Map<String, Object>> newProductList() throws Exception;
 
