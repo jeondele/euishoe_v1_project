@@ -626,7 +626,41 @@ function setCountCartList(){
 	<script src="/iceland/js/main.js"></script>
 	<script type="text/javascript">
 	
+	
+	function refreshwish(){
+	var arrayProduct = new Array();
+	var wishcookies = new Array();
+		
+    var cookieNum = 1;
+    while(getCookie('wish' + cookieNum)){
+    	var obj = decodeURIComponent(getCookie('wish' + cookieNum)).substring(1,decodeURIComponent(getCookie('wish' + cookieNum)).length - 1);
+		var jsonObj = JSON.parse(obj);
+		
+		wishcookies.push(jsonObj.PRODUCT_NAME);
+		cookieNum++;
+    }
+	
+	for(var i = 0; i < $('.stext-104.cl4.hov-cl1.trans-04.js-name-b2.p-b-6').length; i++){
+		arrayProduct.push($('.stext-104.cl4.hov-cl1.trans-04.js-name-b2.p-b-6')[i].innerText);
+	}
+	
+	for(var i = 0; i < wishcookies.length ; i++){
+		for(var j = 0; j < arrayProduct.length; j++){
+			if(wishcookies[i] == arrayProduct[j]){
+				$($('.btn-addwish-b2.dis-block.pos-relative.js-addwish-b2')[j]).attr('class','btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2');
+				break;
+			}
+		}
+	 }	
+	}
+	
+	refreshwish();
+	
 	  $('.btn-addwish-b2').unbind("click").on('click',function(e){
+		    var prior = 1;
+		    while(getCookie('wish' + prior)){
+		        prior++;
+		    }
 		  console.log(e);
 		  
 		  Test = e;
@@ -636,12 +670,29 @@ function setCountCartList(){
 		  $(e.currentTarget).attr('class',"btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2");
 		  
 		  var array = $(e.currentTarget).parents()[1].innerText.split('₩');
-		  var PRODUCT_NAME = array[0].trim();
-		  var PRODUCT_PRICE = array[1].trim().substring(0,array[1].trim().length - 2);
-		  var image_ref = $(e.currentTarget).parents()[2].children[0].children[0].currentSrc;
 		  
+		  var productName = array[0].trim();
+		  var productPrice = array[1].trim().substring(0,array[1].trim().length - 2);
+		  var productImg = $(e.currentTarget).parents()[2].children[0].children[0].currentSrc;
+		  var productNum = $(e.currentTarget).parents()[1].children[0].children[0].href.split('=')[1];
 		  // 찜목록 등록
+		  var data = new Object() ;
 		  
+		    data.image_ref = productImg;
+		    data.PRODUCT_PRICE = productPrice;
+		    data.PRODUCT_NAME = productName;
+		    data.PRODUCT_NUM = productNum;
+		  
+		  var arrayCookie = '"' + encodeURIComponent(JSON.stringify(data)) + '"';
+		  setCookie('wish' + prior,arrayCookie,1);
+		  $('#wishButton').attr('data-notify',parseInt($('#wishButton').attr('data-notify')) + 1)
+		  
+		  var str = "";
+		  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img wish" value='+ prior +'>';
+		  str += '<img src="' + productImg + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8 ">';
+		  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + productName + '</a>'
+		  str += '<span class="header-cart-item-info">' + productPrice + '</span></div></li>';		
+		  $('#miniWish').append(str);
 		  /*
 		     image_ref,PRODUCT_NAME,product_manufacturer,PRODUCT_PRICE,PRODUCT_NUM
 		  */
@@ -670,7 +721,7 @@ function setCountCartList(){
               }
           }
           $(e.currentTarget).parents()[0].remove();
-          $('#cartButton').attr('data-notify',testNum - 2);
+          $('#wishButton').attr('data-notify',testNum - 2);
 
 		  }
 	  });
