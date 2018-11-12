@@ -29,6 +29,41 @@ public class CustomerInfoController implements Controller {
 		
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		customerService = (CustomerService)factory.getBean(CustomerServiceImpl.class);
+		if(request.getParameter("member_id") != null) {
+			Customer customer;
+			String customerId = (String)request.getParameter("member_id").trim();
+			System.out.println("아이디값은?"+customerId);
+			String newPasswd = (String)request.getParameter("new_passwd").trim();
+			//String name = (String)request.getParameter("name").trim();
+			String address = (String)request.getParameter("address").trim()+request.getParameter("detailAddress").trim();
+			String postCode = (String)request.getParameter("postNum");
+			String phoneNum = (String)request.getParameter("phoneNum");
+			String email = "";
+			if(request.getParameter("emailHost").trim().equals("직접입력")) {
+				email = request.getParameter("email");
+			}else {
+				email = request.getParameter("email").trim()+"@"+request.getParameter("emailHost");
+			}
+			try {
+				customer = customerService.getCustomerInfo(customerId);
+				System.out.println("아이디값으로 만든 customer객체"+customer);
+				customer.setCustomerPassword(newPasswd);
+				customer.setCustomerPostcode(postCode);
+				customer.setCustomerAddress(address);
+				customer.setCustomerPhonenumber(phoneNum);
+				customer.setCustomerEmail(email);
+				customerService.modifyInfo(customer);
+				System.out.println("수정완료");
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			System.out.println("아이디값이없다");
+			mav.setView("/iceland/home.es");
+			return mav;
+		}
 //		String loginId = request.getParameter("customerId");
 //		String inputPass = (String) request.getAttribute("passwd");
 //		System.out.println("입력비번값: "+inputPass);
