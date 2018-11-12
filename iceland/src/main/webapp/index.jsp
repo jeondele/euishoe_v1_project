@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-location.href="home.es";
+location.href="/iceland/home.es";
 </script>
 </head>
 <body>
