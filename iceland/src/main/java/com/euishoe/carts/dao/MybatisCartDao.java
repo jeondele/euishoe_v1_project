@@ -52,10 +52,6 @@ public class MybatisCartDao implements CartDao {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public void updateCart(String cartNum, Object object2) {
-		// TODO Auto-generated method stub
-	}
 
 	@Override
 	public void createCart(String productCode, String customerId) {
@@ -65,6 +61,12 @@ public class MybatisCartDao implements CartDao {
 
 	@Override
 	public void createCart(String cartNum, String productCode, String customerId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateCart(String cartNum, String count) {
 		// TODO Auto-generated method stub
 		
 	}

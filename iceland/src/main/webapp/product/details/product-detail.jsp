@@ -814,20 +814,51 @@
 	});
 	
 	function sumToMakeJson(){
-	    var prior = 1;
-	    while(getCookie('cart' + prior)){
-	        prior++;
-	    }
-	    
-	    console.log(prior);
-	    
 		var ProductName = $('.mtext-105.cl2.js-name-detail.p-b-14')[0].innerText;
 		var ProductImg = $('img[alt="IMG-PRODUCT"]')[0].src;
 		var ProductCount = parseInt($('.mtext-104.cl3.txt-center.num-product')[0].value);
 		var ProductPrice = parseInt($('.mtext-106.cl2')[0].innerText.substring(3,$('.mtext-106.cl2')[0].innerText.length - 2));
 		var ProductNum = getQuerystring('productNum');
 		var ProductCode = $('#productCode').val();
-		
+	    var pantsCode = $('#pantsCode').val();
+	    var jacketCode = $('#jacketCode').val();
+	    
+	    var prior = 1;
+	    var duplicate = false;
+	    
+	    while(getCookie('cart' + prior)){
+	    	var obj = decodeURIComponent(getCookie('cart' + prior)).substring(1,decodeURIComponent(getCookie('cart' + prior)).length - 1);
+			var jsonObj = JSON.parse(obj);
+	    	
+			if(jsonObj.PRODUCT_NAME == productName){
+				duplicate = true;
+				break;
+			}
+	        prior++;
+	    }
+	    
+	    if(duplicate){
+	        // 객체 생성
+	        var data = new Object() ;
+	        // String으로 index.jsp 내 객체
+	        data.image_ref = productImg;
+	        data.PRODUCT_PRICE = productPrice;
+	        data.product_count = productCount;
+	        data.PRODUCT_NAME = productName;
+	        data.PRODUCT_NUM = productNum;
+	        data.PRODUCT_CODE = productCode;
+	        data.JACKET_CODE = jacketCode;
+	        data.PANTS_CODE = pantsCode;
+	        
+	         
+	        // 리스트에 생성된 객체 삽입
+	        var arrayCookie = '"' + encodeURIComponent(JSON.stringify(data)) + '"';
+	        setCookie('cart' + prior,arrayCookie,1);
+	        
+	        $('.header-cart-item-info')[prior - 1].innerHTML = (productCount + ' x ' + productPrice);
+	    	return;
+	    }
+	    
 	    // 객체 생성
 	    var data = new Object();
 	    // String으로 index.jsp 내 객체
@@ -837,6 +868,8 @@
 	    data.PRODUCT_NAME = ProductName;
 	    data.PRODUCT_NUM = ProductNum;
 	    data.PRODUCT_CODE = ProductCode;
+        data.JACKET_CODE = jacketCode;
+        data.PANTS_CODE = pantsCode;
 	     
 	    // 리스트에 생성된 객체 삽입
 	    var arrayCookie = '"' + encodeURIComponent(JSON.stringify(data)) + '"';

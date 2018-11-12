@@ -65,26 +65,63 @@ function setCountCartList(){
 }
 
   function sumToMakeJson(){
+	    var productName = $('#addCart').parents()[3].childNodes[1].innerText;
+	    var productImg = $('#productImg')[0].src
+	    var productCount = parseInt(document.getElementsByName('num-product')[0].value);
+	    var productPrice = parseInt($('#productPrice').text().trim().substring(2,$('#productPrice').text().trim().length - 2));
+	    var productNum = parseInt($('#productNum').val());  
+	    var productCode = $('#productCode').val();
+	    var pantsCode = $('#pantsCode').val();
+	    var jacketCode = $('#jacketCode').val();
+	  
     var prior = 1;
+    var duplicate = false;
+    
     while(getCookie('cart' + prior)){
+    	var obj = decodeURIComponent(getCookie('cart' + prior)).substring(1,decodeURIComponent(getCookie('cart' + prior)).length - 1);
+		var jsonObj = JSON.parse(obj);
+    	
+		if(jsonObj.PRODUCT_NAME == productName){
+			duplicate = true;
+			break;
+		}
         prior++;
     }
     
-    console.log(prior);
+    if(duplicate){
+        // 객체 생성
+        var data = new Object() ;
+        // String으로 index.jsp 내 객체
+    data.image_ref = productImg;
+    data.PRODUCT_PRICE = productPrice;
+    data.product_count = productCount;
+    data.PRODUCT_NAME = productName;
+    data.PRODUCT_NUM = productNum;
+    data.PRODUCT_CODE = productCode;
+    data.JACKET_CODE = jacketCode;
+    data.PANTS_CODE = pantsCode;
+        
+         
+        // 리스트에 생성된 객체 삽입
+        var arrayCookie = '"' + encodeURIComponent(JSON.stringify(data)) + '"';
+        setCookie('cart' + prior,arrayCookie,1);
+        
+        $('.header-cart-item-info')[prior - 1].innerHTML = (productCount + ' x ' + productPrice);
+    	return;
+    }
     
-    var productName = $('#addCart').parents()[3].childNodes[1].innerText;
-    var productImg = $('#productImg')[0].src
-    var productCount = parseInt(document.getElementsByName('num-product')[0].value);
-    var productPrice = parseInt($('#productPrice').text().trim().substring(2,$('#productPrice').text().trim().length - 2));
-    var productNum = parseInt($('#productNum').val());
+
     // 객체 생성
     var data = new Object();
     // String으로 index.jsp 내 객체
     data.image_ref = productImg;
     data.PRODUCT_PRICE = productPrice;
     data.product_count = productCount;
-    data.PRODUCT_NAME = productName ;
+    data.PRODUCT_NAME = productName;
     data.PRODUCT_NUM = productNum;
+    data.PRODUCT_CODE = productCode;
+    data.JACKET_CODE = jacketCode;
+    data.PANTS_CODE = pantsCode;
      
     // 리스트에 생성된 객체 삽입
     var arrayCookie = '"' + encodeURIComponent(JSON.stringify(data)) + '"';

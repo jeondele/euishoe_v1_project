@@ -42,7 +42,6 @@
   $(document).ready(function() {
 		//var obj = decodeURIComponent(getCookie('carts'));
 		
-        console.log(2);
 		
 		var prior = 1;
 		var checksum = 0; 
