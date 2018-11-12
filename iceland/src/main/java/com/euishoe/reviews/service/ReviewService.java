@@ -14,7 +14,7 @@ import com.euishoe.reviews.dto.Review;
 public interface ReviewService {
 
 	//댓글 작성
-	public void create() throws Exception;
+	public void create(Review review) throws Exception;
 	
 	//전체(동적) 목록 조회
 	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception;

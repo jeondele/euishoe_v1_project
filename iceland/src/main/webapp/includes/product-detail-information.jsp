@@ -1,7 +1,60 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+/*
+리뷰 조건별 동적 검색
+*/
 
+var request = new XMLhttpRequest();
+
+function searchFunction() {
+	request.open("POST", "/iceland/review/ajaxList.es?customerId=" + "bangry");
+	request.onreadystatechange = searchProcess;
+	request.send(null);
+}
+
+
+function serachProcess(){
+	var table = document.getElementById("ajaxTableBody");
+	table.innerHTML = "";
+	if(request.readyState ==4 && request.status == 200){
+		var object = eval('('+result.responseText +')');
+		var result = object.result;
+		for (var i = 0; i < result.length; i++) {
+			var row = table.insertRow(0);
+			for (var j = 0; j < result[i].length; j++) {
+				var cell = row.insertCell(j);
+				cell.innerHTML = result[i][j].value;
+			}
+		}
+	}
+}
+
+/* function reviewDynamicList() {
+var listData = new Object();
+	listData.customerId= $('#customerId').val();
+	listData.productNum= $('#productNum').val(); 
+   
+    $.ajax({
+        url: '/review/ajaxList',
+        type: 'POST',
+        contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+        data : listData,
+        dataType : 'json',
+        success: function(result){
+        		console.log("테스트");
+            },
+        
+        error : function(xhr, status) {
+            alert(xhr + " : " + status);
+        }
+        });
+} */	
+
+
+
+</script>
 			<div class="bor10 m-t-50 p-t-43 p-b-40">
 				<!-- Tab01 -->
 				<div class="tab01">
@@ -83,8 +136,8 @@
 	                          	<div class="p-b-30 m-lr-15-sm">
 	                          		<div class="flex-w flex-t p-b-68">
 			                          	<div class="bbs_filter" style="width: 100%;">
-			                          		<button type="button" id="myReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">내 리뷰</button>
-			                          		<button type="button" id="allReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">전체리뷰</button>
+			                          		<button type="button" id="myReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onkeyup="searchFunction()" >내 리뷰</button>
+			                          		<button type="button" id="allReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="" >전체리뷰</button>
 			                          		<button type="button" id="insertReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" data-toggle="modal" data-target="#popLayWrap2">리뷰작성</button>
 			                          	</div>
 			                            
@@ -105,46 +158,51 @@
 			                            		<th scope="col" style="text-align:center;">작성일</th>
 			                            	</tr>
 			                            	</thead>
-			                            	<tbody>
-			                            		<tr>
-			                            			<td class="td_num txt-center">1</td>
-			                            			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
-			                            			<td>
-			                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">매우 만족</a>
-			                            			</td>
-			                            			<td class="td_write txt-center">swe******</td>
-			                            			<td class="td_date txt-center">2018-11-07 11:38</td>
-			                            		</tr>
-			                            		<%-- 답변 클릭 시, 보이게 구현 --%>
-			                            		<tr class="trQna" id="trQnqContDtl2">
-			                            			<td colspan="5" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
-			                            				<div class="question">
-			                            					<span class="ico_question">답변</span>
-			                            				  	<span class="checkmark"></span>"답변완료일 시 작성됨"<br><br>
-			                            				  	<span class="adminAnswer">소중한 리뷰 감사드립니다~</span>&nbsp;|&nbsp;<span style="font-size: 16px; color: green;">2018-11-07 11:38</span>
-			                            				</div>
-			                            			</td>
-			                            		</tr>
+			                            	<tbody id="ajaxTableBody">
 			                            		
-				                                <tr>
-				                                  	<td class="td_num txt-center">2</td>
-			                            			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
-			                            			<td>
-			                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">언제 오나요? 배송 언제되나요?</a>
-			                            			</td>
-			                            			<td class="td_write txt-center">swe******</td>
-			                            			<td class="td_date txt-center">2018-11-07 11:38</td>
-			                                	</tr>
-			                                	
-			                                	<tr>
-				                                  	<td class="td_num txt-center">3</td>
-			                            			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
-			                            			<td>
-			                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">쉽지 않네요... 인생...</a>
-			                            			</td>
-			                            			<td class="td_write txt-center">swe******</td>
-			                            			<td class="td_date txt-center">2018-11-07 11:38</td>
-			                                	</tr>
+			                            	<c:choose>
+			                            		<c:when test="${not empty ReviewList}">
+			                            			<c:forEach var="review" items="${ReviewList}" varStatus="status">
+			                            			<c:choose>
+												      <c:when test="${review.reviewIsAnswered}=='N'">
+					                            		<tr>
+					                            			<td class="td_num txt-center">${status.count}</td>
+					                            			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
+					                            			<td>
+					                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${review.reviewContent}</a>
+					                            			</td>
+					                            			<td class="td_write txt-center">${review.customerId}</td>
+					                            			<td class="td_date txt-center">${review.reviewRegdate}</td>
+					                            		</tr>
+					                            		<%-- 답변 클릭 시, 보이게 구현 --%>
+					                            		<tr class="trQna" id="trQnqContDtl2">
+					                            			<td colspan="5" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
+					                            				<div class="question">
+					                            					<span class="ico_question">답변</span>
+					                            				  	<span class="checkmark"></span>"답변완료일 시 작성됨"<br><br>
+					                            				  	<span class="adminAnswer">소중한 리뷰 감사드립니다~</span>&nbsp;|&nbsp;<span style="font-size: 16px; color: green;">2018-11-07 11:38</span>
+					                            				</div>
+					                            			</td>
+					                            		</tr>
+					                            	</c:when>
+			                            		<c:otherwise>
+			                            				<tr>
+					                            			<td class="td_num txt-center">${status.count}</td>
+					                            			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
+					                            			<td>
+					                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${review.reviewContent}</a>
+					                            			</td>
+					                            			<td class="td_write txt-center">${review.customerId}</td>
+					                            			<td class="td_date txt-center">${review.reviewRegdate}</td>
+			                            				</tr>
+			                            		</c:otherwise>
+			                            		</c:choose>
+			                            		</c:forEach>
+			                            		</c:when>
+			                            		<c:otherwise>
+			                            			<p>게시글이 존재하지 않습니다.</p>
+			                            		</c:otherwise>
+			                            	</c:choose>
 			                            	</tbody>
 			                            </table>
 			                            
@@ -214,50 +272,106 @@
 				                        		<th scope="col" style="text-align:center;">작성일</th>
 				                        	</tr>
 				                        	</thead>
-				                        	<tbody>
-				                        		<tr>
-				                        			<td class="td_num txt-center">1</td>
-				                        			<td class="td_section txt-center">배송</td>
-				                        			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
-				                        			<td>
-				                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">언제 오나요? 배송 언제되나요?</a>
-				                        			</td>
-				                        			<td class="td_write txt-center">swe******</td>
-				                        			<td class="td_date txt-center">2018-11-07 11:38</td>
-				                        		</tr>
-				                        		<%-- 답변 클릭 시, 보이게 구현 --%>
-				                        		<tr class="trQna" id="trQnqContDtl2">
-				                        			<td colspan="6" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
-				                        				<div class="question">
-				                        					<span class="ico_question">답변</span>
-				                        				  	<span class="checkmark"></span>"답변완료일 시 작성됨"<br><br>
-				                        				  	<span class="adminAnswer">관리자에 의해 작성 됨</span>&nbsp;|&nbsp;<span style="font-size: 16px; color: green;">2018-11-07 11:38</span>
-				                        				</div>
-				                        			</td>
-				                        		</tr>
-				                        		
-				                             <tr>
-				                               	<td class="td_num txt-center">2</td>
-				                        			<td class="td_section txt-center ">배송</td>
-				                        			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
-				                        			<td>
-				                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">언제 오나요? 배송 언제되나요?</a>
-				                        			</td>
-				                        			<td class="td_write txt-center">swe******</td>
-				                        			<td class="td_date txt-center">2018-11-07 11:38</td>
-				                            	</tr>
+				                        	<tbody> <!-- QnaList -->
+				                        	
+				                        	<c:choose>
+				                        		<%-- 리스트가 있을 때--%>
+												<c:when test="${not empty QnaList}">
+			                            			<c:forEach var="qna" items="${QnaList}" varStatus="status">
+			                            				<%-- 답변 완료여부 --%>
+			                            				<c:choose>
+			                            				<c:when test="${qna.qnaIsAnswered}=='Y'">
+					                            				<%-- 비밀글 여부--%>
+					                            				<c:choose>
+					                            					<%-- <c:when test="${cookie.loginId.value} == ${qna.customerId}"> --%>
+						                            					<c:when test="${qna.qnaIsLock}=='Y'">
+						                            						<c:choose>
+						                            							<c:when test="${cookie.loginId.value}==${qna.customerId}">
+						                            						<tr>
+											                        			<td class="td_num txt-center">${status.count}</td>
+											                        			<td class="td_section txt-center">${qna.qnaTitle}</td>
+											                        			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
+											                        			<td>
+											                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${qna.qnaContent}</a>
+											                        			</td>
+											                        			<td class="td_write txt-center">${qna.customerId}</td>
+											                        			<td class="td_date txt-center">${qna.qnaRegdate}</td>
+											                        		</tr>
+											                        		<%-- 답변 클릭 시, 보이게 구현 --%>
+											                        		<tr class="trQna" id="trQnqContDtl2">
+											                        			<td colspan="6" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
+											                        				<div class="question">
+											                        					<span class="ico_question">답변</span>
+											                        				  	<span class="checkmark"></span>"답변완료일 시 작성됨"<br><br>
+											                        				  	<span class="adminAnswer">관리자에 의해 작성 됨</span>&nbsp;|&nbsp;<span style="font-size: 16px; color: green;">2018-11-07 11:38</span>
+											                        				</div>
+											                        			</td>
+											                        		</tr>
+											                        		</c:when>
+											                        		<c:otherwise>
+											                        		<tr>
+											                        			<td class="td_num txt-center">${status.count}</td>
+											                        			<td class="td_section txt-center">${qna.qnaTitle}</td>
+											                        			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
+											                        			<td>
+											                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">비밀글입니다.</a>
+											                        			</td>
+											                        			<td class="td_write txt-center">${qna.customerId}</td>
+											                        			<td class="td_date txt-center">${qna.qnaRegdate}</td>
+											                        		</tr>
+											                        		</c:otherwise>
+											                        		</c:choose>
+									                        		</c:when>
+									                        		<c:otherwise>
+									                        		
+									                        		</c:otherwise>
+						                        				</c:choose>
+							                            	</c:when>
+							                           <%-- 답변 미완료 --%>
+							                           <c:otherwise>
+								                           <%-- 비밀글 여부 --%>
+							                           		<c:choose> 
+							                           			<c:when test="${qna.qnaIsLock}=='Y'">
+								                           		<tr>
+								                               		<td class="td_num txt-center">${status.count}</td>
+								                        			<td class="td_section txt-center ">${qna.qnaTitle}</td>
+								                        			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
+								                        			<td>
+								                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">비밀글입니다.</a>
+								                        			</td>
+								                        			<td class="td_write txt-center">${qna.customerId}</td>
+								                        			<td class="td_date txt-center">${qna.customerId}</td>
+								                            	</tr>
+
+								                            	</c:when>
+								                            	<%-- 비밀글이 아닐 때 --%>
+								                            	<c:otherwise>
+								                            		<tr>
+								                               		<td class="td_num txt-center">${status.count}</td>
+								                        			<td class="td_section txt-center ">${qna.qnaTitle}</td>
+								                        			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
+								                        			<td>
+								                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${qna.qnaContent}</a>
+								                        			</td>
+								                        			<td class="td_write txt-center">${qna.customerId}</td>
+								                        			<td class="td_date txt-center">${qna.qnaRegdate}</td>
+								                            	</tr>
+								                            	</c:otherwise>
+							                            	</c:choose>
+							                           </c:otherwise> 	
+							                       </c:choose>
+												</c:forEach>
+				                            	</c:when>
 				                            	
+				                            	<%-- 리스트가 없을 때 --%>
+												<c:otherwise>
+													<tr>
+					                               		<td class="td_num txt-center" colspan="5">작성된 문의 게시글이 없습니다.</td>
+					                            	</tr>
+												</c:otherwise>
+				                            </c:choose>
+				                            
 				                            	
-				                            	<tr>
-				                               	<td class="td_num txt-center">3</td>
-				                        			<td class="td_section txt-center">상품</td>
-				                        			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
-				                        			<td>
-				                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">쉽지 않네요... 인생...</a>
-				                        			</td>
-				                        			<td class="td_write txt-center">swe******</td>
-				                        			<td class="td_date txt-center">2018-11-07 11:38</td>
-				                            	</tr>
 				                        	</tbody>
 				                        </table>
                             

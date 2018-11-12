@@ -1,23 +1,15 @@
 package com.euishoe.qnas.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Random;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.mail.HtmlEmail;
-
 import com.euishoe.common.controller.Controller;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.common.factory.XMLObjectFactory;
-import com.euishoe.customers.dto.Customer;
-import com.euishoe.customers.service.CustomerService;
-import com.euishoe.customers.service.CustomerServiceImpl;
 import com.euishoe.qnas.dto.Qna;
 import com.euishoe.qnas.service.QnaService;
+import com.euishoe.qnas.service.QnaServiceImpl;
 
 /**
  * /user/list.mall에 대한 요청 처리 컨트롤러
@@ -32,27 +24,33 @@ public class QnaCreateController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
+		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
+		qnaService = (QnaService)factory.getBean(QnaServiceImpl.class);
 		
+
 		
+		String customerId = request.getParameter("customerId");
+		String productNum = request.getParameter("productNum");
+		String qnaContent = request.getParameter("qnaContent");
+		String qnatitle = request.getParameter("qnatitle");
+		String qnaPassword = request.getParameter("qnaPassword");
+		String qnaIsLock = request.getParameter("qnaIsLock");
+		String qnaTypeNum = request.getParameter("qnaTypeNum");
 		
-		int typeNum = 1;
-		String customerId = "bangry";
-		// 이메일인증번호
-		int productNum = 2;
-		String qnaContent = "문의글 테스트";
+		System.out.println("1." + customerId);
+		System.out.println("2." + productNum);
+		System.out.println("3." + qnaContent);
+		System.out.println("4." + qnatitle);
+		System.out.println("5." + qnaPassword);
+		System.out.println("6." + qnaTypeNum);
+		System.out.println("7." + qnaIsLock);
 		
-		//입력받은 이메일값
-		String email = request.getParameter("emailAdd");
-		
-		//qnaDtlsCd, brdInfoCont
-		
+		Qna qna = new Qna(Integer.parseInt(qnaTypeNum), customerId, Integer.parseInt(productNum), qnatitle, qnaContent, qnaPassword, qnaIsLock);
 		try {
-			qnaService.createQna(typeNum, customerId, productNum, qnaContent, 1);
-			System.out.println("문의글 생성완료");
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}		
+			qnaService.createQna(qna);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 }

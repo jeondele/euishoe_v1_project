@@ -1,5 +1,6 @@
 package com.euishoe.products.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +37,6 @@ public interface ProductService {
 	// Gson으로 바꾸는 메소드
 	public List<String> convertToGson(List<Map<String, Object>> list);
 	
-	
 	//제품 리뷰 전체 조회
 	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception;
 	
@@ -46,4 +46,11 @@ public interface ProductService {
 	
 	//제품을 필터를 통해서 뿌리기
 	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception;
+	
+	//리뷰 게시글 카운트
+	//조회 목록 개수
+	public int qnaCountBySearch(int productNum) throws Exception;
+		
+	//qna 게시글 카운트
+	public int reviewCounttBySearch(int productNum) throws Exception;
 }

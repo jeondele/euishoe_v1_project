@@ -23,8 +23,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void create() throws Exception {
-		reviewDao.create();
+	public void create(Review review) throws Exception {
+		reviewDao.create(review);
 	}
 
 	@Override
