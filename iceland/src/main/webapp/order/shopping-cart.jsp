@@ -64,6 +64,55 @@ height: 40px;
 }
 
 </style>
+
+<!-- 회원 비회원 확인을 위한 loginId쿠키 확인 -->
+<script type="text/javascript">
+window.onload = function () {
+	var loginId = getCookie('loginId');
+	console.log("회원아이디값!!"+loginId);
+	// 비회원인경우, 주소관련 버튼 안보이게
+	if(loginId == null){
+		// 기본배송지, 새 배송지 없애기
+		$('#defaultAddr').css('display', 'none');
+		$('#newAddr').css('display', 'none');
+		//$('#defaultAddr').attr('disabled', 'disabled');
+		//$('#defaultAddr').css(':hover', '');
+		//$('#defaultAddr').removeClass('hov-btn3');
+	}
+	
+	// 수량 up, down
+	cntChange();
+};
+
+// 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수
+function clearAddrInput() {
+	$('#postNum').val('');
+	$('#address').val('');
+	$('#address_detail').val('');
+}
+
+// 수량 up, down
+function cntChange() {
+	// 현재수량
+	var curCnt = $('#cnt').val();
+	// 수량 up클릭시
+	$('#cntUp').click(function() {
+		// 수량 ++
+		var cnt = Number($('#cnt').val())+1; //number타입
+		$('#cnt').val(cnt);
+		console.log(typeOf cnt);
+		// 품목당 총 가격
+		// 단품가격
+ 		var price = Number($('#price').text());
+		var totalPrice = cnt*price;
+		$('#totalPrice').text(totalPrice); 
+	});
+	
+	// 수량 down클릭시
+	
+}
+
+</script>
 </head>
 <body class="animsition">
   <%@include file="/iceland/../includes/header.jsp"%>
@@ -113,21 +162,21 @@ height: 40px;
 										<div class="how-itemcart1"><img src="/iceland/images/item-cart-04.jpg" alt="IMG"/></div>
 									</td>
 									<td class="column-3 txt-center">Fresh Strawberries</td>
-									<td class="column-4 txt-center">3600</td>
+									<td id="price" class="column-4 txt-center">3600</td>
 									<td class="column-5 txt-center">
 										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
+												<i id="cntDown" class="fs-16 zmdi zmdi-minus"></i><!-- 수량(-)-->
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product"	type="number" name="num-product1" value="1">
+											<input id="cnt" class="mtext-104 cl3 txt-center num-product" type="text" name="num-product1" value="1">
 
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
+												<i id="cntUp" class="fs-16 zmdi zmdi-plus"></i><!-- 수량(+)-->
 											</div>
 										</div>
 									</td>
-									<td class="column-6 txt-center">3600</td>
+									<td id="totalPrice" class="column-6 txt-center">3600</td>
 								</tr>
 
 								<tr class="table_row">
@@ -167,11 +216,11 @@ height: 40px;
 
             <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
             <div class="select-ship">
-                <a class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#home">기본 배송지</a>
+                <a id="defaultAddr" class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#home">기본 배송지</a>
                 <span class="float-l">&nbsp;&nbsp;</span>
                
                 <span class="float-l">&nbsp;&nbsp;</span>
-                <a class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#menu2">새로운 배송지</a>
+                <a id="newAddr" class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" onclick="clearAddrInput()">새로운 배송지</a>
             </div>
               <div class="tab-content">
                 <div id="home" class="deliveryAddress" style="width:100%;">
@@ -192,8 +241,8 @@ height: 40px;
                       <td>
                       <input type="text" id="postNum" name="postCodeAddr" maxlength="6" readonly onkeypress="javascript:common.onlyNumberInput(event);" style="ime-mode:disabled;width:70px;" title="우편번호"/>
                        	<input type="button" onclick="sample2_execDaumPostcode()" class="flex-c-m stext-101 cl2 size-100 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" value="주소찾기" style="display:inline;"/><br>
-                        <input type="text" id="address" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" readonly>
-                        <input type="text" id="address_datail_" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" >
+                        <input type="text" id="address" name="rcvrBaseAddr" maxlength="300" title="기본주소 입력" class="inp_address int-selected" readonly>
+                        <input type="text" id="address_detail" name="rcvrBaseAddr" maxlength="300" title="상세주소 입력" class="inp_address int-selected" >
                       </td>
                      </tr>
                      
@@ -357,7 +406,7 @@ height: 40px;
   <!--===============================================================================================-->
   <script
     src="/iceland/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-  <script>
+  <!-- <script>
 			$('.js-pscroll').each(function() {
 				$(this).css('position', 'relative');
 				$(this).css('overflow', 'hidden');
@@ -433,7 +482,7 @@ height: 40px;
 	});
 	
 	sumUp();
-		</script>
+		</script> -->
   <!--===============================================================================================-->
   <script src="/iceland/js/main.js"></script>
   <!--===============================================================================================-->
