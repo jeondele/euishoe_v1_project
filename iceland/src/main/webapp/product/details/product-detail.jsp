@@ -382,6 +382,7 @@
 				
 
 
+
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
 			<span class="stext-107 cl6 p-lr-25">SKU: JAK-01</span>
 			<span class="stext-107 cl6 p-lr-25">Categories: Jacket, Men</span>
@@ -799,6 +800,13 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
+<<<<<<< HEAD
+=======
+<%--     <script type="text/javascript">
+    $('.prdc_qna').css('display','none');
+    $($('.nav-item')[3]).on('click',function(){ $('.prdc_qna').css('display','block');});
+    </script>--%>
+>>>>>>> feature/qna/review_final(es)
 	<script type="text/javascript">
 	$('.flex-c-m.stext-101.cl0.size-101.bg1.bor1.hov-btn1.p-lr-15.trans-04.js-addcart-detail').unbind("click").on('click',function(e){
 		sumToMakeJson();

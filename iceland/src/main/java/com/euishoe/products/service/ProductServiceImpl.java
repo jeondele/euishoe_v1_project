@@ -53,11 +53,6 @@ public class ProductServiceImpl implements ProductService {
 		this.qnaDao = qnaDao;
 	}
 
-	@Override
-	public String create(Product product) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public List<Map<String, Object>> newProductList() throws Exception {
@@ -115,8 +110,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params)
-			throws Exception {
+	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
 		return reviewDao.reviewDynamicReviewList(productNum, customerId, reviewScore, params);
 	}
 
@@ -130,4 +124,13 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.filter(filterParam);
 	}
 	
+
+
+
+	@Override
+	public String create(Product product) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
