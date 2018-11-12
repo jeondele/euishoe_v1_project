@@ -221,8 +221,10 @@ public class CustomerServiceImpl implements CustomerService {
 		Cookie loginId = null;
 		Cookie[] cookies = request.getCookies();
 		ArrayList<Cookie> cookiesCart = new ArrayList<Cookie>();
+		ArrayList<Cookie> wishesCart = new ArrayList<Cookie>();
 		
 		int cnt = 0;
+		int cntWish = 0;
 		for (Cookie cookie : cookies) {
 			if(cookie.getName().equals("loginId")) {
 				loginId = cookie;
@@ -231,6 +233,9 @@ public class CustomerServiceImpl implements CustomerService {
 			}else if(cookie.getName().substring(0, 4).equals("cart")) {
 				cookiesCart.add(cookie);
 				cnt++;
+			}else if(cookie.getName().substring(0, 4).equals("cart")) {
+				cookiesCart.add(cookie);
+				cntWish++;
 			}
 		}
 		
