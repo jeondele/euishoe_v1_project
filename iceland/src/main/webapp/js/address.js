@@ -36,7 +36,8 @@
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postNum').value = data.zonecode; //5자리 새우편번호 사용
                 document.getElementById('address').value = fullAddr;
-                document.getElementById('address_datail').value = data.addressEnglish;
+                // 영문주소 필드에 입력
+                //document.getElementById('address_datail').value = data.addressEnglish;
 
                 // iframe을 넣은 element를 안보이게 한다.
                 // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
@@ -60,7 +61,7 @@
     function initLayerPosition(){
         var width = 300; //우편번호서비스가 들어갈 element의 width
         var height = 400; //우편번호서비스가 들어갈 element의 height
-        var borderWidth = 5; //샘플에서 사용하는 border의 두께
+        var borderWidth = 3; //샘플에서 사용하는 border의 두께
 
         // 위에서 선언한 값들을 실제 element에 넣는다.
         element_layer.style.width = width + 'px';
