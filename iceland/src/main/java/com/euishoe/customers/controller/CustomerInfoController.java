@@ -1,5 +1,7 @@
 package com.euishoe.customers.controller;
 
+import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +31,7 @@ public class CustomerInfoController implements Controller {
 		
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		customerService = (CustomerService)factory.getBean(CustomerServiceImpl.class);
+		// 폼으로 이동
 		if(request.getParameter("member_id") != null) {
 			Customer customer;
 			String customerId = (String)request.getParameter("member_id").trim();
@@ -61,8 +64,14 @@ public class CustomerInfoController implements Controller {
 			}
 		}else{
 			System.out.println("아이디값이없다");
-			mav.setView("/iceland/home.es");
-			return mav;
+			try {
+				response.sendRedirect("/iceland/customer/mypage/myInfo.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//mav.setView("/iceland/customer/mypage/myInfo.jsp");
+			//return mav;
 		}
 //		String loginId = request.getParameter("customerId");
 //		String inputPass = (String) request.getAttribute("passwd");
