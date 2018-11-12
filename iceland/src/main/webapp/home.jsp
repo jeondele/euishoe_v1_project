@@ -109,7 +109,7 @@ function sumToMakeJson(){
         
     var str = "";
         
-    str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img">';
+    str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img cart">';
     str += '<img class="cartItems" src="' + productImg + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
     str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + productName + '</a>'
     str += '<span class="header-cart-item-info">' + productCount + ' x ' + productPrice + '</span></div></li>';        
@@ -118,7 +118,7 @@ function sumToMakeJson(){
     //checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
     
     //$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
-    $('.header-cart-item-img').unbind("click").on('click',function(e){
+    $('.header-cart-item-img.cart').unbind("click").on('click',function(e){
     	console.log(this);
         var deleteNum = parseInt($(e.currentTarget).attr('value'));
         setCookie('cart' + deleteNum,'',0);
@@ -589,6 +589,18 @@ function sumToMakeJson(){
 		return str.substring(3,str.length - 3).split('%2C');
 	}
 	
+	$(document).ready(function(){
+		$('.btn-addwish-b2.dis-block.pos-relative.js-addwish-b2').unbind("click").on('click',function(e){
+			console.log($(e.currentTarget).attr('class'));
+			if( 'btn-addwish-b2 dis-block pos-relative js-addwish-b2' == $(e.currentTarget).attr('class')){
+				$(e.currentTarget).attr('class','btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2');
+			}else{
+				$(e.currentTarget).attr('class','btn-addwish-b2 dis-block pos-relative js-addwish-b2');
+			}
+	  })
+	});
+
+		
 	
 	
 	</script>

@@ -228,7 +228,7 @@ public class CustomerServiceImpl implements CustomerService {
 				loginId = cookie;
 				cookie.getValue();
 				// product_Code,Customer_id,cart_num
-			}else if(cookie.getName().equals("cart")) {
+			}else if(cookie.getName().substring(0, 4).equals("cart")) {
 				cookiesCart.add(cookie);
 				cnt++;
 			}
@@ -263,7 +263,7 @@ public class CustomerServiceImpl implements CustomerService {
 				}else {
 					// 상품제목 X
 					//cookiesCart.get(i).("PRODUCT_CODE")
-					cartDao.createCart(null,null, loginId.getValue());
+					cartDao.createCart(null, loginId.getValue());
 					willDelete = false;
 					
 				}

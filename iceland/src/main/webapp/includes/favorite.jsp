@@ -15,12 +15,12 @@
 			</div>
 			
 			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
+				<ul class="header-cart-wrapitem w-full" id="miniWish">
 
 				</ul>
 				
 				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
+					<div class="header-cart-total w-full p-tb-40 wish">
 						Total: $75.00
 					</div>
 
@@ -46,6 +46,8 @@
   var str = "";
   
   $(document).ready(function() {
+	  
+	    console.log(11331);
 		//var obj = decodeURIComponent(getCookie('carts'));
 		
 		var prior = 1;
@@ -54,34 +56,30 @@
 		while(getCookie('wish' + prior)){
 			var obj = decodeURIComponent(getCookie('wish' + prior)).substring(1,decodeURIComponent(getCookie('wish' + prior)).length - 1);
 			var jsonObj = JSON.parse(obj);
-			
-			console.log(prior);
-			
 			var str = "";
 			
-			  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img" value='+ prior +'>';
-			  str += '<img src="' + jsonObj.image_ref + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
+			  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img wish" value='+ prior +'>';
+			  str += '<img src="' + jsonObj.image_ref + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8 ">';
 			  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + jsonObj.PRODUCT_NAME + '</a>'
 			  str += '<span class="header-cart-item-info">' + jsonObj.product_count + ' x ' + jsonObj.PRODUCT_PRICE + '</span></div></li>';		
-			  $('#miniCarts').append(str);
+			  $('#miniWish').append(str);
 			  
 			  checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
 			  prior++;
 		}
 		
-		$('#cartButton').attr('data-notify',prior - 1);
-		$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
+		$('#wishButton').attr('data-notify',prior - 1);
+		$('.header-cart-total.w-full.p-tb-40.wish')[0].innerText = ("Total: " + checksum) + '원';
 	  
 		// 지우기
-		$('.header-cart-item-img').unbind("click").on('click',function(e){
+		$('.header-cart-item-img.wish').unbind("click").on('click',function(e){
             var deleteNum = parseInt($(e.currentTarget).attr('value'));
-            setCookie('cart' + deleteNum,'',0);
+            setCookie('wish' + deleteNum,'',0);
             
-            console.log(1);
             // 지운 후 정렬 
             var testNum = deleteNum + 1;
             
-            while(getCookie('cart' + testNum)){
+            while(getCookie('wish' + testNum)){
                 testNum++;
             }
             
@@ -89,13 +87,13 @@
             
             for(var i = deleteNum + 1; i < testNum; i++){
                 console.log(i);
-                setCookie('cart' + (i-1),getCookie('cart' + i),1);
+                setCookie('wish' + (i-1),getCookie('wish' + i),1);
                 if(i == testNum - 1){
-                    setCookie('cart' + i,'',0);
+                    setCookie('wish' + i,'',0);
                 }
             }
             $(e.currentTarget).parents()[0].remove();
-            $('#cartButton').attr('data-notify',testNum - 2);
+            $('#wishButton').attr('data-notify',testNum - 2);
 
         });
 		// row 뿌리기

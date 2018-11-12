@@ -52,12 +52,10 @@ public class CustomerLogoutController implements Controller {
 		    	cookie.setMaxAge(0);
 		    	cookie.setPath("/iceland/");
 		    	response.addCookie(cookie);
-		    	mav.addObject("carts", cookie);
-		    }else if(cookie.getName().equals("wishes")) {
+		    }else if(cookie.getName().substring(0, 4).equals("wish")) {
 		    	cookie.setMaxAge(0);
 		    	cookie.setPath("/iceland/");
 		    	response.addCookie(cookie);
-		  	    mav.addObject("wishes", cookie);   
 		    }
 		  /*  
 		    if(cookie.getName().equals("idRemember")) {
