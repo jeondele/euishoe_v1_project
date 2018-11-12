@@ -13,6 +13,7 @@ public class FilterParam {
 	private String highPrice;
 	private String fabric;
 	private String color;
+	private int bodyType;
 	private int shoulderType;
 	private int armType;
 	private int legType;
@@ -21,10 +22,11 @@ public class FilterParam {
 	private String orderByStar;
 	
 	public FilterParam() {
+		this(null, null, null, null, null, null, 2, 2, 2, 2, null, null, null);
 	}
 
 	public FilterParam(String tpo, String season, String lowPrice, String highPrice, String fabric, String color,
-			int shoulderType, int armType, int legType, String orderByPrice, String orderByHitcount,
+			int bodyType, int shoulderType, int armType, int legType, String orderByPrice, String orderByHitcount,
 			String orderByStar) {
 		super();
 		this.tpo = tpo;
@@ -33,6 +35,7 @@ public class FilterParam {
 		this.highPrice = highPrice;
 		this.fabric = fabric;
 		this.color = color;
+		this.bodyType = bodyType;
 		this.shoulderType = shoulderType;
 		this.armType = armType;
 		this.legType = legType;
@@ -88,6 +91,15 @@ public class FilterParam {
 	public void setColor(String color) {
 		this.color = color;
 	}
+	
+	
+	public int getBodyType() {
+		return bodyType;
+	}
+
+	public void setBodyType(int bodyType) {
+		this.bodyType = bodyType;
+	}
 
 	public int getShoulderType() {
 		return shoulderType;
@@ -140,9 +152,10 @@ public class FilterParam {
 	@Override
 	public String toString() {
 		return "FilterParam [tpo=" + tpo + ", season=" + season + ", lowPrice=" + lowPrice + ", highPrice=" + highPrice
-				+ ", fabric=" + fabric + ", color=" + color + ", shoulderType=" + shoulderType + ", armType=" + armType
-				+ ", legType=" + legType + ", orderByPrice=" + orderByPrice + ", orderByHitcount=" + orderByHitcount
-				+ ", orderByStar=" + orderByStar + "]";
+				+ ", fabric=" + fabric + ", color=" + color + ", bodyType=" + bodyType + ", shoulderType="
+				+ shoulderType + ", armType=" + armType + ", legType=" + legType + ", orderByPrice=" + orderByPrice
+				+ ", orderByHitcount=" + orderByHitcount + ", orderByStar=" + orderByStar + "]";
 	}
 
+	
 }

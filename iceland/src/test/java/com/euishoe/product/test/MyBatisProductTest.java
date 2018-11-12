@@ -19,12 +19,12 @@ import com.euishoe.common.web.FilterParam;
 import com.euishoe.customers.dto.Customer;
 
 
-public class MyBatisCommentTest {
+public class MyBatisProductTest {
 	private static final String NAMESPACE = "com.euishoe.products.";
 	String resource = "mybatis-config.xml";
 	SqlSessionFactory sqlSessionFactory;
 	
-	Logger logger = Logger.getLogger(MyBatisCommentTest.class);
+	Logger logger = Logger.getLogger(MyBatisProductTest.class);
 	
 	@Before
 	public void setup() {
@@ -39,12 +39,15 @@ public class MyBatisCommentTest {
 		logger.debug("[logger debug]: sqlSessionFactory생성완료");
 	}
 	
-	//@Test
+	@Test
 	public void testFilter() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<Map<String, Object>> params = null;
-		FilterParam filterParam= new FilterParam();
-		sqlSession.selectList(NAMESPACE+"filter", filterParam);
+		FilterParam filterParam= new FilterParam("bizcasual", null, "100000", "150000", null, null,0, 0, 0, 0, null, null, null);
+		params = sqlSession.selectList(NAMESPACE+"filter", filterParam);
+		for (Map<String, Object> map : params) {
+			logger.debug(map);
+		}
 		sqlSession.commit();
 		sqlSession.close();
 	}

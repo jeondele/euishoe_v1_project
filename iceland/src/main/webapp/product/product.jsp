@@ -399,7 +399,7 @@ function setCountCartList(){
                </div>
 			</div>
 
-			<div class="row isotope-grid">
+			<div id="selectResult" class="row isotope-grid">
 				<c:forEach items="${jsonObjectList}" var="product">
 				<c:set var ="imageRef" value="${product.imageRef}"/>
 				<c:if test="${fn:contains(imageRef,'main$1')}">
