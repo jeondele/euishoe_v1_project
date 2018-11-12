@@ -74,7 +74,7 @@ public class MyBatisReviewTest {
 		sqlSession.close();
 	}
 	
-	@Test
+	//@Test
 	public void testListAll() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -135,5 +135,12 @@ public class MyBatisReviewTest {
 		sqlSession.close();
 	}
 	
-	
+	@Test
+	public void testCount() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int count = sqlSession.selectOne(NAMESPACE + "countBySearch", 1);
+		logger.debug(count);
+		logger.debug("조회 완료!");
+		sqlSession.close();
+	}
 }

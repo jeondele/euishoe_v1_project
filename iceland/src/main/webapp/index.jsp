@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,5 +9,504 @@ location.href="home.es";
 </script>
 </head>
 <body>
+<body class="animsition">
+
+
+	<%@include file="includes/header.jsp"%>
+	<%@include file="includes/cart.jsp"%>
+	<%@include file="includes/favorite.jsp"%>
+	<%@include file="includes/slider.jsp"%>
+
+	<!-- Product -->
+	<section class="bg0 p-t-23 p-b-140">
+		<div class="container">
+			<div class="p-b-10">
+				<h3 class="ltext-103 cl5">New Product</h3>
+				<!-- Load more -->
+					<a href="/iceland/product.es"><input type="button"
+						class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04"
+						value="Load More" style="margin-left: auto"> </a>
+			</div>
+		</div>
+
+		<div class="flex-w flex-sb-m p-b-52"></div>
+
+		<div class="row isotope-grid">
+			<c:forEach items="${newProductSrc}" var="newProduct">
+				<c:set var ="newImageRef" value="${newProduct.imageRef}"/>
+				<c:if test="${fn:contains(newImageRef,'main$1')}">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="${newProduct.imageRef}" alt="IMG-PRODUCT"> <a
+								href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal2">
+								<input type="hidden" value="${newProduct.productNum}">
+								Quick View </a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="/iceland/product/details.es?productNum=${newProduct.productNum}"
+									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									${newProduct.productName} </a> <span class="stext-105 cl3">
+									�� ${newProduct.productListPrice} �� </span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#"
+									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04"
+									src="/iceland/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+									src="/iceland/images/icons/icon-heart-02.png" alt="ICON">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				</c:if>
+			</c:forEach>
+		</div>
+
+
+	</section>
+
+	<section class="bg0 p-t-23 p-b-140">
+		<div class="container">
+			<div class="p-b-10">
+				<h3 class="ltext-103 cl5">Best Product</h3>
+				<!-- Load more -->
+				<a href="/iceland/product.es"><input type="button"
+						class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04"
+						value="Load More" style="margin-left: auto"> </a>
+			</div>
+		</div>
+
+		<div class="flex-w flex-sb-m p-b-52"></div>
+
+		<div class="row isotope-grid">
+			<c:forEach items="${hitProductSrc}" var="hitProduct">
+			<c:set var ="hitImageRef" value="${hitProduct.imageRef}"/>
+				<c:if test="${fn:contains(hitImageRef,'main$1')}">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="${hitProduct.imageRef}" alt="IMG-PRODUCT"> <a
+								href="#"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal3">
+								<input type="hidden" value="${hitProduct.productNum}">
+								Quick View </a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="/iceland/product/details.es?productNum=${hitProduct.productNum}"
+									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									${hitProduct.productName} </a> <span class="stext-105 cl3">
+									�� ${hitProduct.productListPrice} �� </span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#"
+									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04"
+									src="/iceland/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l"
+									src="/iceland/images/icons/icon-heart-02.png" alt="ICON">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:if>
+			</c:forEach>
+		</div>
+	</section>
+	<c:choose>
+		<c:when test="${not empty result}">
+			<div id="snackbar"></div>
+		</c:when>
+	</c:choose>
+
+
+
+	<%@include file="includes/footer.jsp"%>
+
+	<%@include file="includes/QuickMenu.jsp"%>
+
+	<!--===============================================================================================-->
+
+	<!--===============================================================================================-->
+	<script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="/iceland/vendor/bootstrap/js/popper.js"></script>
+	<script src="/iceland/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="/iceland/vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function() {
+			$(this).select2({
+				minimumResultsForSearch : 20,
+				dropdownParent : $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+	<!--===============================================================================================-->
+	<script src="/iceland/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/iceland/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="/iceland/vendor/slick/slick.min.js"></script>
+	<script src="/iceland/js/slick-custom.js"></script>
+	<!--===============================================================================================-->
+	<script src="/iceland/vendor/parallax100/parallax100.js"></script>
+	<script>
+		$('.parallax100').parallax100();
+	</script>
+	<!--===============================================================================================-->
+	<script
+		src="/iceland/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+				delegate : 'a', // the selector for gallery item
+				type : 'image',
+				gallery : {
+					enabled : true
+				},
+				mainClass : 'mfp-fade'
+			});
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script src="/iceland/vendor/isotope/isotope.pkgd.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="/iceland/vendor/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-addwish-b2').on('click', function(e) {
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(
+				function() {
+					var nameProduct = $(this).parent().parent().find(
+							'.js-name-b2').html();
+					$(this).on('click', function() {
+						swal(nameProduct, "is added to wishlist !", "success");
+
+						$(this).addClass('js-addedwish-b2');
+						$(this).off('click');
+					});
+				});
+
+		$('.js-addwish-detail').each(
+				function() {
+					var nameProduct = $(this).parent().parent().parent().find(
+							'.js-name-detail').html();
+
+					$(this).on('click', function() {
+						swal(nameProduct, "is added to wishlist !", "success");
+
+						$(this).addClass('js-addedwish-detail');
+						$(this).off('click');
+					});
+				});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(
+				function() {
+					var nameProduct = $(this).parent().parent().parent()
+							.parent().find('.js-name-detail').html();
+					$(this).on('click', function() {
+						swal(nameProduct, "is added to cart !", "success");
+					});
+				});
+	</script>
+	<!--===============================================================================================-->
+	<script
+		src="/iceland/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-show-modal2').on('click',function(e){
+			$("#itemPic").empty();
+	    	var productNum = $(this).find("input").val();
+		    $('#productNum').val(productNum);
+	        e.preventDefault();
+			var myList = ${gsonNewProductSrc};
+		    for ( var i in myList) {
+				if(myList[i]['productNum']==$('#productNum').val()) {
+					$("#productName").html(myList[i]['productName']);
+					$("#productPrice").html("�� " + myList[i]['productListPrice'] + " ��");
+					$("#productBrief").html(myList[i]['productBriefInfomation']);
+					$("#productNumHref").attr("href", "/iceland/product/details.es?productNum="+$('#productNum').val());
+					break;
+				};
+		    }
+		    for ( var i in myList) {
+				if((myList[i]['productNum']==$('#productNum').val())&&(myList[i]['imageRef'].match('main'))) {
+					var appendString = appendPic(myList[i]['imageRef']);
+					var appendBriefString = appendBriefPic(myList[i]['imageRef']);
+					$("#itemPic").append(appendString);
+					break;
+				};
+			}
+		    $('.js-modal1').addClass('show-modal1');
+	    });
+		
+		$('.js-show-modal3').on('click',function(e){
+			$("#itemPic").empty();
+	    	var productNum = $(this).find("input").val();
+		    $('#productNum').val(productNum);
+	        e.preventDefault();
+			var myList = ${gsonHitProductSrc};
+		    for ( var i in myList) {
+				if(myList[i]['productNum']==$('#productNum').val()) {
+					$("#productName").html(myList[i]['productName']);
+					$("#productPrice").html("�� " + myList[i]['productListPrice'] + " ��");
+					$("#productBrief").html(myList[i]['productBriefInfomation']);
+					$("#productNumHref").attr("href", "/iceland/product/details.es?productNum="+$('#productNum').val());
+					break;
+				};
+		    }
+		    
+		    for ( var i in myList) {
+				if((myList[i]['productNum']==$('#productNum').val())&&(myList[i]['imageRef'].match('main'))) {
+					var appendString = appendPic(myList[i]['imageRef']);
+					var appendBriefString = appendBriefPic(myList[i]['imageRef']);
+					$("#itemPic").append(appendString);
+					break;
+				};
+			}
+		    $('.js-modal1').addClass('show-modal1');
+	    });
+	
+	    $('.js-hide-modal1').on('click',function(){
+	        $('.js-modal1').removeClass('show-modal1');
+	    });
+		
+		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+			e.preventDefault();
+		});
+	
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+	
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+	
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+	
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+	
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+	
+		/*---------------------------------------------*/
+	
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	
+		function appendPic(url) {
+			var text = "<div class='item-slick3'><div class='wrap-pic-w pos-relative'>"+
+						   "<img id='productImg' src='"+url +"' alt='IMG-PRODUCT'><a class='flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04' href='/iceland/images/product-detail-01.jpg'>"+
+							"<i class='fa fa-expand'></i></a></div></div>";
+			return text;				
+		};
+		
+		function appendBriefPic(url) {
+			var text = "<img src='"+url+"'>";
+			return text;				
+		};
+		$('.js-pscroll').each(function() {
+			$(this).css('position', 'relative');
+			$(this).css('overflow', 'hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed : 1,
+				scrollingThreshold : 1000,
+				wheelPropagation : false,
+			});
+
+			$(window).on('resize', function() {
+				ps.update();
+			})
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script src="/iceland/js/main.js"></script>
+	<script type="text/javascript">
+	$('.js-show-modal1').on('click',function(e){
+		$("#itemPic").empty();
+    	var productNum = $(this).find("input").val();
+	    $('#productNum').val(productNum);
+        e.preventDefault();
+		var myList = <%=request.getAttribute("gsonListAll")%>;
+	    for ( var i in myList) {
+			if(myList[i]['productNum']==$('#productNum').val()) {
+				$("#productName").html(myList[i]['productName']);
+				$("#productPrice").html("�� " + myList[i]['productListPrice'] + " ��");
+				$("#productBrief").html(myList[i]['productBriefInfomation']);
+				$("#productNumHref").attr("href", "/iceland/product/details.es?productNum="+$('#productNum').val());
+				break;
+			};
+	    }
+	    for ( var i in myList) {
+			if((myList[i]['productNum']==$('#productNum').val())&&(myList[i]['imageRef'].match('main'))) {
+				var appendString = appendPic(myList[i]['imageRef']);
+				var appendBriefString = appendBriefPic(myList[i]['imageRef']);
+				$("#itemPic").append(appendString);
+			};
+		}
+	    $('.js-modal1').addClass('show-modal1');
+    });
+
+    $('.js-hide-modal1').on('click',function(){
+        $('.js-modal1').removeClass('show-modal1');
+    });
+	
+	$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+		e.preventDefault();
+	});
+
+	$('.js-addwish-b2').each(function(){
+		var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+		$(this).on('click', function(){
+			swal(nameProduct, "is added to wishlist !", "success");
+
+			$(this).addClass('js-addedwish-b2');
+			$(this).off('click');
+		});
+	});
+
+	$('.js-addwish-detail').each(function(){
+		var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+		$(this).on('click', function(){
+			swal(nameProduct, "is added to wishlist !", "success");
+
+			$(this).addClass('js-addedwish-detail');
+			$(this).off('click');
+		});
+	});
+
+	/*---------------------------------------------*/
+
+	$('.js-addcart-detail').each(function(){
+		var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+		$(this).on('click', function(){
+			swal(nameProduct, "is added to cart !", "success");
+		});
+	});
+
+	function appendPic(url) {
+		var text = "<div class='item-slick3'><div class='wrap-pic-w pos-relative'>"+
+					   "<img id='productImg' src='"+url +"' alt='IMG-PRODUCT'><a class='flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04' href='/iceland/images/product-detail-01.jpg'>"+
+						"<i class='fa fa-expand'></i></a></div></div>";
+		return text;				
+	};
+	
+	function appendBriefPic(url) {
+		var text = "<img src='"+url+"'>";
+		return text;				
+	};
+	
+	function replaceAll(str, searchStr, replaceStr) {
+		return str.split(searchStr).join(replaceStr);
+	}
+
+	// 荑��ㅼ�� 臾몄���댁�� ����
+	function jsonDecode(str) {
+		console.log(str);
+		if( 'D' === str.substring(str.length - 1, str.length)){
+		    return decodeURIComponent(str);
+		}else{
+			return (decodeURIComponent(str + 'D'));
+		}
+		
+		//replaceAll(replaceAll(replaceAll(replaceAll(decodeURI(str), '%3A', ':'), '%2C',
+		//		','),'%24','$'),'%2','/');
+	}
+
+	function makeJson(str) {
+		console.log(str);
+		return eval('(' + str + ')');
+	}
+
+	// Json 諛곗�대� 留��ㅺ린
+	function decodeMakeJson(str) {
+		// 諛곗�� 媛�泥� 諛���
+		return makeJson(jsonDecode(str));
+	}
+	
+	// Json 遺�由� %2C : ,
+	function splitJson(str){
+		return str.substring(3,str.length - 3).split('%2C');
+	}
+	
+	
+	  $('.btn-addwish-b2').unbind("click").on('click',function(e){
+		  console.log(e);
+		  
+		  Test = e;
+		  var str = "btn-addwish-b2 dis-block pos-relative js-addwish-b2";
+		  
+		  if( $(e.currentTarget).attr('class')=== str){
+		  $(e.currentTarget).attr('class',"btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2");
+		  
+		  var array = $(e.currentTarget).parents()[1].innerText.split('��');
+		  var PRODUCT_NAME = array[0].trim();
+		  var PRODUCT_PRICE = array[1].trim().substring(0,array[1].trim().length - 2);
+		  var image_ref = $(e.currentTarget).parents()[2].children[0].children[0].currentSrc;
+		  
+		  // 李�紐⑸� �깅�
+		  
+		  /*
+		     image_ref,PRODUCT_NAME,product_manufacturer,PRODUCT_PRICE,PRODUCT_NUM
+		  */
+		  
+		  }else{
+		  $(e.currentTarget).attr('class',"btn-addwish-b2 dis-block pos-relative js-addwish-b2");
+		  // 李�紐⑸� ����
+		  var deleteNum = parseInt($(e.currentTarget).attr('value'));
+		  // 蹂�寃� ����
+          setCookie('wish' + deleteNum,'',0);
+          
+          // 吏��� �� ���� 
+          var testNum = deleteNum + 1;
+          
+          while(getCookie('wish' + testNum)){
+              testNum++;
+          }
+          
+          console.log(testNum);
+          
+          for(var i = deleteNum + 1; i < testNum; i++){
+              console.log(i);
+              setCookie('wish' + (i-1),getCookie('wish' + i),1);
+              if(i == testNum - 1){
+                  setCookie('wish' + i,'',0);
+              }
+          }
+          $(e.currentTarget).parents()[0].remove();
+          $('#cartButton').attr('data-notify',testNum - 2);
+
+		  }
+	  });
+	
+	</script>
+>>>>>>> 110736768ad7023a77b94c6329fce0f914642138
 </body>
 </html>

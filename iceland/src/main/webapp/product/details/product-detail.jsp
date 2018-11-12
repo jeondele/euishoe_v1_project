@@ -2,8 +2,8 @@
 <%@page import="java.util.List"%>
 <%@page import="com.euishoe.reviews.dto.Review"%>
 <%@page import="com.euishoe.qnas.dto.Qna"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +63,73 @@
 <link rel="stylesheet" type="text/css" href="product_detail.css">
 <!--===============================================================================================-->
 
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <!-- toggle  -->
+  <script>
+  $( function() {
+
+    // run the currently selected effect
+    function runRankpoint() {
+      var selectedEffect = $( "#effectTypes" ).val();
+      var options = {};
+      $("#info_content" ).toggle( selectedEffect, options, 500 );
+    };
+
+    
+    function showReview() {
+        var selectedEffect = $( "#effectTypes" ).val();
+        var options = {};
+        $("#dvQnqContDtl1" ).toggle(selectedEffect, options, 500);
+      };
+    
+      function writeReview() {
+          var selectedEffect = $( "#effectTypes" ).val();
+          var options = {};
+          $("#dvQnqContDtl0" ).toggle( selectedEffect, options, 500 );
+        };
+      
+      /*
+      	박호준
+      	리뷰 클릭하면 답변 보기
+      */
+      function showAnswer(tag) {
+        	if(tag.style.display == 'none'){
+        		tag.style.display = 'table-cell';
+        	}else{
+        		tag.style.display = 'none';
+        	}
+          };
+          
+    
+    // Set effect from select menu value
+    $( "#detailViewGrade" ).on( "click", function() {
+      runRankpoint();
+    });
+    
+    
+    $( "#admin_Answer" ).on( "click", function() {
+    	showReview();
+      });
+    
+    $( "#write_Answer" ).on( "click", function() {
+    	writeReview();
+      });
+    
+    /*
+    	박호준
+    	
+    	리뷰 클릭하면 답변 보기
+    */
+    $(".txt_ellipsis" ).on( "click", function(e) {
+    	if($($($(this.parentElement.parentElement).next()[0]).children()[0]).hasClass('qna_expand')){
+    	showAnswer($($(this.parentElement.parentElement).next()[0]).children()[0]);
+    	}
+      });
+    
+  } );
+  </script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- toggle  -->
@@ -136,85 +203,7 @@
 
 	});
 </script>
-<style>
-.qnaDtlsCd1, .qnaDtlsCd2, .qnaDtlsCd3, .qnaDtlsCd4, .qnaDtlsCd5,
-	.qnaDtlsCd6, .qnaDtlsCd7 {
-	display: inline;
-	font-size: 20px;
-}
 
-#email1, #email2, #email3 {
-	display: inline;
-	height: 40px;
-}
-
-#reviewPassword {
-	height: 30px;
-}
-
-.modal {
-	text-align: center;
-}
-
-.modal-header {
-	padding-left: 110px;
-}
-
-.modal-dialog {
-	display: inline-block;
-	text-align: left;
-	vertical-align: middle;
-}
-
-#popLayWrap, #popLayWrap2 {
-	top: 30%;
-	margin-top: -100px;
-}
-
-.checkmark {
-	font-size: 16px;
-	list-style-type: none;
-	margin-bottom: 1em;
-	padding: 0.25em 0 0 2.5em;
-	position: relative;
-}
-
-.checkmark:before {
-	content: " ";
-	display: block;
-	border: solid 0.8em green;
-	border-radius: .8em;
-	height: 0;
-	width: 0;
-	position: absolute;
-	left: 0.5em;
-	top: 40%;
-	margin-top: -0.5em;
-}
-
-.checkmark:after {
-	content: " ";
-	display: block;
-	width: 0.3em;
-	height: 0.6em;
-	border: solid white;
-	border-width: 0 0.2em 0.2em 0;
-	position: absolute;
-	left: 1em;
-	top: 40%;
-	margin-top: -0.2em;
-	-webkit-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	transform: rotate(45deg);
-}
-
-.adminAnswer {
-	font-size: 14px;
-	color: green;
-	font-weight: bold;
-}
-</style>
 </head>
 <body class="animsition">
 
@@ -243,12 +232,15 @@
 						<div class="wrap-slick3 flex-sb flex-w">
 							<div class="wrap-slick3-dots"></div>
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
+							<input type="hidden" id="productCode" value="">
 							<div class="slick3 gallery-lb">
+								<c:forEach items="${selectAllById}" var="product">
+								<c:set var ="imageRef" value="${product.imageRef}"/>
+								<c:if test="${fn:contains(imageRef,'main')}">
 								<div class="item-slick3"
-									data-thumb="/iceland/images/product-detail-01.jpg">
+									data-thumb="${product.imageRef}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="/iceland/images/product-detail-01.jpg"
+										<img src="${product.imageRef}"
 											alt="IMG-PRODUCT"> <a
 											class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
 											href="/iceland/images/product-detail-01.jpg"> <i
@@ -256,6 +248,8 @@
 										</a>
 									</div>
 								</div>
+								</c:if>
+								</c:forEach>
 
 								<!-- 								<div class="item-slick3" data-thumb="/iceland/images/product-detail-02.jpg">
 									<div class="wrap-pic-w pos-relative">
@@ -285,7 +279,7 @@
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">${selectAllById.get(1).productName} </h4>
 
-						<span class="mtext-106 cl2"> ${selectAllById.get(1).productListPrice} </span>
+						<span class="mtext-106 cl2"> ₩ ${selectAllById.get(1).productListPrice} 원</span>
 
 						<p class="stext-102 cl3 p-t-23">${selectAllById.get(1).productBriefInfomation}</p>
 
@@ -296,12 +290,12 @@
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
+										<select id="clothSize" onclick="changeProductCode();" class="js-select2" name="time">
 											<option>Choose an option</option>
-											<option>Size S</option>
-											<option>Size M</option>
-											<option>Size L</option>
-											<option>Size XL</option>
+											<option value="s">Size S</option>
+											<option value="m">Size M</option>
+											<option value="l">Size L</option>
+											<option value="xl">Size XL</option>
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
@@ -313,13 +307,13 @@
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
+										<select id="pantsSize" onclick="changeProductCode();" class="js-select2" name="time">
 											<option>Choose an option</option>
-											<option>26inch</option>
-											<option>28inch</option>
-											<option>30inch</option>
-											<option>32inch</option>
-											<option>34inch</option>
+											<option value="26">26inch</option>
+											<option value="28">28inch</option>
+											<option value="30">30inch</option>
+											<option value="32">32inch</option>
+											<option value="34">34inch</option>
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
@@ -374,570 +368,23 @@
 								data-tooltip="Google Plus"> <i class="fa fa-google-plus"></i>
 							</a>
 						</div>
+						
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="bor10 m-t-50 p-t-43 p-b-40">
-			<!-- Tab01 -->
-			<div class="tab01">
-				<!-- Nav tabs -->
-				<ul class="nav nav-tabs" role="tablist">
-					<li class="nav-item p-b-10"><a class="nav-link active"
-						data-toggle="tab" href="#description" role="tab">상품 상세</a></li>
-
-					<li class="nav-item p-b-10"><a class="nav-link"
-						data-toggle="tab" href="#information" role="tab">상품 정보</a></li>
-
-					<li class="nav-item p-b-10"><a class="nav-link"
-						data-toggle="tab" href="#reviews" role="tab">상품 후기</a></li>
-
-					<li class="nav-item p-b-10"><a class="nav-link"
-						data-toggle="tab" href="#qna" role="tab">상품 문의</a></li>
-				</ul>
-
-				<!-- Tab panes -->
-				<div class="tab-content p-t-43">
-					<!-- 상품 상세 설명 -->
-					<div class="tab-pane fade show active" id="description"
-						role="tabpanel">
-						<div class="how-pos2 p-lr-15-md">
-							<p class="stext-102 cl6">
-								<c:forEach items="${selectAllById}" var="product">
-								<c:set var ="imageRef" value="${product.imageRef}"/>
-								<c:if test="${fn:contains(imageRef,'detail')}">
-								<center><img src="${imageRef}" alt="IMG-PRODUCT"></center>
-								</c:if>
-								
-							
-								</c:forEach>
-							</p>
-						</div>
-					</div>
-
-					<!-- 상품 정보 -->
-					<div class="tab-pane fade show" id="information" role="tabpanel">
-						<div class="row">
-							<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-								<ul class="p-lr-28 p-lr-15-sm">
-									<li class="flex-w flex-t p-b-7"><span
-										class="stext-102 cl3 size-205"> Weight </span> <span
-										class="stext-102 cl6 size-206"> 0.79 kg </span></li>
-
-									<li class="flex-w flex-t p-b-7"><span
-										class="stext-102 cl3 size-205"> Dimensions </span> <span
-										class="stext-102 cl6 size-206"> 110 x 33 x 100 cm </span></li>
-
-									<li class="flex-w flex-t p-b-7"><span
-										class="stext-102 cl3 size-205"> Materials </span> <span
-										class="stext-102 cl6 size-206"> 60% cotton </span></li>
-
-									<li class="flex-w flex-t p-b-7"><span
-										class="stext-102 cl3 size-205"> Color </span> <span
-										class="stext-102 cl6 size-206"> Black, Blue, Grey,
-											Green, Red, White </span></li>
-
-									<li class="flex-w flex-t p-b-7"><span
-										class="stext-102 cl3 size-205"> Size </span> <span
-										class="stext-102 cl6 size-206"> XL, L, M, S </span></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- - -->
-					<div class="tab-pane fade" id="reviewss" role="tabpanel">
-						<div class="row">
-							<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-								<div class="p-b-30 m-lr-15-sm">
-
-									<div class="grade_select zindex">
-										<a class="ui_info_button dn" id="detailViewGrade"> `` 평점전체
-											<span class="arr_icon"></span>
-										</a>
-										<div class="grade_lay ui_info_content" id="info_content"
-											style="display: none;">
-											<div class="lay_nw_def"
-												style="display: block; position: relative;">
-												<h3 class="lay_tit">평점 선택</h3>
-												<div class="grade_wrap">
-													<ul class="">
-														<li><input type="radio" value="0" name="pntValue"
-															id="star" checked=""> <label for="star"
-															class="all">평점전체</label></li>
-
-														<li><input type="radio" value="5" name="pntValue"
-															id="star05"> <label for="star05">
-																<div class="selr_wrap">
-																	<span class="num">5점</span> <span class="graph_bar"><em
-																		class="gh_bar5" style="width: 64%;"><span>64%</span></em></span>
-																</div>
-														</label></li>
-														<li><input type="radio" value="4" name="pntValue"
-															id="star04"> <label for="star04">
-																<div class="selr_wrap">
-																	<span class="num">4점</span> <span class="graph_bar"><em
-																		style="width: 26%;"><span>26%</span></em></span>
-																</div>
-														</label></li>
-														<li><input type="radio" value="3" name="pntValue"
-															id="star03"> <label for="star03">
-																<div class="selr_wrap">
-																	<span class="num">3점</span> <span class="graph_bar"><em
-																		style="width: 8%;"><span>8%</span></em></span>
-																</div>
-														</label></li>
-														<li><input type="radio" value="2" name="pntValue"
-															id="star02"> <label for="star02">
-																<div class="selr_wrap">
-																	<span class="num">2점</span> <span class="graph_bar"><em
-																		style="width: 1%;"><span>1%</span></em></span>
-																</div>
-														</label></li>
-														<li><input type="radio" value="1" name="pntValue"
-															id="star01"> <label for="star01">
-																<div class="selr_wrap">
-																	<span class="num">1점</span> <span class="graph_bar"><em
-																		style="width: 1%;"><span>1%</span></em></span>
-																</div>
-														</label></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+		
+		<%-- 상품 상세 정보 page include 시작 --%>
+		<%@include file="/iceland/../includes/product-detail-information.jsp"%>
+		<%-- 상품 상세 정보 page include 끝 --%>
+				
 
 
-
-									<!-- Review -->
-									<c:choose>
-										<c:when test="${not empty ReviewList}">
-											<c:forEach var="review" items="${ReviewList}">
-												<div class="flex-w flex-t p-b-68">
-													<div
-														class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-														<img src="/iceland/images/avatar-01.jpg" alt="AVATAR">
-													</div>
-													<div class="size-207">
-														<div class="flex-w flex-sb-m p-b-17">
-															<span class="mtext-107 cl2 p-r-20">${review.customerId}</span>
-															<span class="fs-18 cl11"> <i
-																class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i>
-																<i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i>
-																<i class="zmdi zmdi-star"></i>
-															</span>
-														</div>
-														<p class="stext-102 cl6">${review.reviewContent}</p>
-														<span class="mtext-107 cl2 p-r-20"><a
-															id="write_Answer">답변보기</a> </span>
-
-														<div class="qna_expand" id="dvQnqContDtl0"
-															style="display: none;">
-															<div class="answer">
-																<span class="ico_answer">답변</span>
-																<textarea rows="10" cols="20"></textarea>
-																<div class="btn_action">
-																	<a href="#this" id="report" class="nwtxt_link"
-																		data-brdinfono="118895345" data-clfcd="01"
-																		data-contcd="03">작성하기<span class="ico"></span></a>
-																</div>
-															</div>
-
-														</div>
-
-														<span class="mtext-107 cl2 p-r-20"><a
-															id="admin_Answer">관리자 답변</a></span>
-														<div class="qna_expand" id="dvQnqContDtl1"
-															style="display: none;">
-															<div class="answer">
-																<span class="ico_answer">답변</span> 안녕하세요 11번가 나이키입니다.
-																고객님께서 문의하신 사항 잘 보았습니다.
-															</div>
-														</div>
-													</div>
-												</div>
-											</c:forEach>
-										</c:when>
-										<c:otherwise>
-											<div class="flex-w flex-t p-b-68">
-												<div class="size-207">
-													<div class="flex-w flex-sb-m p-b-17">
-														<p class="stext-102 cl6">" 등록된 게시글이 없습니다."</p>
-													</div>
-												</div>
-											</div>
-										</c:otherwise>
-									</c:choose>
-
-
-									<div class="flex-w flex-t p-b-68">
-										<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-											<img src="/iceland/images/avatar-01.jpg" alt="AVATAR">
-										</div>
-										<div class="size-207">
-											<div class="flex-w flex-sb-m p-b-17">
-												<span class="mtext-107 cl2 p-r-20">작 성 자</span> <span
-													class="fs-18 cl11"> <i class="zmdi zmdi-star"></i> <i
-													class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i>
-													<i class="zmdi zmdi-star"></i> <i
-													class="zmdi zmdi-star-half"></i>
-												</span>
-											</div>
-											<p class="stext-102 cl6">"상 품 평"</p>
-											<span class="mtext-107 cl2 p-r-20"><a
-												id="write_Answer">답변달기</a> </span>
-											<div class="qna_expand" id="dvQnqContDtl0"
-												style="display: none;">
-												<div class="answer">
-													<span class="ico_answer">답변</span>
-													<textarea rows="10" cols="20"></textarea>
-													<div class="btn_action">
-														<a href="#this" id="report" class="nwtxt_link"
-															data-brdinfono="118895345" data-clfcd="01"
-															data-contcd="03">작성하기<span class="ico"></span></a>
-													</div>
-												</div>
-
-											</div>
-
-											<span class="mtext-107 cl2 p-r-20"><a
-												id="admin_Answer">관리자 답변</a></span>
-											<div class="qna_expand" id="dvQnqContDtl1"
-												style="display: none;">
-												<div class="answer">
-													<span class="ico_answer">답변</span> 안녕하세요 11번가 나이키입니다. 고객님께서
-													문의하신 사항 잘 보았습니다.
-												</div>
-											</div>
-
-										</div>
-									</div>
-
-
-
-
-									<!-- 상품리뷰 -->
-									<div class="tab-pane fade show" id="reviews" role="tabpanel">
-									<!-- Add review -->
-									<form class="w-full"
-										action="/iceland/product/details/create.es">
-										<input type="hidden" id="productNum">
-										<h5 class="mtext-108 cl2 p-b-7">리뷰작성</h5>
-
-										<p class="stext-102 cl6">리뷰 비밀번호를 작성해주세요.</p>
-
-										<div class="flex-w flex-m p-t-50 p-b-23">
-											<span class="stext-102 cl3 m-r-16"> 평점을 골라주세요 ! </span>
-										</div>
-									</form>
-										<div class="prdc_qna">
-											<div class="bbs_filter">
-												<button type="button" id="myReview"
-													class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">내
-													리뷰</button>
-												<button type="button" id="allReview"
-													class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">전체리뷰</button>
-												<button type="button" id="insertReview"
-													class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
-													data-toggle="modal" data-target="#popLayWrap2">리뷰작성</button>
-											</div>
-
-											<table class="prdc_bbs"
-												summary="이 표는 상품 Q&amp;A 및 내용이 번호,문의유형,문의/답변,작성자,작성일로 구성되어 있습니다.">
-												<colgroup>
-													<col width="5%">
-													<col width="15%">
-													<col width="50%">
-													<col width="15%">
-													<col width="15%">
-
-												</colgroup>
-												<thead>
-													<tr>
-														<th scope="col" style="text-align: center;">번호</th>
-														<th scope="col" style="text-align: center;">관리자답변</th>
-														<th scope="col">제목</th>
-														<th scope="col" style="text-align: center;">작성자</th>
-														<th scope="col" style="text-align: center;">작성일</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td class="td_num txt-center">1</td>
-														<td class="txt_view txt-center flex-c-m"><span
-															class="state">완료</span></td>
-														<td><a id="showCloseDetail" class="txt_ellipsis"
-															data-index="0" data-brdinfono="118923340"
-															data-subinfono="">매우 만족</a></td>
-														<td class="td_write txt-center">swe******</td>
-														<td class="td_date txt-center">2018-11-07 11:38</td>
-													</tr>
-													<%-- 답변 클릭 시, 보이게 구현 --%>
-													<tr class="trQna" id="trQnqContDtl2">
-														<td colspan="6" class="qna_expand" id="dvQnqContDtl2"
-															style="display: none;">
-															<div class="question">
-																<span class="ico_question">답변</span> <span
-																	class="checkmark"></span>"답변완료일 시 작성됨"<br> <br>
-																<span class="adminAnswer">소중한 리뷰 감사드립니다~</span>&nbsp;|&nbsp;<span
-																	style="font-size: 16px; color: green;">2018-11-07
-																	11:38</span>
-															</div>
-														</td>
-													</tr>
-
-													<tr>
-														<td class="td_num txt-center">2</td>
-														<td class="txt_view txt-center flex-c-m"><span
-															class="state">미완료</span></td>
-														<td><a id="showCloseDetail" class="txt_ellipsis"
-															data-index="0" data-brdinfono="118923340"
-															data-subinfono="">언제 오나요? 배송 언제되나요?</a></td>
-														<td class="td_write txt-center">swe******</td>
-														<td class="td_date txt-center">2018-11-07 11:38</td>
-													</tr>
-
-
-													<tr>
-														<td class="td_num txt-center">3</td>
-														<td class="txt_view txt-center flex-c-m"><span
-															class="state">미완료</span></td>
-														<td><a id="showCloseDetail" class="txt_ellipsis"
-															data-index="0" data-brdinfono="118923340"
-															data-subinfono="">쉽지 않네요... 인생...</a></td>
-														<td class="td_write txt-center">swe******</td>
-														<td class="td_date txt-center">2018-11-07 11:38</td>
-													</tr>
-												</tbody>
-											</table>
-
-
-
-											<div class="s_paging_v2">
-												<!-- <a href="#this" class="prev" title="이전목록"><span class="hide">이전목록</span></a> -->
-												<span> <a href="#this" id="paging_page"
-													data-pagetype="page" data-pagenum="&lt;&lt;"
-													data-keyno="20181107094625">&lt;&lt;</a> <a href="#this"
-													id="paging_page" data-pagetype="page" data-pagenum="&lt;"
-													data-keyno="20181107094625">&lt;</a> <strong>1</strong> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="2" data-keyno="20181107094625">2</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="3" data-keyno="20181107085121">3</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="4" data-keyno="20181107080107">4</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="5" data-keyno="20181106234012">5</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="6" data-keyno="20181106212053">6</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="7" data-keyno="20181106184827">7</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="8" data-keyno="20181106174212">8</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="9" data-keyno="20181106162300">9</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="10" data-keyno="20181106151741">10</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="&gt;" data-keyno="20181107094625">&gt;</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="&gt;&gt;" data-keyno="20181107094625">&gt;&gt;</a>
-												</span>
-											</div>
-
-											<form name="pageForm"
-												action="/product/SellerProductDetail.tmall" method="get">
-												<input type="hidden" name="method" value="getProductQnAList">
-												<input type="hidden" name="brdInfoClfNo" value="2205838409">
-												<input type="hidden" name="curPage" value="1"> <input
-													type="hidden" name="qnaDtlsCd" value=""> <input
-													type="hidden" name="pageTypCd" value="first"> <input
-													type="hidden" name="secretYn" value="N"> <input
-													type="hidden" name="myQnaYn" value="N"> <input
-													type="hidden" name="isMart" value="N"> <input
-													type="hidden" name="isSohoPrd" value="false"> <input
-													type="hidden" name="keyNo" value=""> <input
-													type="hidden" name="pageList"
-													value="20181107113845|20181107094625|20181107085121|20181107080107|20181106234012|20181106212053|20181106184827|20181106174212|20181106162300|20181106151741|20181106132718|">
-												<input type="hidden" name="sellerMemId"
-													value="cheonhyang0707"> <input type="hidden"
-													name="ldispCtgrNo" value="1001340"> <input
-													type="hidden" name="isRenewYn" value="Y"> <input
-													type="hidden" name="pageSize" value="10"> <input
-													type="hidden" name="targetFrm" value="">
-											</form>
-										</div>
-									</div>
-
-									<%-- QnA 창 --%>
-									<div class="tab-pane fade" id="qna" role="tabpanel">
-										<div class="prdc_qna">
-											<div class="bbs_filter">
-												<button type="button" id="myQnA"
-													class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">내
-													문의</button>
-												<button type="button" id="allQnA"
-													class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">전체문의</button>
-												<button type="button" id="insertQnA"
-													class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
-													data-toggle="modal" data-target="#popLayWrap">문의하기</button>
-												<select name="selQnaDtlsCd" class="float-l"
-													id="selQnaDtlsCd"
-													style="float: left; height: 35px; font-size: 15px;">
-													<option value="" selected="selected">문의유형(전체)</option>
-													<option value="1">상품</option>
-													<option value="2">배송</option>
-													<option value="3">반품/취소</option>
-													<option value="4">교환/변경</option>
-													<option value="5">기타</option>
-												</select>
-												<!-- 동적으로 표시버튼 누르면 바뀌도록 제작 -->
-												<button type="button" id="secretQnA"
-													class="float-l flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">비밀글표시</button>
-												<%-- <button type="button" id="notSecretQnA" class="float-l flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">비밀글제외</button> --%>
-											</div>
-
-											<table class="prdc_bbs"
-												summary="이 표는 상품 Q&amp;A 및 내용이 번호,문의유형,문의/답변,작성자,작성일로 구성되어 있습니다.">
-												<colgroup>
-													<col width="5%">
-													<col width="5%">
-													<col width="15%">
-													<col width="45%">
-													<col width="15%">
-													<col width="15%">
-												</colgroup>
-												<thead>
-													<tr>
-														<th scope="col" style="text-align: center;">번호</th>
-														<th scope="col" style="text-align: center;">유형</th>
-														<th scope="col" style="text-align: center;">답변여부</th>
-														<th scope="col">제목</th>
-														<th scope="col" style="text-align: center;">작성자</th>
-														<th scope="col" style="text-align: center;">작성일</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td class="td_num txt-center">1</td>
-														<td class="td_section txt-center">배송</td>
-														<td class="txt_view txt-center flex-c-m"><span
-															class="state">완료</span></td>
-														<td><a id="showCloseDetail" class="txt_ellipsis"
-															data-index="0" data-brdinfono="118923340"
-															data-subinfono="">언제 오나요? 배송 언제되나요?</a></td>
-														<td class="td_write txt-center">swe******</td>
-														<td class="td_date txt-center">2018-11-07 11:38</td>
-													</tr>
-													<%-- 답변 클릭 시, 보이게 구현 --%>
-													<tr class="trQna" id="trQnqContDtl2">
-														<td colspan="6" class="qna_expand" id="dvQnqContDtl2"
-															style="display: none;">
-															<div class="question">
-																<span class="ico_question">답변</span> <span
-																	class="checkmark"></span>"답변완료일 시 작성됨"<br> <br>
-																<span class="adminAnswer">관리자에 의해 작성 됨</span>&nbsp;|&nbsp;<span
-																	style="font-size: 16px; color: green;">2018-11-07
-																	11:38</span>
-															</div>
-														</td>
-													</tr>
-
-													<tr>
-														<td class="td_num txt-center">2</td>
-														<td class="td_section txt-center ">배송</td>
-														<td class="txt_view txt-center flex-c-m"><span
-															class="state">미완료</span></td>
-														<td><a id="showCloseDetail" class="txt_ellipsis"
-															data-index="0" data-brdinfono="118923340"
-															data-subinfono="">언제 오나요? 배송 언제되나요?</a></td>
-														<td class="td_write txt-center">swe******</td>
-														<td class="td_date txt-center">2018-11-07 11:38</td>
-													</tr>
-
-
-													<tr>
-														<td class="td_num txt-center">3</td>
-														<td class="td_section txt-center">상품</td>
-														<td class="txt_view txt-center flex-c-m"><span
-															class="state">미완료</span></td>
-														<td><a id="showCloseDetail" class="txt_ellipsis"
-															data-index="0" data-brdinfono="118923340"
-															data-subinfono="">쉽지 않네요... 인생...</a></td>
-														<td class="td_write txt-center">swe******</td>
-														<td class="td_date txt-center">2018-11-07 11:38</td>
-													</tr>
-												</tbody>
-											</table>
-
-
-
-											<div class="s_paging_v2">
-												<!-- <a href="#this" class="prev" title="이전목록"><span class="hide">이전목록</span></a> -->
-												<span> <a href="#this" id="paging_page"
-													data-pagetype="page" data-pagenum="&lt;&lt;"
-													data-keyno="20181107094625">&lt;&lt;</a> <a href="#this"
-													id="paging_page" data-pagetype="page" data-pagenum="&lt;"
-													data-keyno="20181107094625">&lt;</a> <strong>1</strong> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="2" data-keyno="20181107094625">2</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="3" data-keyno="20181107085121">3</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="4" data-keyno="20181107080107">4</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="5" data-keyno="20181106234012">5</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="6" data-keyno="20181106212053">6</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="7" data-keyno="20181106184827">7</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="8" data-keyno="20181106174212">8</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="9" data-keyno="20181106162300">9</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="10" data-keyno="20181106151741">10</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="&gt;" data-keyno="20181107094625">&gt;</a> <a
-													href="#this" id="paging_page" data-pagetype="page"
-													data-pagenum="&gt;&gt;" data-keyno="20181107094625">&gt;&gt;</a>
-												</span>
-											</div>
-
-											<form name="pageForm"
-												action="/product/SellerProductDetail.tmall" method="get">
-												<input type="hidden" name="method" value="getProductQnAList">
-												<input type="hidden" name="brdInfoClfNo" value="2205838409">
-												<input type="hidden" name="curPage" value="1"> <input
-													type="hidden" name="qnaDtlsCd" value=""> <input
-													type="hidden" name="pageTypCd" value="first"> <input
-													type="hidden" name="secretYn" value="N"> <input
-													type="hidden" name="myQnaYn" value="N"> <input
-													type="hidden" name="isMart" value="N"> <input
-													type="hidden" name="isSohoPrd" value="false"> <input
-													type="hidden" name="keyNo" value=""> <input
-													type="hidden" name="pageList"
-													value="20181107113845|20181107094625|20181107085121|20181107080107|20181106234012|20181106212053|20181106184827|20181106174212|20181106162300|20181106151741|20181106132718|">
-												<input type="hidden" name="sellerMemId"
-													value="cheonhyang0707"> <input type="hidden"
-													name="ldispCtgrNo" value="1001340"> <input
-													type="hidden" name="isRenewYn" value="Y"> <input
-													type="hidden" name="pageSize" value="10"> <input
-													type="hidden" name="targetFrm" value="">
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-						<span class="stext-107 cl6 p-lr-25"> SKU: JAK-01 </span> <span
-							class="stext-107 cl6 p-lr-25"> Categories: Jacket, Men </span>
-					</div>
-				</div>
-			</div>
+		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
+			<span class="stext-107 cl6 p-lr-25">SKU: JAK-01</span>
+			<span class="stext-107 cl6 p-lr-25">Categories: Jacket, Men</span>
 		</div>
+
 	</section>
 
 
@@ -1208,203 +655,21 @@
 		</div>
 	</section>
 
-	<div id="popLayWrap2" class="modal fade" role="dialog">
-		<form name="frmMain" method="post">
-			<div class="modal-dialog modal-lg"
-				style="width: 600px; height: 375px;">
-				<div class="modal-content">
-					<!-- 팝업 내용입력부분 ============================= -->
-					<div class="modal-header">
-						<h2 class="modal-title" style="display: inline;">리뷰작성</h2>
-						<div>
-							<br>
-						</div>
-					</div>
-					<div class="modal-body">
-						<table class="tbl">
-							<colgroup>
-								<col style="width: 25%">
-								<col style="width: 75%">
-							</colgroup>
-							<tbody>
-								<tr>
-									<th scope="row" class="first" style="text-align: center;"><label
-										for="qnaDtlsCd">평점 선택</label></th>
-									<td class="alignL">
-										<div class="select_wrap">
-											<span class="wrap-rating fs-18 cl11 pointer"
-												style="font-size: 20px;"> <i
-												class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
-												<i class="item-rating pointer zmdi zmdi-star-outline"
-												id=star></i> <i
-												class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
-												<i class="item-rating pointer zmdi zmdi-star-outline"
-												id=star></i> <i
-												class="item-rating pointer zmdi zmdi-star-outline" id=star></i>
-												<input class="dis-none" type="number" name="rating"
-												id="reviewScore" value="">
-											</span>
-										</div>
-									</td>
+	
+	<%-- 리뷰 작성 Modal include 시작 --%>
+	<%@include file="/iceland/../includes/reviewModal.jsp"%>
+	<%-- 리뷰 작성 Modal include 끝 --%>
+	
+	<%-- 문의 작성 Modal include 시작 --%>
+	<%@include file="/iceland/../includes/qnaModal.jsp"%>
+	<%-- 문의 작성 Modal include 끝 --%>
+	
+	
 
-								</tr>
-								<tr>
-									<th scope="row" class="first" style="text-align: center;"><label
-										for="brdInfoCont">내용</label></th>
-									<td class="alignL"><br> <textarea name="brdInfoCont"
-											id="brdInfoCont" rows="10" cols="67"
-											placeholder="리뷰 평점을 선택하시고, 구매평을 자유롭게 남겨주세요"></textarea></td>
-								</tr>
-								<tr>
-									<th scope="row" class="myInfoHeader"
-										style="text-align: center;">비밀글 여부</th>
-									<td class="alignL"><br>
-										<div class="select_wrap">
-											<span for="qnaDtlsCd6" class="qnaDtlsCd6"><input
-												type="radio" name="qnaDtlsCd6" class="qnaDtlsCd6"
-												value="true">&nbsp;사용</span>&nbsp;&nbsp; <span
-												for="qnaDtlsCd7" class="qnaDtlsCd7"><input
-												type="radio" name="qnaDtlsCd7" class="qnaDtlsCd7"
-												value="false">&nbsp;미사용</span>&nbsp;&nbsp;
-										</div> <br></td>
-								</tr>
-								<%-- 비밀글 사용여부에 따라 비밀번호 활성 / 비활성 --%>
-								<tr>
-									<th scope="row" class="first" style="text-align: center;"><label
-										for="brdInfoCont">비밀번호</label></th>
-									<td class="alignL"><input type="password"
-										id="reviewPassword" name="reviewPassword"></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="modal-footer" style="align-items: center;">
-						<input type="submit" id="addReview"
-							class="flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
-							value="작성"
-							style="border: none; display: inline; text-align: center;">
-						<button type="button" id="cancelReview"
-							class="flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
-							style="border: none; display: inline;" data-dismiss="modal">취소</button>
-					</div>
+<%@include file="/iceland/../includes/footer.jsp"%>
+<%@include file="/iceland/../includes/QuickMenu.jsp"%>
+<!--===============================================================================================-->	
 
-				</div>
-			</div>
-		</form>
-	</div>
-
-
-	<%-- 후기 작성 Modal 창 --%>
-	<div id="popLayWrap" class="modal fade" role="dialog">
-		<form name="frmMain" method="post">
-			<div class="modal-dialog modal-lg"
-				style="width: 690px; height: 375px;">
-				<div class="modal-content">
-					<!-- 팝업 내용입력부분 ============================= -->
-					<div class="modal-header">
-						<h2 class="modal-title" style="display: inline;">문의하기(Q&A)</h2>
-						<div>
-							<br>
-						</div>
-					</div>
-					<div class="modal-body">
-						<table class="tbl">
-							<colgroup>
-								<col style="width: 25%">
-								<col style="width: 75%">
-							</colgroup>
-							<tbody>
-								<tr>
-									<th scope="row" class="first" style="text-align: center;"><label
-										for="qnaDtlsCd">문의유형</label></th>
-									<td class="alignL">
-										<div class="select_wrap">
-											<span for="qnaDtlsCd1" class="qnaDtlsCd1"><input
-												type="radio" name="qnaDtlsCd1" class="qnaDtlsCd1" value="01">&nbsp;상품</span>&nbsp;&nbsp;
-											<span for="qnaDtlsCd2" class="qnaDtlsCd2"><input
-												type="radio" name="qnaDtlsCd2" class="qnaDtlsCd2" value="02">&nbsp;배송</span>&nbsp;&nbsp;
-											<span for="qnaDtlsCd3" class="qnaDtlsCd3"><input
-												type="radio" name="qnaDtlsCd3" class="qnaDtlsCd3" value="03">&nbsp;반품/취소</span>&nbsp;&nbsp;
-											<span for="qnaDtlsCd4" class="qnaDtlsCd4"><input
-												type="radio" name="qnaDtlsCd4" class="qnaDtlsCd4" value="04">&nbsp;교환/변경</span>&nbsp;&nbsp;
-											<span for="qnaDtlsCd5" class="qnaDtlsCd5"><input
-												type="radio" name="qnaDtlsCd5" class="qnaDtlsCd5" value="05">&nbsp;기타</span>
-										</div> <br>
-									</td>
-								</tr>
-
-
-								<tr>
-									<th scope="row" class="first" style="text-align: center;"><label
-										for="brdInfoCont">내용</label></th>
-									<td class="alignL"><textarea name="brdInfoCont"
-											id="brdInfoCont" rows="10" cols="67"
-											placeholder="문의유형을 선택해 주시고,궁금하신 내용을 작성해 주세요."></textarea></td>
-								</tr>
-
-								<tr>
-									<th scope="row" class="myInfoHeader"
-										style="text-align: center;">이메일</th>
-									<td>
-										<div>
-											<br> <input id="email1" name="email1" class="mailId"
-												value="" type="text">&nbsp;@&nbsp;<input id="email2"
-												name="email2" class="mailAddress" readonly="readonly"
-												value="" type="text"> <select id="email3"
-												style="vertical-align: middle;">
-												<option value="" selected="selected">-이메일 선택 -</option>
-												<option value="naver.com">naver.com</option>
-												<option value="daum.net">daum.net</option>
-												<option value="nate.com">nate.com</option>
-												<option value="hotmail.com">hotmail.com</option>
-												<option value="yahoo.com">yahoo.com</option>
-												<option value="empas.com">empas.com</option>
-												<option value="korea.com">korea.com</option>
-												<option value="dreamwiz.com">dreamwiz.com</option>
-												<option value="gmail.com">gmail.com</option>
-												<option value="etc">직접입력</option>
-											</select><br> <span class="sub_notice"
-												style="font-size: 20px; color: blue;">* 답변완료시 등록한
-												이메일로 알려드립니다.</span><br>
-										</div>
-									</td>
-								</tr>
-
-								<tr>
-									<th scope="row" class="myInfoHeader"
-										style="text-align: center;">비밀글 여부</th>
-									<td class="alignL">
-										<div class="select_wrap">
-											<span for="qnaDtlsCd6" class="qnaDtlsCd6"><input
-												type="radio" name="qnaDtlsCd6" class="qnaDtlsCd6"
-												value="true">&nbsp;사용</span>&nbsp;&nbsp; <span
-												for="qnaDtlsCd7" class="qnaDtlsCd7"><input
-												type="radio" name="qnaDtlsCd7" class="qnaDtlsCd7"
-												value="false">&nbsp;미사용</span>&nbsp;&nbsp;
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="modal-footer" style="align-items: center;">
-						<input type="submit" id="addQnA"
-							class="flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
-							value="작성"
-							style="border: none; display: inline; text-align: center;">
-						<button type="button" id="cancelQnA"
-							class="flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
-							style="border: none; display: inline;" data-dismiss="modal">취소</button>
-					</div>
-
-				</div>
-			</div>
-		</form>
-	</div>
-
-	<%@include file="/iceland/../includes/footer.jsp"%>
-	<%@include file="/iceland/../includes/QuickMenu.jsp"%>
-	<!--===============================================================================================-->
 	<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
@@ -1420,6 +685,14 @@
 				dropdownParent : $(this).next('.dropDownSelect2')
 			});
 		})
+	</script>
+	<script>
+		function changeProductCode() {
+			var cloth = $("#clothSize option:selected").val();
+			var pants = $("#pantsSize option:selected").val();
+			var imageRef = ${selectAllById.get(1).imageRef};
+			var str = imageRef.substring(str.lastIndexOf('/'));
+		};
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/vendor/daterangepicker/moment.min.js"></script>
@@ -1512,11 +785,5 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
-	<script type="text/javascript">
-		$('.prdc_qna').css('display', 'none');
-		$($('.nav-item')[3]).on('click', function() {
-			$('.prdc_qna').css('display', 'block');
-		});
-	</script>
 </body>
 </html>

@@ -215,4 +215,67 @@ public class CustomerServiceImpl implements CustomerService {
 	public void modifyInfo(Customer customer) throws Exception {
 		customerDao.modifyInfo(customer);
 	}
+	
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, ModelAndView mav) {
+		
+		Cookie loginId = null;
+		Cookie[] cookies = request.getCookies();
+		ArrayList<Cookie> cookiesCart = new ArrayList<Cookie>();
+		
+		int cnt = 0;
+		for (Cookie cookie : cookies) {
+			if(cookie.getName().equals("loginId")) {
+				loginId = cookie;
+				cookie.getValue();
+				// product_Code,Customer_id,cart_num
+			}else if(cookie.getName().equals("cart")) {
+				cookiesCart.add(cookie);
+				cnt++;
+			}
+		}
+		
+		// 기존 DB
+		List<HashMap<String,Object>> list = cartDao.listCartForLogin(loginId.getValue());
+		
+		// 다른내용 판단 
+		/*
+		 * 상품 제목, 상품 수량 판단
+		 * */
+		
+		
+		for (HashMap<String, Object> hashMap : list) {
+			
+			boolean willDelete = true;
+			String nameForDelete = (String) hashMap.get("PRODUCT_NAME");
+			
+			for(int i = 0; i < cnt; i++) {
+				if(cookiesCart.get(i).equals(hashMap.get("PRODUCT_NAME"))) {
+					if(cookiesCart.get(i).equals(hashMap.get("PRODUCT_COUNT"))) {
+						// 상품제목 O, 상품수량 O
+						willDelete = false;
+						
+					}else {
+						// 상품제목 O, 상품수량 X
+						// count
+						cartDao.updateCart((String) hashMap.get("CART_NUM"),null);
+						willDelete = false;
+					}
+				}else {
+					// 상품제목 X
+					//cookiesCart.get(i).("PRODUCT_CODE")
+					cartDao.createCart(null,null, loginId.getValue());
+					willDelete = false;
+					
+				}
+				
+				if(willDelete) {
+					// 삭제
+					cartDao.deleteCart((String) hashMap.get("CART_NUM"));
+				}
+			}
+		}
+		
+		System.out.println(list.get(0));
+		return null;
+	}
 }

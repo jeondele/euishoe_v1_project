@@ -73,7 +73,7 @@ public class MyBatisQnaTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void testQnaTest() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -160,6 +160,15 @@ public class MyBatisQnaTest {
 		sqlSession.delete(NAMESPACE + "deleteQna", qnaNum);
 		sqlSession.commit();
 		logger.debug("삭제 완료!");
+		sqlSession.close();
+	}
+	
+	@Test
+	public void testCount() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int count = sqlSession.selectOne(NAMESPACE + "countBySearch", 1);
+		logger.debug(count);
+		logger.debug("조회 완료!");
 		sqlSession.close();
 	}
 	

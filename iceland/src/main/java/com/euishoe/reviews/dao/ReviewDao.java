@@ -19,8 +19,8 @@ public interface ReviewDao {
 	//댓글 작성
 	public void create() throws Exception;
 	
-	//조회
-	public List<Review> reviewListAll(int productNum, Params params) throws Exception;
+	//전체(동적) 목록 조회
+	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception;
 	
 	//특정 댓글 조회(사용자)
 	public List<Review> reviewListByCustomerId(int productNum, String customerId, Params params) throws Exception;
@@ -31,9 +31,6 @@ public interface ReviewDao {
 	//삭제
 	public void deleteReview(int reviewNum) throws Exception;
 	
-	//페이징 처리
-	public List<Review> searchReview(Params params) throws Exception;
-	
 	//조회 목록 개수
-	public int countBySearch(Params params) throws Exception;
+	public int countBySearch(int productNum) throws Exception;
 }

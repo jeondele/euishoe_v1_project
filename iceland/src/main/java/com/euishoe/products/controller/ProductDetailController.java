@@ -41,12 +41,13 @@ public class ProductDetailController implements Controller {
 		String qnaisLock = (String)request.getAttribute("qnaisLock");
 		String customerId = (String)request.getAttribute("customerId");
 		int typeNum = (int)request.getAttribute("typeNum");
+		int reviewScore = (int)request.getAttribute("reviewScore");
+		
 		List<Review> reviewlist = null;
 		List<Map<String, Object>> qnalist = null;
 		params = new Params(1, 5, 1, null, null);
-		
 		try {
-			reviewlist = productService.reviewListAll(productNum, params);
+			reviewlist = productService.reviewDynamicReviewList(productNum, customerId, reviewScore, params);
 			qnalist = productService.qnaDynamicListAll(productNum, qnaisLock, customerId, typeNum, params);
 			
 			System.out.println("1." + reviewlist);

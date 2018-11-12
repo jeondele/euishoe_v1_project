@@ -28,17 +28,18 @@ public class MybatisReviewDao implements ReviewDao {
 	@Override
 	public void create() throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		
 	}
 
 	@Override
-	public List<Review> reviewListAll(int productNum, Params params) throws Exception {
+	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("productNum", productNum);
+		param.put("customerId", customerId);
+		param.put("reviewScore", reviewScore);
 		param.put("listSize", params.getListSize());
 		param.put("page", params.getPage());
-		List<Review> list = sqlSession.selectList(NAMESPACE+"selectAllReview", param);
+		List<Review> list = sqlSession.selectList(NAMESPACE+"selectDynamicReviewList", param);
 		return list;
 	}
 
@@ -76,16 +77,13 @@ public class MybatisReviewDao implements ReviewDao {
 	}
 
 	@Override
-	public List<Review> searchReview(Params params) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public int countBySearch(int productNum) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int count = sqlSession.selectOne(NAMESPACE + "countBySearch", productNum);
+		return count;
 	}
 
-	@Override
-	public int countBySearch(Params params) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 
 }
