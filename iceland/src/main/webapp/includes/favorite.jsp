@@ -40,7 +40,6 @@
   $(document).ready(function() {
 	  
 	  
-	    console.log(1);
 	  
 		//var obj = decodeURIComponent(getCookie('carts'));
 		
@@ -86,6 +85,7 @@
             }
             $(e.currentTarget).parents()[0].remove();
             $('#wishButton').attr('data-notify',testNum - 2);
+            refreshwish();
 
         });
 		// row 뿌리기

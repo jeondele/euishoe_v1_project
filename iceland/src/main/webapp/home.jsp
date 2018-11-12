@@ -728,6 +728,8 @@ function sumToMakeJsonForWish(){
 	  */
 	  
 	  }else{
+		  
+		// 수정 사항  
 	  $(e.currentTarget).attr('class',"btn-addwish-b2 dis-block pos-relative js-addwish-b2");
 	  
 	  console.log(e);
@@ -755,8 +757,8 @@ function sumToMakeJsonForWish(){
           }
       }
       
-      $(e.currentTarget).parents()[0].remove();
       $('#wishButton').attr('data-notify',testNum - 2);
+      
       refreshwish();
       
 	  }
