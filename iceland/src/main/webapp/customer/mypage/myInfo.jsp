@@ -405,22 +405,15 @@ window.onload = function () {
 	$('#name').attr('value', userName);
 	
  	// 요청 Url + 추가적으로 보내는 Json Data, 리턴결과값(json 다루는 형식), 결과값 형식  
- 	$.post("/iceland/customer/mypage/myinfo.es", { "customerId": loginId },    
+ 	/* $.post("/iceland/customer/mypage/myinfo.es", { "customerId": loginId },    
 	     function(data){ 
 			console.log(data.customerId);
 			var jsonCustomer = '${jsonCustomer}';
 			console.log('ㅠㅠㅠㅠㅠ찍혀?'+jsonCustomer);
-	}, "json");   
+	}, "json");   */ 
 
 };
 
-function sendModifyInfo(){
-	var passwd = $('#passwd').attr('value');
-	var newPasswd = $('#new_passwd').attr('value');
-	var newPassConfirm = $('#new_passwd_confirm').attr('value');
-	var postNum = $('postNum').attr('value');
-}
-		
 </script>
 
 
@@ -443,7 +436,7 @@ function sendModifyInfo(){
 					<div class="m-l--200 m-r--300 m-lr-0-xl">
 						<div class="-frame">
 							<div class="wrap-table-shopping-cart">
-						        <form id="editForm" name="editForm" action="/iceland/customer/mypage/myinfo.es" method="post" enctype="multipart/form-data">
+						        <form id="editForm" name="editForm" action="/iceland/customer/mypage/myinfo.es" method="POST">
          
             
           <div class="xans-element- xans-member xans-member-edit">
@@ -464,7 +457,7 @@ function sendModifyInfo(){
                   <tr>
                     <th scope="row" class="myInfoHeader">아이디</th>
                     <td>
-                    	<input id="member_id" name="member_id" class="inputTypeText" readonly="readonly"  type="text">
+                    	<input id="member_id" name="member_id" class="inputTypeText" readonly="readonly" type="text">
                     </td>
                   </tr>
                   <tr>
@@ -499,14 +492,14 @@ function sendModifyInfo(){
                       <input id="postNum" name="postNum" class="inputTypeText" placeholder="우편번호" readonly="readonly" maxlength="14" type="text" style="display:inline">
                       <input type="button" value="주소찾기" onclick="sample2_execDaumPostcode()" class="flex-c-m stext-101 cl2 size-210-1 bg8 bor14 hov-btn3 p-lr-5 trans-04 pointer myInfoButton" style="display:inline"><br> 
                       <input id="address" name="address"  class="inputTypeText" placeholder="도로명주소" readonly="readonly" type="text" style="display:inline"> 
-                      <input id="detail_address" name="addr2" class="inputTypeText" placeholder="상세주소" value="" type="text" style="display:inline">
+                      <input id="detail_address" name="detailAddress" class="inputTypeText" placeholder="상세주소" value="" type="text" style="display:inline">
                     </td>
                   </tr>
 
                   <tr class="">
                     <th scope="row" class="myInfoHeader">휴대전화</th>
                     <td>
-                        <input id="mobile" name="mobile[]" maxlength="11" value="" type="text" >
+                        <input id="phoneNum" name="phoneNum" maxlength="11" value="" type="text" >
                     </td>
                   </tr>
                   <!-- 
@@ -523,7 +516,7 @@ function sendModifyInfo(){
                     <td>
                     	<input id="email" name="email" class="mailId" value="" type="text" style="display:inline">
                     	@<!-- <input id="email2" name="email2" class="mailAddress" readonly="readonly" value=""type="text"> -->
-                      	<select id="emailHost">
+                      	<select id="emailHost" name="emailHost">
 	                        <option selected>-이메일 선택 -</option>
 	                        <option>naver.com</option>
 	                        <option>daum.net</option>
