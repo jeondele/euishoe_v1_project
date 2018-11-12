@@ -32,7 +32,11 @@ public class CustomerInfoController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		customerService = (CustomerService)factory.getBean(CustomerServiceImpl.class);
 		// 폼으로 이동
-		if(request.getParameter("member_id") != null) {
+		if(request.getParameter("member_id") == null) {
+			System.out.println("아이디값이없다");
+			mav.setView("/customer/mypage/myInfo.jsp");
+			return mav;
+		}else{
 			Customer customer;
 			String customerId = (String)request.getParameter("member_id").trim();
 			System.out.println("아이디값은?"+customerId);
@@ -62,14 +66,14 @@ public class CustomerInfoController implements Controller {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else{
-			System.out.println("아이디값이없다");
-			try {
-				response.sendRedirect("/iceland/customer/mypage/myInfo.jsp");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			mav.setView("/customer/mypage/myInfo.jsp");
+//			try {
+//				response.sendRedirect("/iceland/customer/mypage/myInfo.jsp");
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			return mav;
 			//mav.setView("/iceland/customer/mypage/myInfo.jsp");
 			//return mav;
 		}
@@ -92,9 +96,6 @@ public class CustomerInfoController implements Controller {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-        mav.setView("/customer/mypage/myInfo.jsp");
-		
-		return mav;
 	}
 
 }
