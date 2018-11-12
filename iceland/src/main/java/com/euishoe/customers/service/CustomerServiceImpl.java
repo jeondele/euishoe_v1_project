@@ -278,4 +278,9 @@ public class CustomerServiceImpl implements CustomerService {
 		System.out.println(list.get(0));
 		return null;
 	}
+
+	@Override
+	public Customer getCustomerInfo(String customerId) throws Exception {
+		return customerDao.getCustomerInfo(customerId);
+	}
 }

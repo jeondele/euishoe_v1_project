@@ -34,6 +34,9 @@ public interface CustomerService {
 	
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, ModelAndView mav);	
 	
+	// 회원정보get by id
+	public Customer getCustomerInfo(String customerId) throws Exception;
+	
 	// 회원정보 수정
 	public void modifyInfo(Customer customer) throws Exception;
 }
