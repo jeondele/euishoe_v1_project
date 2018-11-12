@@ -7,9 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.euishoe.common.web.Params;
 import com.euishoe.qnas.dto.Qna;
-
-import kr.or.kosta.blog.common.web.Params;
 
 public class MybatisQnaDao implements QnaDao {
 	

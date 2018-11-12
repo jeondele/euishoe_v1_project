@@ -1,4 +1,4 @@
-package kr.or.kosta.blog.common.web;
+package com.euishoe.common.web;
 
 /**
  * 페이징 처리에 필요한 정보 연산 처리

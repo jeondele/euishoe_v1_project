@@ -233,6 +233,8 @@
 							<div class="wrap-slick3-dots"></div>
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 							<input type="hidden" id="productCode" value="">
+							<input type="hidden" id="pantsCode" value="">
+							<input type="hidden" id="jacketCode" value="">
 							<div class="slick3 gallery-lb">
 								<c:forEach items="${selectAllById}" var="product">
 								<c:set var ="imageRef" value="${product.imageRef}"/>
@@ -290,7 +292,7 @@
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select id="clothSize" onclick="changeProductCode();" class="js-select2" name="time">
+										<select id="clothSize" class="js-select2" name="time">
 											<option>Choose an option</option>
 											<option value="s">Size S</option>
 											<option value="m">Size M</option>
@@ -307,7 +309,7 @@
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select id="pantsSize" onclick="changeProductCode();" class="js-select2" name="time">
+										<select id="pantsSize" class="js-select2" name="time">
 											<option>Choose an option</option>
 											<option value="26">26inch</option>
 											<option value="28">28inch</option>
@@ -687,12 +689,21 @@
 		})
 	</script>
 	<script>
-		function changeProductCode() {
+		$('#clothSize, #pantsSize').on('change', function(e) {
 			var cloth = $("#clothSize option:selected").val();
 			var pants = $("#pantsSize option:selected").val();
-			var imageRef = ${selectAllById.get(1).imageRef};
-			var str = imageRef.substring(str.lastIndexOf('/'));
-		};
+			var imageRef = '${selectAllById.get(1).imageRef}';
+			var str = imageRef.substring(imageRef.lastIndexOf('/'));
+			var productName = str.split('$')[0].replace("/","").replace("_","$");
+			var productBrand =  productName.split('$')[0];
+			var productColor =  productName.split('$')[1];
+			var productCode = productBrand+'$'+ cloth +'$'+ pants +'$'+ productColor;
+			var pantsCode = productBrand+'$'+ cloth +'$'+ productColor;
+			var jacketCode = productBrand+'$'+ pants +'$'+ productColor;
+			$('#productCode').val(productCode);
+			$('#pantsCode').val(pantsCode);
+			$('#jacketCode').val(jacketCode);
+		});
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/vendor/daterangepicker/moment.min.js"></script>

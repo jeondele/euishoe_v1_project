@@ -9,10 +9,9 @@ package com.euishoe.qnas.service;
 import java.util.List;
 import java.util.Map;
 
+import com.euishoe.common.web.Params;
 import com.euishoe.qnas.dao.QnaDao;
 import com.euishoe.qnas.dto.Qna;
-
-import kr.or.kosta.blog.common.web.Params;
 
 public class QnaServiceImpl implements QnaService {
 	private QnaDao qnaDao;

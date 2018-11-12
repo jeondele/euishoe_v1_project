@@ -160,6 +160,31 @@
 			FROM   product_infos
 			WHERE  product_num = #{productNum}
 	</select>
+	
+	
+	<select id="filter" parameterType="FilterParam" resultType="map">
+			SELECT pi.product_num, 
+                       product_list_num, 
+                       product_name, 
+                       product_list_price, 
+                       product_brief_information, 
+                       product_manufacturer, 
+                       product_release_date, 
+                       product_origin, 
+                       color_code, 
+                       product_hitcount,
+                       product_tpo,
+                       m.image_ref,
+                       rs.avg_score star_score 
+                FROM   product_infos pi 
+                       left outer join (SELECT p.product_num, Avg(r.review_score) avg_score 
+                                          FROM   reviews r join products p 
+                                                   ON r.product_num = p.product_num 
+                                          GROUP  BY p.product_num) rs 
+                                      ON pi.product_num = rs.product_num 
+                         join images m ON ( m.product_num = pi.product_num)
+                where  product_list_num is not null and m.image_ref like '%main%'
+	</select>
 
 	<insert id="create" parameterType="com.euishoe.customers.dto.Customer">
 		INSERT INTO products 

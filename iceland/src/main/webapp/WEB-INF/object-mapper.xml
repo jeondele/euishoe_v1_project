@@ -5,7 +5,6 @@
 		<property name="configLocation" value="mybatis-config.xml"/>
 		<property name="environment" value="development"/>
 	</bean>
-	
 <!-- Dao 매핑 -->
 	<!-- cart 맵핑 -->
 	<bean type="dao" name="cartDao" class="com.euishoe.carts.dao.MybatisCartDao">
@@ -120,7 +119,6 @@
 	<bean type="service" name="deliveryService" class="com.euishoe.deliveries.service.DeliveryServiceImpl">
 		<property name="deliveryDao" ref="deliveryDao"/>
 	</bean>
-=======
 	<!-- qna 맵핑 -->
 	<bean type="service" name="qnaService" class="com.euishoe.qnas.service.QnaServiceImpl">
 		<property name="qnaDao" ref="qnaDao"/>

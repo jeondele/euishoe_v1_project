@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.euishoe.common.controller.AjaxController;
 import com.euishoe.common.factory.XMLObjectFactory;
+import com.euishoe.common.web.PageBuilder;
+import com.euishoe.common.web.Params;
 import com.euishoe.reviews.dto.Review;
 import com.euishoe.reviews.service.ReviewService;
 import com.euishoe.reviews.service.ReviewServiceImpl;
-
-import kr.or.kosta.blog.common.web.PageBuilder;
-import kr.or.kosta.blog.common.web.Params;
 
 /**
  * 조건 검색에 따른 비동기 요청 처리 컨트롤러
