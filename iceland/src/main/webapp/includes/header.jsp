@@ -123,7 +123,7 @@ var getCookie = function(name) {
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-favorite" data-notify="2">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-favorite" id="wishButton" data-notify="2">
 							<i class="zmdi zmdi-favorite-outline"></i>
 						</div>
 					</div>

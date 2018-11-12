@@ -20,7 +20,7 @@
 				</ul>
 				
 				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
+					<div class="header-cart-total w-full p-tb-40 cart">
 						Total: $75.00
 					</div>
 
@@ -60,7 +60,7 @@
 			
 			var str = "";
 			
-			  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img" value='+ prior +'>';
+			  str += '<li class="header-cart-item flex-w flex-t m-b-12 cart"><div class="header-cart-item-img cart" value='+ prior +'>';
 			  str += '<img src="' + jsonObj.image_ref + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
 			  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + jsonObj.PRODUCT_NAME + '</a>'
 			  str += '<span class="header-cart-item-info">' + jsonObj.product_count + ' x ' + jsonObj.PRODUCT_PRICE + '</span></div></li>';		
@@ -71,14 +71,13 @@
 		}
 		
 		$('#cartButton').attr('data-notify',prior - 1);
-		$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
-	  
+		$('.header-cart-total.w-full.p-tb-40.cart')[0].innerText = ("Total: " + checksum) + '원';
+		
 		// 지우기
-		$('.header-cart-item-img').unbind("click").on('click',function(e){
+		$('.header-cart-item-img.cart').unbind("click").on('click',function(e){
             var deleteNum = parseInt($(e.currentTarget).attr('value'));
             setCookie('cart' + deleteNum,'',0);
             
-            console.log(1);
             // 지운 후 정렬 
             var testNum = deleteNum + 1;
             
