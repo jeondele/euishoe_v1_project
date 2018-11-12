@@ -40,7 +40,8 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/iceland/order/shopping-cart.css">
-
+  <!--===============================================================================================-->
+  <script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 
 <style>
 .nav-tabs{
@@ -87,7 +88,7 @@ height: 40px;
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
-							<table class="table-shopping-cart">
+							<table class="table-shopping-cart" id="tableCart">
 								<tr class="table_head">
 									<th class="column-1">My 주문</th>
 									<th class="column-2"></th>
@@ -105,57 +106,8 @@ height: 40px;
 									<th class="column-5 txt-center">수량</th>
 									<th class="column-6 txt-center">총금액</th>
 								</tr>
-								<tr class="table_row">
-									<td class="column-1 txt-center">
-										<input type="checkbox" value="None" class="roundedOne" name="check" checked />
-									</td>
-									<td class="column-2 txt-center">
-										<div class="how-itemcart1"><img src="/iceland/images/item-cart-04.jpg" alt="IMG"/></div>
-									</td>
-									<td class="column-3 txt-center">Fresh Strawberries</td>
-									<td class="column-4 txt-center">3600</td>
-									<td class="column-5 txt-center">
-										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product"	type="number" name="num-product1" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-									</td>
-									<td class="column-6 txt-center">3600</td>
-								</tr>
-
-								<tr class="table_row">
-									<td class="column-1 txt-center">
-										<input type="checkbox" value="None" class="roundedOne" id="" name="check" checked />
-									</td>
-									<td class="column-2 txt-center">
-										<div class="how-itemcart1">
-											<img src="/iceland/images/item-cart-05.jpg" alt="IMG">
-										</div>
-									</td>
-									<td class="column-3 txt-center">Lightweight Jacket</td>
-									<td class="column-4 txt-center">1600</td>
-									<td class="column-5 txt-center">
-										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-									</td>
-									<td class="column-6 txt-center">1600</td>
-								</tr>
+								
+								
 							</table>
 						</div>
 
@@ -334,8 +286,7 @@ height: 40px;
 
   <%@include file="/iceland/../includes/QuickMenu.jsp"%>
 
-  <!--===============================================================================================-->
-  <script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
+
   <!--===============================================================================================-->
   <script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
   <!--===============================================================================================-->
@@ -412,16 +363,11 @@ height: 40px;
 	function sumUp(){
 		var sum = 0;
 		var num = 0;
-		$('.column-5').each(function(index,item){
-			if(index !== 0){
-				num = $(item).text();
-				sum += parseInt(num);
-			}
-		});
-
-		$('.mtext-110').each(function(index,item){
-				$(item).text(sum);
-		})
+		for(var i = 1; i < $('.column-4.txt-center').length; i++){
+			sum += parseInt($('.column-4.txt-center')[1].innerText.trim());
+		}
+		$('.mtext-110.cl2')[0].innerText = sum;
+		$('.mtext-110.cl2')[1].innerText = (sum + parseInt($('.stext-110.cl2')[7].innerText.trim().substring(0,$('.stext-110.cl2')[7].innerText.trim().length -2)));
 	};
 	
 	$('#delete_All').bind('click',function(e){
@@ -432,7 +378,75 @@ height: 40px;
 		sumUp();
 	});
 	
-	sumUp();
+	
+	
+
+	 $(document).ready(function() {
+		    
+			/*if(getQuerystring(productCode)){*/
+			var prior = 1;
+			var checksum = 0; 
+			
+			while(getCookie('cart' + prior)){
+				var obj = decodeURIComponent(getCookie('cart' + prior)).substring(1,decodeURIComponent(getCookie('cart' + prior)).length - 1);
+				var jsonObj = JSON.parse(obj);
+				var jsonProductSize = jsonObj.PRODUCT_CODE || '';
+				
+				if(jsonProductSize != ''){
+					jsonProductSize = '(상의 : ' + jsonObj.PRODUCT_CODE.split('$')[1] + ', 하의 : ' + jsonObj.PRODUCT_CODE.split('$')[2] + ')';
+				}
+				console.log(prior);
+				
+				var str = "";
+				
+				str += '<tr class="table_row"><td class="column-1 txt-center"><input type="checkbox" value="None" class="roundedOne" name="check" checked />';
+				str += '</td><td class="column-2 txt-center"><div class="how-itemcart1" value="' + prior + '"><img src="' + jsonObj.image_ref + '" alt="IMG"/></div>';
+				str += '</td><td class="column-3 txt-center">' + jsonObj.PRODUCT_NAME + '<br>' + jsonProductSize + '</td><td class="column-4 txt-center">' + jsonObj.PRODUCT_PRICE + '</td>';
+				str += '<td class="column-5 txt-center"><div class="wrap-num-product flex-w m-l-auto m-r-auto">'
+				str += '<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-minus"></i></div>'
+                str += '<input class="mtext-104 cl3 txt-center num-product"	type="number" name="num-product1" value="' + jsonObj.product_count + '">';
+                str += '<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-plus"></i>';
+				str += '</div></div></td><td class="column-6 txt-center">' + (jsonObj.PRODUCT_PRICE * jsonObj.product_count) + '</td></tr>'
+				$('#tableCart').append(str);
+
+				  checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
+				  prior++;
+			}
+			
+			$('#cartButton').attr('data-notify',prior - 1);
+			$('.mtext-110.cl2')[0].innerText =  checksum;
+			$('.mtext-110.cl2')[1].innerText = (checksum + parseInt($('.stext-110.cl2')[7].innerText.trim().substring(0,$('.stext-110.cl2')[7].innerText.trim().length -2)));
+			
+			// 지우기
+			$('.how-itemcart1').unbind("click").on('click',function(e){
+	            var deleteNum = parseInt($(e.currentTarget).attr('value'));
+	            setCookie('cart' + deleteNum,'',0);
+	            
+	            // 지운 후 정렬 
+	            var testNum = deleteNum + 1;
+	            
+	            while(getCookie('cart' + testNum)){
+	                testNum++;
+	            }
+	            
+	            console.log(testNum);
+	            
+	            for(var i = deleteNum + 1; i < testNum; i++){
+	                console.log(i);
+	                setCookie('cart' + (i-1),getCookie('cart' + i),1);
+	                if(i == testNum - 1){
+	                    setCookie('cart' + i,'',0);
+	                }
+	            }
+	            
+	            $(e.currentTarget).parents()[1].remove();
+	            $('#cartButton').attr('data-notify',testNum - 2);
+	            sumUp();
+	        });
+			
+			}
+		);
+	
 		</script>
   <!--===============================================================================================-->
   <script src="/iceland/js/main.js"></script>
