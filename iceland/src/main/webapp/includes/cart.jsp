@@ -39,11 +39,6 @@
 	</div>
   
   <script type="text/javascript">
-  
-
-  
-  var str = "";
-  
   $(document).ready(function() {
 		//var obj = decodeURIComponent(getCookie('carts'));
 		
