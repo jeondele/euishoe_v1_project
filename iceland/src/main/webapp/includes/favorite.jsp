@@ -20,9 +20,6 @@
 				</ul>
 				
 				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40 wish">
-						Total: $75.00
-					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
 						<a href="/iceland/order/shopping-cart.jsp" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
@@ -39,15 +36,12 @@
 	</div>
   
   <script type="text/javascript">
-
-  
-
-  
-  var str = "";
   
   $(document).ready(function() {
 	  
-	    console.log(11331);
+	  
+	    console.log(1);
+	  
 		//var obj = decodeURIComponent(getCookie('carts'));
 		
 		var prior = 1;
@@ -61,15 +55,13 @@
 			  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img wish" value='+ prior +'>';
 			  str += '<img src="' + jsonObj.image_ref + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8 ">';
 			  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + jsonObj.PRODUCT_NAME + '</a>'
-			  str += '<span class="header-cart-item-info">' + jsonObj.product_count + ' x ' + jsonObj.PRODUCT_PRICE + '</span></div></li>';		
+			  str += '<span class="header-cart-item-info">' + jsonObj.PRODUCT_PRICE + ' 원</span></div></li>';		
 			  $('#miniWish').append(str);
 			  
-			  checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
 			  prior++;
 		}
 		
 		$('#wishButton').attr('data-notify',prior - 1);
-		$('.header-cart-total.w-full.p-tb-40.wish')[0].innerText = ("Total: " + checksum) + '원';
 	  
 		// 지우기
 		$('.header-cart-item-img.wish').unbind("click").on('click',function(e){
