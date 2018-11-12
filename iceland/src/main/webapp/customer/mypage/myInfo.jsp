@@ -393,18 +393,33 @@ input[type='text'], input[type='password'], select{
 	color: #0056b3;
 }
 </style>
+
 <script type="text/javascript">
 window.onload = function () {
 	// 로그인 되어있는 정보 fix
 	var loginId = getCookie('loginId');	
-	var loginName = getCookie('userName');
-	var decodedName = decodeURI(loginName);
+	var encodedName = getCookie('userName');
+	var userName = decodeURI(encodedName);
 
 	$('#member_id').attr('value', loginId);
-	$('#name').attr('value', decodedName);
-	$('#mobile').attr('value', )
+	$('#name').attr('value', userName);
+	
+ 	// 요청 Url + 추가적으로 보내는 Json Data, 리턴결과값(json 다루는 형식), 결과값 형식  
+ 	$.post("/iceland/customer/mypage/myinfo.es", { "customerId": loginId },    
+	     function(data){ 
+			console.log(data.customerId);
+			var jsonCustomer = '${jsonCustomer}';
+			console.log('ㅠㅠㅠㅠㅠ찍혀?'+jsonCustomer);
+	}, "json");   
+
 };
-		
+
+function sendModifyInfo(){
+	var passwd = $('#passwd').attr('value');
+	var newPasswd = $('#new_passwd').attr('value');
+	var newPassConfirm = $('#new_passwd_confirm').attr('value');
+	var postNum = $('postNum').attr('value');
+}
 		
 </script>
 
@@ -428,7 +443,7 @@ window.onload = function () {
 					<div class="m-l--200 m-r--300 m-lr-0-xl">
 						<div class="-frame">
 							<div class="wrap-table-shopping-cart">
-						        <form id="editForm" name="editForm" action="/exec/front/Member/edit/" method="post" enctype="multipart/form-data">
+						        <form id="editForm" name="editForm" action="/iceland/customer/mypage/myinfo.es" method="post" enctype="multipart/form-data">
          
             
           <div class="xans-element- xans-member xans-member-edit">
@@ -491,7 +506,7 @@ window.onload = function () {
                   <tr class="">
                     <th scope="row" class="myInfoHeader">휴대전화</th>
                     <td>
-                        <input id="mobile" name="mobile[]" maxlength="11" value="" type="text">
+                        <input id="mobile" name="mobile[]" maxlength="11" value="" type="text" >
                     </td>
                   </tr>
                   <!-- 

@@ -16,6 +16,9 @@ public interface CustomerDao {
 	// 회원가입(customer객체 생성)
 	public void create(Customer customer) throws Exception;
 	
+	// id값으로 회원정보 조회
+	public Customer getCustomerInfo(String customerId) throws Exception;
+	
 	// 회원정보 수정
 	public void modifyInfo(Customer customer) throws Exception;
 }

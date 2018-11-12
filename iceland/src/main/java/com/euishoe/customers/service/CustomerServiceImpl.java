@@ -277,4 +277,9 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return null;
 	}
+
+	@Override
+	public Customer getCustomerInfo(String customerId) throws Exception {
+		return customerDao.getCustomerInfo(customerId);
+	}
 }

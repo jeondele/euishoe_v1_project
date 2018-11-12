@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.euishoe.customers.dto.Customer;
 
+import oracle.net.aso.s;
+
 public class MybatisCustomerDao implements CustomerDao {
 	
 	private static final String NAMESPACE = "com.euishoe.customers.";
@@ -46,6 +48,15 @@ public class MybatisCustomerDao implements CustomerDao {
 	}
 
 	@Override
+	public Customer getCustomerInfo(String customerId) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Customer customer = sqlSession.selectOne(NAMESPACE+"getCustomerInfo", customerId);
+//		sqlSession.commit();
+		sqlSession.close();
+		return customer;
+	}
+
+	@Override
 	public void modifyInfo(Customer customer) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		sqlSession.update(NAMESPACE+"modifyInfo", customer);
@@ -53,6 +64,7 @@ public class MybatisCustomerDao implements CustomerDao {
 		sqlSession.close();
 		
 	}
+
 }
 
 
