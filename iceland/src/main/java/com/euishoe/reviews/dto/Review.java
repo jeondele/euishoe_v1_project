@@ -13,12 +13,14 @@ public class Review {
 	// 변수 선언
 	private int reviewNum; 			// 리뷰번호
 	private String customerId; 		// 회원아이디
-	private int productNum;		// 상품코드
+	private int productNum;			// 상품코드
 	private String reviewTitle; 	// 리뷰제목
 	private String reviewContent; 	// 리뷰내용
 	private String reviewPassword;  // 리뷰비밀번호
 	private int reviewScore; 		// 리뷰평점
 	private String reviewIsDeleted; // 리뷰삭제여부
+	private String reviewIsAnswered; // 리뷰삭제여부
+	private String reviewRegdate; 		// 문의등록일
 	
 	ProductInfo productInfo;
 	
@@ -26,12 +28,11 @@ public class Review {
 	// 생성자(Constructor) 선언
 	public Review() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
 	public Review(int reviewNum, String customerId, int productNum, String reviewTitle, String reviewContent,
-			String reviewPassword, int reviewScore, String reviewIsDeleted) {
+			String reviewPassword, int reviewScore, String reviewIsDeleted, String reviewIsAnswered, String reviewRegdate) {
 		super();
 		this.reviewNum = reviewNum;
 		this.customerId = customerId;
@@ -41,6 +42,8 @@ public class Review {
 		this.reviewPassword = reviewPassword;
 		this.reviewScore = reviewScore;
 		this.reviewIsDeleted = reviewIsDeleted;
+		this.reviewIsAnswered = reviewIsAnswered;
+		this.reviewRegdate = reviewRegdate;
 	}
 
 	public Review(String customerId, int productNum, String reviewTitle, String reviewContent,
@@ -137,6 +140,25 @@ public class Review {
 	}
 
 
+	public String getReviewIsAnswered() {
+		return reviewIsAnswered;
+	}
+
+
+	public void setReviewIsAnswered(String reviewIsAnswered) {
+		this.reviewIsAnswered = reviewIsAnswered;
+	}
+
+	
+	public String getReviewRegdate() {
+		return reviewRegdate;
+	}
+
+
+	public void setReviewRegdate(String reviewRegdate) {
+		this.reviewRegdate = reviewRegdate;
+	}
+
 
 	public ProductInfo getProductInfo() {
 		return productInfo;
@@ -146,12 +168,17 @@ public class Review {
 	public void setProductInfo(ProductInfo productInfo) {
 		this.productInfo = productInfo;
 	}
+	
 
 	// toString() 선언
 	@Override
 	public String toString() {
 		return "Review [reviewNum=" + reviewNum + ", customerId=" + customerId + ", productNum=" + productNum
 				+ ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent + ", reviewPassword="
-				+ reviewPassword + ", reviewScore=" + reviewScore + ", reviewIsDeleted=" + reviewIsDeleted + "]";
+				+ reviewPassword + ", reviewScore=" + reviewScore + ", reviewIsDeleted=" + reviewIsDeleted
+				+ ", reviewIsAnswered=" + reviewIsAnswered + ", reviewRegdate=" + reviewRegdate + "]";
 	}
+
+
+
 }

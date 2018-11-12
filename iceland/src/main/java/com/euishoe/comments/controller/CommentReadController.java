@@ -19,15 +19,13 @@ import com.google.gson.Gson;
  * @author 박의수
  *
  */
-public class CommentReadController implements AjaxController {
+public class CommentReadController {
 	
 	CommentService commentService;
 	Gson gson;
 	
-	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		ModelAndView mav = new ModelAndView();
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		commentService = (CommentService)factory.getBean(CommentServiceImpl.class);
 		int qnaNum = (int) request.getAttribute("qnaNum");

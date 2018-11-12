@@ -22,11 +22,15 @@ public class MybatisReviewDao implements ReviewDao {
 
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
+		
 	}
 
 	@Override
-	public void create() throws Exception {
+	public void create(Review review) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert(NAMESPACE+"createReview2", review);
+		sqlSession.commit();
+		sqlSession.close();
 	}
 
 	@Override

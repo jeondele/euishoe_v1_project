@@ -28,19 +28,17 @@
 	<!--review-->
 	<bean type="controller" name="/review/write" class="com.euishoe.reviews.controller.ReviewCreateController" />
 	<bean type="controller" name="/review/remove" class="com.euishoe.reviews.controller.ReviewRemoveController" />
-	<bean type="controller" name="/review/ajaxList" class="com.euishoe.reviews.controller.ReviewListController" />
+	<bean class="com.euishoe.reviews.controller.ReviewListController" name="/review/ajaxList" type="controller"/>
 	
 	<!--qna-->
 	<bean type="controller" name="/qna/write" class="com.euishoe.qnas.controller.QnaCreateController" />
 	<bean type="controller" name="/qna/remove" class="com.euishoe.qnas.controller.QnaRemoveController" />
-	<bean type="controller" name="/qna/ajaxList" class="com.euishoe.qnas.controller.QnaListController" />
-	
-	<!--comment-->
-	<bean type="controller" name="/comment/write" class="com.euishoe.comments.controller.CommentCreateController" />
-	<bean type="controller" name="/comment/read" class="com.euishoe.comments.controller.CommentReadController" />
+	<bean class="com.euishoe.qnas.controller.QnaListController" name="/qna/ajaxList" type="controller"/>
 	
 	<!-- 주문 -->
 	<bean type="controller" name="/order" class="com.euishoe.orders.controller.OrderController" />
 	<bean type="controller" name="/cart" class="com.euishoe.carts.controller.CartController"/>
 	
+	<!--comment-->
+	<bean class="com.euishoe.comments.controller.CommentReadController" name="/comment/read" type="controller"/>
 </beans>

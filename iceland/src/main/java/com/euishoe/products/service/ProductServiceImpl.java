@@ -17,7 +17,6 @@ import com.euishoe.products.dao.ProductDao;
 import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 import com.euishoe.qnas.dao.QnaDao;
-import com.euishoe.qnas.dto.Qna;
 import com.euishoe.reviews.dao.ReviewDao;
 import com.euishoe.reviews.dto.Review;
 import com.google.gson.Gson;
@@ -125,12 +124,20 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 
-
-
 	@Override
 	public String create(Product product) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public int qnaCountBySearch(int productNum) throws Exception {
+		return qnaDao.countBySearch(productNum);
+	}
+
+	@Override
+	public int reviewCounttBySearch(int productNum) throws Exception {
+		return reviewDao.countBySearch(productNum);
 	}
 
 }

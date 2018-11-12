@@ -1,10 +1,9 @@
 package com.euishoe.reviews.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.euishoe.common.web.Params;
-import com.euishoe.points.dto.PointHistory;
-import com.euishoe.qnas.dto.Qna;
 import com.euishoe.reviews.dto.Review;
 
 /**
@@ -16,7 +15,7 @@ import com.euishoe.reviews.dto.Review;
 public interface ReviewDao {
 		
 	//댓글 작성
-	public void create() throws Exception;
+	public void create(Review review) throws Exception;
 	
 	//전체(동적) 목록 조회
 	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception;

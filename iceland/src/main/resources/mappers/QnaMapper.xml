@@ -35,57 +35,20 @@
      qna_isdeleted  CHAR(1), 
      qna_regdate    DATE 
   );  -->
-	<!-- 리뷰 작성  -->
-	<insert id="createQna1" parameterType="Map">		            
-		INSERT INTO qnas
-				            (qna_num,
-				             qna_type_num,
-				             customer_id,
-				             product_num,
-				             qna_title,
-				             qna_content,
-				             qna_password,
-				             qna_isAnswered,
-				             qna_isLock,
-				             qna_rank,
-				             qna_isDeleted,
-				             qna_regdate)
-		VALUES      	(qnas_seq.NEXTVAL,
-				             ${qnaTypeNum},
-							 ${customerId},
-				             ${productNum},
-				             null,
-				             ${qnaContent},
-				             null,
-				             'N',
-				             'N',
-				             ${qnaRank},
-				             'N',
-				             sysdate)
-	</insert>
-	
 			<!-- 리뷰 작성  -->
-	<insert id="createQna2" parameterType="com.euishoe.qnas.dto.Qna">		            
+	<insert id="createQna" parameterType="com.euishoe.qnas.dto.Qna">		            
 		INSERT INTO qnas
-				            (qna_num,
-				             qna_type_num,
-				             customer_id,
-				             product_num,
-				             qna_title,
-				             qna_content,
-				             qna_password,
-				             qna_isLock,
-				             qna_rank,
-				             qna_regdate
 		VALUES      	(qnas_seq.NEXTVAL,
-							${qnaTypeNum},
+							 ${qnaTypeNum},
+			             	 ${productNum},
 							 ${customerId},
-				             ${productNum},
 				             ${qnaTitle},
 				             ${qnaContent},
-				             ${qnaPassword}
+				             ${qnaPassword},
+				             'N',
 				             ${qnaIsLock},
-				             ${qnaRank},
+				             1,
+				             'N',
 				             sysdate)
 	</insert>				             
 	
@@ -133,89 +96,30 @@
 		<collection property="productInfo" resultMap="ProductInfo"/>
 	</resultMap>
 	
-<!-- 		String sql ="SELECT article_id,\r\n" + 
-						"       	  board_id,\r\n" + 
-						"	      	  subject, \r\n" + 
-						"       	 writer, \r\n" + 
-						"       	 content,\r\n" + 
-						"       	 regdate, \r\n" + 
-						"      		 ip, \r\n" + 
-						"       	passwd,\r\n" + 
-						"       	attach_file,\r\n" + 
-						"       	hitcount,\r\n" + 
-						"       	group_no,\r\n" + 
-						"       	level_no,\r\n" + 
-						"       	order_no\r\n" + 
-						"			FROM  (SELECT CEIL(rownum / ?) request_page,\r\n" + 
-						"       							article_id,\r\n" + 
-						"       							board_id,\r\n" + 
-						"       							subject, \r\n" + 
-						"       							writer, \r\n" + 
-						"       							content,\r\n" + 
-						"       							regdate, \r\n" + 
-						"       							ip, \r\n" + 
-						"       							passwd,\r\n" + 
-						"       							attach_file,\r\n" + 
-						"      				 				hitcount,\r\n" + 
-						"      				 				group_no,\r\n" + 
-						"      				 				level_no,\r\n" + 
-						"      				 				order_no\r\n" + 
-						"       							FROM(SELECT article_id,\r\n" + 
-						"                    									 board_id,\r\n" + 
-						"                    									 subject, \r\n" + 
-						"                    									 writer, \r\n" + 
-						"                    									 content,\r\n" + 
-						"                    									 TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') regdate,\r\n" + 
-						"                    									 ip,\r\n" + 
-						"                    									 passwd,\r\n" + 
-						"                    									 attach_file,\r\n" + 
-						"                     									 hitcount,\r\n" + 
-						"                     									 group_no,\r\n" + 
-						"                     									 level_no,\r\n" + 
-						"                     									 order_no\r\n" + 
-						"                    									 FROM article";
-		
-		// 검색 유형별 WHERE 절 동적 추가
-		if(searchType != null){
-			switch (searchType) {
-				case "subject":
-					sql += " WHERE  subject LIKE ? \r\n";
-					searchValue = "%" + searchValue + "%";
-					break;	
-					
-				case "content":  
-					sql += " WHERE  content LIKE ? \r\n";
-					searchValue = "%" + searchValue + "%";
-					break;
-					
-				case "writer":  
-					sql += " WHERE  writer LIKE ? \r\n";
-					searchValue = "%" + searchValue + "%";
-					break;
-			}
-		}
-		sql += "                ORDER BY regdate DESC)) \r\n" +
-				   "WHERE  	request_page = ?"; -->
-
 	<!-- 해당 제품의 모든 문의사항 출력  -->
-	<select id="selectDynamicListAll" parameterType="int" resultMap="Qna">
+	<select id="selectDynamicListAll" parameterType="Map" resultType="Map">
 		SELECT request_page,
-			   qna_type_num,
-		       qna_isAnswered,
-		       qna_title,
-		       qna_content,
-		       customer_id,
-		       qna_regdate,
-		       qna_password
+				qna_num,
+       			qna_type_num,
+       			product_num,
+				customer_id,
+				qna_title,
+				qna_content,
+				qna_password,
+				qna_isAnswered,
+				qna_isLock,
+				qna_regdate
        FROM(SELECT CEIL(rownum / #{listSize}) request_page,
        										  qna_num,
        										  qna_type_num,
-									          qna_isAnswered,
+       										  product_num,
+									          customer_id,
 											  qna_title,
 											  qna_content,
-											  customer_id,
-											  qna_regdate,
-											  qna_password
+											  qna_password,
+											  qna_isAnswered,
+											  qna_isLock,
+											  qna_regdate
 									          FROM(SELECT qna.qna_num,
 							                              qna.qna_type_num,
 							                              pi.product_num,
@@ -240,7 +144,9 @@
 							 AND customer_id = #{customerId}
 						</when>
 						<otherwise>
-							AND qna_type_num=#{qnaTypeNum}
+							<if test='qna_type_num != null'>
+					 			AND qna_type_num=#{qnaTypeNum}
+					 		</if>
 						</otherwise>							 
 					 <!-- 문의유형에 따른 조회  -->
 					 </choose>
@@ -253,7 +159,9 @@
 							 AND customer_id=#{customerId}
 							 </when>
 							 <otherwise>
+							 	<if test='qna_type_num != null'>
 					 			AND qna_type_num=#{qnaTypeNum}
+					 			</if>
 							 </otherwise>
 					 <!-- 문의유형에 따른 조회  -->
 					 	</choose>
