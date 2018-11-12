@@ -36,21 +36,20 @@ public class OrderController implements Controller {
 		String customerId = "";
 		
 		Cookie[] cookies = request.getCookies();
-		
 		for (Cookie cookie : cookies) {
 			if(cookie.getName().equals("loginId")) {
 				customerId = cookie.getValue();
 			}
 		}
 		
+		//개인주소 포인트 가져오기
 		Map<String, Object> list = null;
-		
 		try {
 			list= orderService.customerOrderInfo(customerId);
 		} catch (Exception e) {}
 		
+		//코드 매핑 - productCode,
 		String[] codes = null;
-		
 		try {
 			codes = orderService.productCodeParsing(productCode);
 		} catch (Exception e) {}
