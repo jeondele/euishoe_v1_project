@@ -49,15 +49,19 @@ public class HomeController extends HttpServlet implements Controller  {
 		Gson gson = new Gson();
 		JsonObject object = new JsonObject();
 		
-		for(int i = 0 ; i < gsonNewListAll.size(); i++) {	
-			HashMap<String, Object> convertToJson = gson.fromJson(gsonNewListAll.get(i), HashMap.class);
-			jsonObjectNewList.add(convertToJson);
-	 	}
+		if(gsonNewListAll != null) {
+			for(int i = 0 ; i < gsonNewListAll.size(); i++) {	
+				HashMap<String, Object> convertToJson = gson.fromJson(gsonNewListAll.get(i), HashMap.class);
+				jsonObjectNewList.add(convertToJson);
+		 	}
+		}
 		
-		for(int i = 0 ; i < gsonHitListAll.size(); i++) {	
-			HashMap<String, Object> convertToJson = gson.fromJson(gsonHitListAll.get(i), HashMap.class);
-			jsonObjectHitList.add(convertToJson);
-	 	}
+		if(gsonHitListAll != null) {
+			for(int i = 0 ; i < gsonHitListAll.size(); i++) {	
+				HashMap<String, Object> convertToJson = gson.fromJson(gsonHitListAll.get(i), HashMap.class);
+				jsonObjectHitList.add(convertToJson);
+		 	}
+		}
 		
 		try {
 			mav.addObject("newProductSrc", jsonObjectNewList);
@@ -67,7 +71,7 @@ public class HomeController extends HttpServlet implements Controller  {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mav.setView("index.jsp");
+		mav.setView("home.jsp");
 		return mav;
 	}
 }

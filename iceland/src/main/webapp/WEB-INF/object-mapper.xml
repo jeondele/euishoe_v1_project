@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-	<!-- DataSource 설정  마이바티스로 하기때문에 사실상 필요 없음-->
-	<bean type="component" name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521"/>
-		<property name="username" value="hr"/>
-		<property name="password" value="1234"/>
-		<property name="initialSize" value="2"/>
-		<property name="maxTotal" value="10"/>
-		<property name="maxIdle" value="5"/>
-	</bean>
 	<!-- Mybatis SqlSessionFactory 설정-->
 	<bean type="component" name="sqlSessionFactory" class="com.euishoe.common.factory.SqlSessionFactoryCreator">
 		<property name="configLocation" value="mybatis-config.xml"/>
