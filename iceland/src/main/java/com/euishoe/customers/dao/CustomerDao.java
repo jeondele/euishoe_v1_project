@@ -1,5 +1,7 @@
 package com.euishoe.customers.dao;
 
+import java.util.Map;
+
 import com.euishoe.customers.dto.Customer;
 
 /**
@@ -21,4 +23,6 @@ public interface CustomerDao {
 	
 	// 회원정보 수정
 	public void modifyInfo(Customer customer) throws Exception;
+	
+	public Map<String, Object> customerOrderInfo(String customerId) throws Exception;
 }
