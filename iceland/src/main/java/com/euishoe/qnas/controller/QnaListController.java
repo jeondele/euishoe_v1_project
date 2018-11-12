@@ -8,10 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.euishoe.common.controller.Controller;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.common.factory.XMLObjectFactory;
+import com.euishoe.common.web.Params;
 import com.euishoe.qnas.service.QnaService;
 import com.euishoe.qnas.service.QnaServiceImpl;
-
-import kr.or.kosta.blog.common.web.Params;
 
 /**
  * 조건 검색에 따른 qan list 처리를 위한 컨트롤러

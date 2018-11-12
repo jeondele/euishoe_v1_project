@@ -2,17 +2,17 @@ package com.euishoe.products.controller;
 
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.euishoe.common.controller.Controller;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.common.factory.XMLObjectFactory;
+import com.euishoe.common.web.Params;
 import com.euishoe.products.service.ProductService;
 import com.euishoe.products.service.ProductServiceImpl;
-import com.euishoe.reviews.dto.Review;
-
-import kr.or.kosta.blog.common.web.Params;
 
 /**
  * /user/list.mall에 대한 요청 처리 컨트롤러
@@ -31,6 +31,7 @@ public class ProductDetailController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		productService = (ProductService)factory.getBean(ProductServiceImpl.class);
 		String productNum = request.getParameter("productNum");
+		System.out.println(productNum);
 		List<Map<String, Object>> list = null;
 		try {
 			list = productService.selectAllById(Integer.valueOf(productNum));

@@ -23,6 +23,7 @@
 		<typeAlias type="com.euishoe.wishlists.dto.Wishlist" alias="Wishlist"/>
 		<typeAlias type="com.euishoe.qnas.dto.Qna" alias="Qna"/>
 		<typeAlias type="com.euishoe.comments.dto.Comment" alias="Comment"/>
+		<typeAlias type="com.euishoe.common.web.FilterParam" alias="FilterParam"/>
 	</typeAliases>
 	
 	<!-- 다수의 Database에 접근하거나 개발, 테스트, 운영 환경에 맞는 다중 환경 설정 지원 -->

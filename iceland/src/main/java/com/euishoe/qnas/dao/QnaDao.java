@@ -3,9 +3,8 @@ package com.euishoe.qnas.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.euishoe.common.web.Params;
 import com.euishoe.qnas.dto.Qna;
-
-import kr.or.kosta.blog.common.web.Params;
 
 /**
  * 쇼핑몰 문의와 관련된 Dao 인터페이스

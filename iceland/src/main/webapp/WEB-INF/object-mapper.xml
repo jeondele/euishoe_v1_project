@@ -5,7 +5,7 @@
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521"/>
 		<property name="username" value="hr"/>
-		<property name="password" value="1234"/>
+		<property name="password" value="hr"/>
 		<property name="initialSize" value="2"/>
 		<property name="maxTotal" value="10"/>
 		<property name="maxIdle" value="5"/>
@@ -130,7 +130,6 @@
 	<bean type="service" name="deliveryService" class="com.euishoe.deliveries.service.DeliveryServiceImpl">
 		<property name="deliveryDao" ref="deliveryDao"/>
 	</bean>
-=======
 	<!-- qna 맵핑 -->
 	<bean type="service" name="qnaService" class="com.euishoe.qnas.service.QnaServiceImpl">
 		<property name="qnaDao" ref="qnaDao"/>

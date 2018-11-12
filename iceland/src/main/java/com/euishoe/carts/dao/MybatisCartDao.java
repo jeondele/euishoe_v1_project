@@ -57,6 +57,12 @@ public class MybatisCartDao implements CartDao {
 		
 	}
 
+	@Override
+	public void updateCart(String cartNum, Object object2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
 

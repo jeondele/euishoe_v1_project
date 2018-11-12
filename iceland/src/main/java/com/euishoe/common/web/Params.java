@@ -1,4 +1,4 @@
-package kr.or.kosta.blog.common.web;
+package com.euishoe.common.web;
 
 /**
  * 여러개의 전달인자들을 포장하기 위한 Wrapper 클래스
