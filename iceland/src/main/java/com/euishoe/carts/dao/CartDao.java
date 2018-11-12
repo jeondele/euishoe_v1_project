@@ -32,4 +32,5 @@ public interface CartDao {
 	public void updateCart(String cartNum, Object object2);
 
 	void createCart(String cartNum, String productCode, String customerId);
+	public void createCart(String cartNum, String productCode, String customerId);
 }
