@@ -6,14 +6,19 @@ package com.euishoe.orders.service;
  *
  */
 
+import java.util.List;
+import java.util.Map;
+
+import com.euishoe.customers.dao.CustomerDao;
 import com.euishoe.orders.dao.OrderDao;
 import com.euishoe.products.dao.ProductDao;
 import com.euishoe.products.dto.Product;
+import com.euishoe.products.dto.ProductInfo;
 
 public class OrderServiceImpl implements OrderService {
 	private OrderDao orderDao;
 	private ProductDao productDao;
-
+	private CustomerDao customerDao;
 	public OrderDao getOrderDao() {
 		return orderDao;
 	}
@@ -30,6 +35,14 @@ public class OrderServiceImpl implements OrderService {
 		this.productDao = productDao;
 	}
 
+	public CustomerDao getCustomerDao() {
+		return customerDao;
+	}
+
+	public void setCustomerDao(CustomerDao customerDao) {
+		this.customerDao = customerDao;
+	}
+
 	@Override  // 주문을 위한 product객체 생성
 	public void createProduct(Product product) throws Exception {
 		String productCode = product.getProductCode();
@@ -42,6 +55,33 @@ public class OrderServiceImpl implements OrderService {
 	public void createOBP(String productCode) throws Exception {
 		orderDao.create(productCode);
 	}
+
+	@Override
+	public List<ProductInfo> getProductInfo(int productNum) throws Exception {
+		return productDao.selectProductInfoByProductNum(productNum);
+	}
+
+	@Override
+	public String[] productCodeParsing(String productCode) throws Exception {
+		String[] codeSplited = productCode.split("$");
+		String pantsCode = codeSplited[0]+"$"+codeSplited[2]+"$"+codeSplited[3];
+		String jacketCode = codeSplited[0]+"$"+codeSplited[1]+"$"+codeSplited[3];
+		String pantsSize = codeSplited[2];
+		String jacketSize = codeSplited[1];
+		String[] codes = new String[5];
+		codes[0] = productCode;
+		codes[1] = jacketCode;
+		codes[2] = pantsCode;
+		codes[3] = jacketSize;
+		codes[4] = pantsSize;
+		return codes;
+	}
+
+	@Override
+	public Map<String, Object> customerOrderInfo(String customerId) throws Exception {
+		return customerDao.customerOrderInfo(customerId);
+	}
+	
 	
 	
 }

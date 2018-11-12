@@ -83,6 +83,22 @@
 		FROM   customers
 		WHERE  customer_id = #{customerId}	
 	</select>
+	
+	<select id="customerOrderInfo" parameterType="String" resultType="map">
+		select c.customer_name, 
+       		   c.customer_phonenumber, 
+       		   customer_address, 
+       		   customer_postcode,
+       		   sumPoint
+		  from customers c join (select sum(point_history_score) sumPoint,
+                           				point_histories.CUSTOMER_ID
+                        			from point_histories
+                      			group by point_histories.CUSTOMER_ID) ph
+    						on c.customer_id = ph.CUSTOMER_ID
+		 where c.customer_id =#{customerId}
+	</select>
+	
+	
 	<!-- 회원정보 수정 -->
 	<update id="modifyInfo" parameterType="com.euishoe.customers.dto.Customer">
 		UPDATE customers 

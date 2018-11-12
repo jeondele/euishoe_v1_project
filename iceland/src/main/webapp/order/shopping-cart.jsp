@@ -110,7 +110,7 @@ height: 40px;
 										<input type="checkbox" value="None" class="roundedOne" name="check" checked />
 									</td>
 									<td class="column-2 txt-center">
-										<div class="how-itemcart1"><img src="/iceland/images/item-cart-04.jpg" alt="IMG"/></div>
+										<div class="how-itemcart1"><img src="" alt="IMG"/></div>
 									</td>
 									<td class="column-3 txt-center">Fresh Strawberries</td>
 									<td class="column-4 txt-center">3600</td>

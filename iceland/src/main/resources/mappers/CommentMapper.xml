@@ -63,4 +63,20 @@
 	WHERE  qna_num = #{qnaNum}
 	</select>
 	<!-- 리뷰게시판 삭제 -->
+	
+	
+	<select id="orderInfoById" parameterType="String" resultMap="map">
+		select c.customer_name "customerName", 
+		       c.customer_phonenumber "customerPhoneNumber", 
+		       customer_address "customerAddress", 
+		       customer_postcode "customerPostCode",
+		       sumPoint
+		from customers c join (select sum(point_history_score) sumPoint,
+                              		  point_histories.CUSTOMER_ID
+                        		from point_histories
+                     	 		group by point_histories.CUSTOMER_ID) ph
+    					   on c.customer_id = ph.CUSTOMER_ID
+		where c.customer_id =#{customer_id}
+	</select>
+	
 </mapper>
