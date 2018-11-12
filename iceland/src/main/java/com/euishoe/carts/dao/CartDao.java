@@ -30,4 +30,6 @@ public interface CartDao {
 	public List<HashMap<String, Object>> listCartForLogin(String customer_id);
 
 	public void updateCart(String cartNum, Object object2);
+
+	public void createCart(String cartNum, String productCode, String customerId);
 }

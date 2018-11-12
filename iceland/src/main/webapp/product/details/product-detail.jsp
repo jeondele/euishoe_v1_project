@@ -796,5 +796,90 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
+	<script type="text/javascript">
+	$('.flex-c-m.stext-101.cl0.size-101.bg1.bor1.hov-btn1.p-lr-15.trans-04.js-addcart-detail').unbind("click").on('click',function(e){
+		sumToMakeJson();
+		console.log(1);
+	});
+	
+	function sumToMakeJson(){
+	    var prior = 1;
+	    while(getCookie('cart' + prior)){
+	        prior++;
+	    }
+	    
+	    console.log(prior);
+	    
+		var ProductName = $('.mtext-105.cl2.js-name-detail.p-b-14')[0].innerText;
+		var ProductImg = $('img[alt="IMG-PRODUCT"]')[0].src;
+		var ProductCount = parseInt($('.mtext-104.cl3.txt-center.num-product')[0].value);
+		var ProductPrice = parseInt($('.mtext-106.cl2')[0].innerText.substring(3,$('.mtext-106.cl2')[0].innerText.length - 2));
+		var ProductNum = getQuerystring('productNum');
+		var ProductCode = $('#productCode').val();
+		
+	    // 객체 생성
+	    var data = new Object();
+	    // String으로 index.jsp 내 객체
+	    data.image_ref = ProductImg;
+	    data.PRODUCT_PRICE = ProductPrice;
+	    data.product_count = ProductCount;
+	    data.PRODUCT_NAME = ProductName;
+	    data.PRODUCT_NUM = ProductNum;
+	    data.PRODUCT_CODE = ProductCode;
+	     
+	    // 리스트에 생성된 객체 삽입
+	    var arrayCookie = '"' + encodeURIComponent(JSON.stringify(data)) + '"';
+	    setCookie('cart' + prior,arrayCookie,1);
+	    
+	    $('#cartButton').attr('data-notify',parseInt($('#cartButton').attr('data-notify')) + 1)
+	    
+	        
+	    var str = "";
+	        
+	    str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img cart" value=' + prior + '>';
+	    str += '<img class="cartItems" src="' + ProductImg + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
+	    str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + ProductName + '</a>'
+	    str += '<span class="header-cart-item-info">' + ProductCount + ' x ' + ProductPrice + '</span></div></li>';        
+	    $('#miniCarts').append(str);
+	          
+	    //checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
+	    
+	    //$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
+	   
+	    $('.header-cart-item-img.cart').unbind("click").on('click',function(e){
+	    	/*if(doubleSubmitCheck()) return;*/
+
+	        console.log(this);
+	        Test2 = this;
+	        console.log(e);
+	        Test = e;
+	        console.log($(e.currentTarget).attr('value'));
+	        
+	        var deleteNum = parseInt($(e.currentTarget).attr('value'));
+	        setCookie('cart' + deleteNum,'',0);
+	        
+	        // 지운 후 정렬 
+	        var testNum = deleteNum + 1;
+	        
+	        while(getCookie('cart' + testNum)){
+	            testNum++;
+	        }
+	        console.log(testNum);
+	        
+	        for(var i = deleteNum + 1; i < testNum; i++){
+	            console.log(i);
+	            setCookie('cart' + (i-1),getCookie('cart' + i),1);
+	            if(i == testNum - 1){
+	                setCookie('cart' + i,'',0);
+	            }
+	        }
+	        
+	        $(e.currentTarget).parents()[0].remove();
+	        setCountCartList();
+	    })
+	    
+	};
+	
+	</script>
 </body>
 </html>

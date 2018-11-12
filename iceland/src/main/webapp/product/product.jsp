@@ -95,7 +95,7 @@ function setCountCartList(){
         
     var str = "";
         
-    str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img" value=' + prior + '>';
+    str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img cart" value=' + prior + '>';
     str += '<img class="cartItems" src="' + productImg + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
     str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + productName + '</a>'
     str += '<span class="header-cart-item-info">' + productCount + ' x ' + productPrice + '</span></div></li>';        
@@ -105,7 +105,7 @@ function setCountCartList(){
     
     //$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
    
-    $('.header-cart-item-img').unbind("click").on('click',function(e){
+    $('.header-cart-item-img.cart').unbind("click").on('click',function(e){
     	/*if(doubleSubmitCheck()) return;*/
 
         console.log(this);
