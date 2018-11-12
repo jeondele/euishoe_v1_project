@@ -190,16 +190,16 @@ height: 40px;
                      <tr>
                       <th>주소</th>
                       <td>
-                      <input type="text" id="postCodeAddr" name="postCodeAddr" maxlength="6" readonly onkeypress="javascript:common.onlyNumberInput(event);" style="ime-mode:disabled;width:70px;" title="우편번호"/>
-                       	<input type="button" class="flex-c-m stext-101 cl2 size-100 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" value="주소찾기" style="display:inline;"/><br>
-                        <input type="text" id="rcvrBaseAddr" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" readonly="">
-                        <input type="text" id="rcvrDetailAddr" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" readonly="">
+                      <input type="text" id="postNum" name="postCodeAddr" maxlength="6" readonly onkeypress="javascript:common.onlyNumberInput(event);" style="ime-mode:disabled;width:70px;" title="우편번호"/>
+                       	<input type="button" onclick="sample2_execDaumPostcode()" class="flex-c-m stext-101 cl2 size-100 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" value="주소찾기" style="display:inline;"/><br>
+                        <input type="text" id="address" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" readonly>
+                        <input type="text" id="address_datail_" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" >
                       </td>
                      </tr>
                      
                     <tr>
                        <th>휴대전화</th>
-                       <td>rcvrBaseAddr rcvrDetailAddr phoneNumberSelect phoneNumber2 phoneNumber3, requireComment
+                       <td>
           <select id="phoneNumberSelect" name="phoneNumberSelect" title="휴대전화-국번선택">
             <option value="010">010</option>
             <option value="011">011</option>
@@ -436,6 +436,18 @@ height: 40px;
 		</script>
   <!--===============================================================================================-->
   <script src="/iceland/js/main.js"></script>
+  <!--===============================================================================================-->
+  <!-- 주소검색 api -->
+  <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+  <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+  </div>
+
+  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+  <script src="/iceland/js/address.js"></script>
+  <script src="/iceland/js/ajax.js"></script>
+  <!--===============================================================================================-->  
+
+
 
 </body>
 </html>
