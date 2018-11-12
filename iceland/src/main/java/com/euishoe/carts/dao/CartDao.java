@@ -29,7 +29,7 @@ public interface CartDao {
 	// 로그인 후 장바구니 등록을 위한 리스트 불러오기
 	public List<HashMap<String, Object>> listCartForLogin(String customer_id);
 
-	public void updateCart(String cartNum, Object object2);
+	public void updateCart(String cartNum, String count);
 
 	public void createCart(String cartNum, String productCode, String customerId);
 }

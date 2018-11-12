@@ -70,6 +70,7 @@
 		<property name="cartDao" ref="cartDao"/>
 		<property name="wishlistDao" ref="wishlistDao"/>
 		<property name="pointDao" ref="pointDao"/>
+		<property name="productDao" ref="productDao"/>
 	</bean>
 	
 	<!-- noncustomer 맵핑 -->
