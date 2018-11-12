@@ -3,6 +3,7 @@ package com.euishoe.products.service;
 import java.util.List;
 import java.util.Map;
 
+import com.euishoe.common.web.FilterParam;
 import com.euishoe.common.web.Params;
 import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
@@ -42,4 +43,7 @@ public interface ProductService {
 	//제품 문의글 전체 조회
 	List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception;
 	public List<Map<String, Object>> selectAllById(int productNum) throws Exception;
+	
+	//제품을 필터를 통해서 뿌리기
+	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception;
 }

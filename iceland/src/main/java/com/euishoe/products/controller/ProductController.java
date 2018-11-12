@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.euishoe.common.controller.Controller;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.common.factory.XMLObjectFactory;
+import com.euishoe.common.web.FilterParam;
 import com.euishoe.products.service.ProductService;
 import com.euishoe.products.service.ProductServiceImpl;
 import com.google.gson.Gson;
@@ -34,23 +35,41 @@ public class ProductController implements Controller {
 			XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 			productService = (ProductService)factory.getBean(ProductServiceImpl.class);
 			
-			List<Map<String,Object>> list = null;
+			//paramMapping 
+			String tpo = request.getParameter("tpo");
+			String season = request.getParameter("season");
+			String lowPrice = request.getParameter("lowPrice");
+			String highPrice = request.getParameter("highPrice");
+			String fabric = request.getParameter("fabric");
+			String color = request.getParameter("color");
+			int bodyType = (request.getParameter("bodyType") == null) ? 0 : Integer.valueOf(request.getParameter("bodyType"));
+			int shoulderType = (request.getParameter("shoulderType") == null) ? 0 : Integer.valueOf(request.getParameter("shoulderType")); 
+			int armType = (request.getParameter("armType") == null) ? 0 : Integer.valueOf(request.getParameter("armType")); 
+			String orderByPrice = request.getParameter("orderByPrice");
+			String orderByHitcount = request.getParameter("orderByHitcount");
+			String orderByStar = request.getParameter("orderByStar");
+			
+			FilterParam filterParam = new FilterParam(); 
+					
+					/*new FilterParam(tpo, season, lowPrice, highPrice, fabric, color, bodyType, shoulderType, armType, legType,
+														orderByPrice, orderByHitcount, orderByStar);*/
+			
 			List<String> gsonListAll = null;
 			try {
-				gsonListAll = productService.convertToGson(productService.selectAll());
+				gsonListAll = productService.convertToGson(productService.filter(filterParam));
 			} catch (Exception e1) {
 			}
+			
 			ArrayList<HashMap<String, Object>> jsonObjectList = new ArrayList<HashMap<String, Object>>();
 			Gson gson = new Gson();
 			JsonObject object = new JsonObject();
 			
 			for(int i = 0 ; i < gsonListAll.size(); i++) {	
 				HashMap<String, Object> convertToJson = gson.fromJson(gsonListAll.get(i), HashMap.class);
+				System.out.println(convertToJson);
 				jsonObjectList.add(convertToJson);
 		 	}
-			try {
-				list = productService.selectAll2();
-			} catch (Exception e) {}
+			
 			
 			mav.addObject("gsonListAll", gsonListAll);
 			mav.addObject("jsonObjectList", jsonObjectList);

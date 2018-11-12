@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.euishoe.common.web.FilterParam;
 import com.euishoe.common.web.Params;
 import com.euishoe.products.dao.ProductDao;
 import com.euishoe.products.dto.Product;
@@ -123,4 +124,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<Map<String, Object>> selectAllById(int productNum) throws Exception {
 		return productDao.selectAllById(productNum);
 	}
+
+	@Override
+	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception {
+		return productDao.filter(filterParam);
+	}
+	
 }
