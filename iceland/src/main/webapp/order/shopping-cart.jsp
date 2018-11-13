@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,6 +178,22 @@ function sumPrice(){
     </div>
   </div>
 
+<!-- 결제완료시 제출될 폼 -->
+<form id = "sendToDoneOrder">
+      <input type="hidden" name="sendProductCode" value="">
+      <input type="hidden" name="sendPantsCode" value="">
+      <input type="hidden" name="sendJacketCode" value="">
+      <input type="hidden" name="sendProductNum" value="">
+      <input type="hidden" name="sendProductCount" value="">
+      <input type="hidden" name="sendPaymentPoint" value="">
+      <input type="hidden" name="sendPaymentMethod" value="">
+      <input type="hidden" name="sendTotalCost" value="">
+      <input type="hidden" name="sendDeliveryAddress1" value="">
+      <input type="hidden" name="sendDeliveryAddress2" value="">
+      <input type="hidden" name="sendDeliveryRecipient" value="">
+      <input type="hidden" name="sendDeliveryRecipientPhoneNumber" value="">
+      <input type="hidden" name="sendDeliveryRequirement" value="">
+</form>
 
  	<!-- Shoping Cart -->
 	<form class="bg0 p-t-75 p-b-85">
@@ -188,7 +205,11 @@ function sumPrice(){
 							<table class="table-shopping-cart" id="tableCart">
 								<tr class="table_head">
 									<th class="column-1">My 주문</th>
-									<th class="column-2"></th>
+									<th class="column-2">
+									<c:forEach items="${codes}" var="code">
+									<input type="text" name="Pcode" value="${code }">
+									</c:forEach>
+									</th>
 									<th class="column-3"></th>
 									<th class="column-4"></th>
 									<th class="column-5"></th>
@@ -531,7 +552,6 @@ function sumPrice(){
 				if(jsonProductSize != ''){
 					jsonProductSize = '(상의 : ' + jsonObj.PRODUCT_CODE.split('$')[1] + ', 하의 : ' + jsonObj.PRODUCT_CODE.split('$')[2] + ')';
 				}
-				console.log(prior);
 				
 				var str = "";
 				
@@ -545,8 +565,8 @@ function sumPrice(){
 				str += '</div></div></td><td class="column-6 txt-center">' + (jsonObj.PRODUCT_PRICE * jsonObj.product_count) + '</td></tr>';
 				$('#tableCart').append(str);
 
-				  checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
-				  prior++;
+				checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
+				prior++;
 			}
 			
 			$('#cartButton').attr('data-notify',prior - 1);
@@ -612,6 +632,29 @@ function sumPrice(){
 				sumUp();
 			});
 			/////////////////////////////////////////////////////////
+			//카트에 담긴 품목의 상품코드, 상하의 코드 가져와서 hidden으로 set
+			var cartNum = Number($('.table_row').length);
+			var cartCookie;
+			var cookieObj;
+			var jsonData;
+			var productCode, jkCode, ptCode;
+			for(var i=1; i<=cartNum; i++){
+				cartCookie = getCookie('cart'+i);
+				cookieObj = decodeURIComponent(cartCookie);
+				jsonData = JSON.parse(cookieObj.substring(1, cookieObj.length-1));
+				
+				productCode = jsonData.PRODUCT_CODE;
+				jkCode = jsonData.JACKET_CODE;
+				ptCode = jsonData.PANTS_CODE;
+				var str='<input type="hidden" value="'+ productCode + '">';
+				$('.table_row')[Number(i)-1].children[2].innerHTML += str;
+				str = '<input type="hidden" value="'+jkCode+'">';
+				$('.table_row')[Number(i)-1].children[2].innerHTML += str;
+				str = '<input type="hidden" value="'+ptCode+'">';
+				$('.table_row')[Number(i)-1].children[2].innerHTML += str;
+				//console.log('카트쿠킥느?'+cookieObj);
+				//console.log('카트쿠키 상품코드값?/'+jsonData.PRODUCT_CODE);
+			}
 		});
 		
 	
