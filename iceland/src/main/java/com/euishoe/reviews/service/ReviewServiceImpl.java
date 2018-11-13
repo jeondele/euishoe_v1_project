@@ -1,4 +1,5 @@
 package com.euishoe.reviews.service;
+import java.util.HashMap;
 import java.util.List;
 
 import com.euishoe.common.web.Params;
@@ -34,7 +35,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 
 	@Override
-	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
+	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
 		return reviewDao.reviewDynamicReviewList(productNum, customerId, reviewScore, params);
 	}
 

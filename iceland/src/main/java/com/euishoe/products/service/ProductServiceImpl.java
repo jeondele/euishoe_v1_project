@@ -7,6 +7,7 @@ package com.euishoe.products.service;
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -104,12 +105,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception {
+	public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception {
 		return qnaDao.qnaDynamicListAll(productNum, qnaisLock, customerId, TypeNum, params);
 	}
 	
 	@Override
-	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
+	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
 		return reviewDao.reviewDynamicReviewList(productNum, customerId, reviewScore, params);
 	}
 

@@ -48,7 +48,7 @@ public class MybatisQnaDao implements QnaDao {
 
 
 	@Override
-	public List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception {
+	public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("productNum", productNum);
@@ -56,7 +56,7 @@ public class MybatisQnaDao implements QnaDao {
 		param.put("customerId", customerId);
 		param.put("listSize", params.getListSize());
 		param.put("page", params.getPage());
-		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectDynamicListAll", param);
+		List<HashMap<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectDynamicListAll", param);
 		return list;
 	}
 	

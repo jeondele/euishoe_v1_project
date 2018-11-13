@@ -1,5 +1,6 @@
 package com.euishoe.qnas.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public interface QnaService {
 		public void createQna(Qna qna) throws Exception;
 		
 		//제품 문의글 전체 조회
-		public List<Map<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception;
+		public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception;
 		
 		//특정 유저 문의글 조회(페이징)
 		public List<Map<String,Object>> qnaListByCustomerId(int productNum, String customerId, Params params) throws Exception;

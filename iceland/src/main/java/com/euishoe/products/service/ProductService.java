@@ -38,10 +38,10 @@ public interface ProductService {
 	public List<String> convertToGson(List<Map<String, Object>> list);
 	
 	//제품 리뷰 전체 조회
-	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception;
+	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception;
 	
 	//제품 문의글 전체 조회
-	List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception;
+	List<HashMap<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception;
 	public List<Map<String, Object>> selectAllById(int productNum) throws Exception;
 	
 	//제품을 필터를 통해서 뿌리기

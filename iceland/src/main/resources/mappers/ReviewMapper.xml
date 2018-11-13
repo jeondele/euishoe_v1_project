@@ -86,7 +86,7 @@
 	</resultMap>
 	
 <!-- 해당 제품의 모든 리뷰 출력(페이징)  -->
-	<select id="selectDynamicReviewList" parameterType="Map" resultMap="Review">
+	<select id="selectDynamicReviewList" parameterType="Map" resultType="Map">
 		SELECT 		request_page,
 					review_num,
 					customer_id,
@@ -97,7 +97,7 @@
 					review_score,
 					review_isdeleted,
 					review_isanswered,
-					review_regdate
+					To_char(review_regdate, 'YY-MM-DD HH:MM') review_regdate
        FROM(SELECT CEIL(rownum / #{listSize}) request_page,
        						review_num,
 							customer_id,

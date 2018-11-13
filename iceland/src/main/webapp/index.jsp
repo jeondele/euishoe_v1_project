@@ -13,6 +13,5 @@ location.href="/iceland/home.es";
 </script>
 </head>
 <body>
-
 </body>
 </html>
