@@ -55,8 +55,8 @@
 			var str = "";
 			
 			  str += '<li class="header-cart-item flex-w flex-t m-b-12 cart"><div class="header-cart-item-img cart" value='+ prior +'>';
-			  str += '<img src="' + jsonObj.image_ref + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
-			  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + jsonObj.PRODUCT_NAME + '</a>'
+			  str += '<img src="' + replaceAll(jsonObj.image_ref,'+',' ') + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8">';
+			  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + replaceAll(jsonObj.PRODUCT_NAME,'+',' ') + '</a>'
 			  str += '<span class="header-cart-item-info">' + jsonObj.product_count + ' x ' + jsonObj.PRODUCT_PRICE + '</span></div></li>';		
 			  $('#miniCarts').append(str);
 			  
