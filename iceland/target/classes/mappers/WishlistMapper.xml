@@ -10,7 +10,7 @@
             		(wishlist_num, 
              		customer_id, 
              		product_num) 
-		VALUES      (wishlist_num_seq.nextval, 
+		VALUES      (wishlists_seq.nextval, 
              		#{customerId}, 
              		#{productNum}) 
 	</insert>
@@ -59,7 +59,7 @@
                       ON w.product_num = pi.product_num
                            INNER JOIN Images i
                       ON pi.product_num = i.product_num
-         WHERE w.customer_id LIKE #{customerId}
+         WHERE w.customer_id LIKE #{customerId} AND IMAGE_REF LIKE '%main$1%'
     </select>
     
 	<delete id="deleteWishlist" parameterType="map">

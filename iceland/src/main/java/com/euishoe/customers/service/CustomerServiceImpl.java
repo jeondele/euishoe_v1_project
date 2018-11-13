@@ -7,6 +7,7 @@ package com.euishoe.customers.service;
  */
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -287,18 +288,18 @@ public class CustomerServiceImpl implements CustomerService {
 		 */
 
 		if (listDB.isEmpty()) {
-			Iterator<HashMap<String, Object>> iter = listCarts.iterator(); 
-			while(iter.hasNext()) {
+			Iterator<HashMap<String, Object>> iter = listCarts.iterator();
+			while (iter.hasNext()) {
 				HashMap hashMap = iter.next();
-				
+
 				// while문으로 교체 리턴해야함.
 				Map map = new HashMap();
-				map.put("PRODUCT_CODE",(String) hashMap.get("PRODUCT_CODE"));
-				map.put("JACKET_CODE",(String) hashMap.get("JACKET_CODE"));
-				map.put("PANTS_CODE",(String) hashMap.get("PANTS_CODE"));
-				map.put("PRODUCT_NUM",(Double)hashMap.get("PRODUCT_NUM"));
-				map.put("PRODUCT_COUNT",hashMap.get("product_count"));
-				
+				map.put("PRODUCT_CODE", (String) hashMap.get("PRODUCT_CODE"));
+				map.put("JACKET_CODE", (String) hashMap.get("JACKET_CODE"));
+				map.put("PANTS_CODE", (String) hashMap.get("PANTS_CODE"));
+				map.put("PRODUCT_NUM", (Double) hashMap.get("PRODUCT_NUM"));
+				map.put("PRODUCT_COUNT", hashMap.get("product_count"));
+
 				try {
 					productDao.createOne(map);
 				} catch (Exception e) {
@@ -307,10 +308,6 @@ public class CustomerServiceImpl implements CustomerService {
 				}
 				Cart cart = new Cart(0, (String) hashMap.get("PRODUCT_CODE"), loginId.getValue());
 				cartDao.createCart(cart);
-				
-				if(!iter.hasNext()) {
-					return null;
-				}
 			}
 		} else {
 			for (HashMap<String, Object> hashMap : listDB) {
@@ -331,150 +328,170 @@ public class CustomerServiceImpl implements CustomerService {
 			}
 		}
 		
-		for (HashMap<String, Object> hashMap : listDB) {
-			boolean same = false;
+		if (!listDB.isEmpty()) {
+			for (HashMap<String, Object> hashMap : listDB) {
+				boolean same = false;
 
-			for (HashMap<String, Object> hashMap2 : sameList) {
-				if (hashMap.get("PRODUCT_NAME").equals(hashMap2.get("PRODUCT_NAME"))) {
-					same = true;
+				for (HashMap<String, Object> hashMap2 : sameList) {
+					if (hashMap.get("PRODUCT_NAME").equals(hashMap2.get("PRODUCT_NAME"))) {
+						same = true;
+					}
+				}
+
+				if (!same) {
+					deleteList.add(hashMap);
+					System.out.println("####" + hashMap.get("PRODUCT_CODE"));
 				}
 			}
 
-			if (!same) {
-				deleteList.add(hashMap);
-				System.out.println("####" + hashMap.get("PRODUCT_CODE"));
-			}
-		}
-
-		for (HashMap<String, Object> hashMap : listCarts) {
-			boolean same = false;
-
-			for (HashMap<String, Object> hashMap2 : sameList) {
-				if (hashMap.get("PRODUCT_NAME").equals(hashMap2.get("PRODUCT_NAME"))) {
-					same = true;
-				}
-			}
-
-			if (!same) {
-				insertList.add(hashMap);
-			}
-		}
-
-		for (HashMap<String, Object> hashMap : updateList) {
-			Map map = new HashMap<>();
-			map.put("productCode",(String) hashMap.get("PRODUCT_CODE"));
-			map.put("productCount",hashMap.get("product_count"));
-            try {
-				productDao.update(map);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		for (HashMap<String, Object> hashMap : deleteList) {
-			cartDao.deleteCart((String) hashMap.get("PRODUCT_CODE"));
-		}
-
-		for (HashMap<String, Object> hashMap : insertList) {
-			
-			try {
-				Map map = new HashMap();
-				map.put("PRODUCT_CODE",(String) hashMap.get("PRODUCT_CODE"));
-				map.put("JACKET_CODE",(String) hashMap.get("JACKET_CODE"));
-				map.put("PANTS_CODE",(String) hashMap.get("PANTS_CODE"));
-				map.put("PRODUCT_NUM",(Double)hashMap.get("PRODUCT_NUM"));
-				map.put("PRODUCT_COUNT",hashMap.get("product_count"));
-				
-				try {
-					productDao.createOne(map);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				Cart cart = new Cart(0, (String) hashMap.get("PRODUCT_CODE"), loginId.getValue());
-				cartDao.createCart(cart);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		System.out.println("동일 : " + sameList.size());
-		System.out.println("수정 : " + updateList.size());
-		System.out.println("지움 : " + deleteList.size());
-		System.out.println("추가 : " + insertList.size());
-		
-		
-		// 기존 DB
-		List<HashMap<String, Object>> listDBForWish = wishlistDao.listWishesForLogin(loginId.getValue());
-
-		List<HashMap<String, Object>> sameListForWish = new ArrayList<HashMap<String, Object>>();
-
-		List<HashMap<String, Object>> updateListForWish = new ArrayList<HashMap<String, Object>>();
-
-		List<HashMap<String, Object>> deleteListForWish = new ArrayList<HashMap<String, Object>>();
-
-		List<HashMap<String, Object>> insertListForWish = new ArrayList<HashMap<String, Object>>();
-        /*
-		if (listDB.isEmpty()) {
 			for (HashMap<String, Object> hashMap : listCarts) {
-				
-				//위시리스트 : wishlist_num,customer_id,product_num
-				  
-				Double temp = (Double) (hashMap.get("PRODUCT_NUM"));
-				Double temp2 = (Double) (hashMap.get("product_count"));
-				
-				System.out.println("##$$"+ temp);
-				System.out.println("$%^$%^"+ temp2);
-				
-				Integer Temp = Integer.parseInt(String.valueOf(Math.round(temp)));
-				Integer Temp2 = Integer.parseInt(String.valueOf(Math.round(temp2)));
+				boolean same = false;
 
-				Map map = new HashMap();
-				map.put("PRODUCT_CODE",(String) hashMap.get("PRODUCT_CODE"));
-				map.put("JACKET_CODE",(String) hashMap.get("JACKET_CODE"));
-				map.put("PANTS_CODE",(String) hashMap.get("PANTS_CODE"));
-				map.put("PRODUCT_NUM",Temp);
-				map.put("PRODUCT_COUNT",Temp2);
-				
-				System.out.println("derwr3r3we Jacket :" + (String) hashMap.get("JACKET_CODE") );
-				System.out.println("derwr3r3we Pants :" + (String) hashMap.get("PANTS_CODE") );
-				
-				//product.setProductNum(Temp);
-				//product.setProductCount(Temp2);
+				for (HashMap<String, Object> hashMap2 : sameList) {
+					if (hashMap.get("PRODUCT_NAME").equals(hashMap2.get("PRODUCT_NAME"))) {
+						same = true;
+					}
+				}
 
-				// 실험 필요
+				if (!same) {
+					insertList.add(hashMap);
+				}
+			}
+
+			for (HashMap<String, Object> hashMap : updateList) {
+				Map map = new HashMap<>();
+				map.put("productCode", (String) hashMap.get("PRODUCT_CODE"));
+				map.put("productCount", hashMap.get("product_count"));
 				try {
-					productDao.createOne(map);
+					productDao.update(map);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				cartDao.createCart((String) hashMap.get("PRODUCT_CODE"), loginId.getValue());
+			}
+
+			for (HashMap<String, Object> hashMap : deleteList) {
+				cartDao.deleteCart((String) hashMap.get("PRODUCT_CODE"));
+			}
+
+			for (HashMap<String, Object> hashMap : insertList) {
+
+				try {
+					Map map = new HashMap();
+					map.put("PRODUCT_CODE", (String) hashMap.get("PRODUCT_CODE"));
+					map.put("JACKET_CODE", (String) hashMap.get("JACKET_CODE"));
+					map.put("PANTS_CODE", (String) hashMap.get("PANTS_CODE"));
+					map.put("PRODUCT_NUM", (Double) hashMap.get("PRODUCT_NUM"));
+					map.put("PRODUCT_COUNT", hashMap.get("product_count"));
+
+					try {
+						productDao.createOne(map);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					Cart cart = new Cart(0, (String) hashMap.get("PRODUCT_CODE"), loginId.getValue());
+					cartDao.createCart(cart);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("동일 : " + sameList.size());
+		System.out.println("수정 : " + updateList.size());
+		System.out.println("지움 : " + deleteList.size());
+		System.out.println("추가 : " + insertList.size());
+
+		// 기존 DB : 위시리스트
+		List<HashMap<String, Object>> listDBForWish = wishlistDao.listWishesForLogin(loginId.getValue());
+
+		List<HashMap<String, Object>> sameListForWish = new ArrayList<HashMap<String, Object>>();
+
+		List<HashMap<String, Object>> deleteListForWish = new ArrayList<HashMap<String, Object>>();
+
+		List<HashMap<String, Object>> insertListForWish = new ArrayList<HashMap<String, Object>>();
+
+		if (listDBForWish.isEmpty()) {
+			Iterator<HashMap<String, Object>> iter = listWishes.iterator();
+			
+			while (iter.hasNext()) {
+				HashMap hashMap = iter.next();
+
+				try {
+					wishlistDao.insertWishlist(loginId.getValue(), Integer.parseInt((String)hashMap.get("PRODUCT_NUM")));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		} else {
-			for (HashMap<String, Object> hashMap : listDB) {
-				for (HashMap<String, Object> hashMapForCart : listCarts) {
-					if (hashMap.get("PRODUCT_NAME").equals(hashMapForCart.get("PRODUCT_NAME"))) {
-						if ((hashMap.get("PRODUCT_COUNT") + ".0").equals((hashMapForCart.get("product_count") + ""))) {
-							// 상품제목 O, 상품수량 O
+			for (HashMap<String, Object> hashMap : listDBForWish) {
+				for (HashMap<String, Object> hashMapForWish : listWishes) {
+					System.out.println("1568546 : " + hashMap.get("PRODUCT_NAME"));
+					System.out.println("14894556 : " + hashMapForWish.get("PRODUCT_NAME"));
+					
+					if (hashMap.get("PRODUCT_NAME").equals(hashMapForWish.get("PRODUCT_NAME"))) {
 							System.out.println("상품제목 O, 상품수량 O");
-							sameList.add(hashMap);
-						} else {
-							// 상품제목 O, 상품수량 X
-							updateList.add(hashMap);
-							System.out.println("상품제목 O, 상품수량 X");
-							// cartDao.updateCart((String) hashMap.get("CART_NUM"), (String)
-							// hashMap.get("PRODUCT_COUNT"));
-						}
-
-
+							sameListForWish.add(hashMap);
 					} else {
 						System.out.println("실패");
 					}
 				}
 			}
 		}
-		*/
+
+		
+		if (!listDBForWish.isEmpty()) {
+			for (HashMap<String, Object> hashMap : listDBForWish) {
+				boolean same = false;
+
+				for (HashMap<String, Object> hashMap2 : sameListForWish) {
+					if (hashMap.get("PRODUCT_NAME").equals(hashMap2.get("PRODUCT_NAME"))) {
+						same = true;
+					}
+				}
+
+				if (!same) {
+					deleteListForWish.add(hashMap);
+				}
+			}
+
+			for (HashMap<String, Object> hashMap : listWishes) {
+				boolean same = false;
+
+				for (HashMap<String, Object> hashMap2 : sameList) {
+					if (hashMap.get("PRODUCT_NAME").equals(hashMap2.get("PRODUCT_NAME"))) {
+						same = true;
+					}
+				}
+
+				if (!same) {
+					insertListForWish.add(hashMap);
+				}
+			}
+
+			for (HashMap<String, Object> hashMap : deleteListForWish) {
+				try {
+					int temp = ((BigDecimal)hashMap.get("PRODUCT_NUM")).intValue();
+					wishlistDao.deleteWishlist(loginId.getValue(), temp);
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			for (HashMap<String, Object> hashMap : insertListForWish) {
+                System.out.println(hashMap.get("PRODUCT_NUM"));
+				try {
+					wishlistDao.insertWishlist(loginId.getValue(), (int) Math.round((Double)hashMap.get("PRODUCT_NUM")));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		return null;
 	}
 

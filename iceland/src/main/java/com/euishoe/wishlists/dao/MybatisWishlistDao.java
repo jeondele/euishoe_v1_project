@@ -86,6 +86,7 @@ public class MybatisWishlistDao implements WishlistDao {
 	public List<HashMap<String, Object>> listWishesForLogin(String customer_id){
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<HashMap<String,Object>> list = sqlSession.selectList(NAMESPACE + "listWishesForLogin", customer_id);
+		sqlSession.close();
 		return list;
 		
 	}
