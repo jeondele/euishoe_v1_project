@@ -885,7 +885,7 @@
 	    str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + ProductName + '</a>'
 	    str += '<span class="header-cart-item-info">' + ProductCount + ' x ' + ProductPrice + '</span></div></li>';        
 	    $('#miniCarts').append(str);
-	          
+	    sumTotal();
 	    //checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
 	    
 	    //$('.header-cart-total')[0].innerText = ("Total: " + checksum) + '원';
@@ -920,9 +920,11 @@
 	        
 	        $(e.currentTarget).parents()[0].remove();
 	        setCountCartList();
+	        sumTotal();
 	    })
 	    
 	};
+	
 	
 	</script>
 </body>
