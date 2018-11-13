@@ -224,19 +224,7 @@ color : colorCode,
 orderByPrice : OrderByPrice,
 orderByHitcount : OrderByHitcount,
 orderByStar : OrderByStar */
-var params = new Object();
-params.tpo= $('#productTPO').val();
-params.season= $('#productSeason').val(); 
-params.price= $('#productListPrice').val(); 
-params.fabric= $('#productFabric').val(); 
-params.shoulderType= $('#productShoulder').val(); 
-params.armType= $('#productArm').val(); 
-params.legType= $('#productLeg').val(); 
-params.bodyType= $('#productBody').val();
-params.color= $('#colorCode').val();
-params.orderByPrice= $('#OrderByPrice').val();
-params.orderByHitcount= $('#OrderByHitcount').val();
-params.OrderByStar= $('#OrderByStar').val();
+
 // 필터용 변수 선언
 var productTPO;
 var productSeason;
@@ -257,19 +245,40 @@ $(function(){
 	})
 })
 
+var params = new Object();
+params.tpo= $('#productTPO').val();
+params.season= $('#productSeason').val(); 
+params.price= $('#productListPrice').val(); 
+params.fabric= $('#productFabric').val(); 
+params.shoulderType= $('#productShoulder').val(); 
+params.armType= $('#productArm').val(); 
+params.legType= $('#productLeg').val(); 
+params.bodyType= $('#productBody').val();
+params.color= $('#colorCode').val();
+params.orderByPrice= $('#OrderByPrice').val();
+params.orderByHitcount= $('#OrderByHitcount').val();
+params.orderByStar= $('#OrderByStar').val();
+
 $(function(){
 	$("#submitForm").submit(function(){
-		var url = "/iceland/productAjax.es";
-		console.log("에이작스 하러 들ㅇ러옴???");
-		ajax({
-			method : "get",
-			url : url,
-			callback : inputResult
-		});
-		return false;
+	
+	var url = "/iceland/productAjax.es";
+	console.log("에이작스 하러 들ㅇ러옴???");
+	$.ajax({
+		method : "get",
+		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+		url : url,
+		data : params,
+		success: function(result){
+			$("#selectResult").html(result.responseText);
+        },
+	    error : function(xhr, status) {
+	         console.log(xhr + " : " + status);
+	   }
+	});
+	return false;
 	})
 })
-	/* 	param : JSON.parse('{"tpo":"'+productTPO+'"}'), */
 
 function inputResult(result) {
 	console.log("콜백도 실행????");
@@ -291,7 +300,7 @@ $(function(){
 	  			case 'Date':      productTPO = 'date'; 		break;
 	  			default :         productTPO = null; 		break;
 	  		}
-	  		$("#productTPO").attr('value', productTPO);
+	  		$("#productTPO").val(productTPO);
   		} else { // 클릭을 했는데 활성화가 되어있으면,
   			$(this).removeClass('active');
   		}
@@ -508,7 +517,16 @@ $(function(){
 // 필터 초기화 함수
 function resetFilter() {
 	$('.flex-c-m.stext-107.bor7.p-lr-15.hov-btn3.trans-04.m-r-5.m-b-5.active').attr('class','flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5');
-
+	productTPO = null;
+	productSeason = null;
+	productListPrice = null;
+	productFabric = null;
+	productShoulder = null;
+	productArm = null;
+	productLeg = null;
+	productBody = null;
+	colorCode = null;
+	OrderBy = null;
 }
 
 
@@ -518,9 +536,9 @@ function resetFilter() {
 	<%@include file="..//../includes/favorite.jsp"%>
 	<%@include file="../../includes/slider.jsp"%>
 
-	<form id="submitForm">
-		<input type="hidden" id="productTPO" name="tpo" value="xxx"> 
-		<input type="hidden" id="productSeason"  name="season" value=""> 
+	<form id="submitForm" action="/iceland/productAjax.es">
+		<input type="hidden" id="productTPO" name = "tpo" value=""> 
+		<input type="hidden" id="productSeason"  name = "season" value=""> 
 		<input type="hidden" id="productListPrice"  name = "price" value=""> 
 		<input type="hidden" id="productFabric" name = "fabric" value=""> 
 		<input type="hidden" id="productShoulder" name = "color" value=""> 

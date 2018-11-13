@@ -35,7 +35,7 @@ public class ProductController implements Controller {
 			XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 			productService = (ProductService)factory.getBean(ProductServiceImpl.class);
 			
-			//paramMapping 
+			/*//paramMapping 
 			String tpo = request.getParameter("tpo");
 			String season = request.getParameter("season");
 			String lowPrice = request.getParameter("lowPrice");
@@ -48,7 +48,7 @@ public class ProductController implements Controller {
 			String orderByPrice = request.getParameter("orderByPrice");
 			String orderByHitcount = request.getParameter("orderByHitcount");
 			String orderByStar = request.getParameter("orderByStar");
-			
+			*/
 			FilterParam filterParam = new FilterParam(); 
 					
 					/*new FilterParam(tpo, season, lowPrice, highPrice, fabric, color, bodyType, shoulderType, armType, legType,
@@ -66,7 +66,6 @@ public class ProductController implements Controller {
 			
 			for(int i = 0 ; i < gsonListAll.size(); i++) {	
 				HashMap<String, Object> convertToJson = gson.fromJson(gsonListAll.get(i), HashMap.class);
-				System.out.println(convertToJson);
 				jsonObjectList.add(convertToJson);
 		 	}
 			
