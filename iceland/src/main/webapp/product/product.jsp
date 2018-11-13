@@ -97,6 +97,10 @@ window.onload = function() {
 	} else {
 		
 	}
+	
+	refreshwish();
+	registAttr();
+	clickToRefresh();
 }
 
 
@@ -182,6 +186,7 @@ function setCountCartList(){
     str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + productName + '</a>'
     str += '<span class="header-cart-item-info">' + productCount + ' x ' + productPrice + '</span></div></li>';        
     $('#miniCarts').append(str);
+    sumTotal();
           
     //checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
     
@@ -217,6 +222,7 @@ function setCountCartList(){
         
         $(e.currentTarget).parents()[0].remove();
         setCountCartList();
+        sumTotal();
     });
 }
   
@@ -1223,8 +1229,6 @@ function inputResult(result) {
 	}
 	
 
-	
-
 	function wishCookieDuplicate(str){
 		var array = arrayWish();
 		var duplicated = false;
@@ -1261,12 +1265,13 @@ function inputResult(result) {
 	}
 	
 	function clickToRefresh(){
+		
 		registAttr();
 		
 		$('.btn-addwish-b2.dis-block.pos-relative.js-addwish-b2').off();
 		
 		$('a[type="a"]').on('click',function(event){
-			event.stopPropagation();
+		  event.stopPropagation();
 			// 등록
 			
 		  var array = $(this).parents()[1].innerText.split('₩');
@@ -1323,7 +1328,9 @@ function inputResult(result) {
 			  
 			  console.log(deleteNum);
 			  setCookie('wish' + deleteNum,'',0);
-			  $('.header-cart-item.flex-w.flex-t.m-b-12.wish')[deleteNum - 1].remove();
+			  $($('.header-cart-item-img.wish')[deleteNum - 1]).parents()[0].remove();
+			  //$('.header-cart-item.flex-w.flex-t.m-b-12.wish')[deleteNum - 1].remove();
+			  
 			  // 지운 후 정렬 
 		      var testNum = deleteNum + 1;
 		      
@@ -1346,6 +1353,7 @@ function inputResult(result) {
 			
 			
 			$('#wishButton').attr('data-notify',parseInt($('#wishButton').attr('data-notify')) - 1);
+			
 			refreshwish();
 			registAttr();
 			clickToRefresh();
@@ -1354,9 +1362,7 @@ function inputResult(result) {
 		
 	}
 	
-	refreshwish();
-	registAttr();
-	clickToRefresh();
+
 	</script>
 </body>
 </html>

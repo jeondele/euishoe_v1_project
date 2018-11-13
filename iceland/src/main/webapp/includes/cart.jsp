@@ -91,7 +91,7 @@
             }
             $(e.currentTarget).parents()[0].remove();
             $('#cartButton').attr('data-notify',testNum - 2);
-
+            sumTotal();
         });
 		// row 뿌리기
 		
@@ -100,6 +100,20 @@
 		}
 	);
   
+  function sumTotal(){
+	    var prior = 1;
+		var checksum = 0; 
+		
+		while(getCookie('cart' + prior)){
+			var obj = decodeURIComponent(getCookie('cart' + prior)).substring(1,decodeURIComponent(getCookie('cart' + prior)).length - 1);
+			var jsonObj = JSON.parse(obj);
+			console.log(jsonObj);
+			checksum += (jsonObj.PRODUCT_PRICE * jsonObj.product_count);
+			prior++;
+		}
+		
+		$('.header-cart-total.w-full.p-tb-40.cart')[0].innerText = "Total: " + checksum + "원";
+  }
   
   </script>
 <!--

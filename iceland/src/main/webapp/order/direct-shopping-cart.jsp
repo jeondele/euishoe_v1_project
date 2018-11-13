@@ -538,6 +538,11 @@ tr {
     		console.log(6);
     	})
     	
+    	$('#usingPoint').onkeyup = function(){
+    		$("#post8").val(parseInt(replaceAll($('.mtext-110.cl2')[0].innerText.substring(3,$('.mtext-110.cl2')[0].innerText.length - 3),',','')) - $('#usingPoint').val());	
+    		$('.mtext-110.cl2')[0].innerText = (parseInt(replaceAll($('.mtext-110.cl2')[0].innerText.substring(3,$('.mtext-110.cl2')[0].innerText.length - 3),',','')) - $('#usingPoint').val())
+    	};
+
     	$($('[name="payMethod"]')[0]).on('change',function(){
     		$('#post7').val($('[name="payMethod"]')[0].value);
     		console.log(7);
