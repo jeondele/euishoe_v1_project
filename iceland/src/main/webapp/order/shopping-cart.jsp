@@ -565,8 +565,8 @@ function sumPrice(){
 			$('.mtext-110.cl2')[0].innerText =  checksum;
 			$('.mtext-110.cl2')[1].innerText = (checksum + parseInt($('.stext-110.cl2')[7].innerText.trim().substring(0,$('.stext-110.cl2')[7].innerText.trim().length -2)));
 			
-			$('.how-itemcart1').unbind("click").on('click', deleteItem);
-/* 			// 상품이미지 클릭 시 해당상품 cart에서 지우기
+			//$('.how-itemcart1').unbind("click").on('click', deleteItem);
+ 			// 상품이미지 클릭 시 해당상품 cart에서 지우기
 			$('.how-itemcart1').unbind("click").on('click',function(e){
 	            var deleteNum = parseInt($(e.currentTarget).attr('value')); 
 	            setCookie('cart' + deleteNum,'',0);
@@ -589,7 +589,7 @@ function sumPrice(){
 	            $('#cartButton').attr('data-notify',testNum - 2);
 	            sumUp();
 	        });
- */			
+ 			
 			// 수량up 클릭이벤트 걸어주는 함수//////////////////////////////////
 			$('.btn-num-product-up').bind("click",function(e){
 				console.log('수량up 함수 들어오나');
@@ -624,7 +624,8 @@ function sumPrice(){
 				sumUp();
 			});
 			/////////////////////////////////////////////////////////
-     });
+     }
+	);
 		
 	
 		</script> 
