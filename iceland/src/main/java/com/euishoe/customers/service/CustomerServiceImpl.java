@@ -450,8 +450,8 @@ public class CustomerServiceImpl implements CustomerService {
 				System.out.println("derwr3r3we Jacket :" + (String) hashMap.get("JACKET_CODE") );
 				System.out.println("derwr3r3we Pants :" + (String) hashMap.get("PANTS_CODE") );
 				
-				product.setProductNum(Temp);
-				product.setProductCount(Temp2);
+				//product.setProductNum(Temp);
+				//product.setProductCount(Temp2);
 
 				// 실험 필요
 				try {
