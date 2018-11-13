@@ -74,6 +74,7 @@ window.onload = function () {
 	// 비회원인경우, 주소관련 버튼 안보이게, point영역 안보이게
 	if(loginId == null){
 		console.log('비회운인경우 입니다.');
+		$('.select-ship').remove();
 		// 기본배송지, 새 배송지 없애기
 		$('#defaultAddr').css('display', 'none');
 		$('#newAddr').css('display', 'none');
@@ -82,9 +83,9 @@ window.onload = function () {
 	}
 	
 	// 품목당 수량, 가격에 id값 동적 부여
-	dynamicGrantId();
+//	dynamicGrantId();
 	//cntChange();
-	$('#cnt').change(function (){
+/* 	$('#cnt').change(function (){
 		var val = $('#cnt').val();
 		var price = Number($('#price').text());
 		console.log('총 가격계산 함수 진입!!!!!!cnt값'+val+'price(단품 한개)값:'+price);
@@ -92,7 +93,7 @@ window.onload = function () {
 		console.log('!!!!!총가격 계산값: '+ sum)
 		$('#totalPrice').text(sum);
 	});
-
+ */
 };
 
 // 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수..->태그에 onclick걸어줌
@@ -101,7 +102,7 @@ function clearAddrInput() {
 	$('#address').val('');
 	$('#address_detail').val('');
 }
-
+/*
 // 상품 수량 element에 id값 동적 부여
 function dynamicGrantId() {
 	var row; // 상품하나가 차지하는 table의 row
@@ -150,7 +151,7 @@ function cntChange() {
 	});
 }
 
-// 품목당 총 가격
+ // 품목당 총 가격
 function sumPrice(){
 	var val = $('#cnt').val();
 	var price = Number($('#price').text());
@@ -158,7 +159,7 @@ function sumPrice(){
 	var sum = price * Number(val);
 	console.log('!!!!!총가격 계산값: '+ sum)
 	$('#totalPrice').text(sum);
-}
+} */
 
 </script>
 </head>
@@ -202,62 +203,11 @@ function sumPrice(){
 									<th class="column-5 txt-center">수량</th>
 									<th class="column-6 txt-center">총금액</th>
 								</tr>
-								<!-- <tr class="table_row">
-									<td class="column-1 txt-center">
-										<input type="checkbox" value="None" class="roundedOne" name="check" checked />
-									</td>
-									<td class="column-2 txt-center">
-										<div class="how-itemcart1"><img src="" alt="IMG"/></div>
-									</td>
-									<td class="column-3 txt-center">Fresh Strawberries</td>
-									<td class="column-4 txt-center">3600</td>
-									<td class="column-5 txt-center">
-										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="text" name="num-product1" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-									</td>
-									<td class="column-6 txt-center">3600</td>
-								</tr>
-
-								<tr class="table_row">
-									<td class="column-1 txt-center">
-										<input type="checkbox" value="None" class="roundedOne" id="" name="check" checked />
-									</td>
-									<td class="column-2 txt-center">
-										<div class="how-itemcart1">
-											<img src="/iceland/images/item-cart-05.jpg" alt="IMG">
-										</div>
-									</td>
-									<td class="column-3 txt-center">Lightweight Jacket</td>
-									<td class="column-4 txt-center">1600</td>
-									<td class="column-5 txt-center">
-										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-									</td>
-									<td class="column-6 txt-center">1600</td>
-								</tr>
- -->							</table>
+							</table>
 						</div>
 
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-                             <div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" id="delete_selected">선택삭제</div>
+                            <div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" id="delete_selected">선택삭제</div>
 							<div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" id="delete_All">전체삭제</div>
 						</div>
 						
@@ -558,8 +508,6 @@ function sumPrice(){
 		sumUp();
 		
 	})
-	
-	
 	
 	// cart에 담긴 아이템 table에 뿌려주고 수량 변화 이벤트
 	 $(document).ready(function() {
