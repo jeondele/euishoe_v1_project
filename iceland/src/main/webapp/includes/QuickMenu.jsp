@@ -147,8 +147,8 @@
 			var productBrand =  productName.split('$')[0];
 			var productColor =  productName.split('$')[1];
 			var productCode = productBrand+'$'+ cloth +'$'+ pants +'$'+ productColor;
-			var pantsCode = productBrand+'$'+ cloth +'$'+ productColor;
-			var jacketCode = productBrand+'$'+ pants +'$'+ productColor;
+			var pantsCode = productBrand+'$pt$'+ pants + '$'+ productColor;
+			var jacketCode = productBrand+'$jk$'+ cloth +'$'+ productColor;
 			$('#productCode').val(productCode);
 			$('#pantsCode').val(pantsCode);
 			$('#jacketCode').val(jacketCode);

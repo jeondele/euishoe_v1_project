@@ -35,6 +35,7 @@ public class OrderController implements Controller {
 		String productCount = request.getParameter("productCount");
 		String customerId = "";
 		
+		
 		Cookie[] cookies = request.getCookies();
 		for (Cookie cookie : cookies) {
 			if(cookie.getName().equals("loginId")) {
@@ -53,7 +54,6 @@ public class OrderController implements Controller {
 		try {
 			codes = orderService.productCodeParsing(productCode);
 		} catch (Exception e) {}
-		
 		
 		mav.addObject("codes", codes);
 		mav.addObject("customerOrderInfo", list);

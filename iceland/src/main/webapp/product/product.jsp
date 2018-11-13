@@ -44,7 +44,7 @@
 	<link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->	
-	
+	<script src="/iceland/js/ajax.js"></script>
 <!--===============================================================================================-->
 <!--===============================================================================================-->
 </head>
@@ -156,9 +156,11 @@ function setCountCartList(){
   var productLeg;
   var productBody;
   var colorCode;
-  var OrderBy;
+  var OrderByPrice;
+  var OrderByHitcount;
+  var OrderByStar;
 
-
+  
   // TPO 필터 선택 함수 -> 값 받아오는 로직까지 구현
   $(function(){
       var sBtn = $("ul.finder_list_by_TPO > li");
@@ -167,12 +169,16 @@ function setCountCartList(){
              sBtn.children().removeClass('active');
              $(this).addClass('active');
              switch($(this).attr('id')) {
-                case 'Wedding':   productTPO = 'wedding';    break;
+                case 'Wedding': {
+                	productTPO = 'wedding';    
+                	break;
+                }
                 case 'Meeting':   productTPO = 'meeting';    break;
                 case 'Interview': productTPO = 'interview'; break;
                 case 'Date':      productTPO = 'date';       break;
                 default :         productTPO = null;       break;
              }
+             $("#productTPO").val(productTPO);
           } else { // 클릭을 했는데 활성화가 되어있으면,
              $(this).removeClass('active');
           }
@@ -193,6 +199,7 @@ function setCountCartList(){
                 case 'Winter': productSeason = 'winter'; break;
                 default :       productSeason = null;     break;
              }
+             $("#productSeason").val(productSeason);
           } else { // 클릭을 했는데 활성화가 되어있으면,
              $(this).removeClass('active');
           }
@@ -213,6 +220,7 @@ function setCountCartList(){
               case '20Plus':    productListPrice = '200000/0';       break;
               default :          productListPrice = null;           break;
            }
+           $("#productListPrice").val(productListPrice);
           } else { // 클릭을 했는데 활성화가 되어있으면,
              $(this).removeClass('active');
           }
@@ -233,6 +241,7 @@ function setCountCartList(){
               case 'Linen':      productFabric = 'linen';      break;
               default :            productFabric = null;      break;
            }
+           $("#productFabric").val(productFabric);  
           } else { // 클릭을 했는데 활성화가 되어있으면,
              $(this).removeClass('active');
           }
@@ -251,6 +260,7 @@ function setCountCartList(){
               case 'Shoulder3':  productShoulder = '3';  break;
               default :             productShoulder = null; break;
              }
+             $("#productShoulder").val(productShoulder);  
           } else { 
              $(this).removeClass('active');
           }
@@ -269,6 +279,7 @@ function setCountCartList(){
               case 'Arm3':  productArm = '3';  break;
               default :      productArm = null; break;
              }
+             $("#productArm").val(productArm);  
           } else { 
              $(this).removeClass('active');
           }
@@ -287,6 +298,7 @@ function setCountCartList(){
               case 'Leg3':  productLeg = '3';  break;
               default :      productLeg = null; break;
            }
+           $("#productLeg").val(productLeg);  
           } else { 
              $(this).removeClass('active');
           }
@@ -305,6 +317,7 @@ function setCountCartList(){
               case 'WeightBig':       productBody = '3';  break;
               default :              productBody = null; break;
            } 
+             $("#productBody").val(productBody);   
           } else { 
              $(this).removeClass('active');
           }
@@ -324,6 +337,7 @@ function setCountCartList(){
               case 'Navy' :     colorCode = 'NV';     break;
               default :        colorCode = null;    break;
            } 
+             $("#colorCode").val(colorCode);   
           } else { 
              $(this).removeClass('active');
           }
@@ -337,18 +351,74 @@ function setCountCartList(){
              sBtn.children().removeClass('active');
              $(this).addClass('active');
              switch($(this).attr('id')) {
-              case 'LowPrice':        OrderBy = 'ASC';   break;
-              case 'HighPrice':     OrderBy = 'DESC';  break;
-              case 'ReviewCount' :  OrderBy = 'DESC';  break;
-              case 'HitCount' :       OrderBy = 'DESC';  break;
-              default :             OrderBy = null;     break;
+              case 'LowPrice' : {
+            	  OrderByPrice = 'ASC';   
+            	  OrderByStar = null;
+            	  OrderByHitcount = null;
+            	  break;
+              }
+              case 'HighPrice' : {
+            	  OrderByPrice = 'DESC';
+            	  OrderByStar = null;
+            	  OrderByHitcount = null;
+            	  break;
+              }
+              case 'ReviewCount' : {
+            	  OrderByPrice = null;
+            	  OrderByStar = 'DESC';  
+            	  OrderByHitcount = null;
+            	  break;
+              }
+              case 'HitCount' : {
+            	  OrderByPrice = null;
+            	  OrderByStar = null;
+            	  OrderByHitcount = 'DESC';  
+            	  break;
+              }
+              default : {
+            	  OrderByPrice = null;     
+            	  OrderByStar = null;
+            	  OrderByHitcount = null;
+            	  break;
+            	  break;
+              }
+              $("#OrderByPrice").val(OrderByPrice); 
+              $("#OrderByStar").val(OrderByStar); 
+              $("#OrderByHitcount").val(OrderByHitcount); 
            }
           } else { 
              $(this).removeClass('active');
           }
    })
   })
-
+  
+  $(function(){
+	  $("#submitValue").submit(function(e){
+		  console.log("에이작스 전송하러 드감");
+		  var url = "/iceland/productAjax.es";
+		  ajax({
+				method : "get",
+				url : url,
+				callback : inputSelectResult
+		  });
+		  return false; 
+	  })
+  })
+  
+  $(function(){
+	  console.log("들어오긴하니?11111??");
+	  $(".p-b-6").on("click", function() {
+		  $("#submitValue").submit();
+	  })
+  })
+  
+  function inputSelectResult (result) {
+	  console.log("받았다!!!!!");
+	  console.log(result);
+	  console.log(result.responseText);
+	  $("#selectResult").html(result.responseText);
+  }
+  
   // 필터 초기화 함수
   function resetFilter() {
      $('.flex-c-m.stext-107.bor7.p-lr-15.hov-btn3.trans-04.m-r-5.m-b-5.active').attr('class','flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5');
@@ -370,17 +440,19 @@ function setCountCartList(){
 <%@include file="..//../includes/favorite.jsp"%>
 <%@include file="../../includes/slider.jsp"%>
 
-	<form action=#>
-      <input type="hidden" id="productTPO" value="${productTPO}">
-      <input type="hidden" id="productSeason" value="${productSeason}">
-      <input type="hidden" id="productListPrice" value="${productListPrice}">
-      <input type="hidden" id="productFabric" value="${productFabric}">
-      <input type="hidden" id="productShoulder" value="${productShoulder}">
-      <input type="hidden" id="productArm" value="${productArm}">
-      <input type="hidden" id="productLeg" value="${productLeg}">
-      <input type="hidden" id="productBody" value="${productBody}">
-      <input type="hidden" id="colorCode" value="${colorCode}">
-      <input type="hidden" id="OrderBy" value="${OrderBy}">
+	<form id ="submitValue" action="#">
+      <input type="hidden" id="productTPO" name = "tpo" value="">
+      <input type="hidden" id="productSeason" name = "season" value="">
+      <input type="hidden" id="productListPrice" name = "price" value="">
+      <input type="hidden" id="productFabric" name = "fabric" value="">
+      <input type="hidden" id="productShoulder" name = "shoulderType" value="">
+      <input type="hidden" id="productArm" name = "armType" value="">
+      <input type="hidden" id="productLeg" name = "legType" value="">
+      <input type="hidden" id="productBody" name = "bodyType" value="">
+      <input type="hidden" id="colorCode" name= "color" value="">
+      <input type="hidden" id="OrderByPrice" name ="orderByPrice" value="">
+      <input type="hidden" id="OrderByHitcount" name ="orderByHitcount" value="">
+      <input type="hidden" id="OrderByStar" name ="orderByStar" value="">
    </form>
    
    <!-- Product -->
@@ -434,7 +506,7 @@ function setCountCartList(){
                            </li>
    
                            <li class="p-b-6">
-                        <input type="button" id="Interview" name="Interview" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="면접용 (Interview)" >
+                        	  <input type="button" id="Interview" name="Interview" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="면접용 (Interview)" >
                            </li>
                            
                            <li class="p-b-6">
@@ -639,8 +711,8 @@ function setCountCartList(){
               </div>
                </div>
          </div>
-
-			<div id="selectResult" class="row isotope-grid">
+			<p id ="selectResult"></p>
+			<div class="row isotope-grid">
 				<c:forEach items="${jsonObjectList}" var="product">
 				<c:set var ="imageRef" value="${product.imageRef}"/>
 				<c:if test="${fn:contains(imageRef,'main$1')}">
@@ -678,11 +750,6 @@ function setCountCartList(){
 				</div>
 				</c:if>
 				</c:forEach>
-			</div>
-
-			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
-				<input type="button" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04" value="더보기">
 			</div>
 		</div>
 	</div>
@@ -758,7 +825,7 @@ function setCountCartList(){
 	<script>
 	   <%--  var Test = '';
 		$('.brief-view').on('click', function(e){
-			Test = e;
+			Test = e;   
 			console.log(e);
 	 		var value = $(this).find('input').val();
 			$('#productNum').value = value;
