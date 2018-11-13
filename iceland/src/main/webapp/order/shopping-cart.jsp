@@ -273,12 +273,12 @@ function sumPrice(){
                 <div style="display:block">
                   <table>
                   <colgroup>
- 					<col style="width: 110px;">
+ 					<col style="width: 150px;">
                   	<col style="width: 678px;">             
                   </colgroup>
                   <tbody>
                     <tr>
-                      <th>받으시는 분</th>
+                      <th>수령자</th>
                       <td><input type="text" id="rcvr" name="rcvr"></td>
                      </tr>
                      
@@ -295,21 +295,21 @@ function sumPrice(){
                     <tr>
                        <th>휴대전화</th>
                        <td>
-          <select id="phoneNumberSelect" name="phoneNumberSelect" title="휴대전화-국번선택">
+          <select id="phoneNumberSelect" style="margin-left: 5px;" name="phoneNumberSelect" title="휴대전화-국번선택">
             <option value="010">010</option>
             <option value="011">011</option>
             <option value="016">016</option>
             <option value="017">017</option>
             <option value="018">018</option>
             <option value="019">019</option>
-          </select>&nbsp;-&nbsp;
-          <input type="text" id="phoneNumber2" name="tmprcvrPrtblNo" maxlength="4" onkeypress="javascript:common.onlyNumberInput(event);" title="휴대전화두번째자리" class="">&nbsp;-&nbsp;
-          <input type="text" id="phoneNumber3" name="tmprcvrPrtblNo" maxlength="4" onkeypress="javascript:common.onlyNumberInput(event);" title="휴대전화세번째자리" class="">
+          </select> &nbsp;-&nbsp;
+          <input type="text" id="phoneNumber2" name="tmprcvrPrtblNo" maxlength="4" onkeypress="javascript:common.onlyNumberInput(event);" title="휴대전화두번째자리" style="width: 60px;"> &nbsp;-&nbsp;
+          <input type="text" id="phoneNumber3" name="tmprcvrPrtblNo" maxlength="4" onkeypress="javascript:common.onlyNumberInput(event);" title="휴대전화세번째자리" style="width: 60px;">
         </td>
                      </tr>
                      
                      <tr>
-                       <th>배송시 요청사항</th>
+                       <th>배송 요청사항</th>
                        <td><input type="text" id="requireComment" name="requireComment"></td>
                      </tr>
                   </tbody>
