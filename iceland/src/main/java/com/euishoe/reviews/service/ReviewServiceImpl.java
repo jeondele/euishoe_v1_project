@@ -35,18 +35,18 @@ public class ReviewServiceImpl implements ReviewService {
 
 
 	@Override
-	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
-		return reviewDao.reviewDynamicReviewList(productNum, customerId, reviewScore, params);
+	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore) throws Exception {
+		return reviewDao.reviewDynamicReviewList(productNum, customerId, reviewScore);
 	}
 
 	@Override
-	public List<Review> reviewListByCustomerId(int productNum, String customerId, Params params) throws Exception {
-		return reviewDao.reviewListByCustomerId(productNum, customerId, params);
+	public List<Review> reviewListByCustomerId(int productNum, String customerId) throws Exception {
+		return reviewDao.reviewListByCustomerId(productNum, customerId);
 	}
 
 	@Override
-	public List<Review> reviewListByScore(int productNum, int reviewScore, Params params) throws Exception {
-		return reviewDao.reviewListByScore(productNum, reviewScore, params);
+	public List<Review> reviewListByScore(int productNum, int reviewScore) throws Exception {
+		return reviewDao.reviewListByScore(productNum, reviewScore);
 	}
 
 	@Override

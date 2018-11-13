@@ -1,5 +1,8 @@
 package com.euishoe.comments.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.euishoe.comments.dto.Comment;
 
 /**
@@ -16,10 +19,7 @@ public interface CommentDao {
 	//(관리자)문의글 댓글 작성
 	public void createQnaComment(int qnaNum, String CommentContent) throws Exception;
 	
-	//문의글 댓글 읽기
-	public Comment readQnaComment(int qnaNum) throws Exception;
-	
-	//리뷰글 댓글 읽기
-	public Comment readReviewComment(int reviewNum) throws Exception;
+	//댓글 읽기
+	public List<HashMap<String, Object>> readComment(int productNum) throws Exception;
 	
 }

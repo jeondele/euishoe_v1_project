@@ -35,26 +35,25 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum,
-			Params params) throws Exception {
-		return qnaDao.qnaDynamicListAll(productNum, qnaisLock, customerId, TypeNum, params);
+	public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum) throws Exception {
+		return qnaDao.qnaDynamicListAll(productNum, qnaisLock, customerId, TypeNum);
 	}
 
 
 	@Override
-	public List<Map<String, Object>> qnaListByCustomerId(int productNum, String customerId, Params params)
+	public List<Map<String, Object>> qnaListByCustomerId(int productNum, String customerId)
 			throws Exception {
-		return qnaDao.qnaListByCustomerId(productNum, customerId, params);
+		return qnaDao.qnaListByCustomerId(productNum, customerId);
 	}
 
 	@Override
-	public List<Map<String, Object>> qnaListByLock(int productNum, Params params) throws Exception {
-		return qnaDao.qnaListByLock(productNum, params);
+	public List<Map<String, Object>> qnaListByLock(int productNum) throws Exception {
+		return qnaDao.qnaListByLock(productNum);
 	}
 
 	@Override
-	public List<Map<String, Object>> qnaListByType(int productNum, int typeNum, Params params) throws Exception {
-		return qnaDao.qnaListByType(productNum, typeNum, params);
+	public List<Map<String, Object>> qnaListByType(int productNum, int typeNum) throws Exception {
+		return qnaDao.qnaListByType(productNum, typeNum);
 	}
 
 	@Override

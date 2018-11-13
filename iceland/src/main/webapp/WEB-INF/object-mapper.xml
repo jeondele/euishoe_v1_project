@@ -54,7 +54,10 @@
 	<bean type="dao" name="qnaDao" class="com.euishoe.qnas.dao.MybatisQnaDao">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
-	
+	<!-- commentt 맵핑 -->
+	<bean type="dao" name="commentDao" class="com.euishoe.comments.dao.MybatisCommentDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
 <!-- Service 매핑 -->
 	<!-- cart 매핑 -->
 	<bean type="service" name="cartService" class="com.euishoe.carts.service.CartServiceImpl">
@@ -110,6 +113,7 @@
 		<property name="productDao" ref="productDao"/>
 		<property name="reviewDao" ref="reviewDao"/>
 		<property name="qnaDao" ref="qnaDao"/>
+		<property name="commentDao" ref="commentDao"/>
 	</bean>
 	
 	<!-- payment 맵핑 -->

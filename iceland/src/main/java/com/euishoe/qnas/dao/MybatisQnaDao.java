@@ -48,50 +48,43 @@ public class MybatisQnaDao implements QnaDao {
 
 
 	@Override
-	public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception {
+	public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("productNum", productNum);
-		param.put("qnaisLock", qnaisLock);
+		param.put("qnaIsLock", qnaisLock);
 		param.put("customerId", customerId);
-		param.put("listSize", params.getListSize());
-		param.put("page", params.getPage());
+		param.put("qnaTypeNum", TypeNum);
 		List<HashMap<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectDynamicListAll", param);
 		return list;
 	}
 	
 
 	@Override
-	public List<Map<String, Object>> qnaListByCustomerId(int productNum, String customerId, Params params) throws Exception {
+	public List<Map<String, Object>> qnaListByCustomerId(int productNum, String customerId) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("productNum", productNum);
 		param.put("customerId", customerId);
-		param.put("listSize", params.getListSize());
-		param.put("page", params.getPage());
 		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectQnaUserById", param);
 		return list;
 	}
 
 	@Override
-	public List<Map<String, Object>> qnaListByLock(int productNum, Params params) throws Exception {
+	public List<Map<String, Object>> qnaListByLock(int productNum) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("productNum", productNum);
-		param.put("listSize", params.getListSize());
-		param.put("page", params.getPage());
 		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectQnaByLock", param);
 		return list;
 	}
 
 	@Override
-	public List<Map<String, Object>> qnaListByType(int productNum, int typeNum, Params params) throws Exception {
+	public List<Map<String, Object>> qnaListByType(int productNum, int typeNum) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("productNum", productNum);
 		param.put("qnaTypeNum", typeNum);
-		param.put("listSize", params.getListSize());
-		param.put("page", params.getPage());
 		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectQnaByType", param);
 		return list;
 	}

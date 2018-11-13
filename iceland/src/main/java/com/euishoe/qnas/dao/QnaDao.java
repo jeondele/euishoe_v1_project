@@ -22,16 +22,16 @@ public interface QnaDao {
 	public void createQna(Qna qna) throws Exception;
 	
 	//제품 문의글 조건에 따른 동적 조회
-	public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception;
+	public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum) throws Exception;
 	
 	//특정 유저 문의글 조회(페이징)
-	public List<Map<String,Object>> qnaListByCustomerId(int productNum, String customerId, Params params) throws Exception;
+	public List<Map<String,Object>> qnaListByCustomerId(int productNum, String customerId) throws Exception;
 	
 	//비밀글 제외 조회(페이징)
-	public List<Map<String,Object>> qnaListByLock(int productNum, Params params) throws Exception;
+	public List<Map<String,Object>> qnaListByLock(int productNum) throws Exception;
 	
 	//타입으로 조회(페이징)
-	public List<Map<String,Object>> qnaListByType(int productNum, int typeNum, Params params) throws Exception;
+	public List<Map<String,Object>> qnaListByType(int productNum, int typeNum) throws Exception;
 	
 	//삭제
 	public void deleteQna(int qnaNum) throws Exception;
