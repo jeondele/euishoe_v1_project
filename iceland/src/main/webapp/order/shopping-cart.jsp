@@ -41,7 +41,7 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/iceland/order/shopping-cart.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="/iceland/product/detail/product.css">
+<!-- <link rel="stylesheet" type="text/css" href="/iceland/product/detail/product.css"> -->
   <!--===============================================================================================-->
 <script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 <style>
@@ -406,19 +406,19 @@ function sumPrice(){
     src="/iceland/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
   <!--확인 및 수정 완료(by sw)================================================================================-->  
    <script>
-			$('.js-pscroll').each(function() {
-				$(this).css('position', 'relative');
-				$(this).css('overflow', 'hidden');
-				var ps = new PerfectScrollbar(this, {
-					wheelSpeed : 1,
-					scrollingThreshold : 1000,
-					wheelPropagation : false,
-				});
+	$('.js-pscroll').each(function() {
+		$(this).css('position', 'relative');
+		$(this).css('overflow', 'hidden');
+		var ps = new PerfectScrollbar(this, {
+			wheelSpeed : 1,
+			scrollingThreshold : 1000,
+			wheelPropagation : false,
+		});
 
-				$(window).on('resize', function() {
-					ps.update();
-				})
-			});
+		$(window).on('resize', function() {
+			ps.update();
+		});
+	});
 			
 	$('.how-itemcart1').bind("click",function(e){
 		e.currentTarget.parentElement.parentElement.remove();
@@ -525,17 +525,16 @@ function sumPrice(){
 			}
 		}
 		sumUp();
-		
-	})
+	});
 	
 	// cart에 담긴 아이템 table에 뿌려주고 수량 변화 이벤트
-	 $(document).ready(function() {
+	 $(document).ready(	function() {
 		    
-			/*if(getQuerystring(productCode)){*/
+			/*if(getQuerystring(productCode))*/
 			var prior = 1;
 			var checksum = 0; 
 			
-			while(getCookie('cart' + prior)){
+			while(getCookie('cart' + prior)) {
 				var obj = decodeURIComponent(getCookie('cart' + prior)).substring(1,decodeURIComponent(getCookie('cart' + prior)).length - 1);
 				var jsonObj = JSON.parse(obj);
 				var jsonProductSize = jsonObj.PRODUCT_CODE || '';
@@ -624,8 +623,7 @@ function sumPrice(){
 				sumUp();
 			});
 			/////////////////////////////////////////////////////////
-     }
-	);
+		});
 		
 	
 		</script> 
