@@ -49,12 +49,12 @@ public class Qna {
 		this.qnaRegdate = qnaRegdate;
 	}
 
-	public Qna(int qnaTypeNum, String customerId, int productNum, String qnaTitle, String qnaContent, String qnaPassword
+	public Qna(int qnaTypeNum, int productNum, String customerId, String qnaTitle, String qnaContent, String qnaPassword
 			,String qnaIsLock) {
 		super();
 		this.qnaTypeNum = qnaTypeNum;
-		this.customerId = customerId;
 		this.productNum = productNum;
+		this.customerId = customerId;
 		this.qnaTitle = qnaTitle;
 		this.qnaContent = qnaContent;
 		this.qnaPassword = qnaPassword;

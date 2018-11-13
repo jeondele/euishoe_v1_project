@@ -35,32 +35,17 @@
 	            'N')
 	</insert>
 
- <resultMap type="com.euishoe.comments.dto.Comment" id="Comment">
-       <result property="commentNum" column="comment_num"/>	
-       <result property="reviewNum" column="review_num"/>
-       <result property="qnaNum" column="qna_num"/>
-       <result property="commentContent" column="comment_content"/>
-       <result property="commentLevel" column="comment_level"/>
-       <result property="commentIsDeleted" column="comment_isdeleted"/>
-   </resultMap>
    
-
 	<!-- 리뷰게시판 댓글 조회 -->
-	<select id="selectReviewComment" parameterType="int" resultMap="Comment">
-	SELECT comment_num, 
-	       review_num, 
-	       comment_content
-	FROM   comments
-	WHERE  review_num = #{reviewNum}
-	</select>
-	
-	<!-- Qna 댓글 조회 -->
-	<select id="selectQnaComment" parameterType="int" resultMap="Comment">
-	SELECT comment_num, 
-	       qna_num, 
-	       comment_content
-	FROM   comments
-	WHERE  qna_num = #{qnaNum}
+	<select id="selectComment" parameterType="int" resultType="Map">
+	SELECT c.*,
+       	   r.*,
+       	   q.*          
+	FROM  comments c INNER JOIN reviews r
+      	  ON c.review_num = r.review_num
+      	  INNER JOIN qnas q
+      	  ON r.product_num = q.product_num
+	WHERE r.product_num = #{productNum} OR q.product_num =#{productNum}
 	</select>
 	<!-- 리뷰게시판 삭제 -->
 

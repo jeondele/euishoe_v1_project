@@ -3,14 +3,11 @@ package com.euishoe.qnas.controller;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
-
 import com.euishoe.common.controller.Controller;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.common.factory.XMLObjectFactory;
@@ -18,8 +15,6 @@ import com.euishoe.common.web.PageBuilder;
 import com.euishoe.common.web.Params;
 import com.euishoe.qnas.service.QnaService;
 import com.euishoe.qnas.service.QnaServiceImpl;
-import com.google.gson.Gson;
-
 /*
  * 
  * 조건 검색에 따른 qan list 처리를 위한 컨트롤러
@@ -40,29 +35,31 @@ public class QnaListController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		qnaService = (QnaService)factory.getBean(QnaServiceImpl.class);
 		response.setContentType("text/plain; charset=utf-8");
-		
-		String requestPage = request.getParameter("page");
-		if (requestPage == null || requestPage.equals("")) {
-			requestPage = "1";
-		}
-		
+	
 		String productNum = request.getParameter("productNum");
 		String qnaisLock = request.getParameter("qnaisLock");
 		String customerId = request.getParameter("customerId");
 		String typeNum = request.getParameter("typeNum");
 		
+
+
+		
+
+		
+
 		List<HashMap<String,Object>> list = null;
-		params = new Params(5, 5, 5, null, null);
 		String jsonData = "";
 		PrintWriter out = null;
 		StringBuffer sb = new StringBuffer();
 		int rowCount = 0;
 		try {
 			request.setCharacterEncoding("utf-8");
-			list = qnaService.qnaDynamicListAll(Integer.parseInt(productNum), qnaisLock, customerId, Integer.parseInt(typeNum), params);
-			pageBuilder = new PageBuilder(params, rowCount);
-			pageBuilder.build();
-			Gson gson = new Gson();
+			if(request.getParameter("typeNum") == null) {
+				list = qnaService.qnaDynamicListAll(Integer.parseInt(productNum), qnaisLock, customerId, 0);
+			}else {
+				list = qnaService.qnaDynamicListAll(Integer.parseInt(productNum), qnaisLock, customerId, Integer.parseInt(typeNum));
+			}
+			
 			JSONObject jsonObj = new JSONObject();
 			out = response.getWriter();
 			
@@ -82,14 +79,14 @@ public class QnaListController implements Controller {
 
 				jsonData = jsonObj.toJSONString();
 				System.out.println("프론트로 보내줄 jsonData: "+jsonData);
-				jsonData = jsonData + ",";
-				sb.append(jsonData);
+				jsonData = jsonData +",";
 				System.out.println(jsonData);
+				out.print(jsonData);
 			}
+			request.setAttribute("jsonData", jsonData);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-
 }

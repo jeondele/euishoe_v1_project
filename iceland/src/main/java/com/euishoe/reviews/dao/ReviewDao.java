@@ -17,13 +17,13 @@ public interface ReviewDao {
 	public void create(Review review) throws Exception;
 	
 	//전체(동적) 목록 조회
-	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception;
+	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore) throws Exception;
 	
 	//특정 댓글 조회(사용자)
-	public List<Review> reviewListByCustomerId(int productNum, String customerId, Params params) throws Exception;
+	public List<Review> reviewListByCustomerId(int productNum, String customerId) throws Exception;
 	
 	//특정 댓글 조회(별점)
-	public List<Review> reviewListByScore(int productNum, int reviewScore, Params params) throws Exception;
+	public List<Review> reviewListByScore(int productNum, int reviewScore) throws Exception;
 	
 	//삭제
 	public void deleteReview(int reviewNum) throws Exception;

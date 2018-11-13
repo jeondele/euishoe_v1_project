@@ -30,9 +30,6 @@ import com.google.gson.Gson;
 public class ReviewListController implements Controller {
 
 	ReviewService reviewService;
-	Params params;
-	PageBuilder pageBuilder;
-	Gson gson;
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -40,55 +37,45 @@ public class ReviewListController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		XMLObjectFactory factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		reviewService = (ReviewService) factory.getBean(ReviewServiceImpl.class);
+		
 		response.setContentType("text/plain; charset=utf-8");
-		String requestPage = request.getParameter("page");
-		if (requestPage == null || requestPage.equals("")) {
-			requestPage = "1";
-		}
+		
 		String productNum = request.getParameter("productNum");
 		String customerId = request.getParameter("customerId");
+		System.out.println(customerId);
 		int reviewScore = 0;
-		params = new Params(Integer.parseInt(requestPage), 5, 5, null, null);
+		
 		List<HashMap<String, Object>> list = null;
-		int rowCount = 0;
 		String jsonData = "";
 		PrintWriter out = null;
 		StringBuffer sb = new StringBuffer();
 		
 		try {
 			request.setCharacterEncoding("utf-8");
-			list = reviewService.reviewDynamicReviewList(Integer.parseInt(productNum), customerId, reviewScore, params);
-			rowCount = reviewService.countBySearch(Integer.parseInt(productNum));
-			System.out.println(list);
-			pageBuilder = new PageBuilder(params, rowCount);
-			pageBuilder.build();
-			Gson gson = new Gson();
+			list = reviewService.reviewDynamicReviewList(Integer.parseInt(productNum), customerId, reviewScore);
 			JSONObject jsonObj = new JSONObject();
 			out = response.getWriter();
 			for (HashMap<String, Object> hashMap : list) {
 				jsonObj.put("reviewNum", hashMap.get("REVIEW_NUM"));
 				jsonObj.put("customerId", hashMap.get("CUSTOMER_ID"));
-				jsonObj.put("reviewNum", hashMap.get("PRODUCT_NUM"));
+				jsonObj.put("productNum", hashMap.get("PRODUCT_NUM"));
 				jsonObj.put("reviewTitle", hashMap.get("REVIEW_TITLE"));
 				jsonObj.put("reviewContent", hashMap.get("REVIEW_CONTENT"));
 				jsonObj.put("reviewPassword", hashMap.get("REVIEW_PASSWORD"));
 				jsonObj.put("reviewScore", hashMap.get("REVIEW_SCORE"));
-				jsonObj.put("reviewIsdeleted", hashMap.get("REVIEW_ISDELETED"));
-				jsonObj.put("reviewIsanswered", hashMap.get("REVIEW_ISANSWERED"));
+				jsonObj.put("reviewIsDeleted", hashMap.get("REVIEW_ISDELETED"));
+				jsonObj.put("reviewIsAnswered", hashMap.get("REVIEW_ISANSWERED"));
 				jsonObj.put("reviewRegdate", hashMap.get("REVIEW_REGDATE"));
 
 				jsonData = jsonObj.toJSONString();
 				System.out.println("프론트로 보내줄 jsonData: "+jsonData);
-				jsonData = jsonData + ",";
-				sb.append(jsonData);
+				jsonData = jsonData +",";
+				out.print(jsonData);
 			}
-			
 			request.setAttribute("jsonData", jsonData);
-			out.print(sb.toString());
+			
 		}catch (Exception e) {
 		}
-		out.flush();
-		out.close();
-		return mav;
+		return null;
 	}
 }

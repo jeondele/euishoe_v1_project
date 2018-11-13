@@ -34,38 +34,32 @@ public class MybatisReviewDao implements ReviewDao {
 	}
 
 	@Override
-	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
+	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("productNum", productNum);
 		param.put("customerId", customerId);
 		param.put("reviewScore", reviewScore);
-		param.put("listSize", params.getListSize());
-		param.put("page", params.getPage());
 		List<HashMap<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectDynamicReviewList", param);
 		return list;
 	}
 
 	@Override
-	public List<Review> reviewListByCustomerId(int productNum, String customerId, Params params) throws Exception {
+	public List<Review> reviewListByCustomerId(int productNum, String customerId) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("productNum", productNum);
 		param.put("customerId", customerId);
-		param.put("listSize", params.getListSize());
-		param.put("page", params.getPage());
 		List<Review> list = sqlSession.selectList(NAMESPACE + "selectReviewUserById", param);
 		return list;
 	}
 
 	@Override
-	public List<Review> reviewListByScore(int productNum, int reviewScore, Params params) throws Exception {
+	public List<Review> reviewListByScore(int productNum, int reviewScore) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("productNum", productNum);
 		param.put("reviewScore", reviewScore);
-		param.put("listSize", params.getListSize());
-		param.put("page", params.getPage());
 		List<Review> list = sqlSession.selectList(NAMESPACE+"selectReviewByScore", param);
 		return list;
 	}

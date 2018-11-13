@@ -65,10 +65,10 @@ public class MyBatisQnaTest {
 	//@Test
 	public void testCreateQna2() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-/*		Qna qna = new Qna(1, "bangry", 2,  "2번 제품 테스트", "가보자", "4444", "Y", 0);
-		sqlSession.insert(NAMESPACE+"createQna2", qna);*/
-		sqlSession.commit();
+		Qna qna = new Qna(1, 2, "bangry", "2번 제품 테스트", "가보자", "4444", "Y");
 		logger.debug("문의글 작성 완료!");
+		sqlSession.insert(NAMESPACE+"createQna", qna);
+		sqlSession.commit();
 		sqlSession.close();
 	}
 	
@@ -79,7 +79,7 @@ public class MyBatisQnaTest {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("listSize", 5);
 		params.put("productNum", 1);
-		params.put("qnaTypeNum", 1);
+		params.put("qnaTypeNum", 0);
 		params.put("page", 1);
 		List<Qna> list = sqlSession.selectList(NAMESPACE+"selectAllTest", params);
 		for (Qna qna : list) {
@@ -90,14 +90,15 @@ public class MyBatisQnaTest {
 		sqlSession.close();
 	}
 	
-	//@Test
+	@Test
 	public void testQnaListAll() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("productNum", 2);
 		params.put("listSize", 3);
-		params.put("page", 1);
-		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectQnaListAll", params);
+		params.put("qnaTypeNum", 0);
+		params.put("customerId", "bangry");
+		List<Map<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectDynamicListAll", params);
 			for (Map<String, Object> map : list) {
 				logger.debug(map);
 			}
@@ -163,7 +164,7 @@ public class MyBatisQnaTest {
 		sqlSession.close();
 	}
 	
-	@Test
+	//@Test
 	public void testCount() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		int count = sqlSession.selectOne(NAMESPACE + "countBySearch", 1);

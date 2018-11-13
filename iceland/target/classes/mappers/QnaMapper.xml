@@ -38,18 +38,18 @@
 			<!-- 리뷰 작성  -->
 	<insert id="createQna" parameterType="com.euishoe.qnas.dto.Qna">		            
 		INSERT INTO qnas
-		VALUES      	(qnas_seq.NEXTVAL,
-							 ${qnaTypeNum},
-			             	 ${productNum},
-							 ${customerId},
-				             ${qnaTitle},
-				             ${qnaContent},
-				             ${qnaPassword},
-				             'N',
-				             ${qnaIsLock},
-				             1,
-				             'N',
-				             sysdate)
+		VALUES (qnas_seq.NEXTVAL,
+				${qnaTypeNum},
+			    ${productNum},
+				${customerId},
+				${qnaTitle},
+				${qnaContent},
+				${qnaPassword},
+				'N',
+				${qnaIsLock},
+				1,
+				'N',
+				sysdate)
 	</insert>				             
 	
 	<delete id="deleteQna" parameterType="int">
@@ -82,13 +82,13 @@
 	
 	<resultMap type="com.euishoe.qnas.dto.Qna" id="Qna">
 		<result property="qnaNum" column="qna_num"/>
+		<result property="qnaTypeNum" column="qna_type_num"/>
     	<result property="productNum" column="product_num"/>
-    	<result property="qnaTypeNum" column="qna_type_num"/>
     	<result property="customerId" column="customer_id"/>
     	<result property="qnaTitle" column="qna_title"/>
    		<result property="qnaContent" column="qna_content"/>
    		<result property="qnaPassword" column="qna_password"/>
-   		<result property="qnaIsAnswered" column="qna_isanswered"/>
+   		<result property="qnaIsAnswered" column="qna_isAnswered"/>
    		<result property="qnaIsLock" column="qna_islock"/>
    		<result property="qnaRank" column="qna_rank"/>
    		<result property="qnaIsDeleted" column="qna_isdeleted"/>
@@ -98,77 +98,59 @@
 	
 	<!-- 해당 제품의 모든 문의사항 출력  -->
 	<select id="selectDynamicListAll" parameterType="Map" resultType="Map">
-		SELECT request_page,
-				qna_num,
-       			qna_type_num,
-       			product_num,
-				customer_id,
-				qna_title,
-				qna_content,
-				qna_password,
-				qna_isAnswered,
-				qna_isLock,
-				qna_regdate
-       FROM(SELECT CEIL(rownum / #{listSize}) request_page,
-       										  qna_num,
-       										  qna_type_num,
-       										  product_num,
-									          customer_id,
-											  qna_title,
-											  qna_content,
-											  qna_password,
-											  qna_isAnswered,
-											  qna_isLock,
-											  qna_regdate
-									          FROM(SELECT qna.qna_num,
-							                              qna.qna_type_num,
-							                              pi.product_num,
-														  qna.customer_id,                              
-														  qna.qna_title,
-														  qna.qna_content,
-														  qna.qna_password,
-							                              qna.qna_isAnswered,
-							                              qna.qna_islock,
-														  qna.qna_regdate
-												   FROM   qnas qna
-												   JOIN product_infos pi
-												   ON qna.product_num = pi.product_num)
-				 WHERE product_num = #{productNum} 
+		SELECT 	qna.qna_num,
+				qna.qna_type_num,
+				pi.product_num,
+				qna.customer_id,                              
+				qna.qna_title,
+				qna.qna_content,
+				qna.qna_password,
+				qna.qna_isAnswered,
+				qna.qna_islock,
+				To_char(qna.qna_regdate, 'YY-MM-DD HH:MM')
+		FROM    qnas qna
+		JOIN    product_infos pi
+		 ON     qna.product_num = pi.product_num
+	   WHERE    pi.product_num = #{productNum} 
 				 <choose>
 					 <when test="qnaisLock != null">
 					<!-- 비밀글 제외 조회  -->
-					 AND qna_isLock = #{qnaisLock}
+					 AND qna.qna_islock = #{qnaisLock}
 					 <choose>
-					 	<when test='customerId != null'>
+					 	<when test='customerId != "null"'>
 							 <!-- 유저 아이디 검색조건 추가  -->
-							 AND customer_id = #{customerId}
+							 AND qna.customer_id = #{customerId}
+							 <if test='qnaTypeNum != 0'>
+					 		 AND qna.qna_type_num = #{qnaTypeNum}
+					 		</if>
 						</when>
 						<otherwise>
-							<if test='qna_type_num != null'>
-					 			AND qna_type_num=#{qnaTypeNum}
+							<if test='qnaTypeNum != 0'>
+					 		 AND qna.qna_type_num = #{qnaTypeNum}
 					 		</if>
 						</otherwise>							 
 					 <!-- 문의유형에 따른 조회  -->
 					 </choose>
 					 </when>
-					 
 					 <otherwise>
 					 	<choose>
 					 	<when test='customerId != null'>
 							 <!-- 유저 아이디 검색조건 추가  -->
-							 AND customer_id=#{customerId}
+							 AND qna.customer_id=#{customerId}
+								 <if test='qnaTypeNum != 0'>
+						 			AND qna.qna_type_num=#{qnaTypeNum}
+						 		</if>
 							 </when>
 							 <otherwise>
-							 	<if test='qna_type_num != null'>
-					 			AND qna_type_num=#{qnaTypeNum}
+							 	<if test='qnaTypeNum != 0'>
+					 			AND qna.qna_type_num=#{qnaTypeNum}
 					 			</if>
 							 </otherwise>
 					 <!-- 문의유형에 따른 조회  -->
 					 	</choose>
 					 </otherwise>
 				 </choose>
-				 ORDER BY qna_num DESC)
-	WHERE request_page = #{page}	
+				 ORDER BY qna.qna_regdate DESC
 	</select>
 
 

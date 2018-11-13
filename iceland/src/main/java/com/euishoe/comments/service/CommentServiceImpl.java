@@ -1,5 +1,8 @@
 package com.euishoe.comments.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.euishoe.comments.dao.CommentDao;
 import com.euishoe.comments.dto.Comment;
 
@@ -33,12 +36,8 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public Comment readQnaComment(int qnaNum) throws Exception {
-		return commentDao.readQnaComment(qnaNum);
+	public List<HashMap<String, Object>> readComment(int productNum) throws Exception {
+		return commentDao.readComment(productNum);
 	}
 
-	@Override
-	public Comment readReviewComment(int reviewNum) throws Exception {
-		return commentDao.readReviewComment(reviewNum);
-	}
 }
