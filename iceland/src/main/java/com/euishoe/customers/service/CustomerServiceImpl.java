@@ -428,7 +428,6 @@ public class CustomerServiceImpl implements CustomerService {
 				for (HashMap<String, Object> hashMapForWish : listWishes) {
 					System.out.println("1568546 : " + hashMap.get("PRODUCT_NAME"));
 					System.out.println("14894556 : " + hashMapForWish.get("PRODUCT_NAME"));
-					
 					if (hashMap.get("PRODUCT_NAME").equals(hashMapForWish.get("PRODUCT_NAME"))) {
 							System.out.println("상품제목 O, 상품수량 O");
 							sameListForWish.add(hashMap);
@@ -445,6 +444,8 @@ public class CustomerServiceImpl implements CustomerService {
 				boolean same = false;
 
 				for (HashMap<String, Object> hashMap2 : sameListForWish) {
+					System.out.println("#$%#$%#$% : " + hashMap.get("PRODUCT_NAME"));
+					System.out.println("#$%#$%#$% : " + hashMap2.get("PRODUCT_NAME"));
 					if (hashMap.get("PRODUCT_NAME").equals(hashMap2.get("PRODUCT_NAME"))) {
 						same = true;
 					}
@@ -487,7 +488,15 @@ public class CustomerServiceImpl implements CustomerService {
 				try {
 					wishlistDao.insertWishlist(loginId.getValue(), (int) Math.round((Double)hashMap.get("PRODUCT_NUM")));
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					try {
+						wishlistDao.insertWishlist(loginId.getValue(), Integer.parseInt((String)hashMap.get("PRODUCT_NUM")));
+					} catch (NumberFormatException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					e.printStackTrace();
 				}
 			}

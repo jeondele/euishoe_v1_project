@@ -702,6 +702,7 @@ function sumToMakeJsonForWish(){
 	    var cookieNum = 1;
 	    while(getCookie('wish' + cookieNum)){
 	    	var obj = decodeURIComponent(getCookie('wish' + cookieNum)).substring(1,decodeURIComponent(getCookie('wish' + cookieNum)).length - 1);
+	    	obj = replaceAll(obj,'+',' ');
 			var jsonObj = JSON.parse(obj);
 			
 			wishcookies.push(jsonObj.PRODUCT_NAME);
@@ -733,7 +734,7 @@ function sumToMakeJsonForWish(){
 	  Test = e;
 	  var str = "btn-addwish-b2 dis-block pos-relative js-addwish-b2";
 	  
-	  if( $(e.currentTarget).attr('class')=== str){
+	  if( $(e.currentTarget).attr('class') == str){
 	  $(e.currentTarget).attr('class',"btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2");
 	  
 	  var array = $(e.currentTarget).parents()[1].innerText.split('₩');

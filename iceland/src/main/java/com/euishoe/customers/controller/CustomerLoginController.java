@@ -52,7 +52,7 @@ public class CustomerLoginController implements Controller {
 			if(customer != null) {
 				mav = customerService.login(request, response, mav, customer, rememberCustomerId);
 				//mav.setView(old_url);
-				mav.setView("/home.es");
+				mav.setView("/index.jsp");
 				
 			} else {
 				mav.addObject("result", "fail");
