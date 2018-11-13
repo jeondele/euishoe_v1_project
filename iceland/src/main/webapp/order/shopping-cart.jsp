@@ -41,8 +41,7 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/iceland/order/shopping-cart.css">
   <!--===============================================================================================-->
-  <script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
-
+<script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 <style>
 .nav-tabs{
 border-bottom: 1px solid #ddd;
@@ -70,67 +69,93 @@ height: 40px;
 <script type="text/javascript">
 window.onload = function () {
 	var loginId = getCookie('loginId');
-	console.log("회원아이디값!!"+loginId);
-	// 비회원인경우, 주소관련 버튼 안보이게
+	// 비회원인경우, 주소관련 버튼 안보이게, point영역 안보이게
 	if(loginId == null){
+		console.log('비회운인경우 입니다.');
 		// 기본배송지, 새 배송지 없애기
 		$('#defaultAddr').css('display', 'none');
 		$('#newAddr').css('display', 'none');
-		//$('#defaultAddr').attr('disabled', 'disabled');
-		//$('#defaultAddr').css(':hover', '');
-		//$('#defaultAddr').removeClass('hov-btn3');
+		// 결제의 포인트부분 없애기
+		$('#pointDiv').css('display', 'none');
 	}
 	
-	// 수량 up, down
-	cntChange();
+	// 품목당 수량, 가격에 id값 동적 부여
+	dynamicGrantId();
+	//cntChange();
+	$('#cnt').change(function (){
+		var val = $('#cnt').val();
+		var price = Number($('#price').text());
+		console.log('총 가격계산 함수 진입!!!!!!cnt값'+val+'price(단품 한개)값:'+price);
+		var sum = price * Number(val);
+		console.log('!!!!!총가격 계산값: '+ sum)
+		$('#totalPrice').text(sum);
+	});
+
 };
 
-// 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수
+// 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수..->태그에 onclick걸어줌
 function clearAddrInput() {
 	$('#postNum').val('');
 	$('#address').val('');
 	$('#address_detail').val('');
 }
 
+// 상품 수량 element에 id값 동적 부여
+function dynamicGrantId() {
+	var row; // 상품하나가 차지하는 table의 row
+	for(var i=0; i<$('.table_row').length; i++){
+		row = $('.table_row')[i];
+		
+		// 가격에 id 부여
+		row.children[3].setAttribute('id', 'price');
+		
+		// 수량 up, down element에 id 부여
+		row.children[4].children[0].children[0].setAttribute('id', 'cntDown');
+		row.children[4].children[0].children[1].setAttribute('id', 'cnt');
+		row.children[4].children[0].children[2].setAttribute('id', 'cntUp');
+		
+		// 품목당 총가격에 id 부여
+		row.children[5].setAttribute('id', 'totalPrice');
+	}
+	//cntChange();
+}
+
 // 수량 up, down
 function cntChange() {
+	console.log("수량변화함수 적용");
 	// 현재수량
 	var curCnt = $('#cnt').val();
 	
 	// 수량 up클릭시
 	$('#cntUp').click(function() {
+		console.log('up clicked!!!!!!!!');
 		// 수량 ++
 		var cnt = Number($('#cnt').val()) + 1; //number타입
 		$('#cnt').val(cnt);
-		//console.log(typeOf cnt);
-		// 품목당 총 가격
-		// 단품가격
- 		var price = Number($('#price').text());
-		var totalPrice = cnt*price;
-		$('#totalPrice').text(totalPrice); 
-		
-		sumPrice();
+		$('#cnt').change(sumPrice());
 	});
 	
 	// 수량 down클릭시
 	$('#cntDown').click(function() {
-		if(curCnt != 1){
+		console.log('down clicked!!!!!!!!curCnt값:'+curCnt);
+		if($('#cnt').val() != 1){
 			var cnt = Number($('#cnt').val()) - 1;
 			$('#cnt').val(cnt);
-			
-			sumPrice();
-		}else if(curCnt == 1){
+			$('#cnt').change(sumPrice());
+		}else if($('#cnt').val() == 1){
 			return;
 		}
 	});
-	
 }
 
 // 품목당 총 가격
 function sumPrice(){
-	var price = Number($('#.price').val());
-	var sum = price * Number($('#.cnt'));
-	$('#totalPrice').val(sum);
+	var val = $('#cnt').val();
+	var price = Number($('#price').text());
+	console.log('총 가격계산 함수 진입!!!!!!cnt값'+val+'price(단품 한개)값:'+price);
+	var sum = price * Number(val);
+	console.log('!!!!!총가격 계산값: '+ sum)
+	$('#totalPrice').text(sum);
 }
 
 </script>
@@ -183,21 +208,21 @@ function sumPrice(){
 										<div class="how-itemcart1"><img src="" alt="IMG"/></div>
 									</td>
 									<td class="column-3 txt-center">Fresh Strawberries</td>
-									<td id="price" class="column-4 txt-center">3600</td>
+									<td class="column-4 txt-center">3600</td>
 									<td class="column-5 txt-center">
 										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i id="cntDown" class="fs-16 zmdi zmdi-minus"></i><!-- 수량(-)-->
+												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input id="cnt" class="mtext-104 cl3 txt-center num-product" type="text" name="num-product1" value="1">
+											<input class="mtext-104 cl3 txt-center num-product" type="text" name="num-product1" value="1">
 
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i id="cntUp" class="fs-16 zmdi zmdi-plus"></i><!-- 수량(+)-->
+												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
 									</td>
-									<td id="totalPrice" class="column-6 txt-center">3600</td>
+									<td class="column-6 txt-center">3600</td>
 								</tr>
 
 								<tr class="table_row">
@@ -316,7 +341,7 @@ function sumPrice(){
 						<div class="flex-w flex-t bor12 p-b-13">
 							<div class="size-208">
 								<span class="stext-110 cl2">
-									Subtotal:
+									Subtotal
 								</span>
 							</div>
 
@@ -328,52 +353,52 @@ function sumPrice(){
 						</div>
 
 						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
-							<div class="size-208 w-full-ssm">
+							<div class="size-208">
 								<span class="stext-110 cl2">
-									결제방법
+								결제방법
 								</span>
 							</div>
-							<div class="size-208 p-t-15 w-full-ssm">
-								<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-									<select class="js-select2" name="payMethod">
-										<option value = "noBank">무통장 입금</option>
-										<option value = "cart">카드결제</option>
-										<option value = "phone">휴대폰 결제</option>
-									</select>
-								</div>
-							</div>
-							<div class="size-208 p-t-15 w-full-ssm">
-								<span class="stext-110 cl2">
-									사용가능 포인트
+							<div class="size-209">
+							   	<span class="stext-110 c12">
+								<select style="border-radius: 6px; height: 23px; cursor: pointer" name="payMethod">
+									<option value = "noBank">무통장 입금</option>
+									<option value = "cart">카드결제</option>
+									<option value = "phone">휴대폰 결제</option>
+								</select>
 								</span>
 							</div>
+						</div>
+						<div id="pointDiv" style="display:block;">	
 							<div class="size-208 p-t-15 w-full-ssm">
 								<span class="stext-110 cl2">
-									사용가능 포인트 입력 
+									사용가능 포인트 
 								</span>
+								<input id="usableP" type="text" value="사용가능한포인트들어감">
 							</div>
 							<div class="size-208 p-t-15 w-full-ssm">
 								<span class="stext-110 cl2">
 									사용할 포인트
 								</span>
+								<input id="usableP" type="text" value="사용할포인트입력받을것">
 							</div>
-							<div class="size-208 p-t-15 w-full-ssm">
+						</div>	
+							<div class="flex-w flex-t bor12 p-b-13">
+							<div class="size-208">
 								<span class="stext-110 cl2">
-									사용할 포인트 입력
+									Subtotal
 								</span>
 							</div>
-							
-							<div class="size-208 p-t-15 w-full-ssm">
-								<span class="stext-110 cl2">
-									배송비
+
+							<div class="size-209">
+								<span class="mtext-110 cl2">
+									$79.65
 								</span>
 							</div>
-							
+						</div>
+							<!-- 
 							<div class="size-208 p-t-15 w-full-ssm">
-								<span class="stext-110 cl2">
-									2500 원
-								</span>
-							</div>
+								
+							</div> -->
 						</div>
 
 						<div class="flex-w flex-t p-t-27 p-b-33">
@@ -427,7 +452,7 @@ function sumPrice(){
   <script
     src="/iceland/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
   <!--확인필요(by sw)================================================================================-->  
-  <script>
+<!--   <script>
 			$('.js-pscroll').each(function() {
 				$(this).css('position', 'relative');
 				$(this).css('overflow', 'hidden');
@@ -564,7 +589,7 @@ function sumPrice(){
 			}
 		);
 	
-		</script>
+		</script> -->
   <!--===============================================================================================-->
   <script src="/iceland/js/main.js"></script>
 

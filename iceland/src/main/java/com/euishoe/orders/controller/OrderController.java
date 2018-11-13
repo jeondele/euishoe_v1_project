@@ -15,7 +15,7 @@ import com.euishoe.orders.service.OrderServiceImpl;
 
 /**
  * /order에 대한 요청 처리 컨트롤러
- * @author 김기정
+ * @author 전상일
  *
  */
 public class OrderController implements Controller {
