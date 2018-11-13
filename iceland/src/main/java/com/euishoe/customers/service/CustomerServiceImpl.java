@@ -147,8 +147,14 @@ public class CustomerServiceImpl implements CustomerService {
 		String json = "";
 		Gson gson = new Gson();
 		for (HashMap<String, Object> hash : listCart) {
-			hashmapCart.put("image_ref", hash.get("IMAGE_REF"));
-			hashmapCart.put("PRODUCT_NAME", hash.get("PRODUCT_NAME"));
+			// + 제거
+			String image = (String) hash.get("IMAGE_REF");
+			image = image.replaceAll("\\+", " ");
+			String productName = (String) hash.get("PRODUCT_NAME");
+			productName = productName.replaceAll("\\+", " ");
+			//
+			hashmapCart.put("image_ref", image);
+			hashmapCart.put("PRODUCT_NAME", productName);
 			hashmapCart.put("product_count", hash.get("PRODUCT_COUNT"));
 			hashmapCart.put("PRODUCT_PRICE", hash.get("PRODUCT_PRICE"));
 			hashmapCart.put("PRODUCT_NUM", hash.get("PRODUCT_NUM"));
@@ -183,8 +189,17 @@ public class CustomerServiceImpl implements CustomerService {
 		prior = 1;
 
 		for (HashMap<String, Object> hash : listWish) {
-			hashmapWish.put("image_ref", hash.get("image_ref"));
-			hashmapWish.put("PRODUCT_NAME", hash.get("PRODUCT_NAME"));
+			
+			// + 제거
+			String image = (String) hash.get("IMAGE_REF");
+			System.out.println(image);
+			image = image.replaceAll("\\+", " ");
+			String productName = (String) hash.get("PRODUCT_NAME");
+			productName = productName.replaceAll("\\+", " ");
+			
+			
+			hashmapWish.put("image_ref", image);
+			hashmapWish.put("PRODUCT_NAME", productName);
 			hashmapWish.put("product_manufacturer", hash.get("product_manufacturer"));
 			hashmapWish.put("PRODUCT_PRICE", hash.get("PRODUCT_PRICE"));
 			hashmapWish.put("PRODUCT_NUM", hash.get("PRODUCT_NUM"));
@@ -251,7 +266,6 @@ public class CustomerServiceImpl implements CustomerService {
 				loginId = cookie;
 				// product_Code,Customer_id,cart_num
 			} else if (cookie.getName().substring(0, 4).equals("cart")) {
-				System.out.println(123123123);
 				try {
 					json = URLDecoder.decode(cookie.getValue(), "UTF-8");
 				} catch (UnsupportedEncodingException e) {
@@ -271,7 +285,7 @@ public class CustomerServiceImpl implements CustomerService {
 				listWishes.add(map);
 			}
 		}
-
+        System.out.println("$#$#$%%%%%" + listWishes.size());
 		// 기존 DB
 		List<HashMap<String, Object>> listDB = cartDao.listCartForLogin(loginId.getValue());
 
@@ -459,7 +473,7 @@ public class CustomerServiceImpl implements CustomerService {
 			for (HashMap<String, Object> hashMap : listWishes) {
 				boolean same = false;
 
-				for (HashMap<String, Object> hashMap2 : sameList) {
+				for (HashMap<String, Object> hashMap2 : sameListForWish) {
 					if (hashMap.get("PRODUCT_NAME").equals(hashMap2.get("PRODUCT_NAME"))) {
 						same = true;
 					}
@@ -470,6 +484,8 @@ public class CustomerServiceImpl implements CustomerService {
 				}
 			}
 
+			
+			System.out.println(deleteListForWish.size());
 			for (HashMap<String, Object> hashMap : deleteListForWish) {
 				try {
 					int temp = ((BigDecimal)hashMap.get("PRODUCT_NUM")).intValue();

@@ -186,8 +186,6 @@ function sumToMakeJsonForWish(){
         prior++;
     }
     
-    console.log(prior);
-    
     var productName = $('#addCart').parents()[3].childNodes[1].innerText;
     var productImg = $('#productImg')[0].src
     var productCount = parseInt(document.getElementsByName('num-product')[0].value);
@@ -725,13 +723,14 @@ function sumToMakeJsonForWish(){
 		
 		refreshwish();	
 
+		var Test22 = '';
 	$('.btn-addwish-b2').unbind("click").on('click',function(e){
 	    var prior = 1;
 	    while(getCookie('wish' + prior)){
 	        prior++;
 	    }
-	  
-	  Test = e;
+	    
+	  var target = $(e.currentTarget);
 	  var str = "btn-addwish-b2 dis-block pos-relative js-addwish-b2";
 	  
 	  if( $(e.currentTarget).attr('class') == str){
@@ -766,11 +765,13 @@ function sumToMakeJsonForWish(){
 	  */
 	  
 	  }else{
-		  
+		  console.log(e);
+		  console.log(111);
+		  console.log(e.currentTarget);
+		  Test22 = e;
 		// 수정 사항  
-	  $(e.currentTarget).attr('class',"btn-addwish-b2 dis-block pos-relative js-addwish-b2");
+	  $(target).attr('class','btn-addwish-b2 dis-block pos-relative js-addwish-b2');
 	  
-	  console.log(e);
 	  // 찜목록 삭제
 	  var deleteNum = parseInt($(e.currentTarget).attr('value'));
 	  // 변경 필요
