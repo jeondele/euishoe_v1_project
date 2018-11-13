@@ -117,7 +117,7 @@ public class MybatisProductDao implements ProductDao {
 	}
 
 	@Override
-	public void update(HashMap map) throws Exception {
+	public void update(Map map) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 		sqlSession.update(NAMESPACE+"update",map);
 		sqlSession.commit();

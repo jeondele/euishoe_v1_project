@@ -11,6 +11,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -284,7 +285,10 @@ public class CustomerServiceImpl implements CustomerService {
 		 */
 
 		if (listDB.isEmpty()) {
-			for (HashMap<String, Object> hashMap : listCarts) {
+			Iterator<HashMap<String, Object>> iter = listCarts.iterator(); 
+			while(iter.hasNext()) {
+				HashMap hashMap = iter.next();
+				
 				// while문으로 교체 리턴해야함.
 				Map map = new HashMap();
 				map.put("PRODUCT_CODE",(String) hashMap.get("PRODUCT_CODE"));
@@ -301,7 +305,10 @@ public class CustomerServiceImpl implements CustomerService {
 				}
 				Cart cart = new Cart(0, (String) hashMap.get("PRODUCT_CODE"), loginId.getValue());
 				cartDao.createCart(cart);
-				return null;
+				
+				if(!iter.hasNext()) {
+					return null;
+				}
 			}
 		} else {
 			for (HashMap<String, Object> hashMap : listDB) {
@@ -309,23 +316,11 @@ public class CustomerServiceImpl implements CustomerService {
 					if (hashMap.get("PRODUCT_NAME").equals(hashMapForCart.get("PRODUCT_NAME"))) {
 						if ((hashMap.get("PRODUCT_COUNT") + ".0").equals((hashMapForCart.get("product_count") + ""))) {
 							// 상품제목 O, 상품수량 O
-							System.out.println("상품제목 O, 상품수량 O");
 							sameList.add(hashMap);
 						} else {
 							// 상품제목 O, 상품수량 X
-							updateList.add(hashMap);
-							System.out.println("상품제목 O, 상품수량 X");
-							// cartDao.updateCart((String) hashMap.get("CART_NUM"), (String)
-							// hashMap.get("PRODUCT_COUNT"));
+							updateList.add(hashMapForCart);
 						}
-
-						/*
-						 * 
-						 * // 상품제목 X System.out.println("상품제목 X"); cartDao.createCart(null,
-						 * loginId.getValue()); willDelete = false; if (willDelete) {
-						 * System.out.println("삭제"); // 삭제 cartDao.deleteCart((String)
-						 * hashMap.get("CART_NUM")); }
-						 */
 
 					} else {
 						System.out.println("실패");
@@ -364,7 +359,7 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		for (HashMap<String, Object> hashMap : updateList) {
-			HashMap map = new HashMap<>();
+			Map map = new HashMap<>();
 			map.put("productCode",(String) hashMap.get("PRODUCT_CODE"));
 			map.put("productCount",hashMap.get("product_count"));
             try {

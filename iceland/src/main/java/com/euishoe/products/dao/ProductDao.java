@@ -45,5 +45,5 @@ public interface ProductDao {
 	// 필터를 통한 전체 띄우기
 	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception;
 	
-	public void update(HashMap map) throws Exception;
+	public void update(Map map) throws Exception;
 }
