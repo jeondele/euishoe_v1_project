@@ -434,7 +434,6 @@ tr {
 		<input type="hidden" name="sendDeliveryRequirement" id="post13"/>
 	</form>
 	
-	
 	<form id="sendToDoneOrder" action="/iceland/ordersucc.es">
 		<input type="hidden" id="sendProductCode" name="sendProductCode" value="">
 		<input type="hidden" id="sendPantsCode" name="sendPantsCode" value="">

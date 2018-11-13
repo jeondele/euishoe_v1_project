@@ -6,6 +6,9 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.euishoe.orders.dto.Order;
+import com.euishoe.orders.dto.OrderByProduct;
+
 public class MybatisOrderDao implements OrderDao {
 	
 	private static final String NAMESPACE = "com.euishoe.order.";
@@ -36,6 +39,18 @@ public class MybatisOrderDao implements OrderDao {
 		sqlSession.insert(NAMESPACE+"create", productCode);
 		sqlSession.commit();
 		sqlSession.close();
+	}
+
+	@Override
+	public boolean insertOrder(Order order) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insertOrderByProduct(OrderByProduct orderByProduct) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
 

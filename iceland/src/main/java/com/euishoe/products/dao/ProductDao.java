@@ -51,4 +51,6 @@ public interface ProductDao {
 	public boolean updatePants(Map<String, Object> map) throws Exception;
 	//상의 수량변경
 	public boolean updateJackets(Map<String, Object> map) throws Exception;
+	//상품코드번호 가져오기
+	public int maxProductCodeNum() throws Exception;
 }
