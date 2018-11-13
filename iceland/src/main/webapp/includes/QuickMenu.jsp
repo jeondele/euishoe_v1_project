@@ -167,7 +167,6 @@
 		var jkSize = $('#jkSize').val().trim();
 		var ptSize = $('#ptSize').val().trim();
 		if(jkSize=="Choose an option" || ptSize=="Choose an option"){
-			console.log('사이즈옵션선택 안함'); //debug
 			alert('상 하의 사이즈 옵션 선택은 필수입니다');
 		}else {
 			var productCode = $('#productCode').val();
@@ -187,6 +186,24 @@
 		var productCount = document.getElementsByName('num-product')[0].value;
 		var productCode = 'bgs'+'$S$28$'+productNum;//pCode + '$' + jkSize + '$' + ptSize + '$'+ ${productNum};
 		makeOrder(productCode, jacketCode, pantsCode, productNum, productCount); //product객체 생성, orderByProduct객체 생성 */
+		
+	});
+	// 카트담기
+	$('#addCart').on('click', function(e) {
+		// 사이즈선택 필수
+		var jkSize = $('#jkSize').val().trim();
+		var ptSize = $('#ptSize').val().trim();
+		e.stopPropagation();
+		if(jkSize=="Choose an option" || ptSize=="Choose an option"){
+			//this.onclick = null;
+			alert('상 하의 사이즈 옵션 선택은 필수입니다');
+			return false;
+		}/* else {
+			var productCode = $('#productCode').val();
+			var productNum = $('#productNum').val();
+			var productCount = $('#productCount').val();
+			//location.href = '/iceland/order.es?productCode='+productCode+'&productNum='+productNum+'&productCount='+productCount;
+		} */
 		
 	});
 /* 

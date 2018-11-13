@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,12 +97,12 @@ window.onload = function () {
  */
 };
 
-// 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수..->태그에 onclick걸어줌
+/* // 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수..->태그에 onclick걸어줌
 function clearAddrInput() {
 	$('#postNum').val('');
 	$('#address').val('');
 	$('#address_detail').val('');
-}
+} */
 /*
 // 상품 수량 element에 id값 동적 부여
 function dynamicGrantId() {
@@ -177,6 +178,22 @@ function sumPrice(){
     </div>
   </div>
 
+<!-- 결제완료시 제출될 폼 -->
+<form id = "sendToDoneOrder">
+      <input type="hidden" name="sendProductCode" value="">
+      <input type="hidden" name="sendPantsCode" value="">
+      <input type="hidden" name="sendJacketCode" value="">
+      <input type="hidden" name="sendProductNum" value="">
+      <input type="hidden" name="sendProductCount" value="">
+      <input type="hidden" name="sendPaymentPoint" value="">
+      <input type="hidden" name="sendPaymentMethod" value="">
+      <input type="hidden" name="sendTotalCost" value="">
+      <input type="hidden" name="sendDeliveryAddress1" value="">
+      <input type="hidden" name="sendDeliveryAddress2" value="">
+      <input type="hidden" name="sendDeliveryRecipient" value="">
+      <input type="hidden" name="sendDeliveryRecipientPhoneNumber" value="">
+      <input type="hidden" name="sendDeliveryRequirement" value="">
+</form>
 
  	<!-- Shoping Cart -->
 	<form class="bg0 p-t-75 p-b-85">
@@ -188,7 +205,11 @@ function sumPrice(){
 							<table class="table-shopping-cart" id="tableCart">
 								<tr class="table_head">
 									<th class="column-1">My 주문</th>
-									<th class="column-2"></th>
+									<th class="column-2">
+									<c:forEach items="${codes}" var="code">
+									<input type="text" name="Pcode" value="${code }">
+									</c:forEach>
+									</th>
 									<th class="column-3"></th>
 									<th class="column-4"></th>
 									<th class="column-5"></th>
@@ -218,7 +239,7 @@ function sumPrice(){
                 <span class="float-l">&nbsp;&nbsp;</span>
                
                 <span class="float-l">&nbsp;&nbsp;</span>
-                <a id="newAddr" class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" onclick="clearAddrInput()">새로운 배송지</a>
+                <a id="newAddr" class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab">새로운 배송지</a>
             </div>
               <div class="tab-content">
                 <div id="home" class="deliveryAddress" style="width:100%;">
@@ -482,36 +503,31 @@ function sumPrice(){
 	});
 	
 	// 선택 삭제 버튼 클릭 시 발생(deleteItem(e)함수 내용 실행 but event의 target찾아갈 수 없어서 중복해서 씀..ㅠ)
-	// ->2개 이상선택 후 클릭 시 처음제품만 삭제됨!!!!
 	$('#delete_selected').click(function() {
-		var deleteNum;
-		var testNum;
-		var target;
-		for(var i=0; i<$('.roundedOne').length; i++){
+		
+		for(var i=0; i<$('.table_row').length; i++){
+			console.log('카트수만큼 들어온다');
+			//체크가 되어있으면 
 			if($('.roundedOne')[i].checked){
-				//deleteItem함수 실행..event가 매개변수로 되어있다..ㅠ
-				//부모의 부모의 두번째자식의 첫자식이 div태그의 value값
-				target = document.getElementsByClassName('roundedOne')[i].parentElement.parentElement.children[1].firstElementChild;
-				deleteNum = document.getElementsByClassName('roundedOne')[i].parentElement.parentElement.children[1].firstElementChild.getAttribute('value');
-				setCookie('cart' + deleteNum,'',0);
+				//쿠키지움
+				var cartNum = i+1;
+				setCookie('cart'+cartNum, '', 0);
+				//row지움
+				document.getElementsByClassName('roundedOne')[i].parentElement.parentElement.remove();
 				
-				// 지운 후 정렬 
-		        testNum = deleteNum + 1;
-		        
-		        while(getCookie('cart' + testNum)){
-		            testNum++;
-		        }
-		        
-		        for(var i = deleteNum + 1; i < testNum; i++){
-		            setCookie('cart' + (i-1),getCookie('cart' + i),1);
-		            if(i == testNum - 1){
-		                setCookie('cart' + i,'',0);
-		            }
-		        }
-		        
-		        target.parentElement.parentElement.remove();
-		        $('#cartButton').attr('data-notify',testNum - 2);
+				//정렬
+				//i+1쿠키가 삭제, i+2쿠키를 i+1쿠키로 set
+				cartNum;
+				setCookie('cart'+cartNum, getCookie('cart'+(cartNum+1)), 1);
+				setCookie('cart'+(cartNum+1),'',0);
+				// 카트아이콘 보여지는 숫자세팅
+				var cnum = Number($('#cartButton').attr('data-notify'))-1;
+				$('#cartButton').attr('data-notify', cnum);
 			}
+		}
+		// 다돌고 check모두 true
+		for(var n=0; n<$('.table_row'); n++){
+			$('.roundedOne')[n].checked = true;
 		}
 		sumUp();
 	});
@@ -531,7 +547,6 @@ function sumPrice(){
 				if(jsonProductSize != ''){
 					jsonProductSize = '(상의 : ' + jsonObj.PRODUCT_CODE.split('$')[1] + ', 하의 : ' + jsonObj.PRODUCT_CODE.split('$')[2] + ')';
 				}
-				console.log(prior);
 				
 				var str = "";
 				
@@ -545,8 +560,8 @@ function sumPrice(){
 				str += '</div></div></td><td class="column-6 txt-center">' + (jsonObj.PRODUCT_PRICE * jsonObj.product_count) + '</td></tr>';
 				$('#tableCart').append(str);
 
-				  checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
-				  prior++;
+				checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
+				prior++;
 			}
 			
 			$('#cartButton').attr('data-notify',prior - 1);
@@ -612,7 +627,37 @@ function sumPrice(){
 				sumUp();
 			});
 			/////////////////////////////////////////////////////////
+			//카트에 담긴 품목의 상품코드, 상하의 코드 가져와서 hidden으로 set
+			var cartNum = Number($('.table_row').length);
+			var cartCookie;
+			var cookieObj;
+			var jsonData;
+			var productCode, jkCode, ptCode;
+			for(var i=1; i<=cartNum; i++){
+				cartCookie = getCookie('cart'+i);
+				cookieObj = decodeURIComponent(cartCookie);
+				jsonData = JSON.parse(cookieObj.substring(1, cookieObj.length-1));
+				
+				productCode = jsonData.PRODUCT_CODE;
+				jkCode = jsonData.JACKET_CODE;
+				ptCode = jsonData.PANTS_CODE;
+				var str='<input type="hidden" value="'+ productCode + '">';
+				$('.table_row')[Number(i)-1].children[2].innerHTML += str;
+				str = '<input type="hidden" value="'+jkCode+'">';
+				$('.table_row')[Number(i)-1].children[2].innerHTML += str;
+				str = '<input type="hidden" value="'+ptCode+'">';
+				$('.table_row')[Number(i)-1].children[2].innerHTML += str;
+				//console.log('카트쿠킥느?'+cookieObj);
+				//console.log('카트쿠키 상품코드값?/'+jsonData.PRODUCT_CODE);
+			}
 		});
+	
+	// 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수..->태그에 onclick걸어줌
+	 $('#newAddr').click(function () {
+		 $('#postNum').val('');
+		 $('#address').val('');
+		 $('#address_detail').val('');
+	});
 		
 	
 </script> 
