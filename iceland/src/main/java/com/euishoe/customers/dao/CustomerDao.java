@@ -28,4 +28,8 @@ public interface CustomerDao {
 	
 	// 회원 Customizing 정보 수정
 	public void modifyCustomizingInfo(Map<String, Object> map) throws Exception;
+	
+	// 회원 CustomizeInformation 수정
+	public Map<String, Object> getCustomizeInfo(String customerId) throws Exception;
+	
 }

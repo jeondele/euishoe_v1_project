@@ -80,6 +80,10 @@
 	border: 2px solid white;
 	font-weight: bold;
 }
+
+#noResultImg {
+	width: 1350px;	
+}
 </style>
 </head>
 <body class="animsition">
@@ -254,6 +258,7 @@ $(function(){
 	  		$("#productTPO").attr('value', productTPO);
 		} else { // 클릭을 했는데 활성화가 되어있으면,
 			$(this).removeClass('active');
+			$('#productTPO').attr('value', null);
 		}
 	})
 })
@@ -272,10 +277,10 @@ $(function(){
 				case 'Winter': productSeason = 'winter'; break;
 				default : 	   productSeason = null; 	 break;
 			}
-	  		console.log('클릭 시 productSeason' + productSeason);
 	  		$("#productSeason").attr('value', productSeason);
-		} else { // 클릭을 했는데 활성화가 되어있으면,
+		} else {
 			$(this).removeClass('active');
+			$("#productSeason").attr('value', null);
 		}
 	})
 })
@@ -297,6 +302,7 @@ $(function(){
 	  		$("#productListPrice").attr('value', productListPrice);
 		} else { // 클릭을 했는데 활성화가 되어있으면,
 			$(this).removeClass('active');
+			$('#productListPrice').attr('value', null);
 		}
 	})
 })
@@ -318,6 +324,7 @@ $(function(){
 	  		$("#productFabric").attr('value', productFabric);
 		} else { // 클릭을 했는데 활성화가 되어있으면,
 			$(this).removeClass('active');
+			$('#productFabric').attr('value', null);
 		}
 	})
 })
@@ -337,6 +344,7 @@ $(function(){
 	  		$("#productShoulder").attr('value', productShoulder);
 		} else { 
 			$(this).removeClass('active');
+			$('#productShoulder').attr('value', null);
 		}
 	})
 })
@@ -356,6 +364,7 @@ $(function(){
 	  		$("#productArm").attr('value', productArm);
 		} else { 
 			$(this).removeClass('active');
+			$('#productArm').attr('value', null);
 		}
 	})
 })
@@ -375,6 +384,7 @@ $(function(){
 	  		$("#productLeg").attr('value', productLeg);
 		} else { 
 			$(this).removeClass('active');
+			$('#productLeg').attr('value', null);
 		}
 	})
 })
@@ -394,6 +404,7 @@ $(function(){
 	  		$("#productBody").attr('value', productBody);
 		} else { 
 			$(this).removeClass('active');
+			$('#productBody').attr('value', null);
 		}
 	})
 })
@@ -414,6 +425,7 @@ $(function(){
 	  		$("#colorCode").attr('value', colorCode);
 		} else { 
 			$(this).removeClass('active');
+			$('#colorCode').attr('value', null);
 		}
 	})
 })
@@ -462,9 +474,76 @@ $(function(){
 	  		$("#OrderByStar").attr('value', OrderByStar);
 		} else { 
 			$(this).removeClass('active');
+			$("#OrderByPrice").attr('value', null);
+	  		$("#OrderByHitcount").attr('value', null);
+	  		$("#OrderByStar").attr('value', null);
 		}
 	})
 })
+
+
+function getMycustomInfo() {
+	customerBody = $('#customerBody').val();
+	customerShoulder = $('#customerShoulder').val();
+	customerArm = $('#customerArm').val();
+	customerLeg = $('#customerLeg').val();
+	console.log('사용자 Body : ' + customerBody);
+	console.log('사용자 Shoulder : ' + customerShoulder);
+	console.log('사용자 Arm : ' + customerArm);
+	console.log('사용자 Leg : ' + customerLeg);
+	
+	
+	if(customerBody === '1') {
+		$('#WeightSmall').addClass('active');
+	} else if(customerBody === '2') {
+		$('#WeightNormal').addClass('active');
+	} else if(customerBody === '3') {
+		$('#WeightBig').addClass('active');
+	} else {
+		
+	}
+	
+	
+	if(customerShoulder === '1') {
+		$('#Shoulder1').addClass('active');
+	} else if(customerShoulder === '2') {
+		$('#Shoulder2').addClass('active');
+		
+	} else if(customerShoulder === '3') {
+		$('#Shoulder3').addClass('active');
+	} else {
+		
+	}
+	
+	
+	if(customerArm === '1') {
+		$('#Arm1').addClass('active');
+	} else if(customerArm === '2') {
+		$('#Arm2').addClass('active');
+	} else if(customerArm === '3') {
+		$('#Arm3').addClass('active');
+	} else {
+		
+	}
+	
+	
+	if(customerLeg === '1') {
+		$('#Leg1').addClass('active');
+	} else if(customerArm === '2') {
+		$('#Leg2').addClass('active');
+	} else if(customerArm === '3') {
+		$('#Leg3').addClass('active');
+	} else {
+		
+	}
+	
+	$('#productBody').val(customerBody);
+	$('#productShoulder').attr('value', customerShoulder);
+	$('#productArm').attr('value', customerArm);
+	$('#productLeg').attr('value', customerLeg);
+	
+}
+
 
 //필터 초기화 함수
 function resetFilter() {
@@ -485,9 +564,18 @@ function resetFilter() {
 
 
 $(function(){
-	$(".p-b-6").on("click", function(e){
-		$("#submitForm").submit();
-		$("#selectResult").html();
+	$('.p-b-6').on('click', function(e){
+		$('#selectResult').empty();
+		$('#submitForm').submit();
+	})
+})
+
+
+$(function(){
+	$('#customize').on('click', function(e){
+		console.log('일로 들어오니?');
+		$('#selectResult').empty();
+		$('#submitForm').submit();
 	})
 })
 
@@ -532,33 +620,40 @@ $(function(){
 	/* 	param : JSON.parse('{"tpo":"'+productTPO+'"}'), */
 
 function inputResult(result) {
-	console.log("콜백도 실행????");
-	console.log(result);
+	$('#selectResult').empty();
 	$("#selectResult").html(result.responseText);
 }
 
-function getMycustomInfo() {
-	
-}
+
+
 </script>
 
 	<%@include file="../../includes/cart.jsp"%>
 	<%@include file="..//../includes/favorite.jsp"%>
 	<%@include file="../../includes/slider.jsp"%>
-
+	
+	
+	<input type="hidden" id="customerBody" name="customerBody" value="${customerInfoList.customerBody}">
+	<input type="hidden" id="customerShoulder" name="customerShoulder" value="${customerInfoList.customerShoulder}">
+	<input type="hidden" id="customerArm" name="customerArm" value="${customerInfoList.customerArm}">
+	<input type="hidden" id="customerLeg" name="customerLeg" value="${customerInfoList.customerLeg}">
+		
+	
+	
+	
 	<form id="submitForm">
-		<input type="hidden" id="productTPO" name="tpo" value="xxx"> 
+		<input type="hidden" id="productTPO" name="tpo" value=""> 
 		<input type="hidden" id="productSeason"  name="season" value=""> 
-		<input type="hidden" id="productListPrice"  name = "price" value=""> 
-		<input type="hidden" id="productFabric" name = "fabric" value=""> 
-		<input type="hidden" id="productShoulder" name = "color" value=""> 
-		<input type="hidden" id="productArm"  name = "armType" value=""> 
-		<input type="hidden" id="productLeg" name = "legType" value=""> 
-		<input type="hidden" id="productBody" name = "bodyType" value=""> 
-		<input type="hidden" id="colorCode" name = "color" value=""> 
-		<input type="hidden" id="OrderByPrice" name = "orderByPrice" value="">
-		<input type="hidden" id="OrderByHitcount"  name = "orderByHitcount" value="">
-		<input type="hidden" id="OrderByStar"  name = "orderByStar" value="">
+		<input type="hidden" id="productListPrice"  name="price" value=""> 
+		<input type="hidden" id="productFabric" name="fabric" value=""> 
+		<input type="hidden" id="productShoulder" name="color" value=""> 
+		<input type="hidden" id="productArm"  name="armType" value=""> 
+		<input type="hidden" id="productLeg" name="legType" value=""> 
+		<input type="hidden" id="productBody" name="bodyType" value=""> 
+		<input type="hidden" id="colorCode" name="color" value=""> 
+		<input type="hidden" id="OrderByPrice" name="orderByPrice" value="">
+		<input type="hidden" id="OrderByHitcount"  name="orderByHitcount" value="">
+		<input type="hidden" id="OrderByStar"  name="orderByStar" value="">
 	</form>
 
 	<!-- Product -->
@@ -799,7 +894,8 @@ function getMycustomInfo() {
 							<br>
 							<br>
 							<ul class="finder_list_by_Customize">
-								<li class="p-b-6"><input type="button" id="customize"
+								<li id="customBtn">
+								<input type="button" id="customize"
 									name="customize" style="height: 50px; width: 100%;"
 									class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5"
 									value="나에게 맞는 옷 찾기" onclick="getMycustomInfo()"></li>
@@ -879,7 +975,7 @@ function getMycustomInfo() {
 			</div>
 
 
-			<p id="selectResult">
+		<div id="selectResult">
 			<div class="row isotope-grid">
 				<c:forEach items="${jsonObjectList}" var="product">
 					<c:set var="imageRef" value="${product.imageRef}" />
@@ -889,9 +985,7 @@ function getMycustomInfo() {
 							<div class="block2">
 								<div class="block2-pic hov-img0">
 									<img src="${product.get('imageRef')}" alt="IMG-PRODUCT">
-
-									<a href="#"
-										class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 brief-view">
+									<a href="#"	class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 brief-view">
 										<input type="hidden" value="${product.productNum}">
 										Quick View
 									</a>
@@ -899,11 +993,10 @@ function getMycustomInfo() {
 
 								<div class="block2-txt flex-w flex-t p-t-14">
 									<div class="block2-txt-child1 flex-col-l ">
-										<a
-											href="/iceland/product/details.es?productNum=${product.productNum}"
-											class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-											${product.productName} </a> <span class="stext-105 cl3"> ₩
-											${product.productListPrice} 원 </span>
+										<a href="/iceland/product/details.es?productNum=${product.productNum}" 
+										    class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+											${product.productName} </a>
+											<span class="stext-105 cl3"> ₩ ${product.productListPrice} 원 </span>
 									</div>
 
 									<div class="block2-txt-child2 flex-r p-t-3">
@@ -920,10 +1013,10 @@ function getMycustomInfo() {
 						</div>
 					</c:if>
 				</c:forEach>
-			</div>
-			</p>
+	 		</div>
 		</div>
 	</div>
+</div>
 
 
 	<%@include file="/iceland/../includes/QuickMenu.jsp"%>

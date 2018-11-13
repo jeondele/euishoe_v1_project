@@ -81,6 +81,15 @@ public class MybatisCustomerDao implements CustomerDao {
 		sqlSession.close();
 	}
 
+	@Override
+	public Map<String, Object> getCustomizeInfo(String customerId) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Map<String, Object> list = null;
+		list = sqlSession.selectOne(NAMESPACE + "getCustomizeInfo", customerId);
+		sqlSession.close();
+		return list;
+	}
+
 	
 }
 

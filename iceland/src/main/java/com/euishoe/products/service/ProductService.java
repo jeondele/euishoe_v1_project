@@ -53,4 +53,8 @@ public interface ProductService {
 		
 	//qna 게시글 카운트
 	public int reviewCounttBySearch(int productNum) throws Exception;
+	
+	// product page로 넘어가면서, 사용자 Customizing Information 
+	public Map<String, Object> selectCustomizeInfo(String customerId) throws Exception;
+	
 }

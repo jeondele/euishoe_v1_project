@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Shoping Cart</title>
+<title>Customizing</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -39,10 +39,11 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
+<link rel="stylesheet" type="text/css" href="/iceland/css/toastMessage.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="<%=application.getContextPath()%>/customer/customizing/customizing.css">
-
+<script src="/iceland/js/toastMessage.js"></script>
 
 <style>
 .nav-tabs {
@@ -251,6 +252,7 @@ $(function(){
 		                    </ul>
 		                    <br>
                 		</div>
+                		<div id="snackbar"></div>
                 		<form id="customizeInfoTransfer" action="/iceland/customer/customize.es" method="post">
 							<input type="hidden" id="customerBody" name="customerBody" value="">
 							<input type="hidden" id="customerShoulder" name="customerShoulder" value="">
@@ -258,7 +260,7 @@ $(function(){
 							<input type="hidden" id="customerLeg" name="customerLeg" value="">
 							<input type="hidden" id="customerId" name="customerId" value="">
 							<div>
-								<input type="submit" class="flex-c-m stext-101 clO size-116 bg3 bor7 hov-btn3 p-lr-15 trans-04 pointer" value="저장">
+								<input type="submit" class="flex-c-m stext-101 clO size-116 bg3 bor7 hov-btn3 p-lr-15 trans-04 pointer" onclick="toast()" value="저장">
 							</div>
                 		</form>
 					</div>
@@ -380,6 +382,9 @@ $(function(){
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
-
+	<script type="text/javascript">
+	 var target = document.getElementById('snackbar');
+	 target.innerHTML = 'Customizing 정보를 저장했습니다!';
+</script>
 </body>
 </html>

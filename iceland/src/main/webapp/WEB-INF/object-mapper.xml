@@ -112,6 +112,7 @@
 		<property name="productDao" ref="productDao"/>
 		<property name="reviewDao" ref="reviewDao"/>
 		<property name="qnaDao" ref="qnaDao"/>
+		<property name="customerDao" ref="customerDao"/>
 	</bean>
 	
 	<!-- payment 맵핑 -->

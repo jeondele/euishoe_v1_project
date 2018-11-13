@@ -14,6 +14,7 @@ import java.util.Map;
 
 import com.euishoe.common.web.FilterParam;
 import com.euishoe.common.web.Params;
+import com.euishoe.customers.dao.CustomerDao;
 import com.euishoe.products.dao.ProductDao;
 import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
@@ -27,6 +28,15 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 	private ReviewDao reviewDao;
 	private QnaDao qnaDao;
+	private CustomerDao customerDao;
+
+	public CustomerDao getCustomerDao() {
+		return customerDao;
+	}
+
+	public void setCustomerDao(CustomerDao customerDao) {
+		this.customerDao = customerDao;
+	}
 
 	public ProductDao getProductDao() {
 		return productDao;
@@ -139,6 +149,12 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int reviewCounttBySearch(int productNum) throws Exception {
 		return reviewDao.countBySearch(productNum);
+	}
+
+	// 사용자에서 
+	@Override
+	public Map<String, Object> selectCustomizeInfo(String customerId) throws Exception {
+		return customerDao.getCustomizeInfo(customerId);
 	}
 
 }

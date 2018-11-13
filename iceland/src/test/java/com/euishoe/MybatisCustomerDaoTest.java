@@ -86,7 +86,7 @@ public class MybatisCustomerDaoTest {
 	}
 	
 	//@Test
-	public void testModifyCustomizingInfo() {
+/*	public void testModifyCustomizingInfo() {
 		String customerId = "bangry";
 	}
 	
@@ -96,5 +96,15 @@ public class MybatisCustomerDaoTest {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object>  list = sqlSession.selectOne(NAMESPACE + "customerOrderInfo", customerId);
 		logger.debug(list);
+	}
+	*/
+	
+	@Test
+	public void testCustomizeInfo() {
+		String customerId = "bangry";
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Map<String, Object> list = sqlSession.selectOne(NAMESPACE + "getCustomizeInfo", customerId);
+		logger.debug(list);
+		
 	}
 }

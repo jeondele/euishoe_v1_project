@@ -121,13 +121,13 @@
 	</update>
 	
 	<!-- 회원 신체 정보(Customize Information) 가져오는 Mapper -->
-	<select id="getCustomizeInfo" parameterType="java.lang.String">
-		select customer_body "customerBody",
-			   customer_shoulder "customerShoulder",
-			   customer_shoulder
-			   
-		
-	
+	<select id="getCustomizeInfo" parameterType="java.lang.String" resultType="map">
+		SELECT customer_body     "customerBody", 
+       		   customer_shoulder "customerShoulder", 
+               customer_arm      "customerArm", 
+               customer_leg      "customerLeg" 
+        FROM   customers 
+	    WHERE  customer_id = #{customerId}
 	</select>
 	
 </mapper>
