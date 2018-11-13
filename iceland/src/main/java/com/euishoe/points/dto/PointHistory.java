@@ -19,7 +19,10 @@ public class PointHistory {
 	// 생성자(Constructor) 선언
 	public PointHistory() {
 	}
-
+	
+	public PointHistory(int pointPolicyType, String customerId, int pointHistoryScore) {
+		this(0, pointPolicyType, customerId, pointHistoryScore, null);
+	}
 	public PointHistory(int pointHistoryNum, int pointPolicyType, String customerId, int pointHistoryScore,
 			String pointHistoryUpdateDate) {
 		super();

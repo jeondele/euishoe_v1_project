@@ -37,6 +37,15 @@ public class MybatisPointDao implements PointDao {
 		List<HashMap<String, Object>> list = sqlSession.selectList(NAMESPACE + "selectPointHistoryById", "bangry");
 		return list;
 	}
+
+	@Override
+	public boolean insertPoint(PointHistory pointHistory) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int result = sqlSession.insert(NAMESPACE + "point_histories", pointHistory);
+		if(result == 0 ) {
+			return false ;
+		} else return true;
+	}
 }
 
 

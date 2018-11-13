@@ -26,6 +26,9 @@ public class Order {
 		super();
 	}
 
+	public Order(String customerId, int deliveryNum, int paymentNum) {
+		this(0,customerId, null, deliveryNum, paymentNum);
+	}
 	public Order(int orderNo, String customerId, String noncustomerNum, int deliveryNum, int paymentNum) {
 		super();
 		this.orderNo = orderNo;

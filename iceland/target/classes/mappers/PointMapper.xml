@@ -54,5 +54,14 @@
 		    	ON ph.point_policy_type = pp.point_policy_type
 		 WHERE  ph.customer_id = #{customerId}
 	</select>
-
+	
+	<delete id="insertPoint" parameterType="Point">
+		insert into point_histories
+		values(
+		  		point_histories_seq.nextval,
+		  		#{pointPolicyNum},
+		  		#{customerId},
+		  		#{inputMoney},
+		  		sysdate)
+	</delete>
 </mapper>

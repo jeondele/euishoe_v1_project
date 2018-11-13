@@ -1,7 +1,6 @@
 package com.euishoe.orders.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
@@ -21,4 +20,23 @@ public interface OrderService {
 	List<ProductInfo> getProductInfo(int productNum) throws Exception;
 	//상하의 코드 파싱
 	public String[] productCodeParsing(String productCode) throws Exception;
+	
+	//결제 다음 인풋할 번호 검색
+	public int selectPaymentNum() throws Exception;
+	//결제 생성
+	public void insertPayment()throws Exception;
+	//배송 다음 인풋할 번호 검색
+	public int selectDeliveryNum() throws Exception;
+	//배송 생성
+	public void insertDelivery() throws Exception;
+	//포인트 추가
+	public void insertPoint()throws Exception;
+	//포인트 삭제
+	public void deletePoint() throws Exception;
+	//주문 생성
+	public void insertOrder() throws Exception;
+	//해당 상의, 하의 수량 제거
+	public void deleteSuitCount() throws Exception;
+	//장바구니 결제 했으면 해당 품목 삭제
+	public void deleteCookie() throws Exception;
 }

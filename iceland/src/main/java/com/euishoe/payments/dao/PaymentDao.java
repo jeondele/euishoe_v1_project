@@ -13,7 +13,10 @@ import com.euishoe.payments.dto.Payment;
 public interface PaymentDao {
 	//결제정보 저장
 	public boolean insertPayment(Payment payment);
-		
+	
+	//결제번호 조회
+	public int selectMaxNextValPayment();
+	
 	//결제정보 조회
 	List<Payment> selectPaymentInfo(int orderNum);
 

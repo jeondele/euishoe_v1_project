@@ -77,5 +77,61 @@ public class OrderServiceImpl implements OrderService {
 		codes[4] = pantsSize;
 		return codes;
 	}
+
+	@Override
+	public int selectPaymentNum() throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void insertPayment() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int selectDeliveryNum() throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void insertDelivery() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insertPoint() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deletePoint() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insertOrder() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteSuitCount() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteCookie() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	
 }

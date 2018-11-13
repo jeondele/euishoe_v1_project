@@ -18,6 +18,10 @@ public class OrderByProduct {
 		super();
 	}
 
+	public OrderByProduct(String productCode, int orderNum) {
+		this(0, productCode, orderNum);
+	}
+	
 	public OrderByProduct(int orderByProductNum, String productCode, int orderNum) {
 		super();
 		this.orderByProductNum = orderByProductNum;

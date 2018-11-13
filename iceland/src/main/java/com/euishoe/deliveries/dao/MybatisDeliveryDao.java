@@ -20,7 +20,8 @@ public class MybatisDeliveryDao implements DeliveryDao {
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
-
+	
+	//들어갈 번호
 	@Override
 	public boolean insertDelivery(Delivery delivery) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -39,6 +40,17 @@ public class MybatisDeliveryDao implements DeliveryDao {
 		sqlSession.commit();
 		sqlSession.close();
 		return list;
+	}
+
+	//들어갈 번호
+	@Override
+	public int selectMaxNextValDelivery() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int nextVal = 0 ;
+		nextVal = sqlSession.selectOne(NAMESPACE+"selectMaxNextValDelivery");
+		sqlSession.commit();
+		sqlSession.close();
+		return nextVal;
 	}
 }
 

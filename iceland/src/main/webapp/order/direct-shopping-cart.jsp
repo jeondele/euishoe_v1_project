@@ -412,7 +412,7 @@ tr {
 								</div>
 							</div>
 
-							<button
+							<button id="doneOrder"
 								class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 								결제하기</button>
 						</div>
@@ -420,13 +420,53 @@ tr {
 			</div>
 		</div>
 	</form>
-
+	
+	
+	<form id="sendToDoneOrder" action="/iceland/ordersucc.es">
+		<input type="hidden" id="sendProductCode" name="sendProductCode" value="">
+		<input type="hidden" id="sendPantsCode" name="sendPantsCode" value="">
+		<input type="hidden" id="sendJacketCode" name="sendJacketCode" value="">
+		<input type="hidden" id="sendProductNum" name="sendProductNum" value="">
+		<input type="hidden" id="sendProductCount" name="sendProductCount" value="">
+		<input type="hidden" id="sendPaymentPoint" name="sendPaymentPoint" value="">
+		<input type="hidden" id="sendPaymentMethod" name="sendPaymentMethod" value="">
+		<input type="hidden" id="sendTotalCost" name="sendTotalCost" value="">
+		<input type="hidden" id="sendDeliveryAddress1" name="sendDeliveryAddress1" value="">
+		<input type="hidden" id="sendDeliveryAddress2" name="sendDeliveryAddress2" value="">
+		<input type="hidden" id="sendDeliveryRecipient" name="sendDeliveryRecipient" value="">
+		<input type="hidden" id="sendDeliveryRecipientPhoneNumber" name="sendDeliveryRecipientPhoneNumber" value="">
+		<input type="hidden" id="sendDeliveryRequirement" name="sendDeliveryRequirement" value="">
+	</form>
 
 	<%@include file="/iceland/../includes/footer.jsp"%>
 
 	<%@include file="/iceland/../includes/QuickMenu.jsp"%>
 
-
+	<script>
+	$(function(){
+		$("#doneOrder").on("click",function(){
+			$("#sendToDoneOrder").submit();
+		})
+	})
+	
+	$(function() {
+		$(".important").on("change", function() {
+			$("#sendProductCode").val($('input[name=test_name]').val());
+			$("#sendPantsCode").val();
+			$("#sendJacketCode").val();
+			$("#sendProductNum").val();
+			$("#sendProductCount").val();
+			$("#sendPaymentPoint").val();
+			$("#sendPaymentMethod").val();
+			$("#sendTotalCost").val();
+			$("#sendDeliveryAddress1").val();
+			$("#sendDeliveryAddress2").val();
+			$("#sendDeliveryRecipient").val();
+			$("#sendDeliveryRecipientPhoneNumber").val();
+			$("#sendDeliveryRequirement").val();
+		})
+	})
+	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
 	<!--===============================================================================================-->
@@ -435,9 +475,7 @@ tr {
 	<!--===============================================================================================-->
 	<script src="/iceland/vendor/select2/select2.min.js"></script>
 	<script>
-	$(function(){
-		
-	})
+	
 	$(".js-select2").each(function() {
 		$(this).select2({
 			minimumResultsForSearch : 20,

@@ -21,6 +21,8 @@ public class MybatisPaymentDao implements PaymentDao {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
 
+	
+	//결제정보 삽입
 	@Override
 	public boolean insertPayment(Payment payment) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -31,6 +33,7 @@ public class MybatisPaymentDao implements PaymentDao {
 		if(result != 0 ) return true; else return false;
 	}
 
+	//결제정보 검색
 	@Override
 	public List<Payment> selectPaymentInfo(int orderNum) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -39,6 +42,18 @@ public class MybatisPaymentDao implements PaymentDao {
 		sqlSession.commit();
 		sqlSession.close();
 		return list;
+	}
+
+	
+	//다음 번호 조회
+	@Override
+	public int selectMaxNextValPayment() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int nextVal = 0 ;
+		nextVal = sqlSession.selectOne(NAMESPACE+"selectMaxNextValPayment");
+		sqlSession.commit();
+		sqlSession.close();
+		return nextVal;
 	}
 }
 
