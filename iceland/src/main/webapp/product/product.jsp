@@ -47,6 +47,26 @@
 	
 <!--===============================================================================================-->
 <!--===============================================================================================-->
+<style>
+.finder_list li.on a {
+	background-color: #717fe0;
+}
+
+.finder_list li a {
+	
+}
+
+#AllColor:hover, #Brown:hover, #Gray:hover, #Black:hover, #Navy:hover {
+	border: 2px solid white;
+	font-weight: bold;
+}
+
+#AllColor.active, #Brown.active, #Gray.active, #Black.active, #Navy.active {
+	border: 2px solid white;
+	font-weight: bold;
+}
+
+</style>
 </head>
 <body class="animsition">
 	
@@ -174,34 +194,258 @@ function setCountCartList(){
         setCountCartList();
     });
 }
+  
+function dataTransfer() {
+	jQuery(this).toggleClass('active');
+	
+}
+
+
+
+// 필터용 변수 선언
+var productTPO;
+var productSeason;
+var productListPrice;
+var productFabric;
+var productShoulder;
+var productArm;
+var productLeg;
+var productBody;
+var colorCode;
+var OrderBy;
+
+
+// TPO 필터 선택 함수 -> 값 받아오는 로직까지 구현
+$(function(){
+ 	var sBtn = $("ul.finder_list_by_TPO > li");
+ 	sBtn.find("input").click(function(){   
+  		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+  			sBtn.children().removeClass('active');
+	  		$(this).addClass('active');
+	  		switch($(this).attr('id')) {
+	  			case 'Wedding':   productTPO = 'wedding'; 	break;
+	  			case 'Meeting':   productTPO = 'meeting'; 	break;
+	  			case 'Interview': productTPO = 'interview'; break;
+	  			case 'Date':      productTPO = 'date'; 		break;
+	  			default :         productTPO = null; 		break;
+	  		}
+  		} else { // 클릭을 했는데 활성화가 되어있으면,
+  			$(this).removeClass('active');
+  		}
+ })
+})
+
+// 계절별 필터 선택 함수
+$(function(){
+ 	var sBtn = $("ul.finder_list_by_Season > li");
+ 	sBtn.find("input").click(function(){   
+ 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+  			sBtn.children().removeClass('active');
+	  		$(this).addClass('active');
+	  		switch($(this).attr('id')) {
+  				case 'Spring': productSeason = 'spring'; break;
+  				case 'Summer': productSeason = 'summer'; break;
+  				case 'Fall':   productSeason = 'fall'; 	 break;
+  				case 'Winter': productSeason = 'winter'; break;
+  				default : 	   productSeason = null; 	 break;
+  			}
+  		} else { // 클릭을 했는데 활성화가 되어있으면,
+  			$(this).removeClass('active');
+  		}
+ })
+})
+
+//가격대별 필터 선택 함수, 값도 반환
+$(function(){
+ 	var sBtn = $("ul.finder_list_by_Price > li"); 
+ 	sBtn.find("input").click(function(){   
+ 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+  			sBtn.children().removeClass('active');
+	  		$(this).addClass('active');
+	  		switch($(this).attr('id')) {
+				case '5to10': 	productListPrice = '50000/100000'; 	break;
+				case '10to15': 	productListPrice = '100000/150000'; break;
+				case '15to20':  productListPrice = '150000/200000';	break;
+				case '20Plus': 	productListPrice = '200000/0'; 		break;
+				default : 	   	productListPrice = null; 	 		break;
+			}
+  		} else { // 클릭을 했는데 활성화가 되어있으면,
+  			$(this).removeClass('active');
+  		}
+ })
+})
+
+// 원단 종류별 필터 선택 함수, 값도 반환
+$(function(){
+ 	var sBtn = $("ul.finder_list_by_Fabric > li"); 	
+ 	sBtn.find("input").click(function(){   
+ 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+  			sBtn.children().removeClass('active');
+	  		$(this).addClass('active'); 
+	  		switch($(this).attr('id')) {
+				case 'Silk': 	  productFabric = 'silk'; 	  break;
+				case 'Wool': 	  productFabric = 'wool'; 	  break;
+				case 'Cashmere':  productFabric = 'cashmere'; break;
+				case 'Linen': 	  productFabric = 'linen'; 	  break;
+				default : 	   	  productFabric = null; 	  break;
+			}
+  		} else { // 클릭을 했는데 활성화가 되어있으면,
+  			$(this).removeClass('active');
+  		}
+ })
+})
+
+$(function(){
+ 	var sBtn = $("ul.finder_list_by_Shoulder > li");  
+ 	sBtn.find("input").click(function(){   
+ 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+  			sBtn.children().removeClass('active');
+	  		$(this).addClass('active');
+	  		switch($(this).attr('id')) {
+				case 'Shoulder1':  productShoulder = '1';  break;
+				case 'Shoulder2':  productShoulder = '2';  break;
+				case 'Shoulder3':  productShoulder = '3';  break;
+				default : 	   	   productShoulder = null; break;
+	  		}
+  		} else { 
+  			$(this).removeClass('active');
+  		}
+ })
+})
+
+$(function(){
+ 	var sBtn = $("ul.finder_list_by_Arm > li");
+ 	sBtn.find("input").click(function(){   
+ 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+  			sBtn.children().removeClass('active');
+	  		$(this).addClass('active');
+	  		switch($(this).attr('id')) {
+				case 'Arm1':  productArm = '1';  break;
+				case 'Arm2':  productArm = '2';  break;
+				case 'Arm3':  productArm = '3';  break;
+				default : 	  productArm = null; break;
+  			}
+  		} else { 
+  			$(this).removeClass('active');
+  		}
+ })
+})
+
+$(function(){
+ 	var sBtn = $("ul.finder_list_by_Leg > li");
+ 	sBtn.find("input").click(function(){   
+ 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+  			sBtn.children().removeClass('active');
+	  		$(this).addClass('active');
+	  		switch($(this).attr('id')) {
+				case 'Leg1':  productLeg = '1';  break;
+				case 'Leg2':  productLeg = '2';  break;
+				case 'Leg3':  productLeg = '3';  break;
+				default : 	  productLeg = null; break;
+			}
+  		} else { 
+  			$(this).removeClass('active');
+  		}
+ })
+})
+
+$(function(){
+ 	var sBtn = $("ul.finder_list_by_Weight > li");
+ 	sBtn.find("input").click(function(){   
+ 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+  			sBtn.children().removeClass('active');
+	  		$(this).addClass('active');
+	  		switch($(this).attr('id')) {
+				case 'WeightSmall':   productBody = '1';  break;
+				case 'WeightNormal':  productBody = '2';  break;
+				case 'WeightBig':  	  productBody = '3';  break;
+				default : 	  		  productBody = null; break;
+			} 
+  		} else { 
+  			$(this).removeClass('active');
+  		}
+ })
+})
+
+$(function(){
+ 	var sBtn = $("ul.finder_list_by_Color > li");
+ 	sBtn.find("input").click(function(){   
+ 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+  			sBtn.children().removeClass('active');
+	  		$(this).addClass('active');
+	  		switch($(this).attr('id')) {
+				case 'Brown':   colorCode = 'BR';  	break;
+				case 'Black':   colorCode = 'BK';  	break;
+				case 'Gray' :  	colorCode = 'GR';  	break;
+				case 'Navy' :  	colorCode = 'NV';  	break;
+				default : 	    colorCode = null; 	break;
+			} 
+  		} else { 
+  			$(this).removeClass('active');
+  		}
+ })
+})
+
+$(function(){
+ 	var sBtn = $("ul.finder_list_by_Order > li");
+ 	sBtn.find("input").click(function(){   
+ 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+  			sBtn.children().removeClass('active');
+	  		$(this).addClass('active');
+	  		switch($(this).attr('id')) {
+				case 'LowPrice':   	  OrderBy = 'ASC';   break;
+				case 'HighPrice':     OrderBy = 'DESC';  break;
+				case 'ReviewCount' :  OrderBy = 'DESC';  break;
+				case 'HitCount' :  	  OrderBy = 'DESC';  break;
+				default : 	    	  OrderBy = null; 	 break;
+			}
+  		} else { 
+  			$(this).removeClass('active');
+  		}
+ })
+})
+
+// 필터 초기화 함수
+function resetFilter() {
+	$('.flex-c-m.stext-107.bor7.p-lr-15.hov-btn3.trans-04.m-r-5.m-b-5.active').attr('class','flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5');
+	productTPO = null;
+	productSeason = null;
+	productListPrice = null;
+	productFabric = null;
+	productShoulder = null;
+	productArm = null;
+	productLeg = null;
+	productBody = null;
+	colorCode = null;
+	OrderBy = null;
+}
+
+
 </script>    
 
 <%@include file="../../includes/cart.jsp"%>
 <%@include file="..//../includes/favorite.jsp"%>
 <%@include file="../../includes/slider.jsp"%>
-
+	
+	<form action=#>
+		<input type="hidden" id="productTPO" value="${productTPO}">
+		<input type="hidden" id="productSeason" value="${productSeason}">
+		<input type="hidden" id="productListPrice" value="${productListPrice}">
+		<input type="hidden" id="productFabric" value="${productFabric}">
+		<input type="hidden" id="productShoulder" value="${productShoulder}">
+		<input type="hidden" id="productArm" value="${productArm}">
+		<input type="hidden" id="productLeg" value="${productLeg}">
+		<input type="hidden" id="productBody" value="${productBody}">
+		<input type="hidden" id="colorCode" value="${colorCode}">
+		<input type="hidden" id="OrderBy" value="${OrderBy}">
+	</form>
+	
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
 			<div class="flex-w flex-sb-m p-b-52">
-<!-- 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						전체
-					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						뷰티
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-						헬스
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-						간편식
-					</button>
-				</div> -->
-
+				<%-- Filter, Search --%>
 				<div class="flex-w flex-c-m m-tb-10">
 					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
@@ -216,7 +460,7 @@ function setCountCartList(){
 					</div>
 				</div>
 				
-				<!-- Search product -->
+				<%-- Search product --%>
 				<div class="dis-none panel-search w-full p-t-10 p-b-15">
 					<div class="bor8 dis-flex p-l-15">
 						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
@@ -232,207 +476,224 @@ function setCountCartList(){
             <div class="dis-none panel-filter w-full p-t-10">
                <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
                   <div class="filter-col1 p-r-15 p-b-27">
-                     <div class="mtext-102 cl2 p-b-15">By T.P.O</div>
-                     <ul>
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">전체</a>
-                        </li>
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">하객용</a>
-                        </li>
-                        
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">상견례용</a>
-                        </li>
+                     <div class="mtext-102 cl2 p-b-15 flex-c-m">By T.P.O</div>
+	                     <ul class="finder_list_by_TPO">
+	                        <li class="p-b-6">
+	                           <input type="button" id="AllTPO" name="AllTPO" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="전체 (All)">
+	                        </li>
+	                        
+	                        <li class="p-b-6">
+	                           <input type="button" id="Wedding" name="Wedding" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="하객용 (Wedding)" >
+	                        </li>
+	                        
+	                        <li class="p-b-6">
+	                           <input type="button" id="Meeting" name="Meeting" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="상견례용 (Meeting)" >
+	                        </li>
+	
+	                        <li class="p-b-6">
+							   <input type="button" id="Interview" name="Interview" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="면접용 (Interview)" >
+	                        </li>
+	                        
+	                        <li class="p-b-6">
+	                           <input type="button" id="Date" name="Date" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="데이트용 (Date)" >
+	                        </li>
+	                     </ul>
+                     	 <br>
+	                     <div class="mtext-102 cl2 p-b-15 flex-c-m">By Season</div>
+		                     <ul class="finder_list_by_Season">
+	                     		<li class="p-b-6">
+		                           <input type="button" id="AllSeason" name="AllSeason" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="전체 (All Season)">
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="Spring" name="Spring" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="봄 (Spring)" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="Summer" name="Summer" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="여름 (Summer)" >
+		                        </li>
+		
+		                        <li class="p-b-6">
+								   <input type="button" id="Fall" name="Fall" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="가을 (Fall)" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="Winter" name="Winter" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="겨울 (Winter)" >
+		                        </li>
+	                     	 </ul>
+                  		 </div>
 
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">면접용</a>
-                        </li>
-                        
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">데이트용</a>
-                        </li>
-                     </ul>
-                     <br>
-                     <div class="mtext-102 cl2 p-b-15">By Season</div>
-                     <ul>
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">사계절(All Season)</a>
-                        </li>
-                        
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">봄(Spring)</a>
-                        </li>
-                        
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">여름(Summer)</a>
-                        </li>
-
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">가을(Fall)</a>
-                        </li>
-                        
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">겨울(Winter)</a>
-                        </li>
-                     </ul>
-                     
-                  </div>
-
-                  <div class="filter-col2 p-r-15 p-b-27">
-                     <div class="mtext-102 cl2 p-b-15">By Price</div>
-
-                     <ul>
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">전체(All Price)</a>
-                        </li>
-
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">50,000 ~ 100,000 원대</a>
-                        </li>
-                        
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">100,000 ~ 150,000 원대</a>
-                        </li>
-                        
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">150,000 ~ 200,000 원대</a>
-                        </li>
-                        
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">200,000 원 이상</a>
-                        </li>
-                        
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">낮은 가격 순</a>
-                        </li>
-                        
-                        <li class="p-b-6">
-                           <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">높은 가격 순</a>
-                        </li>
-                     </ul>
-                     <br>
-                     <div class="mtext-102 cl2 p-b-15">By Fabric</div>
-
-                        <ul>
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">전체(All Fabric)</a>
-                           </li>
-   
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">실크(Silk)</a>
-                           </li>
-                           
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">울(Wool)</a>
-                           </li>
-                           
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">캐시미어(Cashmere)</a>
-                           </li>
-                           
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">시어서커(Seersucker)</a>
-                           </li>
-                           
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">린넨(Linen)</a>
-                           </li>
-                        </ul>
-                     </div>
+                  		 <div class="filter-col2 p-r-15 p-b-27">
+                     	 <div class="mtext-102 cl2 p-b-15 flex-c-m">By Price</div>
+	                       	 <ul class="finder_list_by_Price">
+	                       	 	<li class="p-b-6">
+		                           <input type="button" id="AllPrice" name="AllPrice" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="전체 (All Price)">
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="5to10" name="5to10" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="50,000 ~ 100,000원 대" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="10to15" name="10to15"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="100,000 ~ 150,000원 대" >
+		                        </li>
+		
+		                        <li class="p-b-6">
+								   <input type="button" id="15to20" name="15to20"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="150,000 ~ 200,000원 대" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="20Plus" name="20Plus" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="200,0000원 이상" >
+		                        </li>
+	                     	 </ul>
+	                     <br>
+                     	 <div class="mtext-102 cl2 p-b-15 flex-c-m">By Fabric</div>
+	                         <ul class="finder_list_by_Fabric">
+	                         	<li class="p-b-6">
+		                           <input type="button" id="AllFabric" name="AllFabric" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="전체 (All Fabric)">
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="Silk" name="Silk" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="실크 (Silk)" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="Wool" name="Wool"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="울 (Wool)" >
+		                        </li>
+		
+		                        <li class="p-b-6">
+								   <input type="button" id="Cashmere" name="Cashmere"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="캐시미어 (Cashmere)" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="Linen" name="Linen" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="린넨 (Linen)" >
+		                        </li>
+	                         </ul>
+	                       <div class="mtext-102 cl2 p-b-15 flex-c-m">By Weight</div>
+                     		 <ul class="finder_list_by_Weight">
+		                        <li class="p-b-6">
+		                           <input type="button" id="WeightSmall" name="WeightSmall"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="마른편 (Skinny)" >
+		                        </li>
+		
+		                        <li class="p-b-6">
+								   <input type="button" id="WeightNormal" name="WeightNormal"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="보통 (Normal)" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="WeightBig" name="prices" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="뚱뚱한편 (Fat)" >
+		                        </li>
+	                     	</ul>  
+                     	</div>
+                     	
 
                   <div class="filter-col3 p-r-15 p-b-27">
-                     <div class="mtext-102 cl2 p-b-15">By Color</div>
-                     <ul>
+                     <div class="mtext-102 cl2 p-b-15 flex-c-m">By Color</div>
+                     <ul class ="finder_list_by_Color">
                         <li class="p-b-6">
-                           <span class="fs-15 lh-12 m-r-6" style="color: brown;"><i class="zmdi zmdi-circle"></i></span>
-                           <a href="#" class="filter-link stext-106 trans-04" style="color: brown;">Brown</a>
+                          <input type="button" id="AllColor" name="AllColor" style="width: 100%; " class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="All Color">
                         </li>
                         
                         <li class="p-b-6">
-                           <span class="fs-15 lh-12 m-r-6" style="color: black;"><i class="zmdi zmdi-circle"></i></span>
-                           <a href="#" class="filter-link stext-106 trans-04" style="color: black;">Black</a>
+                          <input type="button" id="Brown" name="Brown" style="width: 100%; color: white; background-color: #A65E2E; border-color: #A65E2E;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="Brown">
                         </li>
                         
                         <li class="p-b-6">
-                           <span class="fs-15 lh-12 m-r-6" style="color: #E8E1BE;"><i class="zmdi zmdi-circle"></i></span>
-                           <a href="#" class="filter-link stext-106 trans-04" style="color: #E8E1BE;">Beige</a>
+                          <input type="button" id="Black" name="Black" style="width: 100%; color: white; background-color: black; border-color: black;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="Black">
                         </li>
                         
                         <li class="p-b-6">
-                           <span class="fs-15 lh-12 m-r-6" style="color: gray;"><i class="zmdi zmdi-circle"></i></span>
-                           <a href="#" class="filter-link stext-106 trans-04" style="color: gray;">Gray</a>
+                          <input type="button" id="Gray" name="Gray" style="width: 100%; color: white; background-color: gray; border-color: gray;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="Gray">
                         </li>
                         
                         <li class="p-b-6">
-                           <span class="fs-15 lh-12 m-r-6" style="color: navy;"><i class="zmdi zmdi-circle"></i></span>
-                           <a href="#" class="filter-link stext-106 trans-04" style="color: navy;">Navy</a>
-                        </li>
-                        
-                        <li class="p-b-6">
-                           <span class="fs-15 lh-12 m-r-6" style="color: khaki;" ><i class="zmdi zmdi-circle"></i></span>
-                           <a href="#" class="filter-link stext-106 trans-04" style="color: khaki;">Khaki</a>
-                        </li>
-
-                        <li class="p-b-6">
-                           <span class="fs-15 lh-12 m-r-6" style="color: blue;"><i class="zmdi zmdi-circle"></i></span>
-                           <a href="#" class="filter-link stext-106 trans-04" style="color: blue;">Blue</a>
-                        </li>
-
-                        <li class="p-b-6">
-                           <span class="fs-15 lh-12 m-r-6" style="color: #4b4b4b;"><i class="zmdi zmdi-circle"></i></span>
-                           <a href="#" class="filter-link stext-106 trans-04" style="color: #4b4b4b;">Charcoal</a>
-                        </li>
-
-                        <li class="p-b-6">
-                           <span class="fs-15 lh-12 m-r-6" style="color: lightgray;"><i class="zmdi zmdi-circle"></i></span>
-                           <a href="#" class="filter-link stext-106 trans-04" style="color: lightgray;">LightGray</a>
+                          <input type="button" id="Navy" name="Navy" style="width: 100%; color: white; background-color: #2A3858; border-color: #2A3858;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="Navy">
                         </li>
                      </ul>
+                     <br>
+                     
+	                <div class="mtext-102 cl2 p-b-15 flex-c-m">Order By</div>     
+	                     <ul class="finder_list_by_Order">
+		                        <li class="p-b-6">
+		                           <input type="button" id="LowPrice" name="LowPrice"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="낮은 가격 순(Low Price)" >
+		                        </li>
+		
+		                        <li class="p-b-6">
+								   <input type="button" id="HighPrice" name="HighPrice"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="높은 가격 순(High Price)" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="ReviewCount" name="ReviewCount" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="평점 순(Reviews)" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="HitCount" name="HitCount" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="조회수 순(HitCount)">
+		                        </li>
+	                     </ul>
+	                     <br><br><br><br><br><br>
+	                     <ul class="finder_list_by_Customize">
+		                        <li class="p-b-6">
+		                           <input type="button" id="customize" name="customize"  style="height: 50px; width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="나에게 맞는 옷 찾기" >
+		                        </li>
+	                     </ul>
                   </div>
 
-                  <div class="filter-col4 p-b-27">
-                     <div class="mtext-102 cl2 p-b-15">By BodySize</div>
-                     <div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">1. Shoulder Type</div>
-                        <ul>
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">좁음</a>
-                           </li>
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">보통</a>
-                           </li>
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">넓음</a>
-                           </li>
-                        </ul>   
+                  <div class="filter-col4 p-b-27 ">
+                     <div class="mtext-102 cl2 p-b-15 flex-c-m">By BodyType</div>
+                     <div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">1. Shoulder Type (어깨)</div>
+                         <ul class="finder_list_by_Shoulder">
+		                        <li class="p-b-6">
+		                           <input type="button" id="Shoulder1" name="Shoulder1"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="좁은편 (narrow)" >
+		                        </li>
+		
+		                        <li class="p-b-6">
+								   <input type="button" id="Shoulder2" name="Shoulder2"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="보통 (normal)" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="Shoulder3" name="Shoulder3" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="넓은편 (Wide)" >
+		                        </li>
+	                     </ul>
                      <br>
-                     <div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">2. Arm Length</div>
-                        <ul>
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">좁음</a>
-                           </li>
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">보통</a>
-                           </li>
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">넓음</a>
-                           </li>
-                        </ul>   
+                     <div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">2. Arm Length (팔)</div>
+                        <ul class="finder_list_by_Arm">
+		                        <li class="p-b-6">
+		                           <input type="button" id="Arm1" name="Arm1"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="짧은편 (short)" >
+		                        </li>
+		
+		                        <li class="p-b-6">
+								   <input type="button" id="Arm2" name="Arm2"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="보통 (normal)" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="Arm3" name="Arm3" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="긴편 (long)" >
+		                        </li>
+	                     </ul>
                      <br>
-                     <div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">3. Leg Length</div>
-                        <ul>
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">좁음</a>
-                           </li>
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">보통</a>
-                           </li>
-                           <li class="p-b-6">
-                              <a href="#" class="flex-c-m stext-107 cl6 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5">넓음</a>
-                           </li>
-                        </ul>   
+                     <div class="mtext-100 cl2 p-b-15" style="font-weight: bold;">3. Leg Length (다리길이)</div>
+                         <ul class="finder_list_by_Leg">
+		                        <li class="p-b-6">
+		                           <input type="button" id="Leg1" name="Leg1"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="짧은편 (short)" >
+		                        </li>
+		
+		                        <li class="p-b-6">
+								   <input type="button" id="Leg2" name="Leg2"  style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="보통 (normal)" >
+		                        </li>
+		                        
+		                        <li class="p-b-6">
+		                           <input type="button" id="Leg3" name="Leg3" style="width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="긴편 (long)" >
+		                        </li>
+	                     </ul>
+	                     <br>
+	                     <br>
+	                     <ul class="finder_reset">
+		                        <li class="p-b-6">
+		                           <input type="button" id="reset" name="reset" onclick="resetFilter()" style="height: 50px; width: 100%;" class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5" value="필터 초기화 (reset)" >
+		                        </li>
+	                     </ul>
                      </div>
                   </div>
+                  <div class="filter_result">
+				  </div>
                </div>
 			</div>
 
