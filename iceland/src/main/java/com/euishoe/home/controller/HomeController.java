@@ -41,7 +41,9 @@ public class HomeController extends HttpServlet implements Controller  {
 		List<String> gsonHitListAll = null;
 		try {
 			gsonNewListAll = productService.convertToGson(productService.newProductList());
+			System.out.println(gsonHitListAll);
 			gsonHitListAll = productService.convertToGson(productService.hitProductList());
+			System.out.println(gsonHitListAll);
 		} catch (Exception e1) {}
 		
 		ArrayList<HashMap<String, Object>> jsonObjectNewList = new ArrayList<HashMap<String, Object>>();

@@ -2,6 +2,8 @@ package com.euishoe.products.dao;
 
 import java.util.List;
 import java.util.Map;
+
+import com.euishoe.common.web.FilterParam;
 import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 
@@ -13,6 +15,7 @@ import com.euishoe.products.dto.ProductInfo;
  */
 public interface ProductDao {
 	
+	public void createOne(Map map) throws Exception;
 	// 신상4개제품 정보와 이미지위치 get(메인화면에 뿌려줄것)
 	public List<Map<String, Object>> newProductList() throws Exception;
 
@@ -37,4 +40,7 @@ public interface ProductDao {
 	public List<Map<String, Object>> selectAll2() throws Exception;
 
 	public List<Map<String, Object>> selectAll() throws Exception;
+	
+	// 필터를 통한 전체 띄우기
+	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception;
 }

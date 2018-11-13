@@ -2,9 +2,8 @@ package com.euishoe.reviews.service;
 
 import java.util.List;
 
+import com.euishoe.common.web.Params;
 import com.euishoe.reviews.dto.Review;
-
-import kr.or.kosta.blog.common.web.Params;
 
 /**
  * 쇼핑몰  상품 상세페이지의 리뷰목록과 관련된 서비스 인터페이스
@@ -15,7 +14,7 @@ import kr.or.kosta.blog.common.web.Params;
 public interface ReviewService {
 
 	//댓글 작성
-	public void create() throws Exception;
+	public void create(Review review) throws Exception;
 	
 	//전체(동적) 목록 조회
 	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception;

@@ -7,7 +7,9 @@
     </span>
   </div>
 	<input id="productNum" type="hidden" value = "">
-	
+	<input type="hidden" id="productCode" value="">
+	<input type="hidden" id="pantsCode" value="">
+	<input type="hidden" id="jacketCode" value="">
 	<!-- Modal1 -->
 	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div  class="overlay-modal1 js-hide-modal1"></div>
@@ -56,10 +58,10 @@
 										<div class="rs1-select2 bor8 bg0">
 											<select class="js-select2" name="time" id="jkSize">
 												<option>Choose an option</option>
-												<option>S</option>
-												<option>M</option>
-												<option>L</option>
-												<option>XL</option>
+												<option value="s">S</option>
+												<option value="m">M</option>
+												<option value="l">L</option>
+												<option value="xl"> XL</option>
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
@@ -74,11 +76,11 @@
 										<div class="rs1-select2 bor8 bg0">
 											<select class="js-select2" name="time" id="ptSize">
 												<option>Choose an option</option>
-												<option>26inch</option>
-												<option>28inch</option>
-												<option>30inch</option>
-												<option>32inch</option>
-												<option>34inch</option>
+												<option value="26">26inch</option>
+												<option value="28">28inch</option>
+												<option value="30">30inch</option>
+												<option value="32">32inch</option>
+												<option value="34">34inch</option>
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
@@ -94,7 +96,7 @@
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+											<input id= "productCount" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
 
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
@@ -135,6 +137,23 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$('#jkSize, #ptSize').on('change', function(e) {
+			var cloth = $("#jkSize option:selected").val();
+			var pants = $("#ptSize option:selected").val();
+			var imageRef = $("#productImg").attr("src");
+			var str = imageRef.substring(imageRef.lastIndexOf('/'));
+			var productName = str.split('$')[0].replace("/","").replace("_","$");
+			var productBrand =  productName.split('$')[0];
+			var productColor =  productName.split('$')[1];
+			var productCode = productBrand+'$'+ cloth +'$'+ pants +'$'+ productColor;
+			var pantsCode = productBrand+'$'+ cloth +'$'+ productColor;
+			var jacketCode = productBrand+'$'+ pants +'$'+ productColor;
+			$('#productCode').val(productCode);
+			$('#pantsCode').val(pantsCode);
+			$('#jacketCode').val(jacketCode);
+		});
+	</script>
 	
 	<script>
 	$('#addCart').on('click',function(e){
@@ -150,9 +169,14 @@
 		if(jkSize=="Choose an option" || ptSize=="Choose an option"){
 			console.log('사이즈옵션선택 안함'); //debug
 			alert('상 하의 사이즈 옵션 선택은 필수입니다');
+		}else {
+			var productCode = $('#productCode').val();
+			var productNum = $('#productNum').val();
+			var productCount = $('#productCount').val();
+			location.href = '/iceland/order.es?productCode='+productCode+'&productNum='+productNum+'&productCount='+productCount;
 		}
 		
-		// quickView에서 주문시.. -> 선택값을 통해 product(상품)객체 생성 ->  
+		/* // quickView에서 주문시.. -> 선택값을 통해 product(상품)객체 생성 ->  
 		// 주문번호가 null인 상품주문(order_by_product)객체 생성
 		// 회원, 비회원 확인
 		
@@ -162,10 +186,10 @@
 		var productNum = 3;//productInfo의 키값(int)...						 ${productNum};
 		var productCount = document.getElementsByName('num-product')[0].value;
 		var productCode = 'bgs'+'$S$28$'+productNum;//pCode + '$' + jkSize + '$' + ptSize + '$'+ ${productNum};
-		makeOrder(productCode, jacketCode, pantsCode, productNum, productCount); //product객체 생성, orderByProduct객체 생성
+		makeOrder(productCode, jacketCode, pantsCode, productNum, productCount); //product객체 생성, orderByProduct객체 생성 */
 		
 	});
-
+/* 
 	// order컨트롤러 가서 객체(product, delievery, payment, order, orderByProduct) 생성..
 	function makeOrder(productCode, jacketCode, pantsCode, productNum, productCount) {
 		// 고객이 선택한 상품정보로 product객체 만들기 by json
@@ -194,6 +218,5 @@
              alert('Error');
             }
         });
-
-	}
+	} */
 	</script>

@@ -40,7 +40,8 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/iceland/order/shopping-cart.css">
-
+  <!--===============================================================================================-->
+  <script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 
 <style>
 .nav-tabs{
@@ -64,6 +65,75 @@ height: 40px;
 }
 
 </style>
+
+<!-- 회원 비회원 확인을 위한 loginId쿠키 확인 -->
+<script type="text/javascript">
+window.onload = function () {
+	var loginId = getCookie('loginId');
+	console.log("회원아이디값!!"+loginId);
+	// 비회원인경우, 주소관련 버튼 안보이게
+	if(loginId == null){
+		// 기본배송지, 새 배송지 없애기
+		$('#defaultAddr').css('display', 'none');
+		$('#newAddr').css('display', 'none');
+		//$('#defaultAddr').attr('disabled', 'disabled');
+		//$('#defaultAddr').css(':hover', '');
+		//$('#defaultAddr').removeClass('hov-btn3');
+	}
+	
+	// 수량 up, down
+	cntChange();
+};
+
+// 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수
+function clearAddrInput() {
+	$('#postNum').val('');
+	$('#address').val('');
+	$('#address_detail').val('');
+}
+
+// 수량 up, down
+function cntChange() {
+	// 현재수량
+	var curCnt = $('#cnt').val();
+	
+	// 수량 up클릭시
+	$('#cntUp').click(function() {
+		// 수량 ++
+		var cnt = Number($('#cnt').val()) + 1; //number타입
+		$('#cnt').val(cnt);
+		//console.log(typeOf cnt);
+		// 품목당 총 가격
+		// 단품가격
+ 		var price = Number($('#price').text());
+		var totalPrice = cnt*price;
+		$('#totalPrice').text(totalPrice); 
+		
+		sumPrice();
+	});
+	
+	// 수량 down클릭시
+	$('#cntDown').click(function() {
+		if(curCnt != 1){
+			var cnt = Number($('#cnt').val()) - 1;
+			$('#cnt').val(cnt);
+			
+			sumPrice();
+		}else if(curCnt == 1){
+			return;
+		}
+	});
+	
+}
+
+// 품목당 총 가격
+function sumPrice(){
+	var price = Number($('#.price').val());
+	var sum = price * Number($('#.cnt'));
+	$('#totalPrice').val(sum);
+}
+
+</script>
 </head>
 <body class="animsition">
   <%@include file="/iceland/../includes/header.jsp"%>
@@ -87,9 +157,9 @@ height: 40px;
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
-							<table class="table-shopping-cart">
+							<table class="table-shopping-cart" id="tableCart">
 								<tr class="table_head">
-									<th class="column-1">My 장바구니</th>
+									<th class="column-1">My 주문</th>
 									<th class="column-2"></th>
 									<th class="column-3"></th>
 									<th class="column-4"></th>
@@ -110,24 +180,24 @@ height: 40px;
 										<input type="checkbox" value="None" class="roundedOne" name="check" checked />
 									</td>
 									<td class="column-2 txt-center">
-										<div class="how-itemcart1"><img src="/iceland/images/item-cart-04.jpg" alt="IMG"/></div>
+										<div class="how-itemcart1"><img src="" alt="IMG"/></div>
 									</td>
 									<td class="column-3 txt-center">Fresh Strawberries</td>
-									<td class="column-4 txt-center">3600</td>
+									<td id="price" class="column-4 txt-center">3600</td>
 									<td class="column-5 txt-center">
 										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
+												<i id="cntDown" class="fs-16 zmdi zmdi-minus"></i><!-- 수량(-)-->
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product"	type="number" name="num-product1" value="1">
+											<input id="cnt" class="mtext-104 cl3 txt-center num-product" type="text" name="num-product1" value="1">
 
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
+												<i id="cntUp" class="fs-16 zmdi zmdi-plus"></i><!-- 수량(+)-->
 											</div>
 										</div>
 									</td>
-									<td class="column-6 txt-center">3600</td>
+									<td id="totalPrice" class="column-6 txt-center">3600</td>
 								</tr>
 
 								<tr class="table_row">
@@ -167,11 +237,11 @@ height: 40px;
 
             <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
             <div class="select-ship">
-                <a class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#home">기본 배송지</a>
+                <a id="defaultAddr" class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#home">기본 배송지</a>
                 <span class="float-l">&nbsp;&nbsp;</span>
-                <a class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#menu1">최근 배송지</a>
+               
                 <span class="float-l">&nbsp;&nbsp;</span>
-                <a class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" href="#menu2">새로운 배송지</a>
+                <a id="newAddr" class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" onclick="clearAddrInput()">새로운 배송지</a>
             </div>
               <div class="tab-content">
                 <div id="home" class="deliveryAddress" style="width:100%;">
@@ -190,16 +260,16 @@ height: 40px;
                      <tr>
                       <th>주소</th>
                       <td>
-                      <input type="text" id="postCodeAddr" name="postCodeAddr" maxlength="6" readonly onkeypress="javascript:common.onlyNumberInput(event);" style="ime-mode:disabled;width:70px;" title="우편번호"/>
-                       	<input type="button" class="flex-c-m stext-101 cl2 size-100 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" value="주소찾기" style="display:inline;"/><br>
-                        <input type="text" id="rcvrBaseAddr" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" readonly="">
-                        <input type="text" id="rcvrDetailAddr" name="rcvrBaseAddr" maxlength="200" title="기본주소 입력" class="inp_address int-selected" readonly="">
+                      <input type="text" id="postNum" name="postCodeAddr" maxlength="6" readonly onkeypress="javascript:common.onlyNumberInput(event);" style="ime-mode:disabled;width:70px;" title="우편번호"/>
+                       	<input type="button" onclick="sample2_execDaumPostcode()" class="flex-c-m stext-101 cl2 size-100 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" value="주소찾기" style="display:inline;"/><br>
+                        <input type="text" id="address" name="rcvrBaseAddr" maxlength="300" title="기본주소 입력" class="inp_address int-selected" readonly>
+                        <input type="text" id="address_detail" name="rcvrBaseAddr" maxlength="300" title="상세주소 입력" class="inp_address int-selected" >
                       </td>
                      </tr>
                      
                     <tr>
                        <th>휴대전화</th>
-                       <td>rcvrBaseAddr rcvrDetailAddr phoneNumberSelect phoneNumber2 phoneNumber3, requireComment
+                       <td>
           <select id="phoneNumberSelect" name="phoneNumberSelect" title="휴대전화-국번선택">
             <option value="010">010</option>
             <option value="011">011</option>
@@ -240,7 +310,7 @@ height: 40px;
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 						<h4 class="mtext-109 cl2 p-b-30">
-							Cart Totals
+							MY 결제
 						</h4>
 
 						<div class="flex-w flex-t bor12 p-b-13">
@@ -263,41 +333,46 @@ height: 40px;
 									결제방법
 								</span>
 							</div>
-
-							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
-								<p class="stext-111 cl6 p-t-2">
-									There are no shipping methods available. Please double check your address, or contact us if you need any help.
-								</p>
-								
-								<div class="p-t-15">
-									<span class="stext-112 cl8">
-										Calculate Shipping
-									</span>
-
-									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-										<select class="js-select2" name="time">
-											<option>Select a country...</option>
-											<option>USA</option>
-											<option>UK</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-
-									<div class="bor8 bg0 m-b-12">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="State /  country">
-									</div>
-
-									<div class="bor8 bg0 m-b-22">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Postcode / Zip">
-									</div>
-									
-									<div class="flex-w">
-										<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-											Update Totals
-										</div>
-									</div>
-										
+							<div class="size-208 p-t-15 w-full-ssm">
+								<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+									<select class="js-select2" name="payMethod">
+										<option value = "noBank">무통장 입금</option>
+										<option value = "cart">카드결제</option>
+										<option value = "phone">휴대폰 결제</option>
+									</select>
 								</div>
+							</div>
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									사용가능 포인트
+								</span>
+							</div>
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									사용가능 포인트 입력 
+								</span>
+							</div>
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									사용할 포인트
+								</span>
+							</div>
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									사용할 포인트 입력
+								</span>
+							</div>
+							
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									배송비
+								</span>
+							</div>
+							
+							<div class="size-208 p-t-15 w-full-ssm">
+								<span class="stext-110 cl2">
+									2500 원
+								</span>
 							</div>
 						</div>
 
@@ -329,8 +404,7 @@ height: 40px;
 
   <%@include file="/iceland/../includes/QuickMenu.jsp"%>
 
-  <!--===============================================================================================-->
-  <script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
+
   <!--===============================================================================================-->
   <script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
   <!--===============================================================================================-->
@@ -352,6 +426,7 @@ height: 40px;
   <!--===============================================================================================-->
   <script
     src="/iceland/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+  <!--확인필요(by sw)================================================================================-->  
   <script>
 			$('.js-pscroll').each(function() {
 				$(this).css('position', 'relative');
@@ -407,16 +482,11 @@ height: 40px;
 	function sumUp(){
 		var sum = 0;
 		var num = 0;
-		$('.column-5').each(function(index,item){
-			if(index !== 0){
-				num = $(item).text();
-				sum += parseInt(num);
-			}
-		});
-
-		$('.mtext-110').each(function(index,item){
-				$(item).text(sum);
-		})
+		for(var i = 1; i < $('.column-4.txt-center').length; i++){
+			sum += parseInt($('.column-4.txt-center')[1].innerText.trim());
+		}
+		$('.mtext-110.cl2')[0].innerText = sum;
+		$('.mtext-110.cl2')[1].innerText = (sum + parseInt($('.stext-110.cl2')[7].innerText.trim().substring(0,$('.stext-110.cl2')[7].innerText.trim().length -2)));
 	};
 	
 	$('#delete_All').bind('click',function(e){
@@ -427,10 +497,87 @@ height: 40px;
 		sumUp();
 	});
 	
-	sumUp();
+
+	 $(document).ready(function() {
+		    
+			/*if(getQuerystring(productCode)){*/
+			var prior = 1;
+			var checksum = 0; 
+			
+			while(getCookie('cart' + prior)){
+				var obj = decodeURIComponent(getCookie('cart' + prior)).substring(1,decodeURIComponent(getCookie('cart' + prior)).length - 1);
+				var jsonObj = JSON.parse(obj);
+				var jsonProductSize = jsonObj.PRODUCT_CODE || '';
+				
+				if(jsonProductSize != ''){
+					jsonProductSize = '(상의 : ' + jsonObj.PRODUCT_CODE.split('$')[1] + ', 하의 : ' + jsonObj.PRODUCT_CODE.split('$')[2] + ')';
+				}
+				console.log(prior);
+				
+				var str = "";
+				
+				str += '<tr class="table_row"><td class="column-1 txt-center"><input type="checkbox" value="None" class="roundedOne" name="check" checked />';
+				str += '</td><td class="column-2 txt-center"><div class="how-itemcart1" value="' + prior + '"><img src="' + jsonObj.image_ref + '" alt="IMG"/></div>';
+				str += '</td><td class="column-3 txt-center">' + jsonObj.PRODUCT_NAME + '<br>' + jsonProductSize + '</td><td class="column-4 txt-center">' + jsonObj.PRODUCT_PRICE + '</td>';
+				str += '<td class="column-5 txt-center"><div class="wrap-num-product flex-w m-l-auto m-r-auto">'
+				str += '<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-minus"></i></div>'
+                str += '<input class="mtext-104 cl3 txt-center num-product"	type="number" name="num-product1" value="' + jsonObj.product_count + '">';
+                str += '<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-plus"></i>';
+				str += '</div></div></td><td class="column-6 txt-center">' + (jsonObj.PRODUCT_PRICE * jsonObj.product_count) + '</td></tr>'
+				$('#tableCart').append(str);
+
+				  checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
+				  prior++;
+			}
+			
+			$('#cartButton').attr('data-notify',prior - 1);
+			$('.mtext-110.cl2')[0].innerText =  checksum;
+			$('.mtext-110.cl2')[1].innerText = (checksum + parseInt($('.stext-110.cl2')[7].innerText.trim().substring(0,$('.stext-110.cl2')[7].innerText.trim().length -2)));
+			
+			// 지우기
+			$('.how-itemcart1').unbind("click").on('click',function(e){
+	            var deleteNum = parseInt($(e.currentTarget).attr('value'));
+	            setCookie('cart' + deleteNum,'',0);
+	            
+	            // 지운 후 정렬 
+	            var testNum = deleteNum + 1;
+	            
+	            while(getCookie('cart' + testNum)){
+	                testNum++;
+	            }
+	            
+	            console.log(testNum);
+	            
+	            for(var i = deleteNum + 1; i < testNum; i++){
+	                console.log(i);
+	                setCookie('cart' + (i-1),getCookie('cart' + i),1);
+	                if(i == testNum - 1){
+	                    setCookie('cart' + i,'',0);
+	                }
+	            }
+	            
+	            $(e.currentTarget).parents()[1].remove();
+	            $('#cartButton').attr('data-notify',testNum - 2);
+	            sumUp();
+	        });
+			
+			}
+		);
+	
 		</script>
   <!--===============================================================================================-->
   <script src="/iceland/js/main.js"></script>
+
+  <!--===============================================================================================-->
+  <!-- 주소검색 api -->
+  <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+  <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+  </div>
+
+  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+  <script src="/iceland/js/address.js"></script>
+  <script src="/iceland/js/ajax.js"></script>
+  <!--===============================================================================================-->  
 
 </body>
 </html>

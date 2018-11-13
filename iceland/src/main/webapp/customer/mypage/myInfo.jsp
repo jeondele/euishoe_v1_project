@@ -393,19 +393,27 @@ input[type='text'], input[type='password'], select{
 	color: #0056b3;
 }
 </style>
+
 <script type="text/javascript">
 window.onload = function () {
 	// 로그인 되어있는 정보 fix
 	var loginId = getCookie('loginId');	
-	var loginName = getCookie('userName');
-	var decodedName = decodeURI(loginName);
+	var encodedName = getCookie('userName');
+	var userName = decodeURI(encodedName);
 
 	$('#member_id').attr('value', loginId);
-	$('#name').attr('value', decodedName);
-	$('#mobile').attr('value', )
+	$('#name').attr('value', userName);
+	
+ 	// 요청 Url + 추가적으로 보내는 Json Data, 리턴결과값(json 다루는 형식), 결과값 형식  
+ 	/* $.post("/iceland/customer/mypage/myinfo.es", { "customerId": loginId },    
+	     function(data){ 
+			console.log(data.customerId);
+			var jsonCustomer = '${jsonCustomer}';
+			console.log('ㅠㅠㅠㅠㅠ찍혀?'+jsonCustomer);
+	}, "json");   */ 
+
 };
-		
-		
+
 </script>
 
 
@@ -428,7 +436,7 @@ window.onload = function () {
 					<div class="m-l--200 m-r--300 m-lr-0-xl">
 						<div class="-frame">
 							<div class="wrap-table-shopping-cart">
-						        <form id="editForm" name="editForm" action="/exec/front/Member/edit/" method="post" enctype="multipart/form-data">
+						        <form id="editForm" name="editForm" action="/iceland/customer/mypage/myinfo.es" method="POST">
          
             
           <div class="xans-element- xans-member xans-member-edit">
@@ -449,7 +457,7 @@ window.onload = function () {
                   <tr>
                     <th scope="row" class="myInfoHeader">아이디</th>
                     <td>
-                    	<input id="member_id" name="member_id" class="inputTypeText" readonly="readonly"  type="text">
+                    	<input id="member_id" name="member_id" class="inputTypeText" readonly="readonly" type="text">
                     </td>
                   </tr>
                   <tr>
@@ -484,14 +492,14 @@ window.onload = function () {
                       <input id="postNum" name="postNum" class="inputTypeText" placeholder="우편번호" readonly="readonly" maxlength="14" type="text" style="display:inline">
                       <input type="button" value="주소찾기" onclick="sample2_execDaumPostcode()" class="flex-c-m stext-101 cl2 size-210-1 bg8 bor14 hov-btn3 p-lr-5 trans-04 pointer myInfoButton" style="display:inline"><br> 
                       <input id="address" name="address"  class="inputTypeText" placeholder="도로명주소" readonly="readonly" type="text" style="display:inline"> 
-                      <input id="detail_address" name="addr2" class="inputTypeText" placeholder="상세주소" value="" type="text" style="display:inline">
+                      <input id="detail_address" name="detailAddress" class="inputTypeText" placeholder="상세주소" value="" type="text" style="display:inline">
                     </td>
                   </tr>
 
                   <tr class="">
                     <th scope="row" class="myInfoHeader">휴대전화</th>
                     <td>
-                        <input id="mobile" name="mobile[]" maxlength="11" value="" type="text">
+                        <input id="phoneNum" name="phoneNum" maxlength="11" value="" type="text" >
                     </td>
                   </tr>
                   <!-- 
@@ -508,7 +516,7 @@ window.onload = function () {
                     <td>
                     	<input id="email" name="email" class="mailId" value="" type="text" style="display:inline">
                     	@<!-- <input id="email2" name="email2" class="mailAddress" readonly="readonly" value=""type="text"> -->
-                      	<select id="emailHost">
+                      	<select id="emailHost" name="emailHost">
 	                        <option selected>-이메일 선택 -</option>
 	                        <option>naver.com</option>
 	                        <option>daum.net</option>
@@ -546,6 +554,7 @@ window.onload = function () {
 
 	<!--===============================================================================================-->
 	<script src="/iceland/js/main.js"></script>
+<!-- 주소검색 api -->
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 </div>

@@ -11,15 +11,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.euishoe.common.web.FilterParam;
+import com.euishoe.common.web.Params;
 import com.euishoe.products.dao.ProductDao;
 import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 import com.euishoe.qnas.dao.QnaDao;
-import com.euishoe.qnas.dto.Qna;
 import com.euishoe.reviews.dao.ReviewDao;
 import com.euishoe.reviews.dto.Review;
-
-import kr.or.kosta.blog.common.web.Params;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -53,11 +52,6 @@ public class ProductServiceImpl implements ProductService {
 		this.qnaDao = qnaDao;
 	}
 
-	@Override
-	public String create(Product product) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public List<Map<String, Object>> newProductList() throws Exception {
@@ -115,8 +109,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params)
-			throws Exception {
+	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
 		return reviewDao.reviewDynamicReviewList(productNum, customerId, reviewScore, params);
 	}
 
@@ -124,4 +117,27 @@ public class ProductServiceImpl implements ProductService {
 	public List<Map<String, Object>> selectAllById(int productNum) throws Exception {
 		return productDao.selectAllById(productNum);
 	}
+
+	@Override
+	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception {
+		return productDao.filter(filterParam);
+	}
+	
+
+	@Override
+	public String create(Product product) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public int qnaCountBySearch(int productNum) throws Exception {
+		return qnaDao.countBySearch(productNum);
+	}
+
+	@Override
+	public int reviewCounttBySearch(int productNum) throws Exception {
+		return reviewDao.countBySearch(productNum);
+	}
+
 }

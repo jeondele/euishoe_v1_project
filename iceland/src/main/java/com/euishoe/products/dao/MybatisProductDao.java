@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.euishoe.common.web.FilterParam;
 import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 
@@ -95,6 +96,22 @@ public class MybatisProductDao implements ProductDao {
 		list = sqlSession.selectList(NAMESPACE+"selectAll");
 		sqlSession.close();
 		return list;
+	}
+
+	@Override
+	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception {
+		List<Map<String,Object>> list = null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		list = sqlSession.selectList(NAMESPACE+"filter", filterParam);
+		sqlSession.close();
+		return list;
+	}
+
+	@Override
+	public void createOne(Map map) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert(NAMESPACE+"createOne", map);
+		sqlSession.close();
 	}
 
 }

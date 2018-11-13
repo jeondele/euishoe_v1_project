@@ -7,9 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.euishoe.common.web.Params;
 import com.euishoe.reviews.dto.Review;
-
-import kr.or.kosta.blog.common.web.Params;
 
 public class MybatisReviewDao implements ReviewDao {
 	
@@ -23,11 +22,15 @@ public class MybatisReviewDao implements ReviewDao {
 
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
+		
 	}
 
 	@Override
-	public void create() throws Exception {
+	public void create(Review review) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert(NAMESPACE+"createReview2", review);
+		sqlSession.commit();
+		sqlSession.close();
 	}
 
 	@Override

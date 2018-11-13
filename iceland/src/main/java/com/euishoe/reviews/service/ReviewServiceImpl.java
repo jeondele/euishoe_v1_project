@@ -1,6 +1,7 @@
 package com.euishoe.reviews.service;
 import java.util.List;
 
+import com.euishoe.common.web.Params;
 /**
  * 쇼핑몰 상품 상세페이지의 리뷰목록과 관련된  서비스 인터페이스를 기반으로 구현
  * 
@@ -9,8 +10,6 @@ import java.util.List;
  */
 import com.euishoe.reviews.dao.ReviewDao;
 import com.euishoe.reviews.dto.Review;
-
-import kr.or.kosta.blog.common.web.Params;
 
 public class ReviewServiceImpl implements ReviewService {
 	ReviewDao reviewDao;
@@ -24,8 +23,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void create() throws Exception {
-		reviewDao.create();
+	public void create(Review review) throws Exception {
+		reviewDao.create(review);
 	}
 
 	@Override

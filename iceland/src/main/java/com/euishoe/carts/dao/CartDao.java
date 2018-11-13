@@ -18,7 +18,7 @@ public interface CartDao {
 	public List<HashMap<String, Object>> listCart();
 	
 	// 장바구니 등록
-	public void createCart(String cartNum,String productCode,String customerId);
+	public void createCart(String productCode,String customerId);
 	
 	// 장바구니 삭제
 	public void deleteCart(String cartNum);
@@ -29,5 +29,7 @@ public interface CartDao {
 	// 로그인 후 장바구니 등록을 위한 리스트 불러오기
 	public List<HashMap<String, Object>> listCartForLogin(String customer_id);
 
-	public void updateCart(String cartNum, Object object2);
+	public void updateCart(String cartNum, String count);
+
+	public void createCart(String cartNum, String productCode, String customerId);
 }

@@ -5,6 +5,13 @@
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.euishoe.products">
 
+	<resultMap type="com.euishoe.products.dto.Product" id="Product">
+		<result property="productCount" column="product_count"/>
+    	<result property="jacketCode" column="JACKET_CODE"/>
+    	<result property="pantsCode" column="PANTS_CODE"/>
+    	<result property="productCode" column="PRODUCT_CODE"/>
+    	<result property="productNum" column="PRODUCT_NUM"/>
+	</resultMap>
 	<!-- 프로덕트 검색 기능 -->
 	<select id="newProductList" resultType="map">
 	<![CDATA[
@@ -160,14 +167,98 @@
 			FROM   product_infos
 			WHERE  product_num = #{productNum}
 	</select>
+	
+	
+	<select id="filter" parameterType="FilterParam" resultType="map">
+			SELECT pi.product_num "productNum", 
+                       product_list_num "productListNum", 
+                       product_name "productName", 
+                       product_list_price "productListPrice", 
+                       product_brief_information "productBriefInfomation", 
+                       product_manufacturer "productManufacturer",
+                       product_season "productSeason",
+                       product_release_date "productReleaseDate", 
+                       product_origin "productOrigin", 
+                       color_code "colorCode", 
+                       product_hitcount "productHitcount",
+                       product_tpo "productTpo",
+                       product_body "productBody",
+                       product_shoulder "productShoulder",
+                       product_arm "productArm",
+            		   product_leg "productLeg",
+            		   product_fabric "productFabric",
+                       m.image_ref "imageRef",
+                       rs.avg_score "starScore" 
+                FROM   product_infos pi 
+                       left outer join (SELECT p.product_num, Avg(r.review_score) avg_score 
+                                          FROM   reviews r join products p 
+                                                   ON r.product_num = p.product_num 
+                                          GROUP  BY p.product_num) rs 
+                                      ON pi.product_num = rs.product_num 
+                         join images m ON ( m.product_num = pi.product_num)
+                where  product_list_num is not null and m.image_ref like '%main%'
+                <if test="lowPrice != null">
+                	<choose>
+                 		<when test="highPrice == null">
+                 			and product_list_price >= #{lowPrice}
+                 		</when>
+                 		<when test="highPrice != null">
+                 			and product_list_price between #{lowPrice} and #{highPrice}
+                 		</when>
+                	</choose>
+                </if>
+                <if test="tpo != null">
+                	and product_tpo = #{tpo}
+                </if>
+                <if test="season != null">
+                	and product_season = #{season}
+                </if>
+                <if test="color != null">
+                	and color_code = #{color}
+                </if>
+                <if test="shoulderType != 0">
+                	and product_shoulder = #{shoulderType}
+                </if>
+                <if test="armType != 0">
+                	and product_arm = #{armType}
+                </if>
+                <if test="legType != 0">
+                	and product_leg = #{legType}
+                </if>
+                <if test="bodyType != 0">
+                	and product_body = #{bodyType}
+                </if>
+                <if test="fabric != null">
+                	and product_fabric = #{fabric}
+                </if>
+                 <if test="orderByPrice != null">
+                 	order by product_list_price #{orderByPrice}
+                 </if>
+                 <if test="orderByHitcount != null">
+                 	order by product_hitcount #{orderByHitcount}
+                 </if>
+                 <if test="orderByStar != null">
+                 	order by star_score #{orderByStar}
+                 </if>
+	</select>
 
-	<insert id="create" parameterType="com.euishoe.customers.dto.Customer">
+	<insert id="create" parameterType="com.euishoe.products.dto.Product">
 		INSERT INTO products 
-		VALUES     ( #{productCode},  
-		             #{jacketCode}, 
-		             #{pantsCode}, 
-		             #{productNum}, 
-		             #{productCount}) 		
+		VALUES     ( CONCAT(#{PRODUCT_CODE},'#',PRODUCT_SEQ.nextval),  
+		             #{JACKET_CODE}, 
+		             #{PANTS_CODE}, 
+		             #{PRODUCT_NUM}, 
+		             #{product_count}) 		
 	</insert>
+	
+    <insert id="createOne" parameterType="map">
+		INSERT INTO products(PRODUCT_CODE,JACKET_CODE,PANTS_CODE,PRODUCT_NUM,PRODUCT_COUNT) 
+		VALUES     ( CONCAT(CONCAT(#{PRODUCT_CODE},'#'),PRODUCT_SEQ.nextval),  
+		             #{JACKET_CODE}, 
+		             #{PANTS_CODE}, 
+		             #{PRODUCT_NUM}, 
+		             #{PRODUCT_COUNT}) 		
+	</insert>
+	
 
 </mapper>

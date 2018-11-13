@@ -13,33 +13,33 @@
 		             product_num, 
 		             review_content,
 		             review_score, 
-		             review_isdeleted) 
+		             review_isdeleted,
+		             review_isanswered,
+		             review_password,
+		             review_regdate) 
 		VALUES  (reviews_seq.NEXTVAL, 
 		             #{customerId}, 
 		             #{productNum}, 
 		             #{reviewContent}, 
-		             #{reviewScore}, 
-		             'N')
+		             #{reviewScore},
+		             'N', 
+		             'N',
+		              #{reviewPassword},
+		             sysdate)
 	</insert>
 	
 		<!-- 리뷰 작성  -->
 	<insert id="createReview2" parameterType="com.euishoe.reviews.dto.Review">		            
 		INSERT INTO reviews 
-		            (review_num, 
-		             customer_id, 
-		             product_num, 
-		             review_title, 
-		             review_content,
-		             review_password,
-		             review_score, 
-		             review_isdeleted) 
 		VALUES  (reviews_seq.NEXTVAL, 
 		             #{customerId}, 
 		             #{productNum}, 
 		             #{reviewTitle}, 
-		             #{reviewContent}, 
+		             #{reviewContent},
 		             #{reviewPassword},
-		             #{reviewScore}, 
+		             #{reviewScore},
+		             'N', 
+		             sysdate,
 		             'N')
 	</insert>
 	
@@ -80,29 +80,45 @@
    		<result property="reviewPassword" column="review_password"/>
    		<result property="reviewScore" column="review_score"/>
    		<result property="reviewIsDeleted" column="review_isdeleted"/>
+   		<result property="reviewIsAnswered" column="review_isanswered"/>
+   		<result property="reviewRegdate" column="review_regdate"/>
 		<collection property="productInfo" resultMap="ProductInfo"/>
 	</resultMap>
 	
 <!-- 해당 제품의 모든 리뷰 출력(페이징)  -->
 	<select id="selectDynamicReviewList" parameterType="Map" resultMap="Review">
 		SELECT 		request_page,
+					review_num,
 					customer_id,
+					product_num,
 		      		review_title,
 					review_content,
 					review_password,
-					review_score
+					review_score,
+					review_isdeleted,
+					review_isanswered,
+					review_regdate
        FROM(SELECT CEIL(rownum / #{listSize}) request_page,
+       						review_num,
 							customer_id,
+							product_num,
 							review_title,
 							review_content,
 							review_password,
-							review_score
-							FROM(SELECT review.customer_id,
-											     review.review_title,
-											     review.review_content,
-											     review.review_password,
-											     review.review_score,
-											     pi.product_num
+							review_score,
+							review_isdeleted,
+							review_isanswered,
+							review_regdate
+							FROM	(SELECT review.review_num,
+											review.customer_id,
+											pi.product_num,
+											review.review_title,
+											review.review_content,
+											review.review_password,
+											review.review_score,
+											review.review_isdeleted,
+											review.review_isanswered,
+											review.review_regdate
 									 FROM    reviews review
 									 JOIN 	 product_infos pi
 									 ON   	 review.product_num = pi.product_num
@@ -112,7 +128,7 @@
 					<!-- 비밀글 제외 조회  -->
 					 AND customer_id = #{customerId}
 					 <choose>
-					 	<when test='reviewScore != null'>
+					 	<when test='reviewScore != 0'>
 							 <!-- 유저 아이디 검색조건 추가  -->
 							 AND review_score = #{reviewScore}
 						</when>							 
@@ -121,14 +137,14 @@
 					 </when>
 					 <otherwise>
 					 	<choose>
-					 	<when test='reviewScore != null'>
+					 	<when test='reviewScore != 0'>
 							 <!-- 유저 아이디 검색조건 추가  -->
 					 			AND review_score = #{reviewScore}
 							 </when>
 					 	</choose>
 					 </otherwise>
 				 </choose>
-				 ORDER BY review_num DESC))
+				 ORDER BY review_regdate DESC))
 		WHERE request_page = #{page}					
 	</select>
 

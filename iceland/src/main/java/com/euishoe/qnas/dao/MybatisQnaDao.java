@@ -7,9 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.euishoe.common.web.Params;
 import com.euishoe.qnas.dto.Qna;
-
-import kr.or.kosta.blog.common.web.Params;
 
 public class MybatisQnaDao implements QnaDao {
 	
@@ -42,7 +41,7 @@ public class MybatisQnaDao implements QnaDao {
 	@Override
 	public void createQna(Qna qna) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.insert(NAMESPACE+"createQna2", qna);
+		sqlSession.insert(NAMESPACE+"createQna", qna);
 		sqlSession.commit();
 		sqlSession.close();
 	}

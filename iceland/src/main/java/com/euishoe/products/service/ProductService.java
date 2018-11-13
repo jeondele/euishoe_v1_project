@@ -1,13 +1,14 @@
 package com.euishoe.products.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.euishoe.common.web.FilterParam;
+import com.euishoe.common.web.Params;
 import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
 import com.euishoe.reviews.dto.Review;
-
-import kr.or.kosta.blog.common.web.Params;
 
 /**
  * 쇼핑몰 상품과 관련된 서비스 인터페이스
@@ -36,11 +37,20 @@ public interface ProductService {
 	// Gson으로 바꾸는 메소드
 	public List<String> convertToGson(List<Map<String, Object>> list);
 	
-	
 	//제품 리뷰 전체 조회
 	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception;
 	
 	//제품 문의글 전체 조회
 	List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception;
 	public List<Map<String, Object>> selectAllById(int productNum) throws Exception;
+	
+	//제품을 필터를 통해서 뿌리기
+	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception;
+	
+	//리뷰 게시글 카운트
+	//조회 목록 개수
+	public int qnaCountBySearch(int productNum) throws Exception;
+		
+	//qna 게시글 카운트
+	public int reviewCounttBySearch(int productNum) throws Exception;
 }
