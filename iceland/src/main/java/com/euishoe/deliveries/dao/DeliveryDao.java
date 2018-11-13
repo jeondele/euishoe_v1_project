@@ -15,5 +15,8 @@ public interface DeliveryDao {
 	public boolean insertDelivery(Delivery delivery);
 	
 	//배송정보 조회
-	List<Delivery> deliveryInfo(int orderNum);
+	public List<Delivery> deliveryInfo(int orderNum);
+	
+	//인풋할 배송넘버 조회
+	public int selectMaxNextValDelivery();
 }

@@ -38,4 +38,8 @@
 		where o.order_num = #{orderNum}  
 	</select>
 	
+	<select id="selectMaxNextValDelivery" resultType="int">
+		select max(delivery_num)+1
+		from deliveries
+	</select>
 </mapper>

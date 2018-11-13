@@ -34,4 +34,9 @@
 		on o.PAYMENT_NUM = p.PAYMENT_NUM
 		where o.ORDER_NUM = #{orderNum}
 	</select> 
+	
+	<select id="selectMaxNextValPayment" resultType="int">
+		select max(payment_num)+1
+		from payments
+	</select>
 </mapper>

@@ -46,4 +46,9 @@ public interface ProductDao {
 	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception;
 	
 	public void update(Map map) throws Exception;
+	
+	//하의 수량변경
+	public boolean updatePants(Map<String, Object> map) throws Exception;
+	//상의 수량변경
+	public boolean updateJackets(Map<String, Object> map) throws Exception;
 }

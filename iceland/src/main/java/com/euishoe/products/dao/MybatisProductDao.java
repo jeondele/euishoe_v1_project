@@ -125,6 +125,26 @@ public class MybatisProductDao implements ProductDao {
 		
 	}
 
+	@Override
+	public boolean updatePants(Map<String, Object> map) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int result = sqlSession.update(NAMESPACE+"updatePants",map);
+		sqlSession.commit();
+		sqlSession.close();
+		if(result == 0 ) return false;
+		else return true;
+	}
+
+	@Override
+	public boolean updateJackets(Map<String, Object> map) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int result = sqlSession.update(NAMESPACE+"updateJackets",map);
+		sqlSession.commit();
+		sqlSession.close();
+		if(result == 0 ) return false;
+		else return true;
+	}
+
 }
 
 

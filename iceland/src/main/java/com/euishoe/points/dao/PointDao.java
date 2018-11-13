@@ -3,6 +3,8 @@ package com.euishoe.points.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.euishoe.points.dto.PointHistory;
+
 /**
  * 쇼핑몰 포인트와 관련된 Dao 인터페이스
  * 
@@ -16,4 +18,7 @@ public interface PointDao {
 	
 	//회원별 포인트 지급내역
 	public List<HashMap<String, Object>> CustomerPointList(String customerId) throws Exception;
+	
+	//포인트 추가
+	public boolean insertPoint(PointHistory pointHistory) throws Exception;
 }

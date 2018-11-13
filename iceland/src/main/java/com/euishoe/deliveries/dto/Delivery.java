@@ -32,6 +32,12 @@ public class Delivery {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Delivery(String deliveryAddress, String deliveryRecipient,
+			String deliveryRecipientPhonenumber, String deliveryRequirement, String deliveryStatus) {
+		this(0, deliveryAddress, deliveryRecipient, deliveryRecipientPhonenumber, deliveryRequirement, null, null, deliveryStatus);
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Delivery(int deliveryNum, String deliveryAddress, String deliveryRecipient,
 			String deliveryRecipientPhonenumber, String deliveryRequirement, String orderDate, String deliveryDate,
 			String deliveryStatus) {
