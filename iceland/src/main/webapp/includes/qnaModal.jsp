@@ -3,7 +3,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <script>
-$(document).ready(function(){
+/* $(document).ready(function(){
     $(function() {
         $('input:radio[name="qnaCheckLock"]').change(function() {
             if ($(this).val() == 'Y') {
@@ -16,15 +16,16 @@ $(document).ready(function(){
         });
     });
     
- });   
+ });
 
 
-function qnaFormSubmit() {
+
 /*     if(!$('#Content').val.length < 10 || $('#Content').val.length > 100){
 		 alert("10자 이하, 100자 이상 작성할 수 없습니다.");
 		return;
    } */
    /*encodeURIComponent($('#reviewContent').val());*/
+   function qnaFormSubmit() {
            $('input:radio[name="qnaDtlsCd"]').change(function() {
         	if($('input:radio[name="qnaDtlsCd"]:checked').val() == '1') {
         		$('#qnaTypeNum').val('1');
@@ -40,7 +41,7 @@ function qnaFormSubmit() {
 				$('#qnaTitle').val('교환/변경');
 			}else if($('input:radio[name="qnaDtlsCd"]:checked').val() == '5'){
 				$('#qnaTypeNum').val('5');
-				$('#qnaTitle').val('기타');
+				$('#qnaTitle').val($("qnaDtlsCd1".val()));
 			}
         });
    		
@@ -80,32 +81,7 @@ function qnaFormSubmit() {
             alert(xhr + " : " + status);
         }
         });
-}
-
-
-function qnaDynamicList() {
-	var listData = new Object();
-		listData.qnaTypeNum = $('#reviewScore').val();
-		listData.productNum = $('#productNum').val();
-		listData.customerId= $('#customerId').val(); 
-	   
-	    $.ajax({
-	        url: '/iceland/qna/write.es',
-	        type: 'POST',
-	        contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-	        data : qnaData,
-	        success: function(){
-	                $('#popLayWrap').hide();
-	                alert("글 작성완료");
-	            },
-	        
-	        error : function(xhr, status) {
-	            alert(xhr + " : " + status);
-	        }
-	        });
-	
-}
-
+   }
 </script>
 
 <%-- 문의 작성 Modal 창 --%>
@@ -129,11 +105,11 @@ function qnaDynamicList() {
                                 <th scope="row" class="first" style="text-align: center;"><label for="qnaDtlsCd">문의유형</label></th>
                                 <td class="alignL">
                                     <div class="select_wrap">
-                                    	<span for="qnaDtlsCd1" class="qnaDtlsCd1"><input type="radio" id="qnaDtlsCd1" name="qnaDtlsCd" class="qnaDtlsCd1" value="1">&nbsp;상품</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd2" class="qnaDtlsCd2"><input type="radio" id="qnaDtlsCd2" name="qnaDtlsCd" class="qnaDtlsCd2" value="2">&nbsp;배송</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd3" class="qnaDtlsCd3"><input type="radio" id="qnaDtlsCd3" name="qnaDtlsCd" class="qnaDtlsCd3" value="3">&nbsp;반품/취소</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd4" class="qnaDtlsCd4"><input type="radio" id="qnaDtlsCd4" name="qnaDtlsCd" class="qnaDtlsCd4" value="4">&nbsp;교환/변경</span>&nbsp;&nbsp;
-                                    	<span for="qnaDtlsCd5" class="qnaDtlsCd5"><input type="radio" id="qnaDtlsCd5" name="qnaDtlsCd" class="qnaDtlsCd5" value="5">&nbsp;기타</span>
+                                    	<span for="qnaDtlsCd1" class="qnaDtlsCd1" id="qnaDtlsCd1"><input type="radio" id="qnaDtlsCd1" name="qnaDtlsCd" class="qnaDtlsCd1" value="1">&nbsp;상품</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd2" class="qnaDtlsCd2" id="qnaDtlsCd2"><input type="radio" id="qnaDtlsCd2" name="qnaDtlsCd" class="qnaDtlsCd2" value="2">&nbsp;배송</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd3" class="qnaDtlsCd3" id="qnaDtlsCd3"><input type="radio" id="qnaDtlsCd3" name="qnaDtlsCd" class="qnaDtlsCd3" value="3">&nbsp;반품/취소</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd4" class="qnaDtlsCd4" id="qnaDtlsCd4"><input type="radio" id="qnaDtlsCd4" name="qnaDtlsCd" class="qnaDtlsCd4" value="4">&nbsp;교환/변경</span>&nbsp;&nbsp;
+                                    	<span for="qnaDtlsCd5" class="qnaDtlsCd5" id="qnaDtlsCd5"><input type="radio" id="qnaDtlsCd5" name="qnaDtlsCd" class="qnaDtlsCd5" value="5">&nbsp;기타</span>
                                     	
                                     	<input type="hidden" id="qnaTypeNum" name="qnaTypeNum">
                                     	<input type="hidden" id="qnaTitle" name="qnaTitle">
@@ -182,7 +158,7 @@ function qnaDynamicList() {
                                     <div class="select_wrap">
                                     	<span for="qnaDtlsCd6" class="qnaDtlsCd6"><input type="radio" name="qnaCheckLock" id="qnaCheckLock" value="Y">&nbsp;사용</span>&nbsp;&nbsp;
                                     	<span for="qnaDtlsCd7" class="qnaDtlsCd7"><input type="radio" name="qnaCheckLock" id="qnaCheckUnLock" value="N">&nbsp;미사용</span>&nbsp;&nbsp;
-                                    	<input type="hidden" id="qnaIslock" name="qnaIslock">
+                                    	<input type="hidden" id="qnaIslock" name="qnaIslock" value="N">
 									</div>
 	                			</td>
                 			</tr>

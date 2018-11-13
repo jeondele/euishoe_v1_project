@@ -51,8 +51,8 @@ public class ProductDetailController implements Controller {
 		String customerId = null;
 		int typeNum = 0;
 		int reviewScore = 0;
-		List<Review> reviewlist = null;
-		List<Map<String, Object>> qnalist = null;
+		List<HashMap<String,Object>> reviewlist = null;
+		List<HashMap<String,Object>> qnalist = null;
 		int rowCount = 0;
 		
 		params = new Params(Integer.parseInt(requestPage), 5, 1, null, null);

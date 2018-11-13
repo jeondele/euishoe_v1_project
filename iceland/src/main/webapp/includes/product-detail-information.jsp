@@ -6,54 +6,185 @@
 리뷰 조건별 동적 검색
 */
 
-var request = new XMLhttpRequest();
-
-function searchFunction() {
-	request.open("POST", "/iceland/review/ajaxList.es?customerId=" + "bangry");
-	request.onreadystatechange = searchProcess;
-	request.send(null);
-}
-
-
-function serachProcess(){
-	var table = document.getElementById("ajaxTableBody");
-	table.innerHTML = "";
-	if(request.readyState ==4 && request.status == 200){
-		var object = eval('('+result.responseText +')');
-		var result = object.result;
-		for (var i = 0; i < result.length; i++) {
-			var row = table.insertRow(0);
-			for (var j = 0; j < result[i].length; j++) {
-				var cell = row.insertCell(j);
-				cell.innerHTML = result[i][j].value;
-			}
-		}
-	}
-}
-
-/* function reviewDynamicList() {
+function reviewDynamicList() {
 var listData = new Object();
 	listData.customerId= $('#customerId').val();
 	listData.productNum= $('#productNum').val(); 
    
+	console.log('ajax로 보낼 데이터 '+ listData);
+	console.log('ajax통신 시작');
     $.ajax({
-        url: '/review/ajaxList',
-        type: 'POST',
-        contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+        url: '/iceland/review/ajaxList.es',
+        type: 'GET',
         data : listData,
-        dataType : 'json',
-        success: function(result){
-        		console.log("테스트");
-            },
-        
+        // dataType : 'json',
+        success: function(request){
+    			console.log('리퀘스트' + request);
+	    		ajaxReviewShow(request);
+        		console.log(typeof(request));
+        	    console.log(listData);
+        		console.log("ajax통신 success");
+        		console.log(request.jsonData);
+        		ajaxReviewShow(request);
+            }/* ,
         error : function(xhr, status) {
-            alert(xhr + " : " + status);
-        }
+        		console.log(xhr + " : " + status);
+        }/* , */
+        
+        /* callback : ajaxReviewShow */
         });
-} */	
+}	
+
+// 비동기 통신 후 실행될 콜백함수
+function ajaxReviewShow(data){
+	console.log("ajaxReviewShow메소드 진입");
+	data = data.substring(0, data.length - 1);
+	console.log(', 뺀 데이터 값' + data);
+	data = '[' + data + ']';
+	console.log('붙인 데이터값' + data);	
+	var jsonObj = JSON.parse(data);
+	console.log(jsonObj);
+	console.log("ajax통신 후 콜백함수 end라인");
+	console.log(typeof(jsonObj));
+	printReviewTable(jsonObj);
+}
+
+function printReviewTable(text){
+	var table  =  "";
+	for(var i=0; i < text.length; i++){
+		var review = text[i];
+		table  += "<tr>";
+		table  += "<td class=td_num>"+review.reviewNum+"</td>";
+		if(review.reviewIsanswered != 'Y'){
+			table  += "<td class=txt_view>"+"<span class=state>완료</span>"+"</td>";
+		}else{
+			table  += "<td class=txt_view>"+"<span class=state>미완료</span>"+"</td>";	
+		}
+		table  += "<td>"+review.reviewContent+"</td>";
+		table  += "<td>"+review.customerId+"</td>";
+		table  += "<td class=td_date>"+review.reviewRegdate+"</td>";
+		table  += "</tr>";
+	}
+	var div = document.getElementById("#ajaxReviewBody");
+	if(div){
+		div.innerHTML = table;
+	}
+}
 
 
+function qnaDynamicList() {
+	var listData = new Object();
+		listData.customerId= $('#customerId').val();
+		listData.productNum= $('#productNum').val();
+		listData.typeNum= $('#selQnaDtlsCd Option:selected').val();	
+		
+		$('#secretQnA').click(function(){
+			  $('#qnaisLock').val('Y');
+			});
+		listData.qnaisLock= $('#qnaisLock').val();	
+	    
+	    $.ajax({
+	        url: '/iceland/qna/ajaxList.es',
+	        type: 'POST',
+	        contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+	        data : listData,
+	        // dataType : 'json',
+	        success: function(request){
+	    			console.log('리퀘스트' + request);
+		    		ajaxReviewShow(request);
+	        		console.log(typeof(request));
+	        	    console.log(listData);
+	        		console.log("ajax통신 success");
+	        		console.log(request.jsonData);
+	        		ajaxQnaShow(request);
+	            }
+	        });
+	}	
 
+	function ajaxQnaShow(request){
+		console.log("ajaxReviewShow메소드 진입");
+		data = data.substring(0, data.length - 1);
+		console.log(', 뺀 데이터 값' + data);
+		data = '[' + data + ']';
+		console.log('붙인 데이터값' + data);	
+		var jsonObj = JSON.parse(data);
+		console.log(jsonObj);
+		console.log("ajax통신 후 콜백함수 end라인");
+		console.log(typeof(jsonObj));
+		printQnaTable(jsonObj);
+	}
+	
+	
+	function printQnaTable(text){
+		var table  =  "";
+		for(var i=0; i < text.length; i++){
+			var qna = text[i];
+			table  += "<tr>";
+			table  += "<td class="/"td_num txt-center"/">"+review.reviewNum+"</td>";
+			if(qna.reviewIsanswered != 'Y'){
+				table  += "<td class="/"txt_view"/">""<span class="/"state"/">완료</span>"+"</td>";
+			}else{
+				table  += "<td class="/"txt_view"/">""<span class="/"state"/">미완료</span>"+"</td>";	
+			}
+			
+			if(qna.qnaIsLock != 'N'){
+				table  += "<td>비밀 글 입니다.</td>";
+			}else{
+				table  += "<td>"+qna.qnaContent+"</td>";	
+			}
+			table  += "<td>"+qna.customerId+"</td>";
+			table  += "<td class=td_date>"+qna.qnaRegdate+"</td>";
+			table  += "</tr>";
+		}
+		var div = document.getElementById("#ajaxQnaBody");
+		if(div){
+			div.innerHTML = table;
+		}
+	}
+
+	function readComment(){
+		var Data = new Object();
+		Data.customerId= $('#customerId').val();
+		Data.productNum= $('#productNum').val(); 
+		var url = "/iceland/comment/ajaxRead.es";
+		
+		$.ajax({
+	        url: '/iceland/comment/ajaxRead.es',
+	        type: 'POST',
+	        contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+	        data : listData,
+	        // dataType : 'json',
+	        success: function(request){
+	    			console.log('리퀘스트' + request);
+		    		ajaxReviewShow(request);
+	        		console.log(typeof(request));
+	        	    console.log(listData);
+	        		console.log("ajax통신 success");
+	        		console.log(request.jsonData);
+	        		ajaxReviewShow(request);
+	            }
+	        });
+	}
+
+	function ajaxCommentShow(request){
+		console.log("ajaxReviewShow메소드 진입");
+		data = data.substring(0, data.length - 1);
+		console.log(', 뺀 데이터 값' + data);
+		data = '[' + data + ']';
+		console.log('붙인 데이터값' + data);	
+		var jsonObj = JSON.parse(data);
+		console.log(jsonObj);
+		console.log("ajax통신 후 콜백함수 end라인");
+		console.log(typeof(jsonObj));
+		setResult(jsonObj);
+	}
+	
+	
+	// 비동기통신 후 실행될 콜백함수
+	function setResult(result){
+		var commentDiv= document.getElementById('trQnqContDtl2'); 
+		commentDiv.appendTo(comment);
+	}
 </script>
 			<div class="bor10 m-t-50 p-t-43 p-b-40">
 				<!-- Tab01 -->
@@ -136,7 +267,7 @@ var listData = new Object();
 	                          	<div class="p-b-30 m-lr-15-sm">
 	                          		<div class="flex-w flex-t p-b-68">
 			                          	<div class="bbs_filter" style="width: 100%;">
-			                          		<button type="button" id="myReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onkeyup="searchFunction()" >내 리뷰</button>
+			                          		<button type="button" id="myReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="reviewDynamicList()" >내 리뷰</button>
 			                          		<button type="button" id="allReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="" >전체리뷰</button>
 			                          		<button type="button" id="insertReview" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" data-toggle="modal" data-target="#popLayWrap2">리뷰작성</button>
 			                          	</div>
@@ -158,47 +289,52 @@ var listData = new Object();
 			                            		<th scope="col" style="text-align:center;">작성일</th>
 			                            	</tr>
 			                            	</thead>
-			                            	<tbody id="ajaxTableBody">
+			                            	<tbody id="ajaxReviewBody">
 			                            		
 			                            	<c:choose>
+			                            	<%-- 리스트가 있을 때 --%>
 			                            		<c:when test="${not empty ReviewList}">
 			                            			<c:forEach var="review" items="${ReviewList}" varStatus="status">
+			                            			<%-- 답변 완료 글 --%>
 			                            			<c:choose>
-												      <c:when test="${review.reviewIsAnswered}=='N'">
+												      <c:when test="${review.get('REVIEW_ISANSWERED')!='N'}">
 					                            		<tr>
-					                            			<td class="td_num txt-center">${status.count}</td>
+					                            			<td class="td_num txt-center">${review.get('REVIEW_NUM')}</td>
 					                            			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
 					                            			<td>
-					                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${review.reviewContent}</a>
+					                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${review.get('REVIEW_CONTENT')}</a>
 					                            			</td>
-					                            			<td class="td_write txt-center">${review.customerId}</td>
-					                            			<td class="td_date txt-center">${review.reviewRegdate}</td>
+					                            			<td class="td_write txt-center">${review.get('CUSTOMER_ID')}</td>
+					                            			<td class="td_date txt-center">${review.get('REVIEW_REGDATE')}</td>
 					                            		</tr>
 					                            		<%-- 답변 클릭 시, 보이게 구현 --%>
-					                            		<tr class="trQna" id="trQnqContDtl2">
-					                            			<td colspan="5" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
-					                            				<div class="question">
-					                            					<span class="ico_question">답변</span>
-					                            				  	<span class="checkmark"></span>"답변완료일 시 작성됨"<br><br>
-					                            				  	<span class="adminAnswer">소중한 리뷰 감사드립니다~</span>&nbsp;|&nbsp;<span style="font-size: 16px; color: green;">2018-11-07 11:38</span>
-					                            				</div>
-					                            			</td>
-					                            		</tr>
-					                            	</c:when>
-			                            		<c:otherwise>
-			                            				<tr>
-					                            			<td class="td_num txt-center">${status.count}</td>
-					                            			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
-					                            			<td>
-					                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${review.reviewContent}</a>
-					                            			</td>
-					                            			<td class="td_write txt-center">${review.customerId}</td>
-					                            			<td class="td_date txt-center">${review.reviewRegdate}</td>
-			                            				</tr>
-			                            		</c:otherwise>
-			                            		</c:choose>
-			                            		</c:forEach>
+					                            			<tr class="trQna" id="trQnqContDtl2">
+						                            			<td colspan="5" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
+						                            				<div class="question">
+						                            					<span class="ico_question">답변</span>
+						                            				  	<span class="checkmark"></span>"답변완료일 시 작성됨"<br><br>
+						                            				  	<span class="adminAnswer">소중한 리뷰 감사드립니다~</span>&nbsp;|&nbsp;<span style="font-size: 16px; color: green;">2018-11-07 11:38</span>
+						                            				</div>
+					                            				</td>
+					                            			</tr>
+					                            		</c:when>
+					                            	<%-- 답변 미완료 글 --%>
+			                            				<c:otherwise>
+				                            				<tr>
+						                            			<td class="td_num txt-center">${review.get('REVIEW_NUM')}</td>
+						                            			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
+						                            			<td>
+						                           					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${review.get('REVIEW_CONTENT')}</a>
+						                            			</td>
+						                            			<td class="td_write txt-center">${review.get('CUSTOMER_ID')}</td>
+						                            			<td class="td_date txt-center">${review.get('REVIEW_REGDATE')}</td>
+				                            				</tr>
+			                            				</c:otherwise>
+			                            				</c:choose>
+			                            			</c:forEach>
 			                            		</c:when>
+			                            		
+			                            		<%-- 리스트가 없을 때 --%>
 			                            		<c:otherwise>
 			                            			<p>게시글이 존재하지 않습니다.</p>
 			                            		</c:otherwise>
@@ -239,17 +375,20 @@ var listData = new Object();
                        			<div class="p-b-30 m-lr-15-sm">
                        				<div class="flex-w flex-t p-b-68">
 			                        	<div class="bbs_filter" style="width: 100%;">
-			                        		<button type="button" id="myQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">내 문의</button>
-			                        		<button type="button" id="allQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">전체문의</button>
+			                        		<button type="button" id="myQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="qnaDynamicList()">내 문의</button>
+			                        		<button type="button" id="allQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="qnaDynamicList()">전체문의</button>
 			                        		<button type="button" id="insertQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" data-toggle="modal" data-target="#popLayWrap">문의하기</button>
 			                         	  <select name="selQnaDtlsCd" class="float-l" id="selQnaDtlsCd" style="float:left; height: 35px; font-size: 15px;">
-			                         	  	<option value="" selected="selected">문의유형(전체)</option>
-			                         	  	<option value="1">상품</option><option value="2">배송</option>
-			                         	  	<option value="3">반품/취소</option><option value="4">교환/변경</option>
+			                         	  	<option value="0" >문의유형(전체)</option>
+			                         	  	<option value="1" selected="selected">상품</option>
+			                         	  	<option value="2">배송</option>
+			                         	  	<option value="3">반품/취소</option>
+			                         	  	<option value="4">교환/변경</option>
 			                         	  	<option value="5">기타</option>
 			                         	  </select>	
 			                         	  	<!-- 동적으로 표시버튼 누르면 바뀌도록 제작 -->
-			                           	  <button type="button" id="secretQnA" class="float-l flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">비밀글표시</button>
+			                           	  <button type="button" id="secretQnA" class="float-l flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="qnaDynamicList()">비밀글 제외</button>
+			                           	  <input type="hidden" id="qnaisLock" value="N">
 			                           		<%-- <button type="button" id="notSecretQnA" class="float-l flex-c-m stext-101 cl2 size-112 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">비밀글제외</button> --%>
 			                        	</div>
                         
@@ -272,7 +411,7 @@ var listData = new Object();
 				                        		<th scope="col" style="text-align:center;">작성일</th>
 				                        	</tr>
 				                        	</thead>
-				                        	<tbody> <!-- QnaList -->
+				                        	<tbody id="ajaxQnaBody"> <!-- QnaList -->
 				                        	
 				                        	<c:choose>
 				                        		<%-- 리스트가 있을 때--%>
@@ -280,88 +419,106 @@ var listData = new Object();
 			                            			<c:forEach var="qna" items="${QnaList}" varStatus="status">
 			                            				<%-- 답변 완료여부 --%>
 			                            				<c:choose>
-			                            				<c:when test="${qna.qnaIsAnswered}=='Y'">
+			                            				<c:when test="${qna.get('QNA_ISANSWERED')!='N'}">
 					                            				<%-- 비밀글 여부--%>
 					                            				<c:choose>
 					                            					<%-- <c:when test="${cookie.loginId.value} == ${qna.customerId}"> --%>
-						                            					<c:when test="${qna.qnaIsLock}=='Y'">
-						                            						<c:choose>
-						                            							<c:when test="${cookie.loginId.value}==${qna.customerId}">
-						                            						<tr>
-											                        			<td class="td_num txt-center">${status.count}</td>
-											                        			<td class="td_section txt-center">${qna.qnaTitle}</td>
-											                        			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
-											                        			<td>
-											                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${qna.qnaContent}</a>
-											                        			</td>
-											                        			<td class="td_write txt-center">${qna.customerId}</td>
-											                        			<td class="td_date txt-center">${qna.qnaRegdate}</td>
-											                        		</tr>
-											                        		<%-- 답변 클릭 시, 보이게 구현 --%>
-											                        		<tr class="trQna" id="trQnqContDtl2">
-											                        			<td colspan="6" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
-											                        				<div class="question">
-											                        					<span class="ico_question">답변</span>
-											                        				  	<span class="checkmark"></span>"답변완료일 시 작성됨"<br><br>
-											                        				  	<span class="adminAnswer">관리자에 의해 작성 됨</span>&nbsp;|&nbsp;<span style="font-size: 16px; color: green;">2018-11-07 11:38</span>
-											                        				</div>
-											                        			</td>
-											                        		</tr>
-											                        		</c:when>
-											                        		<c:otherwise>
-											                        		<tr>
-											                        			<td class="td_num txt-center">${status.count}</td>
-											                        			<td class="td_section txt-center">${qna.qnaTitle}</td>
+						                            					<c:when test="${qna.get('QNA_ISLOCK')!='N'}">
+						                            							<c:if test="${cookie.loginId.value}==${qna.get('CUSTOMER_ID')}">
+						                            								<tr>
+													                        			<td class="td_num txt-center">${qna.get('QNA_NUM')}</td>
+													                        			<td class="td_section txt-center">${qna.get('QNA_TITLE')}</td>
+													                        			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
+													                        			<td>
+													                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${qna.get('QNA_CONTENT')}</a>
+													                        			</td>
+													                        			<td class="td_write txt-center">${qna.get('CUSTOMER_ID')}</td>
+													                        			<td class="td_date txt-center">${qna.get('QNA_REGDATE')}</td>
+											                        				</tr>
+													                        		<%-- 답변 클릭 시, 보이게 구현 --%>
+													                        		<tr class="trQna" id="trQnqContDtl2">
+													                        			<td colspan="6" class="qna_expand" id="dvQnqContDtl2" style="display:none;">
+													                        				<div class="question">
+													                        					<span class="ico_question">답변</span>
+													                        				  	<span class="checkmark"></span>"답변완료일 시 작성됨"<br><br>
+													                        				  	<span class="adminAnswer">관리자에 의해 작성 됨</span>&nbsp;|&nbsp;<span style="font-size: 16px; color: green;">2018-11-07 11:38</span>
+													                        				</div>
+													                        			</td>
+													                        		</tr>
+									                        					</c:if>
+									                        					<tr>
+												                               		<td class="td_num txt-center">${qna.get('QNA_NUM')}</td>
+												                        			<td class="td_section txt-center ">${qna.get('QNA_TITLE')}</td>
+												                        			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
+												                        			<td>
+												                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">비밀글입니다.</a>
+												                        			</td>
+												                        			<td class="td_write txt-center">${qna.get('CUSTOMER_ID')}</td>
+												                        			<td class="td_date txt-center">${qna.get('QNA_REGDATE')}</td>
+										                            			</tr>
+									                        			</c:when>
+									                        		<c:otherwise>
+									                        				<tr>
+											                        			<td class="td_num txt-center">${qna.get('QNA_NUM')}</td>
+											                        			<td class="td_section txt-center">${qna.get('QNA_TITLE')}</td>
 											                        			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
 											                        			<td>
 											                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">비밀글입니다.</a>
 											                        			</td>
-											                        			<td class="td_write txt-center">${qna.customerId}</td>
-											                        			<td class="td_date txt-center">${qna.qnaRegdate}</td>
+											                        			<td class="td_write txt-center">${qna.get('CUSTOMER_ID')}</td>
+											                        			<td class="td_date txt-center">${qna.get('QNA_REGDATE')}</td>
 											                        		</tr>
-											                        		</c:otherwise>
-											                        		</c:choose>
-									                        		</c:when>
-									                        		<c:otherwise>
-									                        		
 									                        		</c:otherwise>
 						                        				</c:choose>
 							                            	</c:when>
+							                            	
 							                           <%-- 답변 미완료 --%>
 							                           <c:otherwise>
 								                           <%-- 비밀글 여부 --%>
 							                           		<c:choose> 
-							                           			<c:when test="${qna.qnaIsLock}=='Y'">
-								                           		<tr>
-								                               		<td class="td_num txt-center">${status.count}</td>
-								                        			<td class="td_section txt-center ">${qna.qnaTitle}</td>
-								                        			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
-								                        			<td>
-								                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">비밀글입니다.</a>
-								                        			</td>
-								                        			<td class="td_write txt-center">${qna.customerId}</td>
-								                        			<td class="td_date txt-center">${qna.customerId}</td>
-								                            	</tr>
-
+							                           			<c:when test="${qna.get('QNA_ISLOCK')!='N'}">
+							                           				<c:if test="${cookie.loginId.value}!=${qna.get('CUSTOMER_ID')}">
+										                           		<tr>
+										                               		<td class="td_num txt-center">${qna.get('QNA_NUM')}</td>
+										                        			<td class="td_section txt-center ">${qna.get('QNA_TITLE')}</td>
+										                        			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
+										                        			<td>
+										                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">비밀글입니다.</a>
+										                        			</td>
+										                        			<td class="td_write txt-center">${qna.get('CUSTOMER_ID')}</td>
+										                        			<td class="td_date txt-center">${qna.get('QNA_REGDATE')}</td>
+										                            	</tr>
+																	</c:if>
+																		<tr>
+										                               		<td class="td_num txt-center">${qna.get('QNA_NUM')}</td>
+										                        			<td class="td_section txt-center ">${qna.get('QNA_TITLE')}</td>
+										                        			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
+										                        			<td>
+										                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">비밀글입니다.</a>
+										                        			</td>
+										                        			<td class="td_write txt-center">${qna.get('CUSTOMER_ID')}</td>
+										                        			<td class="td_date txt-center">${qna.get('QNA_REGDATE')}</td>
+										                            	</tr>
 								                            	</c:when>
 								                            	<%-- 비밀글이 아닐 때 --%>
 								                            	<c:otherwise>
 								                            		<tr>
-								                               		<td class="td_num txt-center">${status.count}</td>
-								                        			<td class="td_section txt-center ">${qna.qnaTitle}</td>
-								                        			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
-								                        			<td>
-								                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${qna.qnaContent}</a>
-								                        			</td>
-								                        			<td class="td_write txt-center">${qna.customerId}</td>
-								                        			<td class="td_date txt-center">${qna.qnaRegdate}</td>
-								                            	</tr>
+									                               		<td class="td_num txt-center">${qna.get('QNA_NUM')}</td>
+									                        			<td class="td_section txt-center ">${qna.get('QNA_TITLE')}</td>
+									                        			<td class="txt_view txt-center flex-c-m"><span class="state">미완료</span></td>
+									                        			<td>
+									                       					<a id="showCloseDetail" class="txt_ellipsis" data-index="0" data-brdinfono="118923340" data-subinfono="">${qna.get('QNA_CONTENT')}</a>
+									                        			</td>
+									                        			<td class="td_write txt-center">${qna.get('CUSTOMER_ID')}</td>
+									                        			<td class="td_date txt-center">${qna.get('QNA_REGDATE')}</td>
+								                            		</tr>
 								                            	</c:otherwise>
-							                            	</c:choose>
-							                           </c:otherwise> 	
-							                       </c:choose>
-												</c:forEach>
+							                            		</c:choose>
+							                          		 </c:otherwise> 	
+							                      		</c:choose>
+													</c:forEach>
 				                            	</c:when>
+				                            	
 				                            	
 				                            	<%-- 리스트가 없을 때 --%>
 												<c:otherwise>

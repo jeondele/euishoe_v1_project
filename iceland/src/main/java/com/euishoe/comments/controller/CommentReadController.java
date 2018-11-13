@@ -1,5 +1,6 @@
 package com.euishoe.comments.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import com.euishoe.comments.dto.Comment;
 import com.euishoe.comments.service.CommentService;
 import com.euishoe.comments.service.CommentServiceImpl;
 import com.euishoe.common.controller.AjaxController;
+import com.euishoe.common.controller.Controller;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.common.factory.XMLObjectFactory;
 import com.google.gson.Gson;
@@ -19,31 +21,38 @@ import com.google.gson.Gson;
  * @author 박의수
  *
  */
-public class CommentReadController {
+public class CommentReadController implements Controller {
 	
 	CommentService commentService;
 	Gson gson;
 	
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
+		
+		response.setContentType("text/plain; charset=utf-8");
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		commentService = (CommentService)factory.getBean(CommentServiceImpl.class);
-		int qnaNum = (int) request.getAttribute("qnaNum");
-		int reviewNum = (int) request.getAttribute("reviewNum");
+		String qnaNum = request.getParameter("qnaNum");
+		String reviewNum = request.getParameter("reviewNum");
 		Comment comment = null;
 		String commentJson = null;
+		PrintWriter out = null;
 		try {
-			if(qnaNum != 0) {
-				comment = commentService.readQnaComment(qnaNum);
+			out = response.getWriter();
+			if(Integer.parseInt(qnaNum) != 0) {
+				comment = commentService.readQnaComment(Integer.parseInt(qnaNum));
 				commentJson = gson.toJson(comment);
-			}else if(reviewNum != 0) {
-				comment = commentService.readReviewComment(reviewNum);
+				out.println(commentJson);
+			}else if(Integer.parseInt(reviewNum) != 0) {
+				comment = commentService.readReviewComment(Integer.parseInt(reviewNum));
 				commentJson = gson.toJson(comment);
+				out.println(commentJson);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return commentJson;
+		return null;
 	}
 
 }

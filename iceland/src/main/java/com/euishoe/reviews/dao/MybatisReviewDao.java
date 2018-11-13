@@ -34,7 +34,7 @@ public class MybatisReviewDao implements ReviewDao {
 	}
 
 	@Override
-	public List<Review> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
+	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("productNum", productNum);
@@ -42,7 +42,7 @@ public class MybatisReviewDao implements ReviewDao {
 		param.put("reviewScore", reviewScore);
 		param.put("listSize", params.getListSize());
 		param.put("page", params.getPage());
-		List<Review> list = sqlSession.selectList(NAMESPACE+"selectDynamicReviewList", param);
+		List<HashMap<String,Object>> list = sqlSession.selectList(NAMESPACE+"selectDynamicReviewList", param);
 		return list;
 	}
 

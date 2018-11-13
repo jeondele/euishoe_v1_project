@@ -5,6 +5,7 @@ package com.euishoe.qnas.service;
  *
  */
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.euishoe.common.web.Params;
@@ -34,7 +35,7 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public List<Map<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum,
+	public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum,
 			Params params) throws Exception {
 		return qnaDao.qnaDynamicListAll(productNum, qnaisLock, customerId, TypeNum, params);
 	}
