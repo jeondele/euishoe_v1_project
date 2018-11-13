@@ -813,9 +813,10 @@ function sumToMakeJsonForWish(){
 			  // 찜목록 삭제
 			  var deleteNum = parseInt($(this).attr('value'));
 			  
+			  
 			  console.log(deleteNum);
 			  setCookie('wish' + deleteNum,'',0);
-			  
+			  $('.header-cart-item.flex-w.flex-t.m-b-12.wish')[deleteNum - 1].remove();
 			  // 지운 후 정렬 
 		      var testNum = deleteNum + 1;
 		      

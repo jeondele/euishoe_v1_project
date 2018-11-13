@@ -52,19 +52,6 @@ public class ProductController implements Controller {
 				}
 			}
 			
-		/*	//로그인 관련 쿠키가 있으면
-			if(isLogin) {
-				request.setAttribute("loginId", cookieName);
-			}else {
-				if(loginPage == null) {
-					//로그인 관련 쿠키가 없는데 로그인 페이지도 없으면 익셉션
-					throw new ServletException("LoginCheckFilter에 loginPage가 설정되어 있지 않습니다.");
-				}
-				//로그인 페이지로 포워드 시, request에 요청 uri 저장
-				request.setAttribute("uri", ((HttpServletRequest)request).getRequestURI());
-				request.getServletContext().getRequestDispatcher(loginPage).forward(request, response);
-			}*/
-			
 			FilterParam filterParam = new FilterParam();
 			List<String> gsonListAll = null;
 			try {
