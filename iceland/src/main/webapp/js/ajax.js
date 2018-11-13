@@ -3,6 +3,7 @@ function ajax(obj) {
 	var method = obj.method ? obj.method.toUpperCase() : "GET";
 	var url = obj.url;
 	var param = obj.param;
+	console.log('parameter어째 들어와?'+ param);
 	var callback = obj.callback;
 	
 	var request = createXMLHttpRequest();
@@ -25,10 +26,12 @@ function ajax(obj) {
 	};
 	
 	if(method == "GET"){
+		console.log('일로 들어옴?');
 		if(param) url += ("?" + param);
 		request.open(method, url, true);
 		request.send();
-	}else{
+	} else{
+		console.log('이짝으로 들어옴 ?');
 		request.open(method, url, true);
 		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		request.send(param);

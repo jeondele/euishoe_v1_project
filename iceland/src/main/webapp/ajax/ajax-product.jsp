@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="com.google.gson.Gson"%>
 <%@ taglib prefix="tt" uri="/WEB-INF/tlds/fordecode.tld"%>
+
 <script>
 
 function setCountCartList(){

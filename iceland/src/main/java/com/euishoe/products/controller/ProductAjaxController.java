@@ -35,38 +35,39 @@ public class ProductAjaxController implements Controller {
 			productService = (ProductService)factory.getBean(ProductServiceImpl.class);
 
 			//paramMapping 
-			String tpo = request.getParameter("tpo");
+			String tpo = (String) request.getParameter("tpo");
 			System.out.println("tpo는???????"+tpo);
 			String season = request.getParameter("season");
+			System.out.println("season????" + season);
 			String price = request.getParameter("price");
+			System.out.println("price는???????"+price);
 			String lowPrice = null;
 			String highPrice = null;
+			
 			if (price != null) {
 				String[] priceValues = price.split("/");
 				lowPrice = priceValues[0];
 				highPrice = priceValues[1];
+				System.out.println("lowprice는???????"+lowPrice);
+				System.out.println("highprice는???????"+highPrice);
 			}
 			String fabric = request.getParameter("fabric");
+			System.out.println("fabric는???????"+fabric);
 			String color = request.getParameter("color");
-			int bodyType = (request.getParameter("bodyType") == null) ? 0 : Integer.valueOf(request.getParameter("bodyType"));
-			int shoulderType = (request.getParameter("shoulderType") == null) ? 0 : Integer.valueOf(request.getParameter("shoulderType"));
-			int legType = (request.getParameter("shoulderType") == null) ? 0 : Integer.valueOf(request.getParameter("legType"));
-			int armType = (request.getParameter("armType") == null) ? 0 : Integer.valueOf(request.getParameter("armType")); 
+			System.out.println("color는???????"+color);
+			int bodyType = (request.getParameter("bodyType") == "") ? 0 : Integer.valueOf(request.getParameter("bodyType"));
+			System.out.println("bodyType는???????"+bodyType);
+			int shoulderType = (request.getParameter("shoulderType") == "") ? 0 : Integer.valueOf(request.getParameter("shoulderType"));
+			System.out.println("shoulderType는???????"+shoulderType);
+			int legType = (request.getParameter("shoulderType") == "") ? 0 : Integer.valueOf(request.getParameter("legType"));
+			System.out.println("legType는???????"+legType);
+			int armType = (request.getParameter("armType") == "") ? 0 : Integer.valueOf(request.getParameter("armType")); 
 			String orderByPrice = request.getParameter("orderByPrice");
+			System.out.println("armType는???????"+armType);
 			String orderByHitcount = request.getParameter("orderByHitcount");
+			System.out.println("orderByPrice는???????"+orderByPrice);
 			String orderByStar = request.getParameter("orderByStar");
 			
-			System.out.println("season는???????"+season);
-			System.out.println("price는???????"+price);
-			System.out.println("lowprice는???????"+lowPrice);
-			System.out.println("highprice는???????"+highPrice);
-			System.out.println("fabric는???????"+fabric);
-			System.out.println("color는???????"+color);
-			System.out.println("bodyType는???????"+bodyType);
-			System.out.println("shoulderType는???????"+shoulderType);
-			System.out.println("legType는???????"+legType);
-			System.out.println("armType는???????"+armType);
-			System.out.println("orderByPrice는???????"+orderByPrice);
 			System.out.println("orderByHitcount는???????"+orderByHitcount);
 			System.out.println("orderByStar는???????"+orderByStar);
 			
