@@ -625,7 +625,7 @@ window.onload = function () {
 	$('#sendDeliveryRecipientPhoneNumber').attr('value', str);
 	$('#sendDeliveryRequirement').attr('value', $('#requireComment'));
 	
-	$('#sendToDoneOrder').attr('action', '/order.es').submit();
+	/* $('#sendToDoneOrder').attr('action', '/order.es').submit(); */
 	
 </script> 
   <!--===============================================================================================-->

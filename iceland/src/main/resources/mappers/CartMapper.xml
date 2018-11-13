@@ -20,7 +20,7 @@
 	
 	<insert id="createCart" parameterType="map">
 		INSERT INTO CARTS(CART_NUM,PRODUCT_CODE,CUSTOMER_ID) VALUES(CARTS_SEQ.nextval,CONCAT(CONCAT(#{productCode},'#'),PRODUCT_SEQ.currval),#{customerId})
-	</insert>
+	</insert> 
 	
 	<delete id="deleteCart">
 		DELETE FROM CARTS WHERE PRODUCT_CODE LIKE #{productCode}
