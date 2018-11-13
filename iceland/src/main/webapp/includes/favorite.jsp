@@ -51,7 +51,7 @@
 			var jsonObj = JSON.parse(obj);
 			var str = "";
 			
-			  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img wish" value='+ prior +'>';
+			  str += '<li class="header-cart-item flex-w flex-t m-b-12 wish"><div class="header-cart-item-img wish" value='+ prior +'>';
 			  str += '<img src="' + replaceAll(jsonObj.image_ref,'+',' ') + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8 ">';
 			  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + replaceAll(jsonObj.PRODUCT_NAME,'+',' ') + '</a>'
 			  str += '<span class="header-cart-item-info">' + jsonObj.PRODUCT_PRICE + ' 원</span></div></li>';		
@@ -77,7 +77,6 @@
             console.log(testNum);
             
             for(var i = deleteNum + 1; i < testNum; i++){
-                console.log(i);
                 setCookie('wish' + (i-1),getCookie('wish' + i),1);
                 if(i == testNum - 1){
                     setCookie('wish' + i,'',0);
