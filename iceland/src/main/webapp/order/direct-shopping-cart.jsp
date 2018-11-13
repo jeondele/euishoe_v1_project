@@ -390,7 +390,7 @@ tr {
 								</div>
 								<div class="size-208 p-t-15 w-full-ssm pointDiv">
 								
-									<span class="stext-110 cl2"> <strong>P</strong>
+									<span class="stext-110 cl2"> <strong><input type="text" id="usingPoint">P</strong>
 									</span>
 								</div>
 								<div class="size-208 p-t-15 w-full-ssm">
@@ -408,7 +408,7 @@ tr {
 								</div>
 
 								<div class="size-209 p-t-1">
-									<span class="mtext-110 cl2"> $79.65 </span>
+									<span class="mtext-110 cl2">  </span>
 								</div>
 							</div>
 
@@ -435,12 +435,15 @@ tr {
 	<!--===============================================================================================-->
 	<script src="/iceland/vendor/select2/select2.min.js"></script>
 	<script>
-		$(".js-select2").each(function() {
-			$(this).select2({
-				minimumResultsForSearch : 20,
-				dropdownParent : $(this).next('.dropDownSelect2')
-			});
-		})
+	$(function(){
+		
+	})
+	$(".js-select2").each(function() {
+		$(this).select2({
+			minimumResultsForSearch : 20,
+			dropdownParent : $(this).next('.dropDownSelect2')
+		});
+	})
 	</script>
 	<!--===============================================================================================-->
 	<script

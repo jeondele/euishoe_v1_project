@@ -39,6 +39,7 @@
 	
 	<!-- 주문 -->
 	<bean type="controller" name="/directorder" class="com.euishoe.orders.controller.GoToOrderController" />
+	<bean type="controller" name="/order" class="com.euishoe.orders.controller.OrderController" />
 	<bean type="controller" name="/cart" class="com.euishoe.carts.controller.CartController"/>
 	
 	<!--comment-->
