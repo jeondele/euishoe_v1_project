@@ -11,14 +11,15 @@
 <c:forEach items="${jsonObjectList}" var="product">
 <c:set var ="imageRef" value="${product.imageRef}"/>
 <c:if test="${fn:contains(imageRef,'main$1')}">
-<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
+<div class="row isotope-grid">
+<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men" style="background-color : red">
 	<!-- Block2 -->
 	<div class="block2">
 		<div class="block2-pic hov-img0">
-			<img src="${product.get('imageRef')}" alt="IMG-PRODUCT">
+			<img src="<%-- ${product.get('imageRef')} --%>" alt="IMG-PRODUCT">
 
 			<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 brief-view">
-				<input type="hidden" value="${product.productNum}">
+				<input type="hidden" value="<%-- ${product.productNum} --%>">
 				Quick View
 			</a>
 		</div>

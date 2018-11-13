@@ -183,7 +183,11 @@ img {vertical-align: middle;}
 .active, .dot:hover {
   background-color: #717fe0;
   color: white;
+<<<<<<< HEAD
   font-weight: bold;
+=======
+  
+>>>>>>> feature/order3차_si
 }
 
 /* Fading animation */

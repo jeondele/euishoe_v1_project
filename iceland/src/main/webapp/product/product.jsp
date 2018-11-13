@@ -44,7 +44,7 @@
 	<link rel="stylesheet" type="text/css" href="/iceland/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->	
-	
+	<script src="/iceland/js/ajax.js"></script>
 <!--===============================================================================================-->
 <!--===============================================================================================-->
 <style>
@@ -695,9 +695,11 @@ function resetFilter() {
                   <div class="filter_result">
 				  </div>
                </div>
-			</div>
-
-			<div id="selectResult" class="row isotope-grid">
+         </div>
+         
+         
+			<p id ="selectResult"></p>
+			<div class="row isotope-grid">
 				<c:forEach items="${jsonObjectList}" var="product">
 				<c:set var ="imageRef" value="${product.imageRef}"/>
 				<c:if test="${fn:contains(imageRef,'main$1')}">
@@ -735,11 +737,6 @@ function resetFilter() {
 				</div>
 				</c:if>
 				</c:forEach>
-			</div>
-
-			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
-				<input type="button" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04" value="더보기">
 			</div>
 		</div>
 	</div>
@@ -815,7 +812,7 @@ function resetFilter() {
 	<script>
 	   <%--  var Test = '';
 		$('.brief-view').on('click', function(e){
-			Test = e;
+			Test = e;   
 			console.log(e);
 	 		var value = $(this).find('input').val();
 			$('#productNum').value = value;

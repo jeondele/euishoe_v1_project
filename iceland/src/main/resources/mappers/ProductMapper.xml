@@ -259,6 +259,9 @@
 		             #{PRODUCT_NUM}, 
 		             #{PRODUCT_COUNT}) 		
 	</insert>
-	
+	<select id ="maxProductCodeNum" resultType="int" parameterType="int">
+		select max(product_code_num)+1
+		from products
+	</select>
 
 </mapper>
