@@ -73,6 +73,14 @@ public class MybatisCustomerDao implements CustomerDao {
 		return list;
 	}
 
+	@Override
+	public void modifyCustomizingInfo(Map<String, Object> map) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update(NAMESPACE + "customize", map);
+		sqlSession.commit();
+		sqlSession.close();
+	}
+
 }
 
 
