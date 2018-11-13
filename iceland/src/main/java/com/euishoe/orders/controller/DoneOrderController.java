@@ -84,7 +84,6 @@ public class DoneOrderController implements Controller {
 			} catch (Exception e7) {
 				e7.printStackTrace();
 			}
-			
 			if(result4) {
 				//5.결제 번호 가져오기
 				int paymentNum = 0;//db에서 가져오기 currval한 값이
@@ -189,42 +188,49 @@ public class DoneOrderController implements Controller {
 													boolean result15 = orderService.updatePants(pantsCode, productCount);
 													if (result15) {
 														totalResult = "주문 성공!!";
+														System.out.println(totalResult);
 														mav.addObject("result", totalResult);
 														mav.setView("/home.jsp"); // 결제창으로 설정
 														return mav;
 														
 													}else {
 														totalResult = "하의 코드 수량에 오류가 있습니다";
+														System.out.println(totalResult);
 														mav.addObject("result", totalResult);
 														mav.setView("/home.jsp"); // 결제창으로 설정
 														return mav;
 													}
 												} else {
 													totalResult = "상의 코드 수량에 오류가 있습니다.";
+													System.out.println(totalResult);
 													mav.addObject("result", totalResult);
 													mav.setView("/home.jsp"); // 결제창으로 설정
 													return mav;
 												}
 											} catch (Exception e) {
 												totalResult = "주문에 오류가 있습니다!!";
+												System.out.println(totalResult);
 												mav.addObject("result", totalResult);
 												mav.setView("/home.jsp"); // 결제창으로 설정
 												return mav;
 											}
 										} else {
 											totalResult = "상품주문번호 생성시 오류가 있습니다.";
+											System.out.println(totalResult);
 											mav.addObject("result", totalResult);
 											mav.setView("/home.jsp"); // 결제창으로 설정
 											return mav;
 										}
 									} else {
 										totalResult = "증감 포인트 오류가 있습니다.";
+										System.out.println(totalResult);
 										mav.addObject("result", totalResult);
 										mav.setView("/home.jsp"); // 결제창으로 설정
 										return mav;
 									}
 								}else {
 									totalResult = "차감 포인트 오류가 있습니다.";
+									System.out.println(totalResult);
 									mav.addObject("result", totalResult);
 									mav.setView("/home.jsp"); // 결제창으로 설정
 									return mav;
@@ -232,36 +238,42 @@ public class DoneOrderController implements Controller {
 							}
 						}else {
 							totalResult = "주문 정보 생성에 오류가 있습니다.";
+							System.out.println(totalResult);
 							mav.addObject("result", totalResult);
 							mav.setView("/home.jsp"); // 결제창으로 설정
 							return mav;
 						}
 					} else {
 						totalResult = "회원정보가 없습니다.";
+						System.out.println(totalResult);
 						mav.addObject("result", totalResult);
 						mav.setView("/home.jsp"); // 결제창으로 설정
 						return mav;
 					}
 				} else {
 					totalResult = "배달정보에 오류가 있습니다.";
+					System.out.println(totalResult);
 					mav.addObject("result", totalResult);
 					mav.setView("/home.jsp"); // 결제창으로 설정
 					return mav;
 				}
 			} else {
 				totalResult = "결제에 오류가 있습니다.";
+				System.out.println(totalResult);
 				mav.addObject("result", totalResult);
 				mav.setView("/home.jsp"); // 결제창으로 설정
 				return mav;
 			}
 		} else {
 			totalResult = "상품에 오류가 있습니다.";
+			System.out.println(totalResult);
 			mav.addObject("result", totalResult);
 			mav.setView("/home.jsp"); // 결제창으로 설정
 			return mav;
 		}
 		
 		totalResult = "주문에 오류가 있습니다.";
+		System.out.println(totalResult);
 		mav.addObject("result", totalResult);
 		mav.setView("/home.jsp"); // 결제창으로 설정
 		return mav;

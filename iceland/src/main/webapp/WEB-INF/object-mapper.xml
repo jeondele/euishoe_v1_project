@@ -90,6 +90,7 @@
 		<property name="customerDao" ref="customerDao"/>
 		<property name="paymentDao" ref="paymentDao"/>
 		<property name="deliveryDao" ref="deliveryDao"/>
+		<property name="pointDao" ref="pointDao"/>
 	</bean>
 	
 	<!-- image 맵핑 -->

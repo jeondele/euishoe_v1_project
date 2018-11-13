@@ -419,6 +419,7 @@ tr {
 					</div>
 			</div>
 		</div>
+	<form id="sendToDoneOrder" action="/iceland/ordersucc.es">	
 		<input type="hidden" name="sendProductCode" id="post1"/>
 		<input type="hidden" name="sendPantsCode" id="post2"/>
 		<input type="hidden" name="sendJacketCode" id="post3"/>
@@ -433,22 +434,6 @@ tr {
 		<input type="hidden" name="sendDeliveryRecipientPhoneNumber" id="post12"/>
 		<input type="hidden" name="sendDeliveryRequirement" id="post13"/>
 	</form>
-	
-	<form id="sendToDoneOrder" action="/iceland/ordersucc.es">
-		<input type="hidden" id="sendProductCode" name="sendProductCode" value="">
-		<input type="hidden" id="sendPantsCode" name="sendPantsCode" value="">
-		<input type="hidden" id="sendJacketCode" name="sendJacketCode" value="">
-		<input type="hidden" id="sendProductNum" name="sendProductNum" value="">
-		<input type="hidden" id="sendProductCount" name="sendProductCount" value="">
-		<input type="hidden" id="sendPaymentPoint" name="sendPaymentPoint" value="">
-		<input type="hidden" id="sendPaymentMethod" name="sendPaymentMethod" value="">
-		<input type="hidden" id="sendTotalCost" name="sendTotalCost" value="">
-		<input type="hidden" id="sendDeliveryAddress1" name="sendDeliveryAddress1" value="">
-		<input type="hidden" id="sendDeliveryAddress2" name="sendDeliveryAddress2" value="">
-		<input type="hidden" id="sendDeliveryRecipient" name="sendDeliveryRecipient" value="">
-		<input type="hidden" id="sendDeliveryRecipientPhoneNumber" name="sendDeliveryRecipientPhoneNumber" value="">
-		<input type="hidden" id="sendDeliveryRequirement" name="sendDeliveryRequirement" value="">
-	</form>
 
 	<%@include file="/iceland/../includes/footer.jsp"%>
 
@@ -461,23 +446,6 @@ tr {
 		})
 	})
 	
-	$(function() {
-		$(".important").on("change", function() {
-			$("#sendProductCode").val($('input[name=test_name]').val());
-			$("#sendPantsCode").val();
-			$("#sendJacketCode").val();
-			$("#sendProductNum").val();
-			$("#sendProductCount").val();
-			$("#sendPaymentPoint").val();
-			$("#sendPaymentMethod").val();
-			$("#sendTotalCost").val();
-			$("#sendDeliveryAddress1").val();
-			$("#sendDeliveryAddress2").val();
-			$("#sendDeliveryRecipient").val();
-			$("#sendDeliveryRecipientPhoneNumber").val();
-			$("#sendDeliveryRequirement").val();
-		})
-	})
 	</script>
 	<!--===============================================================================================-->
 	<script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
@@ -522,13 +490,16 @@ tr {
     <script type="text/javascript">
     
     // hidden 입력인자
-    $(document).ready(function(){
-    	$('#post1').val(getQuerystring('productCode'));
+    
+    $('#post1').val(getQuerystring('productCode'));
     	$('#post2').val(getQuerystring('productCode').split('$')[0] + '$' + 'pt' + '$' + getQuerystring('productCode').split('$')[2] + '$' + getQuerystring('productCode').split('$')[3]);
     	$('#post3').val(getQuerystring('productCode').split('$')[0] + '$' + 'jk' + '$' + getQuerystring('productCode').split('$')[1] + '$' + getQuerystring('productCode').split('$')[3]);
     	$('#post4').val(getQuerystring('productNum'));
     	$('#post5').val(getQuerystring('productCount'));
-    	
+    	$('#usingPoint').onkeyup = function(){
+            $("#post8").val(parseInt(replaceAll($('.mtext-110.cl2')[0].innerText.substring(3,$('.mtext-110.cl2')[0].innerText.length - 3),',','')) - $('#usingPoint').val());   
+            $('.mtext-110.cl2')[0].innerText = (parseInt(replaceAll($('.mtext-110.cl2')[0].innerText.substring(3,$('.mtext-110.cl2')[0].innerText.length - 3),',','')) - $('#usingPoint').val());
+         });
     	$('#usingPoint').on('change',function(){
     		$('#post6').val($('#usingPoint').val());
     		
@@ -578,9 +549,11 @@ tr {
     		$('#post13').val($('#requireComment').val());
     		console.log(13);
     	});
+    $(document).ready(function(){
+    	
     	
     })
-    
+   
     </script>
 </body>
 </html>

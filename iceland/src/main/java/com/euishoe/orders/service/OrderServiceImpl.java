@@ -177,20 +177,17 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public int maxOrderNum() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return orderDao.selectMaxNextValOrder();
 	}
 
 	@Override
 	public boolean updateJacket(String jacketCode, int productCount) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		return orderDao.updateJacket(jacketCode, productCount);
 	}
 
 	@Override
-	public boolean updatePants(String pantsCode, int pantsCount) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updatePants(String pantsCode, int productCount) throws Exception {
+		return orderDao.updatePants(pantsCode, productCount);
 	}
 	
 }

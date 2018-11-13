@@ -3,53 +3,70 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.euishoe.order">
-<!-- CREATE TABLE orders 
-  ( 
-     order_num       NUMBER(15), 
-     customer_id     VARCHAR2(40), 
-     noncustomer_num NUMBER(12), 
-     delivery_num    NUMBER(10), 
-     payment_num     NUMBER(10) 
-  );  
-  
-  	private int orderNo; 				//주문번호
-	private String customerId; 			// 회원아이디
-	private String noncustomerNum;  // 비회원번호
-	private int deliveryNum; 			//배송번호
-	private int paymentNum; 			//결제번호 -->
+	<!-- CREATE TABLE orders ( order_num NUMBER(15), customer_id VARCHAR2(40), 
+		noncustomer_num NUMBER(12), delivery_num NUMBER(10), payment_num NUMBER(10) 
+		); private int orderNo; //주문번호 private String customerId; // 회원아이디 private 
+		String noncustomerNum; // 비회원번호 private int deliveryNum; //배송번호 private int 
+		paymentNum; //결제번호 -->
 
 	<insert id="orderCreate" parameterType="Map">
 		INSERT INTO orders
-		VALUES  (
-			orders_seq.NEXTVAL,
+		VALUES (
+		orders_seq.NEXTVAL,
 		<choose>
-		    <when test="customerId != null">
-		      #{customerId},
-		      null, 
-		    </when>
-		    <when test="noncustomerNum != null">
-		      null,
-		      #{noncustomerNum}, 
-		    </when>
-		  </choose>
-			 #{deliveryNum}, 
-             #{paymentNum})
+			<when test="customerId != null">
+				#{customerId},
+				null,
+			</when>
+			<when test="noncustomerNum != null">
+				null,
+				#{noncustomerNum},
+			</when>
+		</choose>
+		#{deliveryNum},
+		#{paymentNum})
 	</insert>
 
-	<select id="selectOrderInfo" resultType="map" parameterType="Integer">
+	<insert id="create" parameterType="Order">
+		INSERT INTO orders
+		VALUES (
+		orders_seq.NEXTVAL,
+			 #{customerId},
+				null,
+			#{deliveryNum},
+			#{paymentNum})
+	</insert>
+	<select id="selectOrderInfo" resultType="map"
+		parameterType="Integer">
 		select o.* , d.*, p.*
 		from orders o join deliveries d
-		on o.DELIVERY_NUM = d.DELIVERY_NUM
+		on
+		o.DELIVERY_NUM = d.DELIVERY_NUM
 		join payments p
-		on o.PAYMENT_NUM = p.PAYMENT_NUM
+		on o.PAYMENT_NUM =
+		p.PAYMENT_NUM
 		where o.ORDER_NUM = #{orderNum}
 	</select>
-	
-	<!-- 주문생성 -->
-	<insert id="create" parameterType="String">
-		INSERT INTO order_by_products 
-		VALUES      (order_by_products_seq.nextval, 
-		             #{productCode}, 
-		             NULL) 	
+
+	<insert id="insertOrderByProduct" parameterType="OrderByProduct">
+		INSERT INTO order_by_products
+		VALUES (order_by_products_seq.nextval,
+		#{productCode},
+		NULL)
 	</insert>
+	<select id = "selectMaxNextValOrder" resultType="int">
+		select deliveries_seq.currval from dual
+	</select>
+	
+	<update id="updateJacket" parameterType="map">
+		update jackets
+		set JACKET_COUNT = #{productCount} 
+		where JACKET_CODE = #{jacketCode}
+	</update>
+	
+	<update id="updatePants" parameterType="map">
+		update pants
+		set pants_COUNT = #{productCount} 
+		where pants_CODE = #{pantsCode}
+	</update>
 </mapper>

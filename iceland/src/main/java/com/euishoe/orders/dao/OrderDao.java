@@ -23,4 +23,10 @@ public interface OrderDao {
 	
 	// 주문당 상품 주문번호 생성
 	public boolean insertOrderByProduct(OrderByProduct orderByProduct);
+
+	public int selectMaxNextValOrder();
+
+	public boolean updateJacket(String jacketCode, int productCount);
+
+	public boolean updatePants(String pantsCode, int productCount);
 }

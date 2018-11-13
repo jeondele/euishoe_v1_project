@@ -1,5 +1,6 @@
 package com.euishoe.orders.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,14 +44,53 @@ public class MybatisOrderDao implements OrderDao {
 
 	@Override
 	public boolean insertOrder(Order order) {
-		// TODO Auto-generated method stub
-		return false;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int result = sqlSession.insert(NAMESPACE+"create", order);
+		if(result == 0 )return false;
+		else return true;
 	}
 
 	@Override
 	public boolean insertOrderByProduct(OrderByProduct orderByProduct) {
-		// TODO Auto-generated method stub
-		return false;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int result = sqlSession.insert(NAMESPACE+"insertOrderByProduct", orderByProduct);
+		if(result == 0 ) return false;
+		else return true;
+	}
+
+	@Override
+	public int selectMaxNextValOrder() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int result = sqlSession.selectOne(NAMESPACE+"selectMaxNextValOrder");
+		return result;
+	}
+
+	@Override
+	public boolean updateJacket(String jacketCode, int productCount) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("jacketCode", jacketCode);
+		params.put("productCount", productCount);
+		int result = sqlSession.update(NAMESPACE+"updateJacket", params);
+		if(result == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	@Override
+	public boolean updatePants(String pantsCode, int productCount) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("pantsCode", pantsCode);
+		params.put("productCount", productCount);
+		int result = sqlSession.update(NAMESPACE+"updatePants", params);
+		if(result == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
 
