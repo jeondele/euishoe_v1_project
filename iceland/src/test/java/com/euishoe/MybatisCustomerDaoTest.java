@@ -3,6 +3,7 @@ package com.euishoe;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,16 +12,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.Logger;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.euishoe.customers.dao.CustomerDao;
 import com.euishoe.customers.dao.MybatisCustomerDao;
 import com.euishoe.customers.dto.Customer;
 import com.google.gson.Gson;
-import com.google.common.reflect.TypeToken;
-import java.lang.reclect.Type;
-import java.net.URLDecoder;
 
 public class MybatisCustomerDaoTest {
 	private static final String NAMESPACE = "com.euishoe.customers.";

@@ -36,6 +36,7 @@ public class ProductAjaxController implements Controller {
 
 			//paramMapping 
 			String tpo = request.getParameter("tpo");
+			System.out.println("tpo는???????"+tpo);
 			String season = request.getParameter("season");
 			String price = request.getParameter("price");
 			String lowPrice = null;
@@ -55,7 +56,6 @@ public class ProductAjaxController implements Controller {
 			String orderByHitcount = request.getParameter("orderByHitcount");
 			String orderByStar = request.getParameter("orderByStar");
 			
-			System.out.println("tpo는???????"+tpo);
 			System.out.println("season는???????"+season);
 			System.out.println("price는???????"+price);
 			System.out.println("lowprice는???????"+lowPrice);
@@ -88,7 +88,6 @@ public class ProductAjaxController implements Controller {
 				HashMap<String, Object> convertToJson = gson.fromJson(gsonListAll.get(i), HashMap.class);
 				jsonObjectList.add(convertToJson);
 		 	}
-			
 			
 			mav.addObject("gsonListAll", gsonListAll);
 			mav.addObject("jsonObjectList", jsonObjectList);
