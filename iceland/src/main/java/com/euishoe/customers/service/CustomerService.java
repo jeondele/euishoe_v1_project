@@ -43,4 +43,8 @@ public interface CustomerService {
 	
 	// 회원 커스터마이징 정보 수정
 	public void modifyCustomizingInfo(Map<String, Object> map) throws Exception;
+
+	Map<String, Object> customerOrderInfo(String customerId) throws Exception;
+	
+	
 }

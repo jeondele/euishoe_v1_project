@@ -513,4 +513,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public void modifyCustomizingInfo(Map<String, Object> map) throws Exception {
 		customerDao.modifyCustomizingInfo(map);
 	}
+	
+
+	@Override
+	public Map<String, Object> customerOrderInfo(String customerId) throws Exception {
+		return customerDao.customerOrderInfo(customerId);
+	}
 }

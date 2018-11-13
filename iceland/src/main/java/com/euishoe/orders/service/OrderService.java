@@ -21,7 +21,4 @@ public interface OrderService {
 	List<ProductInfo> getProductInfo(int productNum) throws Exception;
 	//상하의 코드 파싱
 	public String[] productCodeParsing(String productCode) throws Exception;
-	
-	//고객 주문 정보
-	public Map<String, Object> customerOrderInfo(String customerId) throws Exception;
 }
