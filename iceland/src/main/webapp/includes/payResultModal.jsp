@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 
 <%-- 결제 결과 Modal 창 --%>
-	<div id="popLayWrap3" class="modal fade" role="dialog">
+<div id="popLayWrap3" class="modal fade popLayWrap3" role="dialog">
     <form name="frmMain" method="post">
 		<div class="modal-dialog modal-lg" style="width:690px; height:375px;">	
         	<div class="modal-content">

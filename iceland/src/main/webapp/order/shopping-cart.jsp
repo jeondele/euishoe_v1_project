@@ -40,6 +40,8 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/iceland/order/shopping-cart.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/iceland/product/detail/product.css">
   <!--===============================================================================================-->
 <script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 <style>
@@ -200,7 +202,7 @@ function sumPrice(){
 									<th class="column-5 txt-center">수량</th>
 									<th class="column-6 txt-center">총금액</th>
 								</tr>
-								<tr class="table_row">
+								<!-- <tr class="table_row">
 									<td class="column-1 txt-center">
 										<input type="checkbox" value="None" class="roundedOne" name="check" checked />
 									</td>
@@ -251,7 +253,7 @@ function sumPrice(){
 									</td>
 									<td class="column-6 txt-center">1600</td>
 								</tr>
-							</table>
+ -->							</table>
 						</div>
 
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
@@ -415,7 +417,7 @@ function sumPrice(){
 							</div>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" data-toggle="modal" data-target="#popLayWrap3">
 							결제하기
 						</button>
 					</div>
@@ -430,7 +432,7 @@ function sumPrice(){
 
   <%@include file="/iceland/../includes/QuickMenu.jsp"%>
 
-
+  <%@include file="/iceland/../includes/payResultModal.jsp" %>
   <!--===============================================================================================-->
   <script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
   <!--===============================================================================================-->
@@ -453,7 +455,7 @@ function sumPrice(){
   <script
     src="/iceland/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
   <!--확인필요(by sw)================================================================================-->  
-<!--   <script>
+   <script>
 			$('.js-pscroll').each(function() {
 				$(this).css('position', 'relative');
 				$(this).css('overflow', 'hidden');
@@ -471,46 +473,28 @@ function sumPrice(){
 	$('.how-itemcart1').bind("click",function(e){
 		e.currentTarget.parentElement.parentElement.remove();
 	});
-	/*
+	
+/*  	// 수량 클릭이벤트
 	$('.wrap-num-product').bind("click",function(e){
 		console.log(e);
+		var cnt = Number($('#cnt').val()) + 1; //number타입
+		$('#cnt').val(cnt);
 		console.log(e.previousElementSibling);
 		console.log(e.currentTarget.children[1]);
 		
-	});
-	*/
-	$('.btn-num-product-down').bind("click",function(e){
-		/*
-			갯수 세기
-		*/
-		var num = e.currentTarget.parentElement.children[1].value - 1;
-		var price = e.currentTarget.parentElement.parentElement.parentElement.children[2].innerText;
+	});  */
+	
+
 		
-		price = parseFloat(price);
-		
-		e.currentTarget.parentElement.parentElement.parentElement.children[4].innerText = (num * price);
-		
-		sumUp();
-	});
-		
-	$('.btn-num-product-up').bind("click",function(e){
-		var num = parseInt(e.currentTarget.parentElement.children[1].value) + 1;
-		var price = e.currentTarget.parentElement.parentElement.parentElement.children[2].innerText;
-		
-		price = parseFloat(price);
-		
-		e.currentTarget.parentElement.parentElement.parentElement.children[4].innerText = (num * price);
-		
-		sumUp();
-		
-	});
 	
 	function sumUp(){
+		console.log('subTotal계산함수 진입');
 		var sum = 0;
 		var num = 0;
-		for(var i = 1; i < $('.column-4.txt-center').length; i++){
-			sum += parseInt($('.column-4.txt-center')[1].innerText.trim());
+		for(var i = 1; i < $('.column-6.txt-center').length; i++){
+			sum += parseFloat($('.column-6.txt-center')[i].innerText.trim());
 		}
+		console.log('sum값? '+sum)
 		$('.mtext-110.cl2')[0].innerText = sum;
 		$('.mtext-110.cl2')[1].innerText = (sum + parseInt($('.stext-110.cl2')[7].innerText.trim().substring(0,$('.stext-110.cl2')[7].innerText.trim().length -2)));
 	};
@@ -587,10 +571,44 @@ function sumPrice(){
 	            sumUp();
 	        });
 			
+			// 수량up 클릭이벤트 걸어주는 함수
+			$('.btn-num-product-up').bind("click",function(e){
+				console.log('수량up 함수 들어오나');
+				// 수량 +버튼
+				var num = Number(e.currentTarget.parentElement.children[1].value);
+				// 현재 수량+1을 수량의 value값에 할당
+				e.currentTarget.parentElement.children[1].value = num+1;
+				
+				// 수량에 맞게 price 설정....
+				// 품목당 가격
+				var price = parseFloat(e.currentTarget.parentElement.parentElement.parentElement.children[3].innerText); 
+				// 품목당 가격(price) * 수량(num) 값을 해줌
+				var sumPrice = price * Number(e.currentTarget.parentElement.children[1].value);
+				e.currentTarget.parentElement.parentElement.parentElement.children[5].innerText = sumPrice;
+				
+				sumUp();
+				
+			});
+			
+			// 수량down 클릭이벤트 걸어주는 함수
+			$('.btn-num-product-down').bind("click",function(e){
+				console.log('수량down함수 들어옴');
+				var num = Number(e.currentTarget.parentElement.children[1].value);
+				if(num == 1){
+					return;
+				}else{
+					e.currentTarget.parentElement.children[1].value = num-1;
+					var price = parseFloat(e.currentTarget.parentElement.parentElement.parentElement.children[3].innerText); 
+					var sumPrice = price * Number(e.currentTarget.parentElement.children[1].value);
+					e.currentTarget.parentElement.parentElement.parentElement.children[5].innerText = sumPrice;
+				}
+				sumUp();
+			});
+			
 			}
 		);
 	
-		</script> -->
+		</script> 
   <!--===============================================================================================-->
   <script src="/iceland/js/main.js"></script>
 

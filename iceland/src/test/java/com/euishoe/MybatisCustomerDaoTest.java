@@ -18,8 +18,8 @@ import com.euishoe.customers.dao.CustomerDao;
 import com.euishoe.customers.dao.MybatisCustomerDao;
 import com.euishoe.customers.dto.Customer;
 import com.google.gson.Gson;
-import com.google.common.reflect.TypeToken;
-import java.lang.reclect.Type;
+//import com.google.common.reflect.TypeToken;
+//import java.lang.reclect.Type;
 import java.net.URLDecoder;
 
 public class MybatisCustomerDaoTest {
