@@ -404,7 +404,7 @@ function sumPrice(){
   <!--===============================================================================================-->
   <script
     src="/iceland/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-  <!--확인필요(by sw)================================================================================-->  
+  <!--확인 및 수정 완료(by sw)================================================================================-->  
    <script>
 			$('.js-pscroll').each(function() {
 				$(this).css('position', 'relative');
@@ -441,7 +441,7 @@ function sumPrice(){
 		
 	};
 	
-	//cart아이템 삭제(쿠키까지 삭제)함수
+	//cart아이템 삭제(쿠키까지 삭제)함수(param e)
 	function deleteItem(e) {
 		var deleteNum = parseInt($(e.currentTarget).attr('value')); 
         setCookie('cart' + deleteNum,'',0);
@@ -464,17 +464,36 @@ function sumPrice(){
         $('#cartButton').attr('data-notify',testNum - 2);
         sumUp();
 	}
-	
-	// 모두삭제 버튼 클릭 시 발생
-	$('#delete_All').bind('click',function(e){
-		$('.table_row').each(function(index,item){
-			item.remove();
-		})
-		
+	//전체삭제 클릭시 실행
+	function deleteAllItem() {
+		var deleteNum;
+		var testNum;
+		for(var i=0; i<$('.how-itemcart1').length; i++){
+			deleteNum = document.getElementsByClassName('how-itemcart1')[0].getAttribute('value');
+			setCookie('cart' + deleteNum, '', 0);
+			
+			// 쿠키삭제
+	        setCookie('cart' + (i-1),getCookie('cart' + i),1);
+	        if(i == testNum - 1){
+	        setCookie('cart' + i,'',0);
+	            
+	        
+			// item삭제(table row삭제)
+			//console.log('table-row엘리먼트'+document.getElementsByClassName('table_row')[i]);
+			$('.table_row').remove();
+	        $('#cartButton').attr('data-notify',testNum - 2);
+		}
 		sumUp();
+	}
+	
+	// 전체삭제 버튼 클릭 시 발생
+	$('#delete_All').click(function() {
+		console.log('전체삭제버튼 눌림');
+		deleteAllItem();
 	});
 	
-	// 선택 삭제 버튼 클릭 시 발생
+	// 선택 삭제 버튼 클릭 시 발생(deleteItem(e)함수 내용 실행 but event의 target찾아갈 수 없어서 중복해서 씀..ㅠ)
+	// ->2개 이상선택 후 클릭 시 처음제품만 삭제됨!!!!
 	$('#delete_selected').click(function() {
 		var deleteNum;
 		var testNum;
@@ -571,7 +590,7 @@ function sumPrice(){
 	            sumUp();
 	        });
  */			
-			// 수량up 클릭이벤트 걸어주는 함수
+			// 수량up 클릭이벤트 걸어주는 함수//////////////////////////////////
 			$('.btn-num-product-up').bind("click",function(e){
 				console.log('수량up 함수 들어오나');
 				// 수량 +버튼
@@ -589,8 +608,8 @@ function sumPrice(){
 				sumUp();
 				
 			});
-			
-			// 수량down 클릭이벤트 걸어주는 함수
+			/////////////////////////////////////////////////////////////////
+			// 수량down 클릭이벤트 걸어주는 함수////////////////////////////
 			$('.btn-num-product-down').bind("click",function(e){
 				console.log('수량down함수 들어옴');
 				var num = Number(e.currentTarget.parentElement.children[1].value);
@@ -604,9 +623,9 @@ function sumPrice(){
 				}
 				sumUp();
 			});
-			
-			}
-		);
+			/////////////////////////////////////////////////////////
+     });
+		
 	
 		</script> 
   <!--===============================================================================================-->
