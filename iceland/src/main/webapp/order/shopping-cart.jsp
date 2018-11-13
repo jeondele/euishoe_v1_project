@@ -257,7 +257,7 @@ function sumPrice(){
 						</div>
 
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-                             <div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">선택삭제</div>
+                             <div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" id="delete_selected">선택삭제</div>
 							<div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" id="delete_All">전체삭제</div>
 						</div>
 						
@@ -361,7 +361,7 @@ function sumPrice(){
 								</span>
 							</div>
 							<div style="padding-top: 0" class="size-208 p-t-15 w-full-ssm">
-								<div style="margin-top: 0" class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+								<div style="margin-top: 0; border:none" class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
 									<!-- class="js-select2" -->
 									<select style="border-radius: 3px; height:30px; cursor: pointer" name="payMethod">
 										<option value = "noBank">무통장 입금</option>
@@ -412,7 +412,7 @@ function sumPrice(){
 
 							<div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-									$79.65
+									0
 								</span>
 							</div>
 						</div>
@@ -473,32 +473,49 @@ function sumPrice(){
 	$('.how-itemcart1').bind("click",function(e){
 		e.currentTarget.parentElement.parentElement.remove();
 	});
-	
-/*  	// 수량 클릭이벤트
-	$('.wrap-num-product').bind("click",function(e){
-		console.log(e);
-		var cnt = Number($('#cnt').val()) + 1; //number타입
-		$('#cnt').val(cnt);
-		console.log(e.previousElementSibling);
-		console.log(e.currentTarget.children[1]);
-		
-	});  */
-	
 
 		
-	
+	// 결제창 금액 설정 함수
 	function sumUp(){
 		console.log('subTotal계산함수 진입');
 		var sum = 0;
 		var num = 0;
+		var shipping = document.getElementsByClassName('stext-110 cl2')[7].innerText; //배송료
+		var point = document.getElementsByClassName('stext-110 cl2')[5].innerText;	  //사용 포인트
 		for(var i = 1; i < $('.column-6.txt-center').length; i++){
 			sum += parseFloat($('.column-6.txt-center')[i].innerText.trim());
 		}
-		console.log('sum값? '+sum)
-		$('.mtext-110.cl2')[0].innerText = sum;
-		$('.mtext-110.cl2')[1].innerText = (sum + parseInt($('.stext-110.cl2')[7].innerText.trim().substring(0,$('.stext-110.cl2')[7].innerText.trim().length -2)));
+		
+		$('.mtext-110.cl2')[0].innerText = sum; //ui상 subTotal값
+		$('.mtext-110.cl2')[1].innerText = sum + parseFloat(shipping) - parseFloat(point);// total값(주문금액(subTotal)+배송료+포인트)
+		
 	};
 	
+	//cart아이템 삭제(쿠키까지 삭제)함수
+	function deleteItem(e) {
+		var deleteNum = parseInt($(e.currentTarget).attr('value')); 
+        setCookie('cart' + deleteNum,'',0);
+        
+        // 지운 후 정렬 
+        var testNum = deleteNum + 1;
+        
+        while(getCookie('cart' + testNum)){
+            testNum++;
+        }
+        
+        for(var i = deleteNum + 1; i < testNum; i++){
+            setCookie('cart' + (i-1),getCookie('cart' + i),1);
+            if(i == testNum - 1){
+                setCookie('cart' + i,'',0);
+            }
+        }
+        
+        $(e.currentTarget).parents()[1].remove();
+        $('#cartButton').attr('data-notify',testNum - 2);
+        sumUp();
+	}
+	
+	// 모두삭제 버튼 클릭 시 발생
 	$('#delete_All').bind('click',function(e){
 		$('.table_row').each(function(index,item){
 			item.remove();
@@ -507,7 +524,44 @@ function sumPrice(){
 		sumUp();
 	});
 	
-
+	// 선택 삭제 버튼 클릭 시 발생
+	$('#delete_selected').click(function() {
+		var deleteNum;
+		var testNum;
+		var target;
+		for(var i=0; i<$('.roundedOne').length; i++){
+			if($('.roundedOne')[i].checked){
+				//deleteItem함수 실행..event가 매개변수로 되어있다..ㅠ
+				//부모의 부모의 두번째자식의 첫자식이 div태그의 value값
+				target = document.getElementsByClassName('roundedOne')[i].parentElement.parentElement.children[1].firstElementChild;
+				deleteNum = document.getElementsByClassName('roundedOne')[i].parentElement.parentElement.children[1].firstElementChild.getAttribute('value');
+				setCookie('cart' + deleteNum,'',0);
+				
+				// 지운 후 정렬 
+		        testNum = deleteNum + 1;
+		        
+		        while(getCookie('cart' + testNum)){
+		            testNum++;
+		        }
+		        
+		        for(var i = deleteNum + 1; i < testNum; i++){
+		            setCookie('cart' + (i-1),getCookie('cart' + i),1);
+		            if(i == testNum - 1){
+		                setCookie('cart' + i,'',0);
+		            }
+		        }
+		        
+		        target.parentElement.parentElement.remove();
+		        $('#cartButton').attr('data-notify',testNum - 2);
+			}
+		}
+		sumUp();
+		
+	})
+	
+	
+	
+	// cart에 담긴 아이템 table에 뿌려주고 수량 변화 이벤트
 	 $(document).ready(function() {
 		    
 			/*if(getQuerystring(productCode)){*/
@@ -544,9 +598,10 @@ function sumPrice(){
 			$('.mtext-110.cl2')[0].innerText =  checksum;
 			$('.mtext-110.cl2')[1].innerText = (checksum + parseInt($('.stext-110.cl2')[7].innerText.trim().substring(0,$('.stext-110.cl2')[7].innerText.trim().length -2)));
 			
-			// 지우기
+			$('.how-itemcart1').unbind("click").on('click', deleteItem);
+/* 			// 상품이미지 클릭 시 해당상품 cart에서 지우기
 			$('.how-itemcart1').unbind("click").on('click',function(e){
-	            var deleteNum = parseInt($(e.currentTarget).attr('value'));
+	            var deleteNum = parseInt($(e.currentTarget).attr('value')); 
 	            setCookie('cart' + deleteNum,'',0);
 	            
 	            // 지운 후 정렬 
@@ -556,10 +611,7 @@ function sumPrice(){
 	                testNum++;
 	            }
 	            
-	            console.log(testNum);
-	            
 	            for(var i = deleteNum + 1; i < testNum; i++){
-	                console.log(i);
 	                setCookie('cart' + (i-1),getCookie('cart' + i),1);
 	                if(i == testNum - 1){
 	                    setCookie('cart' + i,'',0);
@@ -570,7 +622,7 @@ function sumPrice(){
 	            $('#cartButton').attr('data-notify',testNum - 2);
 	            sumUp();
 	        });
-			
+ */			
 			// 수량up 클릭이벤트 걸어주는 함수
 			$('.btn-num-product-up').bind("click",function(e){
 				console.log('수량up 함수 들어오나');
