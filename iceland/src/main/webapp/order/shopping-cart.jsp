@@ -467,29 +467,17 @@ function sumPrice(){
 	
 	//전체삭제 클릭시 실행
 	function deleteAllItem() {
-		var deleteNum;
-		var testNum;
-		for(var i=0; i<$('.how-itemcart1').length; i++){
-			deleteNum = document.getElementsByClassName('how-itemcart1')[0].getAttribute('value');
-			setCookie('cart' + deleteNum, '', 0);
-			
-			// 쿠키삭제
-	        setCookie('cart' + (i-1),getCookie('cart' + i),1);
-	        if(i == testNum - 1){
-	        setCookie('cart' + i,'',0);
-	        }    
-	        
-			// item삭제(table row삭제)
-			//console.log('table-row엘리먼트'+document.getElementsByClassName('table_row')[i]);
-			$('.table_row').remove();
-	        $('#cartButton').attr('data-notify',testNum - 2);
+		for(var cartNum = 1; cartNum<=$('.table_row').length; cartNum++){
+			setCookie('cart'+cartNum, '', 0);
 		}
+		$('.table_row').remove();
+		$('#cartButton').attr('data-notify',0); 
+		
 		sumUp();
 	}
 	
 	// 전체삭제 버튼 클릭 시 발생
 	$('#delete_All').click(function() {
-		console.log('전체삭제버튼 눌림');
 		deleteAllItem();
 	});
 	
