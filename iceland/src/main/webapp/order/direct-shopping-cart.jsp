@@ -419,6 +419,19 @@ tr {
 					</div>
 			</div>
 		</div>
+		<input type="hidden" name="sendProductCode" id="post1"/>
+		<input type="hidden" name="sendPantsCode" id="post2"/>
+		<input type="hidden" name="sendJacketCode" id="post3"/>
+		<input type="hidden" name="sendProductNum" id="post4"/>
+		<input type="hidden" name="sendProductCount" id="post5"/>
+		<input type="hidden" name="sendPaymentPoint" id="post6"/>
+		<input type="hidden" name="sendPaymentMethod" id="post7"/>
+		<input type="hidden" name="sendTotalCost" id="post8"/>
+		<input type="hidden" name="sendDeliveryAddress1" id="post9"/>
+		<input type="hidden" name="sendDeliveryAddress2" id="post10"/>
+		<input type="hidden" name="sendDeliveryRecipient" id="post11"/>
+		<input type="hidden" name="sendDeliveryRecipientPhoneNumber" id="post12"/>
+		<input type="hidden" name="sendDeliveryRequirement" id="post13"/>
 	</form>
 	
 	
@@ -507,6 +520,68 @@ tr {
 	<script src="/iceland/js/address.js"></script>
 	<script src="/iceland/js/ajax.js"></script>
 	<!--===============================================================================================-->
-
+    <script type="text/javascript">
+    
+    // hidden 입력인자
+    $(document).ready(function(){
+    	$('#post1').val(getQuerystring('productCode'));
+    	$('#post2').val(getQuerystring('productCode').split('$')[0] + '$' + 'pt' + '$' + getQuerystring('productCode').split('$')[2] + '$' + getQuerystring('productCode').split('$')[3]);
+    	$('#post3').val(getQuerystring('productCode').split('$')[0] + '$' + 'jk' + '$' + getQuerystring('productCode').split('$')[1] + '$' + getQuerystring('productCode').split('$')[3]);
+    	$('#post4').val(getQuerystring('productNum'));
+    	$('#post5').val(getQuerystring('productCount'));
+    	
+    	$('#usingPoint').on('change',function(){
+    		$('#post6').val($('#usingPoint').val());
+    		
+    		// 총합
+    		$("#post8").val(parseInt(replaceAll($('.mtext-110.cl2')[0].innerText.substring(3,$('.mtext-110.cl2')[0].innerText.length - 3),',','')) - $('#usingPoint').val());
+    		
+    		console.log(6);
+    	})
+    	
+    	$($('[name="payMethod"]')[0]).on('change',function(){
+    		$('#post7').val($('[name="payMethod"]')[0].value);
+    		console.log(7);
+    	})
+    	
+    	$('#address').on('change',function(){
+    		$('#post9').val($('#address').val());
+    		console.log(9);
+    	})
+    	
+    	$('#address_detail').on('change',function(){
+    		$('#post9').val($('#address').val());
+    	    $('#post10').val($('#address_detail').val());
+    	    console.log(10);
+    	})
+    	
+    	$('#rcvr').on('change',function(){
+    		$('#post11').val($('#rcvr').val());
+    		console.log(11);
+    	})
+    	
+    	$('#post12').val($('#phoneNumberSelect').val() + '-' + $('#phoneNumber2').val() + '-' + $('#phoneNumber3').val());
+    	$('#phoneNumberSelect').on('change',function(){
+    		$('#post12').val($('#phoneNumberSelect').val() + '-' + $('#phoneNumber2').val() + '-' + $('#phoneNumber3').val());
+    		console.log(11);
+    	})
+    	
+    	$('#phoneNumber2').on('change',function(){
+    		$('#post12').val($('#phoneNumberSelect').val() + '-' + $('#phoneNumber2').val() + '-' + $('#phoneNumber3').val());
+    		console.log(11);
+    	})
+    	$('#phoneNumber3').on('change',function(){
+    		$('#post12').val($('#phoneNumberSelect').val() + '-' + $('#phoneNumber2').val() + '-' + $('#phoneNumber3').val());
+    		console.log(11);
+    	})
+    	
+    	$('#requireComment').on('change',function(){
+    		$('#post13').val($('#requireComment').val());
+    		console.log(13);
+    	});
+    	
+    })
+    
+    </script>
 </body>
 </html>
