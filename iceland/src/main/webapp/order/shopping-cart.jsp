@@ -76,7 +76,7 @@ window.onload = function () {
 		$('#defaultAddr').css('display', 'none');
 		$('#newAddr').css('display', 'none');
 		// 결제의 포인트부분 없애기
-		$('#pointDiv').css('display', 'none');
+		$('.pointDiv').css('display', 'none');
 	}
 	
 	// 품목당 수량, 가격에 id값 동적 부여
@@ -341,7 +341,7 @@ function sumPrice(){
 						<div class="flex-w flex-t bor12 p-b-13">
 							<div class="size-208">
 								<span class="stext-110 cl2">
-									Subtotal
+									Subtotal:
 								</span>
 							</div>
 
@@ -353,52 +353,52 @@ function sumPrice(){
 						</div>
 
 						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
-							<div class="size-208">
+							<div class="size-208 w-full-ssm">
 								<span class="stext-110 cl2">
-								결제방법
+									결제방법
 								</span>
 							</div>
-							<div class="size-209">
-							   	<span class="stext-110 c12">
-								<select style="border-radius: 6px; height: 23px; cursor: pointer" name="payMethod">
-									<option value = "noBank">무통장 입금</option>
-									<option value = "cart">카드결제</option>
-									<option value = "phone">휴대폰 결제</option>
-								</select>
+							<div style="padding-top: 0" class="size-208 p-t-15 w-full-ssm">
+								<div style="margin-top: 0" class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+									<!-- class="js-select2" -->
+									<select style="border-radius: 3px; height:30px; cursor: pointer" name="payMethod">
+										<option value = "noBank">무통장 입금</option>
+										<option value = "cart">카드결제</option>
+										<option value = "phone">휴대폰 결제</option>
+									</select>
+								</div>
+							</div>
+							<div class="size-208 p-t-15 w-full-ssm pointDiv">
+								<span class="stext-110 cl2">
+									현재 포인트
 								</span>
 							</div>
-						</div>
-						<div id="pointDiv" style="display:block;">	
+							<div class="size-208 p-t-15 w-full-ssm pointDiv">
+								<span class="stext-110 cl2">
+									2000 <strong>P</strong> 
+								</span>
+							</div>
+							<div class="size-208 p-t-15 w-full-ssm pointDiv">
+								<span class="stext-110 cl2">
+									사용 포인트
+								</span>
+							</div>
+							<div class="size-208 p-t-15 w-full-ssm pointDiv">
+								<span class="stext-110 cl2">
+									0 <strong>P</strong>
+								</span>
+							</div>
 							<div class="size-208 p-t-15 w-full-ssm">
 								<span class="stext-110 cl2">
-									사용가능 포인트 
+									배송비
 								</span>
-								<input id="usableP" type="text" value="사용가능한포인트들어감">
 							</div>
+							
 							<div class="size-208 p-t-15 w-full-ssm">
 								<span class="stext-110 cl2">
-									사용할 포인트
-								</span>
-								<input id="usableP" type="text" value="사용할포인트입력받을것">
-							</div>
-						</div>	
-							<div class="flex-w flex-t bor12 p-b-13">
-							<div class="size-208">
-								<span class="stext-110 cl2">
-									Subtotal
+									2500 원
 								</span>
 							</div>
-
-							<div class="size-209">
-								<span class="mtext-110 cl2">
-									$79.65
-								</span>
-							</div>
-						</div>
-							<!-- 
-							<div class="size-208 p-t-15 w-full-ssm">
-								
-							</div> -->
 						</div>
 
 						<div class="flex-w flex-t p-t-27 p-b-33">
@@ -419,6 +419,7 @@ function sumPrice(){
 							결제하기
 						</button>
 					</div>
+				</div>
 				</div>
 			</div>
 		</div>
