@@ -284,12 +284,12 @@ margin: 0 15px;
 }
  
 .modal-dialog {
-        display: inline-block;
-        text-align: left;
-        vertical-align: middle;
+     display: inline-block;
+     text-align: left;
+     vertical-align: middle;
 }
 
-#popLayWrap, #popLayWrap2 {
+#popLayWrap, #popLayWrap2, #popLayWrap3 {
   top: 30%;
   margin-top: -100px;
 }

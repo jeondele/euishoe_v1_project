@@ -72,5 +72,20 @@ public class MyBatisProductTest {
 		sqlSession.commit();
 		sqlSession.close();
 	}
+//	@Test
+//	public void testFilter2() {
+//		
+//		productDao.create
+//		SqlSession sqlSession = sqlSessionFactory.openSession();
+//		List<Map<String, Object>> params = null;
+//		params = sqlSession.selectList(NAMESPACE+"newProductList");
+//		
+//		
+//		for (Map<String, Object> map : params) {
+//			logger.debug(map);
+//		}
+//		sqlSession.commit();
+//		sqlSession.close();
+//	}
 
 }

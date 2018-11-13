@@ -40,6 +40,8 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/iceland/order/shopping-cart.css">
+<!--===============================================================================================-->
+<!-- <link rel="stylesheet" type="text/css" href="/iceland/product/detail/product.css"> -->
   <!--===============================================================================================-->
 <script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 <style>
@@ -72,6 +74,7 @@ window.onload = function () {
 	// 비회원인경우, 주소관련 버튼 안보이게, point영역 안보이게
 	if(loginId == null){
 		console.log('비회운인경우 입니다.');
+		$('.select-ship').remove();
 		// 기본배송지, 새 배송지 없애기
 		$('#defaultAddr').css('display', 'none');
 		$('#newAddr').css('display', 'none');
@@ -80,9 +83,9 @@ window.onload = function () {
 	}
 	
 	// 품목당 수량, 가격에 id값 동적 부여
-	dynamicGrantId();
+//	dynamicGrantId();
 	//cntChange();
-	$('#cnt').change(function (){
+/* 	$('#cnt').change(function (){
 		var val = $('#cnt').val();
 		var price = Number($('#price').text());
 		console.log('총 가격계산 함수 진입!!!!!!cnt값'+val+'price(단품 한개)값:'+price);
@@ -90,7 +93,7 @@ window.onload = function () {
 		console.log('!!!!!총가격 계산값: '+ sum)
 		$('#totalPrice').text(sum);
 	});
-
+ */
 };
 
 // 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수..->태그에 onclick걸어줌
@@ -99,7 +102,7 @@ function clearAddrInput() {
 	$('#address').val('');
 	$('#address_detail').val('');
 }
-
+/*
 // 상품 수량 element에 id값 동적 부여
 function dynamicGrantId() {
 	var row; // 상품하나가 차지하는 table의 row
@@ -148,7 +151,7 @@ function cntChange() {
 	});
 }
 
-// 품목당 총 가격
+ // 품목당 총 가격
 function sumPrice(){
 	var val = $('#cnt').val();
 	var price = Number($('#price').text());
@@ -156,7 +159,7 @@ function sumPrice(){
 	var sum = price * Number(val);
 	console.log('!!!!!총가격 계산값: '+ sum)
 	$('#totalPrice').text(sum);
-}
+} */
 
 </script>
 </head>
@@ -200,62 +203,11 @@ function sumPrice(){
 									<th class="column-5 txt-center">수량</th>
 									<th class="column-6 txt-center">총금액</th>
 								</tr>
-								<tr class="table_row">
-									<td class="column-1 txt-center">
-										<input type="checkbox" value="None" class="roundedOne" name="check" checked />
-									</td>
-									<td class="column-2 txt-center">
-										<div class="how-itemcart1"><img src="" alt="IMG"/></div>
-									</td>
-									<td class="column-3 txt-center">Fresh Strawberries</td>
-									<td class="column-4 txt-center">3600</td>
-									<td class="column-5 txt-center">
-										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="text" name="num-product1" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-									</td>
-									<td class="column-6 txt-center">3600</td>
-								</tr>
-
-								<tr class="table_row">
-									<td class="column-1 txt-center">
-										<input type="checkbox" value="None" class="roundedOne" id="" name="check" checked />
-									</td>
-									<td class="column-2 txt-center">
-										<div class="how-itemcart1">
-											<img src="/iceland/images/item-cart-05.jpg" alt="IMG">
-										</div>
-									</td>
-									<td class="column-3 txt-center">Lightweight Jacket</td>
-									<td class="column-4 txt-center">1600</td>
-									<td class="column-5 txt-center">
-										<div class="wrap-num-product flex-w m-l-auto m-r-auto">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-									</td>
-									<td class="column-6 txt-center">1600</td>
-								</tr>
 							</table>
 						</div>
 
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-                             <div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">선택삭제</div>
+                            <div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" id="delete_selected">선택삭제</div>
 							<div class="float-r flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" id="delete_All">전체삭제</div>
 						</div>
 						
@@ -359,7 +311,7 @@ function sumPrice(){
 								</span>
 							</div>
 							<div style="padding-top: 0" class="size-208 p-t-15 w-full-ssm">
-								<div style="margin-top: 0" class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+								<div style="margin-top: 0; border:none" class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
 									<!-- class="js-select2" -->
 									<select style="border-radius: 3px; height:30px; cursor: pointer" name="payMethod">
 										<option value = "noBank">무통장 입금</option>
@@ -410,12 +362,12 @@ function sumPrice(){
 
 							<div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-									$79.65
+									0
 								</span>
 							</div>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" data-toggle="modal" data-target="#popLayWrap3">
 							결제하기
 						</button>
 					</div>
@@ -430,7 +382,7 @@ function sumPrice(){
 
   <%@include file="/iceland/../includes/QuickMenu.jsp"%>
 
-
+  <%@include file="/iceland/../includes/payResultModal.jsp" %>
   <!--===============================================================================================-->
   <script src="/iceland/vendor/animsition/js/animsition.min.js"></script>
   <!--===============================================================================================-->
@@ -452,85 +404,138 @@ function sumPrice(){
   <!--===============================================================================================-->
   <script
     src="/iceland/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-  <!--확인필요(by sw)================================================================================-->  
-<!--   <script>
-			$('.js-pscroll').each(function() {
-				$(this).css('position', 'relative');
-				$(this).css('overflow', 'hidden');
-				var ps = new PerfectScrollbar(this, {
-					wheelSpeed : 1,
-					scrollingThreshold : 1000,
-					wheelPropagation : false,
-				});
+  <!--확인 및 수정 완료(by sw)================================================================================-->  
+   <script>
+	$('.js-pscroll').each(function() {
+		$(this).css('position', 'relative');
+		$(this).css('overflow', 'hidden');
+		var ps = new PerfectScrollbar(this, {
+			wheelSpeed : 1,
+			scrollingThreshold : 1000,
+			wheelPropagation : false,
+		});
 
-				$(window).on('resize', function() {
-					ps.update();
-				})
-			});
+		$(window).on('resize', function() {
+			ps.update();
+		});
+	});
 			
 	$('.how-itemcart1').bind("click",function(e){
 		e.currentTarget.parentElement.parentElement.remove();
 	});
-	/*
-	$('.wrap-num-product').bind("click",function(e){
-		console.log(e);
-		console.log(e.previousElementSibling);
-		console.log(e.currentTarget.children[1]);
+
 		
-	});
-	*/
-	$('.btn-num-product-down').bind("click",function(e){
-		/*
-			갯수 세기
-		*/
-		var num = e.currentTarget.parentElement.children[1].value - 1;
-		var price = e.currentTarget.parentElement.parentElement.parentElement.children[2].innerText;
-		
-		price = parseFloat(price);
-		
-		e.currentTarget.parentElement.parentElement.parentElement.children[4].innerText = (num * price);
-		
-		sumUp();
-	});
-		
-	$('.btn-num-product-up').bind("click",function(e){
-		var num = parseInt(e.currentTarget.parentElement.children[1].value) + 1;
-		var price = e.currentTarget.parentElement.parentElement.parentElement.children[2].innerText;
-		
-		price = parseFloat(price);
-		
-		e.currentTarget.parentElement.parentElement.parentElement.children[4].innerText = (num * price);
-		
-		sumUp();
-		
-	});
-	
+	// 결제창 금액 설정 함수
 	function sumUp(){
+		console.log('subTotal계산함수 진입');
 		var sum = 0;
 		var num = 0;
-		for(var i = 1; i < $('.column-4.txt-center').length; i++){
-			sum += parseInt($('.column-4.txt-center')[1].innerText.trim());
+		var shipping = document.getElementsByClassName('stext-110 cl2')[7].innerText; //배송료
+		var point = document.getElementsByClassName('stext-110 cl2')[5].innerText;	  //사용 포인트
+		for(var i = 1; i < $('.column-6.txt-center').length; i++){
+			sum += parseFloat($('.column-6.txt-center')[i].innerText.trim());
 		}
-		$('.mtext-110.cl2')[0].innerText = sum;
-		$('.mtext-110.cl2')[1].innerText = (sum + parseInt($('.stext-110.cl2')[7].innerText.trim().substring(0,$('.stext-110.cl2')[7].innerText.trim().length -2)));
+		
+		$('.mtext-110.cl2')[0].innerText = sum; //ui상 subTotal값
+		$('.mtext-110.cl2')[1].innerText = sum + parseFloat(shipping) - parseFloat(point);// total값(주문금액(subTotal)+배송료+포인트)
+		
 	};
 	
-	$('#delete_All').bind('click',function(e){
-		$('.table_row').each(function(index,item){
-			item.remove();
-		})
-		
+	//cart아이템 삭제(쿠키까지 삭제)함수(param e)
+	function deleteItem(e) {
+		var deleteNum = parseInt($(e.currentTarget).attr('value')); 
+        setCookie('cart' + deleteNum,'',0);
+        
+        // 지운 후 정렬 
+        var testNum = deleteNum + 1;
+        
+        while(getCookie('cart' + testNum)){
+            testNum++;
+        }
+        
+        for(var i = deleteNum + 1; i < testNum; i++){
+            setCookie('cart' + (i-1),getCookie('cart' + i),1);
+            if(i == testNum - 1){
+                setCookie('cart' + i,'',0);
+            }
+        }
+        
+        $(e.currentTarget).parents()[1].remove();
+        $('#cartButton').attr('data-notify',testNum - 2);
+        sumUp();
+	}
+	
+	//전체삭제 클릭시 실행
+	function deleteAllItem() {
+		var deleteNum;
+		var testNum;
+		for(var i=0; i<$('.how-itemcart1').length; i++){
+			deleteNum = document.getElementsByClassName('how-itemcart1')[0].getAttribute('value');
+			setCookie('cart' + deleteNum, '', 0);
+			
+			// 쿠키삭제
+	        setCookie('cart' + (i-1),getCookie('cart' + i),1);
+	        if(i == testNum - 1){
+	        setCookie('cart' + i,'',0);
+	        }    
+	        
+			// item삭제(table row삭제)
+			//console.log('table-row엘리먼트'+document.getElementsByClassName('table_row')[i]);
+			$('.table_row').remove();
+	        $('#cartButton').attr('data-notify',testNum - 2);
+		}
+		sumUp();
+	}
+	
+	// 전체삭제 버튼 클릭 시 발생
+	$('#delete_All').click(function() {
+		console.log('전체삭제버튼 눌림');
+		deleteAllItem();
+	});
+	
+	// 선택 삭제 버튼 클릭 시 발생(deleteItem(e)함수 내용 실행 but event의 target찾아갈 수 없어서 중복해서 씀..ㅠ)
+	// ->2개 이상선택 후 클릭 시 처음제품만 삭제됨!!!!
+	$('#delete_selected').click(function() {
+		var deleteNum;
+		var testNum;
+		var target;
+		for(var i=0; i<$('.roundedOne').length; i++){
+			if($('.roundedOne')[i].checked){
+				//deleteItem함수 실행..event가 매개변수로 되어있다..ㅠ
+				//부모의 부모의 두번째자식의 첫자식이 div태그의 value값
+				target = document.getElementsByClassName('roundedOne')[i].parentElement.parentElement.children[1].firstElementChild;
+				deleteNum = document.getElementsByClassName('roundedOne')[i].parentElement.parentElement.children[1].firstElementChild.getAttribute('value');
+				setCookie('cart' + deleteNum,'',0);
+				
+				// 지운 후 정렬 
+		        testNum = deleteNum + 1;
+		        
+		        while(getCookie('cart' + testNum)){
+		            testNum++;
+		        }
+		        
+		        for(var i = deleteNum + 1; i < testNum; i++){
+		            setCookie('cart' + (i-1),getCookie('cart' + i),1);
+		            if(i == testNum - 1){
+		                setCookie('cart' + i,'',0);
+		            }
+		        }
+		        
+		        target.parentElement.parentElement.remove();
+		        $('#cartButton').attr('data-notify',testNum - 2);
+			}
+		}
 		sumUp();
 	});
 	
-
+	// cart에 담긴 아이템 table에 뿌려주고 수량 변화 이벤트
 	 $(document).ready(function() {
 		    
-			/*if(getQuerystring(productCode)){*/
+			/*if(getQuerystring(productCode))*/
 			var prior = 1;
 			var checksum = 0; 
 			
-			while(getCookie('cart' + prior)){
+			while(getCookie('cart' + prior)) {
 				var obj = decodeURIComponent(getCookie('cart' + prior)).substring(1,decodeURIComponent(getCookie('cart' + prior)).length - 1);
 				var jsonObj = JSON.parse(obj);
 				var jsonProductSize = jsonObj.PRODUCT_CODE || '';
@@ -545,11 +550,11 @@ function sumPrice(){
 				str += '<tr class="table_row"><td class="column-1 txt-center"><input type="checkbox" value="None" class="roundedOne" name="check" checked />';
 				str += '</td><td class="column-2 txt-center"><div class="how-itemcart1" value="' + prior + '"><img src="' + jsonObj.image_ref + '" alt="IMG"/></div>';
 				str += '</td><td class="column-3 txt-center">' + jsonObj.PRODUCT_NAME + '<br>' + jsonProductSize + '</td><td class="column-4 txt-center">' + jsonObj.PRODUCT_PRICE + '</td>';
-				str += '<td class="column-5 txt-center"><div class="wrap-num-product flex-w m-l-auto m-r-auto">'
-				str += '<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-minus"></i></div>'
+				str += '<td class="column-5 txt-center"><div class="wrap-num-product flex-w m-l-auto m-r-auto">';
+				str += '<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-minus"></i></div>';
                 str += '<input class="mtext-104 cl3 txt-center num-product"	type="number" name="num-product1" value="' + jsonObj.product_count + '">';
                 str += '<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-plus"></i>';
-				str += '</div></div></td><td class="column-6 txt-center">' + (jsonObj.PRODUCT_PRICE * jsonObj.product_count) + '</td></tr>'
+				str += '</div></div></td><td class="column-6 txt-center">' + (jsonObj.PRODUCT_PRICE * jsonObj.product_count) + '</td></tr>';
 				$('#tableCart').append(str);
 
 				  checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
@@ -560,9 +565,10 @@ function sumPrice(){
 			$('.mtext-110.cl2')[0].innerText =  checksum;
 			$('.mtext-110.cl2')[1].innerText = (checksum + parseInt($('.stext-110.cl2')[7].innerText.trim().substring(0,$('.stext-110.cl2')[7].innerText.trim().length -2)));
 			
-			// 지우기
+			//$('.how-itemcart1').unbind("click").on('click', deleteItem);
+ 			// 상품이미지 클릭 시 해당상품 cart에서 지우기
 			$('.how-itemcart1').unbind("click").on('click',function(e){
-	            var deleteNum = parseInt($(e.currentTarget).attr('value'));
+	            var deleteNum = parseInt($(e.currentTarget).attr('value')); 
 	            setCookie('cart' + deleteNum,'',0);
 	            
 	            // 지운 후 정렬 
@@ -572,10 +578,7 @@ function sumPrice(){
 	                testNum++;
 	            }
 	            
-	            console.log(testNum);
-	            
 	            for(var i = deleteNum + 1; i < testNum; i++){
-	                console.log(i);
 	                setCookie('cart' + (i-1),getCookie('cart' + i),1);
 	                if(i == testNum - 1){
 	                    setCookie('cart' + i,'',0);
@@ -586,11 +589,45 @@ function sumPrice(){
 	            $('#cartButton').attr('data-notify',testNum - 2);
 	            sumUp();
 	        });
-			
-			}
-		);
+ 			
+			// 수량up 클릭이벤트 걸어주는 함수//////////////////////////////////
+			$('.btn-num-product-up').bind("click",function(e){
+				console.log('수량up 함수 들어오나');
+				// 수량 +버튼
+				var num = Number(e.currentTarget.parentElement.children[1].value);
+				// 현재 수량+1을 수량의 value값에 할당
+				e.currentTarget.parentElement.children[1].value = num+1;
+				
+				// 수량에 맞게 price 설정....
+				// 품목당 가격
+				var price = parseFloat(e.currentTarget.parentElement.parentElement.parentElement.children[3].innerText); 
+				// 품목당 가격(price) * 수량(num) 값을 해줌
+				var sumPrice = price * Number(e.currentTarget.parentElement.children[1].value);
+				e.currentTarget.parentElement.parentElement.parentElement.children[5].innerText = sumPrice;
+				
+				sumUp();
+				
+			});
+			/////////////////////////////////////////////////////////////////
+			// 수량down 클릭이벤트 걸어주는 함수////////////////////////////
+			$('.btn-num-product-down').bind("click",function(e){
+				console.log('수량down함수 들어옴');
+				var num = Number(e.currentTarget.parentElement.children[1].value);
+				if(num == 1){
+					return;
+				}else{
+					e.currentTarget.parentElement.children[1].value = num-1;
+					var price = parseFloat(e.currentTarget.parentElement.parentElement.parentElement.children[3].innerText); 
+					var sumPrice = price * Number(e.currentTarget.parentElement.children[1].value);
+					e.currentTarget.parentElement.parentElement.parentElement.children[5].innerText = sumPrice;
+				}
+				sumUp();
+			});
+			/////////////////////////////////////////////////////////
+		});
+		
 	
-		</script> -->
+</script> 
   <!--===============================================================================================-->
   <script src="/iceland/js/main.js"></script>
 
