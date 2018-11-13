@@ -145,6 +145,14 @@ public class MybatisProductDao implements ProductDao {
 		else return true;
 	}
 
+	@Override
+	public int maxProductCodeNum() throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int result = sqlSession.selectOne(NAMESPACE+"maxProductCodeNum");
+		sqlSession.commit();
+		sqlSession.close();
+		return result;
+	}
 }
 
 

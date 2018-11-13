@@ -421,7 +421,6 @@ tr {
 		</div>
 	</form>
 	
-	
 	<form id="sendToDoneOrder" action="/iceland/ordersucc.es">
 		<input type="hidden" id="sendProductCode" name="sendProductCode" value="">
 		<input type="hidden" id="sendPantsCode" name="sendPantsCode" value="">

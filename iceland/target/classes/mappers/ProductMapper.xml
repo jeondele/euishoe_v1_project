@@ -259,8 +259,8 @@
 		             #{PRODUCT_NUM}, 
 		             #{PRODUCT_COUNT}) 		
 	</insert>
-	<select id ="maxProductCodeNum" resultType="int" parameterType="int">
-		select max(product_code_num)+1
+	<select id ="maxProductCodeNum" resultType="int">
+		select max(product_code_num)
 		from products
 	</select>
     
@@ -279,4 +279,5 @@
 		set jacket_count = #{jacketCount}
 		where jacket_code = #{jacketCode}
 	</update>
+	
 </mapper>
