@@ -263,5 +263,8 @@
 		select max(product_code_num)+1
 		from products
 	</select>
-
+    
+    <update id="update" parameterType="map">
+        update products set PRODUCT_COUNT = #{productCount} where PRODUCT_CODE LIKE #{productCode}
+    </update>
 </mapper>

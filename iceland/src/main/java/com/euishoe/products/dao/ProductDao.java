@@ -1,5 +1,6 @@
 package com.euishoe.products.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,4 +44,6 @@ public interface ProductDao {
 	
 	// 필터를 통한 전체 띄우기
 	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception;
+	
+	public void update(HashMap map) throws Exception;
 }

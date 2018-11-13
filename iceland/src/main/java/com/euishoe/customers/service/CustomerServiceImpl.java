@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.euishoe.carts.dao.CartDao;
+import com.euishoe.carts.dto.Cart;
 import com.euishoe.common.controller.ModelAndView;
 import com.euishoe.customers.dao.CustomerDao;
 import com.euishoe.customers.dto.Customer;
@@ -285,30 +285,23 @@ public class CustomerServiceImpl implements CustomerService {
 
 		if (listDB.isEmpty()) {
 			for (HashMap<String, Object> hashMap : listCarts) {
-				Double temp = (Double) (hashMap.get("PRODUCT_NUM"));
-				Double temp2 = (Double) (hashMap.get("product_count"));
-				
-				Integer Temp = Integer.parseInt(String.valueOf(Math.round(temp)));
-				Integer Temp2 = Integer.parseInt(String.valueOf(Math.round(temp2)));
-
+				// while문으로 교체 리턴해야함.
 				Map map = new HashMap();
 				map.put("PRODUCT_CODE",(String) hashMap.get("PRODUCT_CODE"));
 				map.put("JACKET_CODE",(String) hashMap.get("JACKET_CODE"));
 				map.put("PANTS_CODE",(String) hashMap.get("PANTS_CODE"));
-				map.put("PRODUCT_NUM",Temp);
-				map.put("PRODUCT_COUNT",Temp2);
+				map.put("PRODUCT_NUM",(Double)hashMap.get("PRODUCT_NUM"));
+				map.put("PRODUCT_COUNT",hashMap.get("product_count"));
 				
-				System.out.println("derwr3r3we Jacket :" + (String) hashMap.get("JACKET_CODE") );
-				System.out.println("derwr3r3we Pants :" + (String) hashMap.get("PANTS_CODE") );
-
-				// 실험 필요
 				try {
 					productDao.createOne(map);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				cartDao.createCart((String) hashMap.get("PRODUCT_CODE"), loginId.getValue());
+				Cart cart = new Cart(0, (String) hashMap.get("PRODUCT_CODE"), loginId.getValue());
+				cartDao.createCart(cart);
+				return null;
 			}
 		} else {
 			for (HashMap<String, Object> hashMap : listDB) {
@@ -340,7 +333,7 @@ public class CustomerServiceImpl implements CustomerService {
 				}
 			}
 		}
-
+		
 		for (HashMap<String, Object> hashMap : listDB) {
 			boolean same = false;
 
@@ -352,6 +345,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 			if (!same) {
 				deleteList.add(hashMap);
+				System.out.println("####" + hashMap.get("PRODUCT_CODE"));
 			}
 		}
 
@@ -370,44 +364,43 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		for (HashMap<String, Object> hashMap : updateList) {
-
+			HashMap map = new HashMap<>();
+			map.put("productCode",(String) hashMap.get("PRODUCT_CODE"));
+			map.put("productCount",hashMap.get("product_count"));
+            try {
+				productDao.update(map);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		for (HashMap<String, Object> hashMap : deleteList) {
-
+			cartDao.deleteCart((String) hashMap.get("PRODUCT_CODE"));
 		}
 
 		for (HashMap<String, Object> hashMap : insertList) {
+			
 			try {
-				Product product = new Product();
-				product.setProductCodeNum(0);
-				product.setProductCode((String) hashMap.get("PRODUCT_CODE"));
-				product.setJacketCode((String) hashMap.get("JACKET_CODE"));
-				product.setPantsCode((String) hashMap.get("PANTS_CODE"));
-				Double temp = (Double) (hashMap.get("PRODUCT_NUM"));
-				Double temp2 = (Double) (hashMap.get("product_count"));
-				
-				System.out.println("##$$"+ temp);
-				System.out.println("$%^$%^"+ temp2);
-				
-				Integer Temp = Integer.parseInt(String.valueOf(Math.round(temp)));
-				Integer Temp2 = Integer.parseInt(String.valueOf(Math.round(temp2)));
-
 				Map map = new HashMap();
 				map.put("PRODUCT_CODE",(String) hashMap.get("PRODUCT_CODE"));
 				map.put("JACKET_CODE",(String) hashMap.get("JACKET_CODE"));
 				map.put("PANTS_CODE",(String) hashMap.get("PANTS_CODE"));
-				map.put("PRODUCT_NUM",Temp);
-				map.put("PRODUCT_COUNT",Temp2);
+				map.put("PRODUCT_NUM",(Double)hashMap.get("PRODUCT_NUM"));
+				map.put("PRODUCT_COUNT",hashMap.get("product_count"));
 				
-				product.setProductNum(Temp);
-				product.setProductCount(Temp2);
-				
-				productDao.createOne(map);
+				try {
+					productDao.createOne(map);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				Cart cart = new Cart(0, (String) hashMap.get("PRODUCT_CODE"), loginId.getValue());
+				cartDao.createCart(cart);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
 		System.out.println("동일 : " + sameList.size());
 		System.out.println("수정 : " + updateList.size());
 		System.out.println("지움 : " + deleteList.size());
@@ -424,13 +417,12 @@ public class CustomerServiceImpl implements CustomerService {
 		List<HashMap<String, Object>> deleteListForWish = new ArrayList<HashMap<String, Object>>();
 
 		List<HashMap<String, Object>> insertListForWish = new ArrayList<HashMap<String, Object>>();
-
+        /*
 		if (listDB.isEmpty()) {
 			for (HashMap<String, Object> hashMap : listCarts) {
 				
-				/*
-				 * 위시리스트 : wishlist_num,customer_id,product_num
-				 * */
+				//위시리스트 : wishlist_num,customer_id,product_num
+				  
 				Double temp = (Double) (hashMap.get("PRODUCT_NUM"));
 				Double temp2 = (Double) (hashMap.get("product_count"));
 				
@@ -478,13 +470,6 @@ public class CustomerServiceImpl implements CustomerService {
 							// hashMap.get("PRODUCT_COUNT"));
 						}
 
-						/*
-						 * 
-						 * // 상품제목 X System.out.println("상품제목 X"); cartDao.createCart(null,
-						 * loginId.getValue()); willDelete = false; if (willDelete) {
-						 * System.out.println("삭제"); // 삭제 cartDao.deleteCart((String)
-						 * hashMap.get("CART_NUM")); }
-						 */
 
 					} else {
 						System.out.println("실패");
@@ -492,7 +477,7 @@ public class CustomerServiceImpl implements CustomerService {
 				}
 			}
 		}
-		
+		*/
 		return null;
 	}
 

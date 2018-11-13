@@ -49,8 +49,8 @@ public class CustomerLoginController implements Controller {
 			 *  3. 위시리스트 : wishes 
 			 * 
 			 */
-			mav = customerService.login(request, response, mav, customer, rememberCustomerId);
 			if(customer != null) {
+				mav = customerService.login(request, response, mav, customer, rememberCustomerId);
 				//mav.setView(old_url);
 				mav.setView("/home.es");
 				

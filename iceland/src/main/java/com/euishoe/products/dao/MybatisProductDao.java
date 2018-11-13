@@ -1,5 +1,6 @@
 package com.euishoe.products.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -111,7 +112,17 @@ public class MybatisProductDao implements ProductDao {
 	public void createOne(Map map) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		sqlSession.insert(NAMESPACE+"createOne", map);
+		sqlSession.commit();
 		sqlSession.close();
+	}
+
+	@Override
+	public void update(HashMap map) throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update(NAMESPACE+"update",map);
+		sqlSession.commit();
+		sqlSession.close();
+		
 	}
 
 }
