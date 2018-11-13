@@ -25,8 +25,6 @@ import com.euishoe.reviews.dto.Review;
 public class ProductDetailController implements Controller {
 	
 	ProductService productService;
-	Params params;
-	PageBuilder pageBuilder;
 	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,10 +39,6 @@ public class ProductDetailController implements Controller {
 			list = productService.selectAllById(Integer.valueOf(productNum));
 		} catch (Exception e) {}
 		
-		String requestPage = request.getParameter("page");
-		if(requestPage == null || requestPage.equals("")){
-		  requestPage = "1";
-		}
 		
 		String num = (String)request.getParameter("productNum");
 		String qnaisLock = null;
@@ -53,26 +47,18 @@ public class ProductDetailController implements Controller {
 		int reviewScore = 0;
 		List<HashMap<String,Object>> reviewlist = null;
 		List<HashMap<String,Object>> qnalist = null;
-		int rowCount = 0;
-		
-		params = new Params(Integer.parseInt(requestPage), 5, 1, null, null);
-		System.out.println("222222222");
+		List<HashMap<String,Object>> commentlist = null;
 		try {
-			reviewlist = productService.reviewDynamicReviewList(Integer.parseInt(num), customerId, reviewScore, params);
-			qnalist = productService.qnaDynamicListAll(Integer.parseInt(num), qnaisLock, customerId, typeNum, params);
-			System.out.println("1." + reviewlist);
-			System.out.println("2." + qnalist);
-			rowCount = productService.qnaCountBySearch(Integer.parseInt(num));
-			pageBuilder = new PageBuilder(params, rowCount);
-			pageBuilder.build();
+			reviewlist = productService.reviewDynamicReviewList(Integer.parseInt(num), customerId, reviewScore);
+			qnalist = productService.qnaDynamicListAll(Integer.parseInt(num), qnaisLock, customerId, typeNum);
+			commentlist = productService.readComment(Integer.parseInt(num));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		mav.addObject("ReviewList", reviewlist);
 		mav.addObject("QnaList", qnalist);
-		System.out.println(list);
 		mav.addObject("selectAllById", list);
+		mav.addObject("CommentList", commentlist);
 		mav.setView("/product/details/product-detail.jsp");
 		return mav;
 	}

@@ -12,8 +12,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.euishoe.comments.dao.CommentDao;
 import com.euishoe.common.web.FilterParam;
 import com.euishoe.common.web.Params;
+import com.euishoe.customers.dao.CustomerDao;
 import com.euishoe.products.dao.ProductDao;
 import com.euishoe.products.dto.Product;
 import com.euishoe.products.dto.ProductInfo;
@@ -27,7 +29,18 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 	private ReviewDao reviewDao;
 	private QnaDao qnaDao;
+	private CustomerDao customerDao;
 
+	public CustomerDao getCustomerDao() {
+		return customerDao;
+	}
+
+	public void setCustomerDao(CustomerDao customerDao) {
+		this.customerDao = customerDao;
+	}
+
+	private CommentDao commentDao;
+	
 	public ProductDao getProductDao() {
 		return productDao;
 	}
@@ -52,8 +65,15 @@ public class ProductServiceImpl implements ProductService {
 	public void setQnaDao(QnaDao qnaDao) {
 		this.qnaDao = qnaDao;
 	}
-
 	
+	public CommentDao getCommentDao() {
+		return commentDao;
+	}
+
+	public void setCommentDao(CommentDao commentDao) {
+		this.commentDao = commentDao;
+	}
+
 	@Override
 	public List<Map<String, Object>> newProductList() throws Exception {
 		return productDao.newProductList();
@@ -105,13 +125,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception {
-		return qnaDao.qnaDynamicListAll(productNum, qnaisLock, customerId, TypeNum, params);
+	public List<HashMap<String,Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum) throws Exception {
+		return qnaDao.qnaDynamicListAll(productNum, qnaisLock, customerId, TypeNum);
 	}
 	
 	@Override
-	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception {
-		return reviewDao.reviewDynamicReviewList(productNum, customerId, reviewScore, params);
+	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore) throws Exception {
+		return reviewDao.reviewDynamicReviewList(productNum, customerId, reviewScore);
 	}
 
 	@Override
@@ -130,15 +150,16 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	@Override
-	public int qnaCountBySearch(int productNum) throws Exception {
-		return qnaDao.countBySearch(productNum);
-	}
 
 	@Override
-	public int reviewCounttBySearch(int productNum) throws Exception {
-		return reviewDao.countBySearch(productNum);
+	public List<HashMap<String, Object>> readComment(int productNum) throws Exception {
+		return commentDao.readComment(productNum);
+	}
+
+	// 사용자에서 
+	@Override
+	public Map<String, Object> selectCustomizeInfo(String customerId) throws Exception {
+		return customerDao.getCustomizeInfo(customerId);
 	}
 
 }

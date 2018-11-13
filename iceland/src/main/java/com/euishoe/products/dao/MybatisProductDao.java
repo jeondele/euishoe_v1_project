@@ -102,7 +102,7 @@ public class MybatisProductDao implements ProductDao {
 	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception {
 		List<Map<String,Object>> list = null;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		list = sqlSession.selectList(NAMESPACE+"filter", filterParam);
+		list = sqlSession.selectList(NAMESPACE + "filter", filterParam);
 		sqlSession.close();
 		return list;
 	}

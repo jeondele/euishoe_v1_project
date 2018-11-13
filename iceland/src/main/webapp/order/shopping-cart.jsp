@@ -81,86 +81,12 @@ window.onload = function () {
 		$('#newAddr').css('display', 'none');
 		// 결제의 포인트부분 없애기
 		$('.pointDiv').css('display', 'none');
+	}else{
+		//비동기로 customer 정보 가져오기
 	}
 	
-	// 품목당 수량, 가격에 id값 동적 부여
-//	dynamicGrantId();
-	//cntChange();
-/* 	$('#cnt').change(function (){
-		var val = $('#cnt').val();
-		var price = Number($('#price').text());
-		console.log('총 가격계산 함수 진입!!!!!!cnt값'+val+'price(단품 한개)값:'+price);
-		var sum = price * Number(val);
-		console.log('!!!!!총가격 계산값: '+ sum)
-		$('#totalPrice').text(sum);
-	});
- */
 };
 
-/* // 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수..->태그에 onclick걸어줌
-function clearAddrInput() {
-	$('#postNum').val('');
-	$('#address').val('');
-	$('#address_detail').val('');
-} */
-/*
-// 상품 수량 element에 id값 동적 부여
-function dynamicGrantId() {
-	var row; // 상품하나가 차지하는 table의 row
-	for(var i=0; i<$('.table_row').length; i++){
-		row = $('.table_row')[i];
-		
-		// 가격에 id 부여
-		row.children[3].setAttribute('id', 'price');
-		
-		// 수량 up, down element에 id 부여
-		row.children[4].children[0].children[0].setAttribute('id', 'cntDown');
-		row.children[4].children[0].children[1].setAttribute('id', 'cnt');
-		row.children[4].children[0].children[2].setAttribute('id', 'cntUp');
-		
-		// 품목당 총가격에 id 부여
-		row.children[5].setAttribute('id', 'totalPrice');
-	}
-	//cntChange();
-}
-
-// 수량 up, down
-function cntChange() {
-	console.log("수량변화함수 적용");
-	// 현재수량
-	var curCnt = $('#cnt').val();
-	
-	// 수량 up클릭시
-	$('#cntUp').click(function() {
-		console.log('up clicked!!!!!!!!');
-		// 수량 ++
-		var cnt = Number($('#cnt').val()) + 1; //number타입
-		$('#cnt').val(cnt);
-		$('#cnt').change(sumPrice());
-	});
-	
-	// 수량 down클릭시
-	$('#cntDown').click(function() {
-		console.log('down clicked!!!!!!!!curCnt값:'+curCnt);
-		if($('#cnt').val() != 1){
-			var cnt = Number($('#cnt').val()) - 1;
-			$('#cnt').val(cnt);
-			$('#cnt').change(sumPrice());
-		}else if($('#cnt').val() == 1){
-			return;
-		}
-	});
-}
-
- // 품목당 총 가격
-function sumPrice(){
-	var val = $('#cnt').val();
-	var price = Number($('#price').text());
-	console.log('총 가격계산 함수 진입!!!!!!cnt값'+val+'price(단품 한개)값:'+price);
-	var sum = price * Number(val);
-	console.log('!!!!!총가격 계산값: '+ sum)
-	$('#totalPrice').text(sum);
-} */
 
 </script>
 </head>
@@ -177,23 +103,6 @@ function sumPrice(){
       </a> <span class="stext-109 cl4"> Shoping Cart </span>
     </div>
   </div>
-
-<!-- 결제완료시 제출될 폼 -->
-<form id = "sendToDoneOrder">
-      <input type="hidden" name="sendProductCode" value="">
-      <input type="hidden" name="sendPantsCode" value="">
-      <input type="hidden" name="sendJacketCode" value="">
-      <input type="hidden" name="sendProductNum" value="">
-      <input type="hidden" name="sendProductCount" value="">
-      <input type="hidden" name="sendPaymentPoint" value="">
-      <input type="hidden" name="sendPaymentMethod" value="">
-      <input type="hidden" name="sendTotalCost" value="">
-      <input type="hidden" name="sendDeliveryAddress1" value="">
-      <input type="hidden" name="sendDeliveryAddress2" value="">
-      <input type="hidden" name="sendDeliveryRecipient" value="">
-      <input type="hidden" name="sendDeliveryRecipientPhoneNumber" value="">
-      <input type="hidden" name="sendDeliveryRequirement" value="">
-</form>
 
  	<!-- Shoping Cart -->
 	<form class="bg0 p-t-75 p-b-85">
@@ -334,9 +243,9 @@ function sumPrice(){
 							<div style="padding-top: 0" class="size-208 p-t-15 w-full-ssm">
 								<div style="margin-top: 0; border:none" class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
 									<!-- class="js-select2" -->
-									<select style="border-radius: 3px; height:30px; cursor: pointer" name="payMethod">
+									<select id="payMethod" style="border-radius: 3px; height:30px;  cursor: pointer" name="payMethod">
 										<option value = "noBank">무통장 입금</option>
-										<option value = "cart">카드결제</option>
+										<option value = "card">카드결제</option>
 										<option value = "phone">휴대폰 결제</option>
 									</select>
 								</div>
@@ -357,7 +266,7 @@ function sumPrice(){
 								</span>
 							</div>
 							<div class="size-208 p-t-15 w-full-ssm pointDiv">
-								<span class="stext-110 cl2">
+								<span id="point" class="stext-110 cl2">
 									0 <strong>P</strong>
 								</span>
 							</div>
@@ -382,7 +291,7 @@ function sumPrice(){
 							</div>
 
 							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2">
+								<span id="total" class="mtext-110 cl2">
 									0
 								</span>
 							</div>
@@ -397,7 +306,23 @@ function sumPrice(){
 			</div>
 		</div>
 	</form>
-
+	
+<!-- 결제완료시 제출될 폼 -->
+<form id = "sendToDoneOrder">
+      <input type="hidden" id="sendProductCode" name="sendProductCode" value="">
+      <input type="hidden" id="sendPantsCode" name="sendPantsCode" value="">
+      <input type="hidden" id="sendJacketCode" name="sendJacketCode" value="">
+      <input type="hidden" id="sendProductNum" name="sendProductNum" value="">
+      <input type="hidden" id="sendProductCount" name="sendProductCount" value="">
+      <input type="hidden" id="sendPaymentPoint" name="sendPaymentPoint" value="">
+      <input type="hidden" id="sendPaymentMethod" name="sendPaymentMethod" value="">
+      <input type="hidden" id="sendTotalCost" name="sendTotalCost" value="">
+      <input type="hidden" id="sendDeliveryAddress1" name="sendDeliveryAddress1" value="">
+      <input type="hidden" id="sendDeliveryAddress2" name="sendDeliveryAddress2" value="">
+      <input type="hidden" id="sendDeliveryRecipient" name="sendDeliveryRecipient" value="">
+      <input type="hidden" id="sendDeliveryRecipientPhoneNumber" name="sendDeliveryRecipientPhoneNumber" value="">
+      <input type="hidden" id="sendDeliveryRequirement" name="sendDeliveryRequirement" value="">
+</form>
 
   <%@include file="/iceland/../includes/footer.jsp"%>
 
@@ -512,23 +437,30 @@ function sumPrice(){
 				//쿠키지움
 				var cartNum = i+1;
 				setCookie('cart'+cartNum, '', 0);
+				var cartNum = $('.table_row').length -1;
+				for(var j=1; j<=cartNum; j++){
+					setCookie('cart'+cartNum, getCookie('cart'+(cartNum+1)),1);
+				}
+				
 				//row지움
 				document.getElementsByClassName('roundedOne')[i].parentElement.parentElement.remove();
 				
-				//정렬
+				
+				/* //정렬
 				//i+1쿠키가 삭제, i+2쿠키를 i+1쿠키로 set
 				cartNum;
 				setCookie('cart'+cartNum, getCookie('cart'+(cartNum+1)), 1);
-				setCookie('cart'+(cartNum+1),'',0);
+				setCookie('cart'+(cartNum+1),'',0); */
 				// 카트아이콘 보여지는 숫자세팅
-				var cnum = Number($('#cartButton').attr('data-notify'))-1;
-				$('#cartButton').attr('data-notify', cnum);
+				/* var cnum = Number($('#cartButton').attr('data-notify'))-1;
+				$('#cartButton').attr('data-notify', cnum); */
 			}
 		}
 		// 다돌고 check모두 true
 		for(var n=0; n<$('.table_row'); n++){
 			$('.roundedOne')[n].checked = true;
 		}
+		$('#cartButton').attr('data-notify', $('.table_row').length);
 		sumUp();
 	});
 	
@@ -641,14 +573,31 @@ function sumPrice(){
 				productCode = jsonData.PRODUCT_CODE;
 				jkCode = jsonData.JACKET_CODE;
 				ptCode = jsonData.PANTS_CODE;
-				var str='<input type="hidden" value="'+ productCode + '">';
+				var str='<input type="hidden" class="sendProductCode" value="'+ productCode + '">';
 				$('.table_row')[Number(i)-1].children[2].innerHTML += str;
-				str = '<input type="hidden" value="'+jkCode+'">';
+				str = '<input type="hidden" class="sendJacketCode" value="'+jkCode+'">';
 				$('.table_row')[Number(i)-1].children[2].innerHTML += str;
-				str = '<input type="hidden" value="'+ptCode+'">';
+				str = '<input type="hidden" class="sendPantsCode" value="'+ptCode+'">';
 				$('.table_row')[Number(i)-1].children[2].innerHTML += str;
 				//console.log('카트쿠킥느?'+cookieObj);
-				//console.log('카트쿠키 상품코드값?/'+jsonData.PRODUCT_CODE);
+				//console.log('카트쿠키 상품수량값?/'+jsonData.product_count);
+				
+				// 결제를 위한 코드값을 value로 갖고있는 name=sendProductCode인 input태그
+				var sendStr = '<input type="hidden" name="sendProductCode" value="'+productCode+'">"';
+				$('#sendToDoneOrder')[0].innerHTML = sendStr;
+				// 결제를 위한 pt코드
+				sendStr = '<input type="hidden" name="sendPantsCode" value="'+ptCode+'">"';
+				$('#sendToDoneOrder')[0].innerHTML = sendStr;
+				// 결제를 위한 jk코드
+				sendStr = '<input type="hidden" name="sendJacketCode" value="'+jkCode+'">"';
+				$('#sendToDoneOrder')[0].innerHTML = sendStr;
+				// 결제를 위한 productNum
+				sendStr = '<input type="hidden" name="sendProductNum" value="'+jsonData.PRODUCT_NUM+'">"';
+				$('#sendToDoneOrder')[0].innerHTML = sendStr;
+				// 결제를 위한 productCount
+				sendStr = '<input type="hidden" name="sendProductCount" value="'+jsonData.product_count+'">"';
+				$('#sendToDoneOrder')[0].innerText = sendStr;
+				
 			}
 		});
 	
@@ -658,7 +607,25 @@ function sumPrice(){
 		 $('#address').val('');
 		 $('#address_detail').val('');
 	});
-		
+	
+	// 결제시 제출될 폼값 저장
+	//상품관련..(장바구니 목록에따라 동적으로..배열을 보냄)
+	
+	$('#sendProductCode').attr('value', );
+	//배송관련
+	var str = $('#point').text().trim();
+	str.substring(0, str.length-1).trim();
+	$('#sendPaymentPoint').attr('value', str.substring(0, str.length-1).trim());
+	$('#sendPaymentMethod').attr('value', $('#payMethod').val());
+	$('#sendTotalCost').attr('value', $('#total').val());
+	$('#sendDeliveryAddress1').attr('value', $('#address').val());
+	$('#sendDeliveryAddress2').attr('value', $('#address_detail').val());
+	$('#sendDeliveryRecipient').attr('value', $('#rcvr').val());
+	str = $('#phoneNumberSelect').val() + "-" + $('#phoneNumber2').val() + "-" + $('#phoneNumber3').val();
+	$('#sendDeliveryRecipientPhoneNumber').attr('value', str);
+	$('#sendDeliveryRequirement').attr('value', $('#requireComment'));
+	
+	$('#sendToDoneOrder').attr('action', '/order.es').submit();
 	
 </script> 
   <!--===============================================================================================-->

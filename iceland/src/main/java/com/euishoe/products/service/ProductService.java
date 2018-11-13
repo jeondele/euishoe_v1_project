@@ -38,19 +38,21 @@ public interface ProductService {
 	public List<String> convertToGson(List<Map<String, Object>> list);
 	
 	//제품 리뷰 전체 조회
-	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore, Params params) throws Exception;
+	public List<HashMap<String,Object>> reviewDynamicReviewList(int productNum, String customerId, int reviewScore) throws Exception;
 	
 	//제품 문의글 전체 조회
-	List<HashMap<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum, Params params) throws Exception;
+	List<HashMap<String, Object>> qnaDynamicListAll(int productNum, String qnaisLock, String customerId, int TypeNum) throws Exception;
+	
+	//댓글 전체 조회
+	List<HashMap<String, Object>> readComment(int productNum) throws Exception;
+		
 	public List<Map<String, Object>> selectAllById(int productNum) throws Exception;
 	
 	//제품을 필터를 통해서 뿌리기
 	public List<Map<String, Object>> filter(FilterParam filterParam) throws Exception;
 	
 	//리뷰 게시글 카운트
-	//조회 목록 개수
-	public int qnaCountBySearch(int productNum) throws Exception;
-		
-	//qna 게시글 카운트
-	public int reviewCounttBySearch(int productNum) throws Exception;
+	// product page로 넘어가면서, 사용자 Customizing Information 
+	public Map<String, Object> selectCustomizeInfo(String customerId) throws Exception;
+	
 }

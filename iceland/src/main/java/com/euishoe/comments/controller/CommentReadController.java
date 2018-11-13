@@ -1,6 +1,7 @@
 package com.euishoe.comments.controller;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -33,22 +34,16 @@ public class CommentReadController implements Controller {
 		response.setContentType("text/plain; charset=utf-8");
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		commentService = (CommentService)factory.getBean(CommentServiceImpl.class);
-		String qnaNum = request.getParameter("qnaNum");
-		String reviewNum = request.getParameter("reviewNum");
-		Comment comment = null;
+		String productNum = request.getParameter("productNum");
 		String commentJson = null;
 		PrintWriter out = null;
+		List<HashMap<String,Object>> list = null; 
 		try {
 			out = response.getWriter();
-			if(Integer.parseInt(qnaNum) != 0) {
-				comment = commentService.readQnaComment(Integer.parseInt(qnaNum));
-				commentJson = gson.toJson(comment);
+				list = commentService.readComment(Integer.parseInt(productNum));
+				commentJson = gson.toJson(list);
 				out.println(commentJson);
-			}else if(Integer.parseInt(reviewNum) != 0) {
-				comment = commentService.readReviewComment(Integer.parseInt(reviewNum));
-				commentJson = gson.toJson(comment);
-				out.println(commentJson);
-			}
+				System.out.println(commentJson);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

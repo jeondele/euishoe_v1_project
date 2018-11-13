@@ -65,15 +65,15 @@ public class MyBatisCommentTest {
 	@Test
 	public void testSelectReviewComment() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		int reviewNum = 2;
-		Comment comment = sqlSession.selectOne(NAMESPACE+"selectReviewComment", reviewNum);
-	    	  logger.debug(comment);
-	    	  System.out.println(comment);
-	    	  logger.debug("조회 완료!");
+		int productNum = 1;
+		List<HashMap<String, Object>> list = sqlSession.selectList(NAMESPACE+"selectComment", 1);
+			for (HashMap<String, Object> hashMap : list) {
+		    	  logger.debug(hashMap);
+			}
 		sqlSession.close();
 	}
 	
-	@Test
+	//@Test
 	public void testSelectQnaComment() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		int qnaNum = 2;

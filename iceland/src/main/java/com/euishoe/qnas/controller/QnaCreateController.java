@@ -27,8 +27,6 @@ public class QnaCreateController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		qnaService = (QnaService)factory.getBean(QnaServiceImpl.class);
 		
-
-		
 		String customerId = request.getParameter("customerId");
 		String productNum = request.getParameter("productNum");
 		String qnaContent = request.getParameter("qnaContent");
@@ -37,15 +35,7 @@ public class QnaCreateController implements Controller {
 		String qnaIsLock = request.getParameter("qnaIsLock");
 		String qnaTypeNum = request.getParameter("qnaTypeNum");
 		
-		System.out.println("1." + customerId);
-		System.out.println("2." + productNum);
-		System.out.println("3." + qnaContent);
-		System.out.println("4." + qnatitle);
-		System.out.println("5." + qnaPassword);
-		System.out.println("6." + qnaTypeNum);
-		System.out.println("7." + qnaIsLock);
-		
-		Qna qna = new Qna(Integer.parseInt(qnaTypeNum), customerId, Integer.parseInt(productNum), qnatitle, qnaContent, qnaPassword, qnaIsLock);
+		Qna qna = new Qna(Integer.parseInt(qnaTypeNum), Integer.parseInt(productNum), customerId, qnatitle, qnaContent, qnaPassword, qnaIsLock);
 		try {
 			qnaService.createQna(qna);
 		} catch (Exception e) {

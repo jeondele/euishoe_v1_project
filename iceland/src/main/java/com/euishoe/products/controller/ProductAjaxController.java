@@ -1,5 +1,7 @@
 package com.euishoe.products.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,13 +35,18 @@ public class ProductAjaxController implements Controller {
 			ModelAndView mav = new ModelAndView();
 			XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 			productService = (ProductService)factory.getBean(ProductServiceImpl.class);
-
+			PrintWriter out = null;
+			response.setContentType("text/plain; charset=utf-8");
+			
 			//paramMapping 
 			String tpo = (String) request.getParameter("tpo");
+			if(tpo=="") tpo = null;
 			System.out.println("tpo는???????"+tpo);
 			String season = request.getParameter("season");
+			if(season=="") season = null;
 			System.out.println("season????" + season);
 			String price = request.getParameter("price");
+			if(price=="") price = null;
 			System.out.println("price는???????"+price);
 			String lowPrice = null;
 			String highPrice = null;
@@ -52,8 +59,10 @@ public class ProductAjaxController implements Controller {
 				System.out.println("highprice는???????"+highPrice);
 			}
 			String fabric = request.getParameter("fabric");
+			if(fabric=="") fabric = null;
 			System.out.println("fabric는???????"+fabric);
 			String color = request.getParameter("color");
+			if(color=="") color = null;
 			System.out.println("color는???????"+color);
 			int bodyType = (request.getParameter("bodyType") == "") ? 0 : Integer.valueOf(request.getParameter("bodyType"));
 			System.out.println("bodyType는???????"+bodyType);
@@ -63,11 +72,13 @@ public class ProductAjaxController implements Controller {
 			System.out.println("legType는???????"+legType);
 			int armType = (request.getParameter("armType") == "") ? 0 : Integer.valueOf(request.getParameter("armType")); 
 			String orderByPrice = request.getParameter("orderByPrice");
+			if(orderByPrice=="") orderByPrice = null;
 			System.out.println("armType는???????"+armType);
 			String orderByHitcount = request.getParameter("orderByHitcount");
+			if(orderByHitcount=="") orderByHitcount = null;
 			System.out.println("orderByPrice는???????"+orderByPrice);
 			String orderByStar = request.getParameter("orderByStar");
-			
+			if(orderByStar=="") orderByStar = null;
 			System.out.println("orderByHitcount는???????"+orderByHitcount);
 			System.out.println("orderByStar는???????"+orderByStar);
 			
@@ -79,16 +90,26 @@ public class ProductAjaxController implements Controller {
 			try {
 				gsonListAll = productService.convertToGson(productService.filter(filterParam));
 			} catch (Exception e1) {
+				
 			}
 			
 			ArrayList<HashMap<String, Object>> jsonObjectList = new ArrayList<HashMap<String, Object>>();
 			Gson gson = new Gson();
 			JsonObject object = new JsonObject();
-			
-			for(int i = 0 ; i < gsonListAll.size(); i++) {	
-				HashMap<String, Object> convertToJson = gson.fromJson(gsonListAll.get(i), HashMap.class);
-				jsonObjectList.add(convertToJson);
-		 	}
+			if(gsonListAll!= null) {
+				for(int i = 0 ; i < gsonListAll.size(); i++) {	
+					HashMap<String, Object> convertToJson = gson.fromJson(gsonListAll.get(i), HashMap.class);
+					jsonObjectList.add(convertToJson);
+				}
+			} else {
+				try {
+					out = response.getWriter();
+					out.println("<img id=\"noResultImg\" src=\"/iceland/images/noResult.png\">");
+					return null;
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 			
 			mav.addObject("gsonListAll", gsonListAll);
 			mav.addObject("jsonObjectList", jsonObjectList);
