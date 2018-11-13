@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>Loading...</title>
 <script type="text/javascript">
 location.href="/iceland/home.es";
 </script>

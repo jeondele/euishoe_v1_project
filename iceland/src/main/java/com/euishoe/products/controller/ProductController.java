@@ -37,39 +37,39 @@ public class ProductController implements Controller {
 			XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 			productService = (ProductService)factory.getBean(ProductServiceImpl.class);
 			
-			
-			
 			Cookie[] cookies = ((HttpServletRequest) request).getCookies();
-			boolean isLogin;
-			String cookieName;
+			boolean isLogin = false;
+			String customerId = null;
 			if(cookies != null) {
 				for (Cookie cookie : cookies) {
 					if(cookie.getName().equals("loginId")) {
 						isLogin = true;
-						cookieName = cookie.getValue();
+						customerId = cookie.getValue();
 						break;
 					}
 				}
 			}
-			
-			//로그인 관련 쿠키가 있으면
+			Map<String, Object> customerInfoList = null;
+			//로그인 관련 쿠키가 있으면 가져와서 loginId를 바탕으로 유저의 신체 정보
 			if(isLogin) {
-				request.setAttribute("loginId", cookieName);
-			}else {
-				if(loginPage == null) {
-					//로그인 관련 쿠키가 없는데 로그인 페이지도 없으면 익셉션
-					throw new ServletException("LoginCheckFilter에 loginPage가 설정되어 있지 않습니다.");
+				try {
+					customerInfoList = productService.selectCustomizeInfo(customerId);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				//로그인 페이지로 포워드 시, request에 요청 uri 저장
-				request.setAttribute("uri", ((HttpServletRequest)request).getRequestURI());
-				request.getServletContext().getRequestDispatcher(loginPage).forward(request, response);
+			} else {
+				customerInfoList = null;
 			}
+		
 			
 			FilterParam filterParam = new FilterParam();
 			List<String> gsonListAll = null;
+			
 			try {
 				gsonListAll = productService.convertToGson(productService.filter(filterParam));
 			} catch (Exception e1) {
+				
 			}
 			
 			ArrayList<HashMap<String, Object>> jsonObjectList = new ArrayList<HashMap<String, Object>>();
@@ -81,7 +81,7 @@ public class ProductController implements Controller {
 				jsonObjectList.add(convertToJson);
 		 	}
 			
-			
+			mav.addObject("customerInfoList", customerInfoList);
 			mav.addObject("gsonListAll", gsonListAll);
 			mav.addObject("jsonObjectList", jsonObjectList);
 			mav.setView("/product/product.jsp");

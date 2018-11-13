@@ -13,6 +13,8 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.euishoe.common.web.FilterParam;
+
 
 public class MyBatisProductTest {
 	private static final String NAMESPACE = "com.euishoe.products.";
@@ -34,8 +36,8 @@ public class MyBatisProductTest {
 		logger.debug("[logger debug]: sqlSessionFactory생성완료");
 	}
 	
-	/*@Test
-	public void testFilter() {
+	@Test
+	public void testFilter3() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<Map<String, Object>> params = null;
 		FilterParam filterParam= new FilterParam("bizcasual", null, "100000", "150000", null, null,0, 0, 0, 0, null, null, null);
@@ -45,7 +47,7 @@ public class MyBatisProductTest {
 		}
 		sqlSession.commit();
 		sqlSession.close();
-	}*/
+	}
 	
 	//@Test
 	public void testFilter() {
@@ -59,7 +61,7 @@ public class MyBatisProductTest {
 		sqlSession.close();
 	}
 	
-	@Test
+	//@Test
 	public void testFilter2() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<Map<String, Object>> params = null;

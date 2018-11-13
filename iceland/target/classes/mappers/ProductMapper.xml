@@ -231,8 +231,11 @@
                 <if test="fabric != null">
                 	and product_fabric = #{fabric}
                 </if>
-                 <if test="orderByPrice != null">
-                 	order by product_list_price #{orderByPrice}
+                 <if test="orderByPrice == 'ASC'">
+                 	order by product_list_price ASC
+                 </if>
+                 <if test="orderByPrice == 'DESC'">
+                 	order by product_list_price DESC
                  </if>
                  <if test="orderByHitcount != null">
                  	order by product_hitcount #{orderByHitcount}
