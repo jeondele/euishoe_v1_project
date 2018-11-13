@@ -2,7 +2,6 @@ package com.euishoe.product.test;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,10 +12,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.euishoe.comments.dto.Comment;
-import com.euishoe.common.web.FilterParam;
-import com.euishoe.customers.dto.Customer;
 
 
 public class MyBatisProductTest {
@@ -66,8 +61,6 @@ public class MyBatisProductTest {
 	
 	@Test
 	public void testFilter2() {
-		
-		productDao.create
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<Map<String, Object>> params = null;
 		params = sqlSession.selectList(NAMESPACE+"newProductList");
