@@ -120,4 +120,14 @@
 		WHERE  customer_id = #{customerId}
 	</update>
 	
+	<!-- 회원 신체 정보(Customize Information) 가져오는 Mapper -->
+	<select id="getCustomizeInfo" parameterType="java.lang.String">
+		select customer_body "customerBody",
+			   customer_shoulder "customerShoulder",
+			   customer_shoulder
+			   
+		
+	
+	</select>
+	
 </mapper>

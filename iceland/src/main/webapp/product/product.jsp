@@ -1,13 +1,14 @@
-<%@page import="java.util.Map"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.List"%>
-<%@page import="com.google.gson.JsonObject"%>
-<%@page import="java.net.URLDecoder"%>
+<%@ page import="java.util.Map"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.HashMap"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.google.gson.JsonObject"%>
+<%@ page import="java.net.URLDecoder"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="com.google.gson.Gson"%>
 <%@ taglib prefix="tt" uri="/WEB-INF/tlds/fordecode.tld"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,8 +85,15 @@
 <body class="animsition">
 
 	<%@include file="../../includes/header.jsp"%>
-	<script type="text/javascript">
-
+<script type="text/javascript">
+window.onload = function() {
+	var loginId = getCookie('loginId');
+	if (loginId != null) {
+		var customerId = loginId;
+	} else {
+		
+	}
+}
 
 
 function setCountCartList(){
@@ -212,32 +220,8 @@ function dataTransfer() {
 	jQuery(this).toggleClass('active');
 	
 }
-/* tpo : productTPO,
-season : productSeason,
-price : productListPrice,
-fabric : productFabric,
-shoulderType : productShoulder,
-armType : productArm,
-legType : productLeg,
-bodyType : productBody,
-color : colorCode,
-orderByPrice : OrderByPrice,
-orderByHitcount : OrderByHitcount,
-orderByStar : OrderByStar */
-var params = new Object();
-params.tpo= $('#productTPO').val();
-params.season= $('#productSeason').val(); 
-params.price= $('#productListPrice').val(); 
-params.fabric= $('#productFabric').val(); 
-params.shoulderType= $('#productShoulder').val(); 
-params.armType= $('#productArm').val(); 
-params.legType= $('#productLeg').val(); 
-params.bodyType= $('#productBody').val();
-params.color= $('#colorCode').val();
-params.orderByPrice= $('#OrderByPrice').val();
-params.orderByHitcount= $('#OrderByHitcount').val();
-params.OrderByStar= $('#OrderByStar').val();
-// 필터용 변수 선언
+
+//필터용 변수 선언
 var productTPO;
 var productSeason;
 var productListPrice;
@@ -250,39 +234,15 @@ var colorCode;
 var OrderByPrice;
 var OrderByHitcount;
 var OrderByStar;
-$(function(){
-	$(".p-b-6").on("click",function(e){
-		$("#selectResult").html();
-		$("#submitForm").submit();
-	})
-})
 
-$(function(){
-	$("#submitForm").submit(function(){
-		var url = "/iceland/productAjax.es";
-		console.log("에이작스 하러 들ㅇ러옴???");
-		ajax({
-			method : "get",
-			url : url,
-			callback : inputResult
-		});
-		return false;
-	})
-})
-	/* 	param : JSON.parse('{"tpo":"'+productTPO+'"}'), */
 
-function inputResult(result) {
-	console.log("콜백도 실행????");
-	console.log(result);
-	$("#selectResult").html(result.responseText);
-}
 
-// TPO 필터 선택 함수 -> 값 받아오는 로직까지 구현
+//TPO 필터 선택 함수 -> 값 받아오는 로직까지 구현
 $(function(){
- 	var sBtn = $("ul.finder_list_by_TPO > li");
- 	sBtn.find("input").click(function(){   
-  		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
-  			sBtn.children().removeClass('active');
+	var sBtn = $("ul.finder_list_by_TPO > li");
+	sBtn.find("input").click(function(){   
+		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+			sBtn.children().removeClass('active');
 	  		$(this).addClass('active');
 	  		switch($(this).attr('id')) {
 	  			case 'Wedding':   productTPO = 'wedding'; 	break;
@@ -292,39 +252,40 @@ $(function(){
 	  			default :         productTPO = null; 		break;
 	  		}
 	  		$("#productTPO").attr('value', productTPO);
-  		} else { // 클릭을 했는데 활성화가 되어있으면,
-  			$(this).removeClass('active');
-  		}
- })
+		} else { // 클릭을 했는데 활성화가 되어있으면,
+			$(this).removeClass('active');
+		}
+	})
 })
 
-// 계절별 필터 선택 함수
+//계절별 필터 선택 함수
 $(function(){
- 	var sBtn = $("ul.finder_list_by_Season > li");
- 	sBtn.find("input").click(function(){   
- 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
-  			sBtn.children().removeClass('active');
+	var sBtn = $("ul.finder_list_by_Season > li");
+	sBtn.find("input").click(function(){   
+		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+			sBtn.children().removeClass('active');
 	  		$(this).addClass('active');
 	  		switch($(this).attr('id')) {
-  				case 'Spring': productSeason = 'spring'; break;
-  				case 'Summer': productSeason = 'summer'; break;
-  				case 'Fall':   productSeason = 'fall'; 	 break;
-  				case 'Winter': productSeason = 'winter'; break;
-  				default : 	   productSeason = null; 	 break;
-  			}
-	  		$("#productSeason").val(productSeason);
-  		} else { // 클릭을 했는데 활성화가 되어있으면,
-  			$(this).removeClass('active');
-  		}
- })
+				case 'Spring': productSeason = 'spring'; break;
+				case 'Summer': productSeason = 'summer'; break;
+				case 'Fall':   productSeason = 'fall'; 	 break;
+				case 'Winter': productSeason = 'winter'; break;
+				default : 	   productSeason = null; 	 break;
+			}
+	  		console.log('클릭 시 productSeason' + productSeason);
+	  		$("#productSeason").attr('value', productSeason);
+		} else { // 클릭을 했는데 활성화가 되어있으면,
+			$(this).removeClass('active');
+		}
+	})
 })
 
 //가격대별 필터 선택 함수, 값도 반환
 $(function(){
- 	var sBtn = $("ul.finder_list_by_Price > li"); 
- 	sBtn.find("input").click(function(){   
- 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
-  			sBtn.children().removeClass('active');
+	var sBtn = $("ul.finder_list_by_Price > li"); 
+	sBtn.find("input").click(function(){   
+		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+			sBtn.children().removeClass('active');
 	  		$(this).addClass('active');
 	  		switch($(this).attr('id')) {
 				case '5to10': 	productListPrice = '50000/100000'; 	break;
@@ -333,19 +294,19 @@ $(function(){
 				case '20Plus': 	productListPrice = '200000/0'; 		break;
 				default : 	   	productListPrice = null; 	 		break;
 			}
-	  		$("#productListPrice").val(productListPrice);
-  		} else { // 클릭을 했는데 활성화가 되어있으면,
-  			$(this).removeClass('active');
-  		}
- })
+	  		$("#productListPrice").attr('value', productListPrice);
+		} else { // 클릭을 했는데 활성화가 되어있으면,
+			$(this).removeClass('active');
+		}
+	})
 })
 
-// 원단 종류별 필터 선택 함수, 값도 반환
+//원단 종류별 필터 선택 함수, 값도 반환
 $(function(){
- 	var sBtn = $("ul.finder_list_by_Fabric > li"); 	
- 	sBtn.find("input").click(function(){   
- 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
-  			sBtn.children().removeClass('active');
+	var sBtn = $("ul.finder_list_by_Fabric > li"); 	
+	sBtn.find("input").click(function(){   
+		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+			sBtn.children().removeClass('active');
 	  		$(this).addClass('active'); 
 	  		switch($(this).attr('id')) {
 				case 'Silk': 	  productFabric = 'silk'; 	  break;
@@ -354,18 +315,18 @@ $(function(){
 				case 'Linen': 	  productFabric = 'linen'; 	  break;
 				default : 	   	  productFabric = null; 	  break;
 			}
-	  		$("#productFabric").val(productFabric);
-  		} else { // 클릭을 했는데 활성화가 되어있으면,
-  			$(this).removeClass('active');
-  		}
- })
+	  		$("#productFabric").attr('value', productFabric);
+		} else { // 클릭을 했는데 활성화가 되어있으면,
+			$(this).removeClass('active');
+		}
+	})
 })
 
 $(function(){
- 	var sBtn = $("ul.finder_list_by_Shoulder > li");  
- 	sBtn.find("input").click(function(){   
- 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
-  			sBtn.children().removeClass('active');
+	var sBtn = $("ul.finder_list_by_Shoulder > li");  
+	sBtn.find("input").click(function(){   
+		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+			sBtn.children().removeClass('active');
 	  		$(this).addClass('active');
 	  		switch($(this).attr('id')) {
 				case 'Shoulder1':  productShoulder = '1';  break;
@@ -373,37 +334,37 @@ $(function(){
 				case 'Shoulder3':  productShoulder = '3';  break;
 				default : 	   	   productShoulder = null; break;
 	  		}
-	  		$("#productShoulder").val(productShoulder);
-  		} else { 
-  			$(this).removeClass('active');
-  		}
- })
+	  		$("#productShoulder").attr('value', productShoulder);
+		} else { 
+			$(this).removeClass('active');
+		}
+	})
 })
 
 $(function(){
- 	var sBtn = $("ul.finder_list_by_Arm > li");
- 	sBtn.find("input").click(function(){   
- 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
-  			sBtn.children().removeClass('active');
+	var sBtn = $("ul.finder_list_by_Arm > li");
+	sBtn.find("input").click(function(){   
+		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+			sBtn.children().removeClass('active');
 	  		$(this).addClass('active');
 	  		switch($(this).attr('id')) {
 				case 'Arm1':  productArm = '1';  break;
 				case 'Arm2':  productArm = '2';  break;
 				case 'Arm3':  productArm = '3';  break;
 				default : 	  productArm = null; break;
-  			}
-	  		$("#productArm").val(productArm);
-  		} else { 
-  			$(this).removeClass('active');
-  		}
- })
+			}
+	  		$("#productArm").attr('value', productArm);
+		} else { 
+			$(this).removeClass('active');
+		}
+	})
 })
 
 $(function(){
- 	var sBtn = $("ul.finder_list_by_Leg > li");
- 	sBtn.find("input").click(function(){   
- 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
-  			sBtn.children().removeClass('active');
+	var sBtn = $("ul.finder_list_by_Leg > li");
+	sBtn.find("input").click(function(){   
+		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+			sBtn.children().removeClass('active');
 	  		$(this).addClass('active');
 	  		switch($(this).attr('id')) {
 				case 'Leg1':  productLeg = '1';  break;
@@ -411,18 +372,18 @@ $(function(){
 				case 'Leg3':  productLeg = '3';  break;
 				default : 	  productLeg = null; break;
 			}
-	  		$("#productLeg").val(productLeg);
-  		} else { 
-  			$(this).removeClass('active');
-  		}
- })
+	  		$("#productLeg").attr('value', productLeg);
+		} else { 
+			$(this).removeClass('active');
+		}
+	})
 })
 
 $(function(){
- 	var sBtn = $("ul.finder_list_by_Weight > li");
- 	sBtn.find("input").click(function(){   
- 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
-  			sBtn.children().removeClass('active');
+	var sBtn = $("ul.finder_list_by_Weight > li");
+	sBtn.find("input").click(function(){   
+		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+			sBtn.children().removeClass('active');
 	  		$(this).addClass('active');
 	  		switch($(this).attr('id')) {
 				case 'WeightSmall':   productBody = '1';  break;
@@ -430,18 +391,18 @@ $(function(){
 				case 'WeightBig':  	  productBody = '3';  break;
 				default : 	  		  productBody = null; break;
 			} 
-	  		$("#productBody").val(productBody);
-  		} else { 
-  			$(this).removeClass('active');
-  		}
- })
+	  		$("#productBody").attr('value', productBody);
+		} else { 
+			$(this).removeClass('active');
+		}
+	})
 })
 
 $(function(){
- 	var sBtn = $("ul.finder_list_by_Color > li");
- 	sBtn.find("input").click(function(){   
- 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
-  			sBtn.children().removeClass('active');
+	var sBtn = $("ul.finder_list_by_Color > li");
+	sBtn.find("input").click(function(){   
+		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+			sBtn.children().removeClass('active');
 	  		$(this).addClass('active');
 	  		switch($(this).attr('id')) {
 				case 'Brown':   colorCode = 'BR';  	break;
@@ -450,18 +411,18 @@ $(function(){
 				case 'Navy' :  	colorCode = 'NV';  	break;
 				default : 	    colorCode = null; 	break;
 			} 
-	  		$("#colorCode").val(colorCode);
-  		} else { 
-  			$(this).removeClass('active');
-  		}
- })
+	  		$("#colorCode").attr('value', colorCode);
+		} else { 
+			$(this).removeClass('active');
+		}
+	})
 })
 
 $(function(){
- 	var sBtn = $("ul.finder_list_by_Order > li");
- 	sBtn.find("input").click(function(){   
- 		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
-  			sBtn.children().removeClass('active');
+	var sBtn = $("ul.finder_list_by_Order > li");
+	sBtn.find("input").click(function(){   
+		if(!($(this).hasClass('active'))) { // 클릭을 했는데 active 되어 있지 않으면 -> 활성화
+			sBtn.children().removeClass('active');
 	  		$(this).addClass('active');
 	  		switch($(this).attr('id')) {
 				case 'LowPrice':   	  {
@@ -496,22 +457,89 @@ $(function(){
 					break;
 				}
 			}
-	  		$("#OrderByPrice").val(OrderByPrice);
-	  		$("#OrderByHitcount").val(OrderByHitcount);
-	  		$("#OrderByStar").val(OrderByStar);
-  		} else { 
-  			$(this).removeClass('active');
-  		}
- })
+	  		$("#OrderByPrice").attr('value', OrderByPrice);
+	  		$("#OrderByHitcount").attr('value', OrderByHitcount);
+	  		$("#OrderByStar").attr('value', OrderByStar);
+		} else { 
+			$(this).removeClass('active');
+		}
+	})
 })
 
-// 필터 초기화 함수
+//필터 초기화 함수
 function resetFilter() {
 	$('.flex-c-m.stext-107.bor7.p-lr-15.hov-btn3.trans-04.m-r-5.m-b-5.active').attr('class','flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5');
-
+	var productTPO = null;
+	var productSeason = null;
+	var productListPrice = null;
+	var productFabric = null;
+	var productShoulder = null;
+	var productArm = null;
+	var productLeg = null;
+	var productBody = null;
+	var colorCode = null;
+	var OrderByPrice = null;
+	var OrderByHitcount = null;
+	var OrderByStar = null;
 }
 
 
+$(function(){
+	$(".p-b-6").on("click", function(e){
+		$("#submitForm").submit();
+		$("#selectResult").html();
+	})
+})
+
+$(function(){
+	$("#submitForm").submit(function(){
+		var url = "/iceland/productAjax.es";
+		
+		// parameter로 전달할 params 객체 선언
+		var params = new Object();
+		
+		// params 객체에 name=value 식으로 필터 조건 속성 할당 
+		params.tpo= $('#productTPO').attr('value');
+		params.season= $('#productSeason').attr('value');
+		params.price= $('#productListPrice').attr('value'); 
+		params.fabric= $('#productFabric').attr('value'); 
+		params.shoulderType= $('#productShoulder').attr('value'); 
+		params.armType= $('#productArm').attr('value'); 
+		params.legType= $('#productLeg').attr('value'); 
+		params.bodyType= $('#productBody').attr('value');
+		params.color= $('#colorCode').attr('value');
+		params.orderByPrice= $('#OrderByPrice').attr('value');
+		params.orderByHitcount= $('#OrderByHitcount').attr('value');
+		params.OrderByStar= $('#OrderByStar').attr('value');
+		
+		// parameter 매개변수화(&tpo=Wedding) 함수
+		var param = $.param(params);
+		
+		ajax({
+			method : "GET",
+			url : url,
+			param: param,
+			callback : inputResult
+		});
+		return false;
+	})
+})
+
+
+
+
+
+	/* 	param : JSON.parse('{"tpo":"'+productTPO+'"}'), */
+
+function inputResult(result) {
+	console.log("콜백도 실행????");
+	console.log(result);
+	$("#selectResult").html(result.responseText);
+}
+
+function getMycustomInfo() {
+	
+}
 </script>
 
 	<%@include file="../../includes/cart.jsp"%>
@@ -774,7 +802,7 @@ function resetFilter() {
 								<li class="p-b-6"><input type="button" id="customize"
 									name="customize" style="height: 50px; width: 100%;"
 									class="flex-c-m stext-107 bor7 p-lr-15 hov-btn3 trans-04 m-r-5 m-b-5"
-									value="나에게 맞는 옷 찾기"></li>
+									value="나에게 맞는 옷 찾기" onclick="getMycustomInfo()"></li>
 							</ul>
 						</div>
 

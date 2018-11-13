@@ -66,12 +66,12 @@ window.onload = function() {
 	var loginId = getCookie('loginId');
 	if (loginId != null) {
 		var customerId = loginId;
-		console.log(customerId);
 		$('form#customizeInfoTransfer > input#customerId').attr('value', customerId);
 	} else {
 		
 	}
 }
+
 var customerBody;
 var customerShoulder;
 var customerArm;
@@ -95,7 +95,6 @@ $(function(){
   			$(this).removeClass('active');
   			customerBody = '2';
   		}
- 	console.log(customerBody);
  })
 })
 
@@ -117,7 +116,6 @@ $(function(){
   			$(this).removeClass('active');
   			customerShoulder = '2';
   		}
- 		console.log(customerShoulder);
  })
 })
 
@@ -138,7 +136,6 @@ $(function(){
   			$(this).removeClass('active');
   			customerArm = '2';
   		}
- 		console.log(customerArm);
  })
 })
 
