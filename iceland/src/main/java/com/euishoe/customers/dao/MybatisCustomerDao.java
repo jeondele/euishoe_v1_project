@@ -69,7 +69,7 @@ public class MybatisCustomerDao implements CustomerDao {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> list = null;
 		list = sqlSession.selectOne(NAMESPACE+"customerOrderInfo", customerId);
-		sqlSession.commit();
+		sqlSession.close();
 		return list;
 	}
 
@@ -81,6 +81,7 @@ public class MybatisCustomerDao implements CustomerDao {
 		sqlSession.close();
 	}
 
+	
 }
 
 

@@ -173,7 +173,7 @@
 			var productCode = $('#productCode').val();
 			var productNum = $('#productNum').val();
 			var productCount = $('#productCount').val();
-			location.href = '/iceland/order.es?productCode='+productCode+'&productNum='+productNum+'&productCount='+productCount;
+			location.href = '/iceland/directorder.es?productCode='+productCode+'&productNum='+productNum+'&productCount='+productCount;
 		}
 		
 		/* // quickView에서 주문시.. -> 선택값을 통해 product(상품)객체 생성 ->  

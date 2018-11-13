@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.Logger;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.euishoe.customers.dao.CustomerDao;
@@ -30,7 +31,7 @@ public class MybatisCustomerDaoTest {
 	Logger logger = Logger.getLogger(MybatisCustomerDaoTest.class);
 	CustomerDao customerDao;
 
-	//@Before
+	@Before
 	public void setUp() {
 		Reader reader = null;
 		try {
@@ -60,7 +61,7 @@ public class MybatisCustomerDaoTest {
 		sqlSession.close();
 	}
 	
-	@Test
+	//@Test
 	public void test() {
 		
 		Gson gson = new Gson();
@@ -84,8 +85,16 @@ public class MybatisCustomerDaoTest {
 		*/
 	}
 	
-	@Test
+	//@Test
 	public void testModifyCustomizingInfo() {
 		String customerId = "bangry";
+	}
+	
+	@Test
+	public void customerOrderInfo() {
+		String customerId = "bangry";
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Map<String, Object>  list = sqlSession.selectOne(NAMESPACE + "customerOrderInfo", customerId);
+		logger.debug(list);
 	}
 }

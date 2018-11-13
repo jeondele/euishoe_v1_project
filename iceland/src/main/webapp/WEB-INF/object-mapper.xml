@@ -87,6 +87,7 @@
 	<bean type="service" name="orderService" class="com.euishoe.orders.service.OrderServiceImpl">
 		<property name="orderDao" ref="orderDao"/>
 		<property name="productDao" ref="productDao"/>
+		<property name="customerDao" ref="customerDao"/>
 	</bean>
 	
 	<!-- image 맵핑 -->

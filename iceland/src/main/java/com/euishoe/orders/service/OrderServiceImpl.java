@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public String[] productCodeParsing(String productCode) throws Exception {
-		String[] codeSplited = productCode.split("$");
+		String[] codeSplited = productCode.split("\\$");
 		String pantsCode = codeSplited[0]+"$"+codeSplited[2]+"$"+codeSplited[3];
 		String jacketCode = codeSplited[0]+"$"+codeSplited[1]+"$"+codeSplited[3];
 		String pantsSize = codeSplited[2];
@@ -77,12 +77,5 @@ public class OrderServiceImpl implements OrderService {
 		codes[4] = pantsSize;
 		return codes;
 	}
-
-	@Override
-	public Map<String, Object> customerOrderInfo(String customerId) throws Exception {
-		return customerDao.customerOrderInfo(customerId);
-	}
-	
-	
 	
 }
