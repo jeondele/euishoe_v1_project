@@ -101,6 +101,8 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<HashMap<String, Object>> listWish(String customerId) {
 		return wishlistDao.listWishesForLogin(customerId);
 	}
+	
+	
 
 	/*
 	 * 쿠키 생성
@@ -412,5 +414,10 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer getCustomerInfo(String customerId) throws Exception {
 		return customerDao.getCustomerInfo(customerId);
+	}
+
+	@Override
+	public void modifyCustomizingInfo(Map<String, Object> map) throws Exception {
+		customerDao.modifyCustomizingInfo(map);
 	}
 }

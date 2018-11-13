@@ -25,4 +25,7 @@ public interface CustomerDao {
 	public void modifyInfo(Customer customer) throws Exception;
 	
 	public Map<String, Object> customerOrderInfo(String customerId) throws Exception;
+	
+	// 회원 Customizing 정보 수정
+	public void modifyCustomizingInfo(Map<String, Object> map) throws Exception;
 }

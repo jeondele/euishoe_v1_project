@@ -109,4 +109,15 @@
 		       customer_postcode = #{customerPostcode} 
 		WHERE  customer_id = #{customerId}	
 	</update>
+	
+	<!-- 회원 신체 정보 Customize 정보 UPDATE -->
+	<update id="customize" parameterType="map">
+		UPDATE customers
+		SET	   customer_body = #{customerBody},
+			   customer_shoulder = #{customerShoulder},
+			   customer_arm = #{customerArm},
+			   customer_leg =#{customerLeg}
+		WHERE  customer_id = #{customerId}
+	</update>
+	
 </mapper>
