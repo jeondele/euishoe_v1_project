@@ -464,6 +464,7 @@ function sumPrice(){
         $('#cartButton').attr('data-notify',testNum - 2);
         sumUp();
 	}
+	
 	//전체삭제 클릭시 실행
 	function deleteAllItem() {
 		var deleteNum;
@@ -476,7 +477,7 @@ function sumPrice(){
 	        setCookie('cart' + (i-1),getCookie('cart' + i),1);
 	        if(i == testNum - 1){
 	        setCookie('cart' + i,'',0);
-	            
+	        }    
 	        
 			// item삭제(table row삭제)
 			//console.log('table-row엘리먼트'+document.getElementsByClassName('table_row')[i]);
@@ -528,7 +529,7 @@ function sumPrice(){
 	});
 	
 	// cart에 담긴 아이템 table에 뿌려주고 수량 변화 이벤트
-	 $(document).ready(	function() {
+	 $(document).ready(function() {
 		    
 			/*if(getQuerystring(productCode))*/
 			var prior = 1;
@@ -549,11 +550,11 @@ function sumPrice(){
 				str += '<tr class="table_row"><td class="column-1 txt-center"><input type="checkbox" value="None" class="roundedOne" name="check" checked />';
 				str += '</td><td class="column-2 txt-center"><div class="how-itemcart1" value="' + prior + '"><img src="' + jsonObj.image_ref + '" alt="IMG"/></div>';
 				str += '</td><td class="column-3 txt-center">' + jsonObj.PRODUCT_NAME + '<br>' + jsonProductSize + '</td><td class="column-4 txt-center">' + jsonObj.PRODUCT_PRICE + '</td>';
-				str += '<td class="column-5 txt-center"><div class="wrap-num-product flex-w m-l-auto m-r-auto">'
-				str += '<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-minus"></i></div>'
+				str += '<td class="column-5 txt-center"><div class="wrap-num-product flex-w m-l-auto m-r-auto">';
+				str += '<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-minus"></i></div>';
                 str += '<input class="mtext-104 cl3 txt-center num-product"	type="number" name="num-product1" value="' + jsonObj.product_count + '">';
                 str += '<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-plus"></i>';
-				str += '</div></div></td><td class="column-6 txt-center">' + (jsonObj.PRODUCT_PRICE * jsonObj.product_count) + '</td></tr>'
+				str += '</div></div></td><td class="column-6 txt-center">' + (jsonObj.PRODUCT_PRICE * jsonObj.product_count) + '</td></tr>';
 				$('#tableCart').append(str);
 
 				  checksum += jsonObj.product_count * jsonObj.PRODUCT_PRICE;
@@ -626,7 +627,7 @@ function sumPrice(){
 		});
 		
 	
-		</script> 
+</script> 
   <!--===============================================================================================-->
   <script src="/iceland/js/main.js"></script>
 
