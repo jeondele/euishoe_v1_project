@@ -70,6 +70,7 @@
 		<property name="cartDao" ref="cartDao"/>
 		<property name="wishlistDao" ref="wishlistDao"/>
 		<property name="pointDao" ref="pointDao"/>
+		<property name="productDao" ref="productDao"/>
 	</bean>
 	
 	<!-- noncustomer 맵핑 -->
@@ -86,6 +87,7 @@
 	<bean type="service" name="orderService" class="com.euishoe.orders.service.OrderServiceImpl">
 		<property name="orderDao" ref="orderDao"/>
 		<property name="productDao" ref="productDao"/>
+		<property name="customerDao" ref="customerDao"/>
 	</bean>
 	
 	<!-- image 맵핑 -->

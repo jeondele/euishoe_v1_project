@@ -5,6 +5,13 @@
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.euishoe.products">
 
+	<resultMap type="com.euishoe.products.dto.Product" id="Product">
+		<result property="productCount" column="product_count"/>
+    	<result property="jacketCode" column="JACKET_CODE"/>
+    	<result property="pantsCode" column="PANTS_CODE"/>
+    	<result property="productCode" column="PRODUCT_CODE"/>
+    	<result property="productNum" column="PRODUCT_NUM"/>
+	</resultMap>
 	<!-- 프로덕트 검색 기능 -->
 	<select id="newProductList" resultType="map">
 	<![CDATA[
@@ -235,23 +242,29 @@
                  </if>
 	</select>
 
-	<insert id="create" parameterType="com.euishoe.customers.dto.Customer">
+	<insert id="create" parameterType="com.euishoe.products.dto.Product">
 		INSERT INTO products 
-		VALUES     ( #{productCode},  
-		             #{jacketCode}, 
-		             #{pantsCode}, 
-		             #{productNum}, 
-		             #{productCount}) 		
+		VALUES     ( CONCAT(#{PRODUCT_CODE},'#',PRODUCT_SEQ.nextval),  
+		             #{JACKET_CODE}, 
+		             #{PANTS_CODE}, 
+		             #{PRODUCT_NUM}, 
+		             #{product_count}) 		
 	</insert>
 	
     <insert id="createOne" parameterType="map">
-		INSERT INTO products 
-		VALUES     ( CONCAT(#{productCode},PRODUCT_SEQ.nextval),  
-		             #{jacketCode}, 
-		             #{pantsCode}, 
-		             #{productNum}, 
-		             #{productCount}) 		
+		INSERT INTO products(PRODUCT_CODE,JACKET_CODE,PANTS_CODE,PRODUCT_NUM,PRODUCT_COUNT) 
+		VALUES     ( CONCAT(CONCAT(#{PRODUCT_CODE},'#'),PRODUCT_SEQ.nextval),  
+		             #{JACKET_CODE}, 
+		             #{PANTS_CODE}, 
+		             #{PRODUCT_NUM}, 
+		             #{PRODUCT_COUNT}) 		
 	</insert>
-	
-
+	<select id ="maxProductCodeNum" resultType="int" parameterType="int">
+		select max(product_code_num)+1
+		from products
+	</select>
+    
+    <update id="update" parameterType="map">
+        update products set PRODUCT_COUNT = #{productCount} where PRODUCT_CODE LIKE #{productCode}
+    </update>
 </mapper>

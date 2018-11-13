@@ -85,17 +85,17 @@
 	</select>
 	
 	<select id="customerOrderInfo" parameterType="String" resultType="map">
-		select c.customer_name, 
-       		   c.customer_phonenumber, 
-       		   customer_address, 
-       		   customer_postcode,
+		select c.customer_name "customerName", 
+       		   c.customer_phonenumber "customerPhoneNumber", 
+       		   customer_address "customerAddress", 
+       		   customer_postcode "customerPostcode",
        		   sumPoint
 		  from customers c join (select sum(point_history_score) sumPoint,
                            				point_histories.CUSTOMER_ID
                         			from point_histories
                       			group by point_histories.CUSTOMER_ID) ph
     						on c.customer_id = ph.CUSTOMER_ID
-		 where c.customer_id =#{customerId}
+		 where c.customer_id = #{customerId}
 	</select>
 	
 	
@@ -109,4 +109,25 @@
 		       customer_postcode = #{customerPostcode} 
 		WHERE  customer_id = #{customerId}	
 	</update>
+	
+	<!-- 회원 신체 정보 Customize 정보 UPDATE -->
+	<update id="customize" parameterType="map">
+		UPDATE customers
+		SET	   customer_body = #{customerBody},
+			   customer_shoulder = #{customerShoulder},
+			   customer_arm = #{customerArm},
+			   customer_leg =#{customerLeg}
+		WHERE  customer_id = #{customerId}
+	</update>
+	
+	<!-- 회원 신체 정보(Customize Information) 가져오는 Mapper -->
+	<select id="getCustomizeInfo" parameterType="java.lang.String">
+		select customer_body "customerBody",
+			   customer_shoulder "customerShoulder",
+			   customer_shoulder
+			   
+		
+	
+	</select>
+	
 </mapper>

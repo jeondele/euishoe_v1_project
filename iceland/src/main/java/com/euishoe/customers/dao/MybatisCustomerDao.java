@@ -69,10 +69,19 @@ public class MybatisCustomerDao implements CustomerDao {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, Object> list = null;
 		list = sqlSession.selectOne(NAMESPACE+"customerOrderInfo", customerId);
-		sqlSession.commit();
+		sqlSession.close();
 		return list;
 	}
 
+	@Override
+	public void modifyCustomizingInfo(Map<String, Object> map) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update(NAMESPACE + "customize", map);
+		sqlSession.commit();
+		sqlSession.close();
+	}
+
+	
 }
 
 

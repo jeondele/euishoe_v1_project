@@ -31,6 +31,8 @@ public class CustomerLoginController implements Controller {
 		String customerPassword = request.getParameter("password");
 		String rememberCustomerId = request.getParameter("idRemember");
 		String old_url = request.getHeader("referer");
+		
+		System.out.println("old_url : " + old_url);
 		System.out.println(rememberCustomerId);
 		
 		if(customerId == null) {
@@ -47,9 +49,11 @@ public class CustomerLoginController implements Controller {
 			 *  3. 위시리스트 : wishes 
 			 * 
 			 */
-			mav = customerService.login(request, response, mav, customer, rememberCustomerId);
 			if(customer != null) {
-				mav.setView(old_url);
+				mav = customerService.login(request, response, mav, customer, rememberCustomerId);
+				//mav.setView(old_url);
+				mav.setView("/index.jsp");
+				
 			} else {
 				mav.addObject("result", "fail");
 				mav.setView("/customer/login/login.jsp");

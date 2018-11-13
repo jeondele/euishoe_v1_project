@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tt" uri="/WEB-INF/tlds/fordecode.tld"%> 
 <script>
-
+function replaceAll(str, searchStr, replaceStr) {
+	return str.split(searchStr).join(replaceStr);
+}
 /*
  * 쿠키 세팅,가져오기
  */

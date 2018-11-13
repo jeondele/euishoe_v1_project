@@ -2,6 +2,7 @@ package com.euishoe.customers.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,4 +40,11 @@ public interface CustomerService {
 	
 	// 회원정보 수정
 	public void modifyInfo(Customer customer) throws Exception;
+	
+	// 회원 커스터마이징 정보 수정
+	public void modifyCustomizingInfo(Map<String, Object> map) throws Exception;
+
+	Map<String, Object> customerOrderInfo(String customerId) throws Exception;
+	
+	
 }
