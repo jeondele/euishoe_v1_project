@@ -693,117 +693,162 @@ function sumToMakeJsonForWish(){
 		return str.substring(3,str.length - 3).split('%2C');
 	}
 	
+	function arrayWish(){
+		var wishcookies = new Array();
+		var cookieNum = 1;
+		
+	    // 쿠키 현재상태 배열 저장
+		 while(getCookie('wish' + cookieNum)){
+		    	var obj = decodeURIComponent(getCookie('wish' + cookieNum)).substring(1,decodeURIComponent(getCookie('wish' + cookieNum)).length - 1);
+		    	obj = replaceAll(obj,'+',' ');
+				var jsonObj = JSON.parse(obj);
+				
+				wishcookies.push(jsonObj.PRODUCT_NAME);
+				cookieNum++;
+		    }
+		 
+		 return wishcookies;
+	}
+	
+	function registAttr(){
+		$('.btn-addwish-b2.dis-block.pos-relative.js-addwish-b2').attr('type','a');
+		$('.btn-addwish-b2.dis-block.pos-relative.js-addwish-b2.js-addedwish-b2').attr('type','b');
+	}
+	
+
+	
+
+	function wishCookieDuplicate(str){
+		var array = arrayWish();
+		var duplicated = false;
+		
+		for (var i = 0; i < array.length; i++) {
+			if(array[i] == str){
+				duplicated = true;
+				break;
+			}
+		}
+		
+		return duplicated;
+		
+	}
+	
 	function refreshwish(){
 		var arrayProduct = new Array();
-		var wishcookies = new Array();
-			
-	    var cookieNum = 1;
-	    while(getCookie('wish' + cookieNum)){
-	    	var obj = decodeURIComponent(getCookie('wish' + cookieNum)).substring(1,decodeURIComponent(getCookie('wish' + cookieNum)).length - 1);
-	    	obj = replaceAll(obj,'+',' ');
-			var jsonObj = JSON.parse(obj);
-			
-			wishcookies.push(jsonObj.PRODUCT_NAME);
-			cookieNum++;
-	    }
+		var wishcookiesForRefresh = arrayWish();
 		
+	    // 이름 저장
 		for(var i = 0; i < $('.stext-104.cl4.hov-cl1.trans-04.js-name-b2.p-b-6').length; i++){
 			arrayProduct.push($('.stext-104.cl4.hov-cl1.trans-04.js-name-b2.p-b-6')[i].innerText);
 		}
 		
-		for(var i = 0; i < wishcookies.length ; i++){
+	    // 화면에 뿌려주기
+		for(var i = 0; i < wishcookiesForRefresh.length ; i++){
 			for(var j = 0; j < arrayProduct.length; j++){
-				if(wishcookies[i] == arrayProduct[j]){
+				if(wishcookiesForRefresh[i] == arrayProduct[j]){
 					$($('.btn-addwish-b2.dis-block.pos-relative.js-addwish-b2')[j]).attr('class','btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2');
-					break;
+					$($('.btn-addwish-b2.dis-block.pos-relative.js-addwish-b2')[j]).attr('value',i + 1);
 				}
 			}
 		 }	
-		}
-		
-		refreshwish();	
-
-		var Test22 = '';
-	$('.btn-addwish-b2').unbind("click").on('click',function(e){
-	    var prior = 1;
-	    while(getCookie('wish' + prior)){
-	        prior++;
-	    }
-	    
-	  var target = $(e.currentTarget);
-	  var str = "btn-addwish-b2 dis-block pos-relative js-addwish-b2";
-	  
-	  if( $(e.currentTarget).attr('class') == str){
-	  $(e.currentTarget).attr('class',"btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2");
-	  
-	  var array = $(e.currentTarget).parents()[1].innerText.split('₩');
-	  
-	  var productName = array[0].trim();
-	  var productPrice = array[1].trim().substring(0,array[1].trim().length - 2);
-	  var productImg = $(e.currentTarget).parents()[2].children[0].children[0].currentSrc;
-	  var productNum = $(e.currentTarget).parents()[1].children[0].children[0].href.split('=')[1];
-	  // 찜목록 등록
-	  var data = new Object() ;
-	  
-	    data.image_ref = productImg;
-	    data.PRODUCT_PRICE = productPrice;
-	    data.PRODUCT_NAME = productName;
-	    data.PRODUCT_NUM = productNum;
-	  
-	  var arrayCookie = '"' + encodeURIComponent(JSON.stringify(data)) + '"';
-	  setCookie('wish' + prior,arrayCookie,1);
-	  $('#wishButton').attr('data-notify',parseInt($('#wishButton').attr('data-notify')) + 1)
-	  
-	  var str = "";
-	  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img wish" value='+ prior +'>';
-	  str += '<img src="' + productImg + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8 ">';
-	  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + productName + '</a>'
-	  str += '<span class="header-cart-item-info">' + productPrice + '</span></div></li>';		
-	  $('#miniWish').append(str);
-	  /*
-	     image_ref,PRODUCT_NAME,product_manufacturer,PRODUCT_PRICE,PRODUCT_NUM
-	  */
-	  
-	  }else{
-		  console.log(e);
-		  console.log(111);
-		  console.log(e.currentTarget);
-		  Test22 = e;
-		// 수정 사항  
-	  $(target).attr('class','btn-addwish-b2 dis-block pos-relative js-addwish-b2');
-	  
-	  // 찜목록 삭제
-	  var deleteNum = parseInt($(e.currentTarget).attr('value'));
-	  // 변경 필요
-      setCookie('wish' + deleteNum,'',0);
-      
-	  console.log(deleteNum);
-	  
-      // 지운 후 정렬 
-      var testNum = deleteNum + 1;
-      
-      while(getCookie('wish' + testNum)){
-          testNum++;
-      }
-      
-      console.log(testNum);
-      
-      for(var i = deleteNum + 1; i < testNum; i++){
-          console.log(i);
-          setCookie('wish' + (i-1),getCookie('wish' + i),1);
-          if(i == testNum - 1){
-              setCookie('wish' + i,'',0);
-          }
-      }
-      
-      $('#wishButton').attr('data-notify',testNum - 2);
-      
-      refreshwish();
-      
-	  }
-  });	
+	}
 	
-
+	function clickToRefresh(){
+		registAttr();
+		
+		$('.btn-addwish-b2.dis-block.pos-relative.js-addwish-b2').off();
+		
+		$('a[type="a"]').on('click',function(event){
+			event.stopPropagation();
+			// 등록
+			
+		  var array = $(this).parents()[1].innerText.split('₩');
+		  
+		  var productName = array[0].trim();
+		  var productPrice = array[1].trim().substring(0,array[1].trim().length - 2);
+		  var productImg = $(event.currentTarget).parents()[2].children[0].children[0].currentSrc;
+		  var productNum = $(event.currentTarget).parents()[1].children[0].children[0].href.split('=')[1];
+		  
+		  // 중복검사
+		  if(wishCookieDuplicate(productName)){
+			  return;
+		  }
+		  
+			var prior = 1;
+		    while(getCookie('wish' + prior)){
+		        prior++;
+		    }
+		    
+		  // 변경하기
+		  $(this).attr('class',"btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addedwish-b2");
+		  
+		  // 찜목록 등록
+		  var data = new Object();
+		  
+		    data.image_ref = productImg;
+		    data.PRODUCT_PRICE = productPrice;
+		    data.PRODUCT_NAME = productName;
+		    data.PRODUCT_NUM = productNum;
+		  
+		  // 쿠키 생성
+		  var arrayCookie = '"' + encodeURIComponent(JSON.stringify(data)) + '"';
+		  setCookie('wish' + prior,arrayCookie,1);
+		  $('#wishButton').attr('data-notify',parseInt($('#wishButton').attr('data-notify')) + 1);
+		  
+		  var str = "";
+		  str += '<li class="header-cart-item flex-w flex-t m-b-12"><div class="header-cart-item-img wish" value='+ prior +'>';
+		  str += '<img src="' + productImg + '" alt="IMG"></div><div class="header-cart-item-txt p-t-8 ">';
+		  str += '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' + productName + '</a>'
+		  str += '<span class="header-cart-item-info">' + productPrice + '</span></div></li>';		
+		  $('#miniWish').append(str);
+			
+		  // 새로고침
+			refreshwish();
+			registAttr();
+			clickToRefresh();
+			})
+			
+		 $('a[type="b"]').on('click',function(event){
+			 event.stopPropagation();
+			  // 찜목록 삭제
+			  var deleteNum = parseInt($(this).attr('value'));
+			  
+			  console.log(deleteNum);
+			  setCookie('wish' + deleteNum,'',0);
+			  
+			  // 지운 후 정렬 
+		      var testNum = deleteNum + 1;
+		      
+		      while(getCookie('wish' + testNum)){
+		          testNum++;
+		      }
+		      
+		      console.log(testNum);
+		      
+		      for(var i = deleteNum + 1; i < testNum; i++){
+		          console.log(i);
+		          setCookie('wish' + (i-1),getCookie('wish' + i),1);
+		          if(i == testNum - 1){
+		              setCookie('wish' + i,'',0);
+		          }
+		      }
+		      
+			// 삭제
+			$(this).attr("class",'btn-addwish-b2 dis-block pos-relative js-addwish-b2');
+			
+			
+			$('#wishButton').attr('data-notify',parseInt($('#wishButton').attr('data-notify')) - 1);
+			refreshwish();
+			registAttr();
+			clickToRefresh();
+			
+			})
+		
+	}
+	
+	refreshwish();
+	registAttr();
+	clickToRefresh();
 	</script>
 </body>
 <script type="text/javascript">
