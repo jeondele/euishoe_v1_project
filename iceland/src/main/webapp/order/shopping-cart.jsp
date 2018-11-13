@@ -97,12 +97,12 @@ window.onload = function () {
  */
 };
 
-// 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수..->태그에 onclick걸어줌
+/* // 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수..->태그에 onclick걸어줌
 function clearAddrInput() {
 	$('#postNum').val('');
 	$('#address').val('');
 	$('#address_detail').val('');
-}
+} */
 /*
 // 상품 수량 element에 id값 동적 부여
 function dynamicGrantId() {
@@ -239,7 +239,7 @@ function sumPrice(){
                 <span class="float-l">&nbsp;&nbsp;</span>
                
                 <span class="float-l">&nbsp;&nbsp;</span>
-                <a id="newAddr" class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab" onclick="clearAddrInput()">새로운 배송지</a>
+                <a id="newAddr" class="float-l flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" data-toggle="tab">새로운 배송지</a>
             </div>
               <div class="tab-content">
                 <div id="home" class="deliveryAddress" style="width:100%;">
@@ -503,36 +503,31 @@ function sumPrice(){
 	});
 	
 	// 선택 삭제 버튼 클릭 시 발생(deleteItem(e)함수 내용 실행 but event의 target찾아갈 수 없어서 중복해서 씀..ㅠ)
-	// ->2개 이상선택 후 클릭 시 처음제품만 삭제됨!!!!
 	$('#delete_selected').click(function() {
-		var deleteNum;
-		var testNum;
-		var target;
-		for(var i=0; i<$('.roundedOne').length; i++){
+		
+		for(var i=0; i<$('.table_row').length; i++){
+			console.log('카트수만큼 들어온다');
+			//체크가 되어있으면 
 			if($('.roundedOne')[i].checked){
-				//deleteItem함수 실행..event가 매개변수로 되어있다..ㅠ
-				//부모의 부모의 두번째자식의 첫자식이 div태그의 value값
-				target = document.getElementsByClassName('roundedOne')[i].parentElement.parentElement.children[1].firstElementChild;
-				deleteNum = document.getElementsByClassName('roundedOne')[i].parentElement.parentElement.children[1].firstElementChild.getAttribute('value');
-				setCookie('cart' + deleteNum,'',0);
+				//쿠키지움
+				var cartNum = i+1;
+				setCookie('cart'+cartNum, '', 0);
+				//row지움
+				document.getElementsByClassName('roundedOne')[i].parentElement.parentElement.remove();
 				
-				// 지운 후 정렬 
-		        testNum = deleteNum + 1;
-		        
-		        while(getCookie('cart' + testNum)){
-		            testNum++;
-		        }
-		        
-		        for(var i = deleteNum + 1; i < testNum; i++){
-		            setCookie('cart' + (i-1),getCookie('cart' + i),1);
-		            if(i == testNum - 1){
-		                setCookie('cart' + i,'',0);
-		            }
-		        }
-		        
-		        target.parentElement.parentElement.remove();
-		        $('#cartButton').attr('data-notify',testNum - 2);
+				//정렬
+				//i+1쿠키가 삭제, i+2쿠키를 i+1쿠키로 set
+				cartNum;
+				setCookie('cart'+cartNum, getCookie('cart'+(cartNum+1)), 1);
+				setCookie('cart'+(cartNum+1),'',0);
+				// 카트아이콘 보여지는 숫자세팅
+				var cnum = Number($('#cartButton').attr('data-notify'))-1;
+				$('#cartButton').attr('data-notify', cnum);
 			}
+		}
+		// 다돌고 check모두 true
+		for(var n=0; n<$('.table_row'); n++){
+			$('.roundedOne')[n].checked = true;
 		}
 		sumUp();
 	});
@@ -656,6 +651,13 @@ function sumPrice(){
 				//console.log('카트쿠키 상품코드값?/'+jsonData.PRODUCT_CODE);
 			}
 		});
+	
+	// 새로운 배송지 클릭 시, 주소 input feild clear해주는 함수..->태그에 onclick걸어줌
+	 $('#newAddr').click(function () {
+		 $('#postNum').val('');
+		 $('#address').val('');
+		 $('#address_detail').val('');
+	});
 		
 	
 </script> 
