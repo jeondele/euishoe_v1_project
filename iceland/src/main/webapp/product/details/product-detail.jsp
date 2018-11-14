@@ -704,9 +704,6 @@
 			$('#productCode').val(productCode);
 			$('#pantsCode').val(pantsCode);
 			$('#jacketCode').val(jacketCode);
-			alert($('#productCode').val());
-			alert($('#pantsCode').val());
-			alert($('#jacketCode').val());
 		});
 	</script>
 	<!--===============================================================================================-->
