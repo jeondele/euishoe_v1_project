@@ -10,7 +10,7 @@
 	      			<h1 class="modal-title" style="display:inline; text-align: center;">주문 완료</h1>
 	            </div>
 	            <div class="modal-body">
-	            	<h1>주문이 정상적으로 완료되었습니다.</h1>
+	            	<img src="/iceland/images/payResult.png" style="width: 100%; height: 100%">
                 </div>
                 
                 <div class="modal-footer" style="align-items:center;">
