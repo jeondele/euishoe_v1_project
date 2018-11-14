@@ -41,13 +41,10 @@ public class ProductAjaxController implements Controller {
 			//paramMapping 
 			String tpo = (String) request.getParameter("tpo");
 			if(tpo=="") tpo = null;
-			System.out.println("tpo는???????"+tpo);
 			String season = request.getParameter("season");
 			if(season=="") season = null;
-			System.out.println("season????" + season);
 			String price = request.getParameter("price");
 			if(price=="") price = null;
-			System.out.println("price는???????"+price);
 			String lowPrice = null;
 			String highPrice = null;
 			
