@@ -3375,6 +3375,7 @@ iframe {border: none;}
 .flex-t {
 	-ms-align-items: flex-start;
 	align-items: flex-start;
+	color : black;
 }
 
 .flex-b {

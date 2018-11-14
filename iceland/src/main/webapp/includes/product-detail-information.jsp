@@ -356,7 +356,7 @@ function qnaDynamicList() {
 			                            			<c:forEach var="review" items="${ReviewList}" varStatus="status">
 			                            			<%-- 답변 완료 글 --%>
 			                            			<c:choose>
-												      <c:when test="${review.get('REVIEW_ISANSWERED')==\"Y\"}">
+												      <c:when test="${review.get('REVIEW_ISANSWERED')=='Y'}">
 					                            		<tr>
 					                            			<td class="td_num txt-center">${status.count}</td>
 					                            			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
@@ -399,7 +399,7 @@ function qnaDynamicList() {
 			                            		</c:when>
 			                            		<%-- 리스트가 없을 때 --%>
 			                            		<c:otherwise>
-			                            			<p>게시글이 존재하지 않습니다.</p>
+			                            			<tr><td class="td_num txt-center" colspan="5">조회한 리뷰가 없습니다.</td></tr>
 			                            		</c:otherwise>
 			                            	</c:choose>
 			                            	</tbody>

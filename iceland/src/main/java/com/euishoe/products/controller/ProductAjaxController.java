@@ -61,13 +61,26 @@ public class ProductAjaxController implements Controller {
 			String color = request.getParameter("color");
 			if(color=="") color = null;
 			System.out.println("color는???????"+color);
-			int bodyType = (request.getParameter("bodyType") == "") ? 0 : Integer.valueOf(request.getParameter("bodyType"));
-			System.out.println("bodyType는???????"+bodyType);
-			int shoulderType = (request.getParameter("shoulderType") == "") ? 0 : Integer.valueOf(request.getParameter("shoulderType"));
-			System.out.println("shoulderType는???????"+shoulderType);
-			int legType = (request.getParameter("shoulderType") == "") ? 0 : Integer.valueOf(request.getParameter("legType"));
-			System.out.println("legType는???????"+legType);
-			int armType = (request.getParameter("armType") == "") ? 0 : Integer.valueOf(request.getParameter("armType")); 
+			int bodyType = 0;
+			if (request.getParameter("bodyType") != null || request.getParameter("bodyType").equals("")) {
+				bodyType = Integer.valueOf(request.getParameter("bodyType"));
+			}
+			
+			int shoulderType = 0;
+			if (request.getParameter("shoulderType") != null || request.getParameter("shoulderType").equals("") ) {
+				shoulderType = Integer.valueOf(request.getParameter("shoulderType"));
+			}
+			
+			int legType = 0;
+			if (request.getParameter("legType") != null || request.getParameter("legType").equals("") ) {
+				legType = Integer.valueOf(request.getParameter("legType"));
+			}
+			
+			int armType = 0;
+			if (request.getParameter("armType") != null || request.getParameter("armType").equals("") ) {
+				armType = Integer.valueOf(request.getParameter("armType"));
+			}
+			
 			String orderByPrice = request.getParameter("orderByPrice");
 			if(orderByPrice=="") orderByPrice = null;
 			System.out.println("armType는???????"+armType);
