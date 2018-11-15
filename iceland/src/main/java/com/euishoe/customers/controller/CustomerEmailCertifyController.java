@@ -36,6 +36,7 @@ public class CustomerEmailCertifyController implements Controller {
 		
 		//입력받은 이메일값
 		String email = request.getParameter("emailAdd");
+		System.out.println("이메일값"+email);
 		// 이메일인증번호
 		String subject = "[euishoe]회원가입 이메일 인증 안내";
 		String certifyCode = createCode();

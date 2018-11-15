@@ -26,6 +26,7 @@
 	<bean type="controller" name="/customer/findme" class="com.euishoe.customers.controller.CustomerFindmeController" />
 	<bean type="controller" name="/customer/emailCertify" class="com.euishoe.customers.controller.CustomerEmailCertifyController" />
 	<bean type="controller" name="/customer/customize" class="com.euishoe.customers.controller.CustomerCustomizeController" />
+	<bean type="controller" name="/customer/idCheck" class="com.euishoe.customers.controller.IdDupCheckController"/>
 	
 	<!--review-->
 	<bean type="controller" name="/review/write" class="com.euishoe.reviews.controller.ReviewCreateController" />

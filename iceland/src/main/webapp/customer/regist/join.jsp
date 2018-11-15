@@ -87,8 +87,8 @@
                         <svg class="icon">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
                         </svg><span class="hidden">Username</span></label>
-                    <input id="login__userid" type="text" name="userid" class="form__input" placeholder="이쁜 아이디 입력" required> 
-                    <input class="checkbtn" type="button" value="중복검사">
+                    <input type="text" id="userId" name="userid" class="form__input" onclick=checkId() placeholder="이쁜 아이디 입력" required> 
+                    <input class="checkbtn" id="checkDup" type="button" value="중복검사">
                 </div>
                 </li>
                 
@@ -120,7 +120,7 @@
                         <svg class="icon">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
                         </svg><span class="hidden">userName</span></label>
-                    <input id="login__userName" type="text" name="userName" class="form__input" placeholder="userName" required> </div>
+                    <input id="userName" type="text" name="userName" class="form__input" placeholder="userName" required> </div>
               </li>
               
                <li>
@@ -130,7 +130,7 @@
                         <svg class="icon">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
                         </svg><span class="hidden">userName</span></label>
-                    <input id="login__userName" type="text" name="userPhone" class="form__input" placeholder="휴대폰번호" required> </div>
+                    <input id="userPhone" type="text" name="userPhone" class="form__input" placeholder="휴대폰번호" required> </div>
               </li>
                 
           	 <li>  
@@ -439,6 +439,71 @@
 		}
 	</script>
 <!-- ============================================================================================== -->
+<script type="text/javascript">
+//아이디 중복검사용 비동기
+function checkId(){
+			if(document.getElementById("emailHost").value.trim()=="직접입력"){
+				var emailAdd = document.getElementById("email").value;
+			}else{
+				emailAdd = document.getElementById("email").value + "@" + document.getElementById("emailHost").value;
+			}
+			var inputId = $('#userId').val().trim();
+			var url = "/iceland/customer/emailCertify.es";
+			ajax({
+				method : "get",
+				url : url,
+				param : "inputId="+inputId,
+				callback : dupRes
+			});
+		}
+
+function dupRes(result) {
+	
+	var dupRes = result.responseText;
+	alert("응답obj"+result+", 결과:"+dupRes);
+	if(dupRes.trim() != "ok"){
+		alert('이미 사용중인 아이디 입니다.');
+		$('#userId').val('');
+	}else{
+		alert('사용가능한 아이디 입니다.');
+		$('#userId').attr('readonly', 'readonly');
+		
+	}
+}
+
+// 유효성
+function valication(inputField) {
+	var inputVar = inputField.val();
+	var reg;
+	switch(inputField.attr('name')){
+	case 'password':    
+		reg = /^[a-zA-Z0-9]{4,10}$/;
+		if(){
+			
+			break;	
+		}else{
+			
+			break;	
+		}
+		$(this).innerHTML='<span>비밀번호 형식을 지켜주세요</span>';
+	}
+	case 'passwordConfirm':
+		reg = //;
+		break;
+	case 'userName':
+		reg=//
+		break;
+	case 'userPhone':
+		reg=//
+		break;
+	case 'birth':
+		reg=/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
+		if(!reg.test())
+		break;
+}
+
+
+</script>
 
 </body>
 </html>

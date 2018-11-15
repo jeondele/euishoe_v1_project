@@ -60,27 +60,18 @@ public class ProductAjaxController implements Controller {
 			}
 			String fabric = request.getParameter("fabric");
 			if(fabric=="") fabric = null;
-			System.out.println("fabric는???????"+fabric);
 			String color = request.getParameter("color");
 			if(color=="") color = null;
-			System.out.println("color는???????"+color);
 			int bodyType = (request.getParameter("bodyType") == "") ? 0 : Integer.valueOf(request.getParameter("bodyType"));
-			System.out.println("bodyType는???????"+bodyType);
 			int shoulderType = (request.getParameter("shoulderType") == "") ? 0 : Integer.valueOf(request.getParameter("shoulderType"));
-			System.out.println("shoulderType는???????"+shoulderType);
 			int legType = (request.getParameter("shoulderType") == "") ? 0 : Integer.valueOf(request.getParameter("legType"));
-			System.out.println("legType는???????"+legType);
 			int armType = (request.getParameter("armType") == "") ? 0 : Integer.valueOf(request.getParameter("armType")); 
 			String orderByPrice = request.getParameter("orderByPrice");
 			if(orderByPrice=="") orderByPrice = null;
-			System.out.println("armType는???????"+armType);
 			String orderByHitcount = request.getParameter("orderByHitcount");
 			if(orderByHitcount=="") orderByHitcount = null;
-			System.out.println("orderByPrice는???????"+orderByPrice);
 			String orderByStar = request.getParameter("orderByStar");
 			if(orderByStar=="") orderByStar = null;
-			System.out.println("orderByHitcount는???????"+orderByHitcount);
-			System.out.println("orderByStar는???????"+orderByStar);
 			
 			
 			FilterParam filterParam = new FilterParam(tpo, season, lowPrice, highPrice, fabric, color, bodyType, shoulderType, armType, legType,

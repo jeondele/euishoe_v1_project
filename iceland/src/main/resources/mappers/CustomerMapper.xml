@@ -62,6 +62,10 @@
     		         1,
     		         1) 
 	</insert>
+	<!-- id중복체크 -->
+	<select id="dupCheck" resultType="map" parameterType="java.lang.String">
+		SELECT * FROM customers WHERE customer_id = #{inputId}
+	</select>
 	<!-- 회원정보 get -->
 	<select id="getCustomerInfo" parameterType="java.lang.String" resultType="com.euishoe.customers.dto.Customer">
 		SELECT customer_id          "customerId", 
