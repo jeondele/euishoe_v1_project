@@ -273,7 +273,7 @@ function qnaDynamicList() {
 						<!-- 상품 상세 설명 -->
 						<div class="tab-pane fade show active" id="description"
 							role="tabpanel">
-							<div class="how-pos2 p-lr-15-md">
+							<div class="how-pos2 p-lr-15-md" style="background-color:white">
 								<p class="stext-102 cl6">
 									<c:forEach items="${selectAllById}" var="product">
 									<c:set var ="imageRef" value="${product.imageRef}"/>
@@ -288,7 +288,7 @@ function qnaDynamicList() {
 
 						<!-- 상품 정보 -->
 						<div class="tab-pane fade show" id="information" role="tabpanel">
-							<div class="row">
+							<div class="row" style="background-color:white">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<ul class="p-lr-28 p-lr-15-sm">
 										<li class="flex-w flex-t p-b-7"><span
@@ -321,7 +321,7 @@ function qnaDynamicList() {
 
 						<!-- 상품리뷰 -->
 						<div class="tab-pane fade" id="reviews" role="tabpanel">
-			               <div class="row">
+			               <div class="row" style="background-color:white">
 			               	 <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 	                          	<div class="p-b-30 m-lr-15-sm">
 	                          		<div class="flex-w flex-t p-b-68">
@@ -356,7 +356,7 @@ function qnaDynamicList() {
 			                            			<c:forEach var="review" items="${ReviewList}" varStatus="status">
 			                            			<%-- 답변 완료 글 --%>
 			                            			<c:choose>
-												      <c:when test="${review.get('REVIEW_ISANSWERED')==\"Y\"}">
+												      <c:when test="${review.get('REVIEW_ISANSWERED')=='Y'}">
 					                            		<tr>
 					                            			<td class="td_num txt-center">${status.count}</td>
 					                            			<td class="txt_view txt-center flex-c-m"><span class="state">완료</span></td>
@@ -399,7 +399,7 @@ function qnaDynamicList() {
 			                            		</c:when>
 			                            		<%-- 리스트가 없을 때 --%>
 			                            		<c:otherwise>
-			                            			<p>게시글이 존재하지 않습니다.</p>
+			                            			<tr><td class="td_num txt-center" colspan="5">조회한 리뷰가 없습니다.</td></tr>
 			                            		</c:otherwise>
 			                            	</c:choose>
 			                            	</tbody>
@@ -412,7 +412,7 @@ function qnaDynamicList() {
                
         			<%-- QnA 창 --%>
                     <div class="tab-pane fade" id="qna" role="tabpanel">
-                         <div class="row">
+                         <div class="row" style="background-color:white">
               	 			<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                        			<div class="p-b-30 m-lr-15-sm">
                        				<div class="flex-w flex-t p-b-68">
@@ -420,17 +420,8 @@ function qnaDynamicList() {
 			                        		<button type="button" id="myQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="qnaDynamicList()">내 문의</button>
 			                        		<button type="button" id="allQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="qnaAllList()">전체문의</button>
 			                        		<button type="button" id="insertQnA" class="float-r flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" data-toggle="modal" data-target="#popLayWrap">문의하기</button>
-			                         	 <!--  <select name="selQnaDtlsCd" class="float-l" id="selQnaDtlsCd" style="float:left; height: 35px; font-size: 15px;">
-			                         	  	<option value="0" selected>문의유형(전체)</option>
-			                         	  	<option value="1">상품</option>
-			                         	  	<option value="2">배송</option>
-			                         	  	<option value="3">반품/취소</option>
-			                         	  	<option value="4">교환/변경</option>
-			                         	  	<option value="5">기타</option>
-			                         	  </select>	 -->
-			                         	  	<!-- 동적으로 표시버튼 누르면 바뀌도록 제작 -->
-			                           	  <button type="button" id="secretQnA" class="float-l flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="qnaDynamicList()">비밀글 제외</button>
-			                           	  <input type="hidden" id="qnaisLock" value="N">
+			                           	  	<button type="button" id="secretQnA" class="float-l flex-c-m stext-101 cl2 size-100 bg8 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="qnaDynamicList()">비밀글 제외</button>
+			                           	  	<input type="hidden" id="qnaisLock" value="N">
 			                        	</div>
                         
 				                        <table class="prdc_bbs" summary="이 표는 상품 Q&amp;A 및 내용이 번호,문의유형,문의/답변,작성자,작성일로 구성되어 있습니다.">

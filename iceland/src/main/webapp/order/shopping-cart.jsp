@@ -41,6 +41,7 @@
 <link rel="stylesheet" type="text/css" href="/iceland/css/main.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/iceland/order/shopping-cart.css">
+<link rel="stylesheet" type="text/css" href="/iceland/product/details/product_detail.css">
 <!--===============================================================================================-->
 <!-- <link rel="stylesheet" type="text/css" href="/iceland/product/detail/product.css"> -->
   <!--===============================================================================================-->

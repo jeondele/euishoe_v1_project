@@ -58,11 +58,6 @@ var getCookie = function(name) {
    							</c:when>
    							<c:otherwise></c:otherwise>
   						</c:choose>
-					
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Help & FAQs
-						</a>
-						
 						<c:choose>
 							<c:when test="${not empty cookie.loginId}">
 								<a href="/iceland/customer/logout.es" class="flex-c-m trans-04 p-lr-25">
@@ -79,8 +74,8 @@ var getCookie = function(name) {
 							</c:otherwise>
 						</c:choose>	
 
-						<a href="/iceland/customer/mypage.es" class="flex-c-m trans-04 p-lr-25">
-							MyPage
+						<a href="/iceland/customer/mypage/myinfo.es" class="flex-c-m trans-04 p-lr-25">
+							내 정보 수정
 						</a>
 						<a href="/iceland/customer/customizing/customizing.jsp" class="flex-c-m trans-04 p-lr-25">
 							Customizing
@@ -105,35 +100,17 @@ var getCookie = function(name) {
 							</li>
 
 							<li>
-								<a href="/iceland/product.es">Shop</a>
+								<a href="/iceland/product.es">Product(상품)</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="/iceland/order.es">Features</a>
-							</li>
-
-							<li>
-								<a href="blog.html">Blog</a>
-							</li>
-
-							<li>
-								<a href="about.html">About</a>
-							</li>
-
-							<li>
-								<a href="/iceland/customer/mypage/mypage.jsp">Contact</a>
+								<a href="/iceland/order.es">Order(주문)</a>
 							</li>
 						</ul>
 					</div>	
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-                        <form style="display: inherit;">
-                        <input type="text" style="border: 1px solid black;"/>
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
-							<i class="zmdi zmdi-search"></i>
-						</div>
-                            </form>
                         <!--mobile-->
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search" style="display: none;">
 							<i class="zmdi zmdi-search"></i>
@@ -193,9 +170,6 @@ var getCookie = function(name) {
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Help & FAQs
-						</a>
 
 						<a href="#" class="flex-c-m p-lr-10 trans-04">
 							My Account

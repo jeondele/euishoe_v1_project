@@ -44,6 +44,8 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="/iceland/order/shopping-cart.css">
+<link rel="stylesheet" type="text/css" href="/iceland/css/toastMessage.css">
+<link rel="stylesheet" type="text/css" href="/iceland/product/details/product_detail.css">
 <!--===============================================================================================-->
 <script src="/iceland/vendor/jquery/jquery-3.2.1.min.js"></script>
 <style>
@@ -181,7 +183,7 @@ tr {
 
 
 	<!-- Shoping Cart -->
-	<form class="bg0 p-t-75 p-b-85">
+	<div class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -412,13 +414,15 @@ tr {
 								</div>
 							</div>
 
-							<button id="doneOrder"
+							<button id="doneOrder" data-toggle ="modal" data-target="#popLayWrap3"
 								class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 								결제하기</button>
 						</div>
 					</div>
 			</div>
 		</div>
+	</div>
+	<%-- 	
 	<form id="sendToDoneOrder" action="/iceland/ordersucc.es">	
 		<input type="hidden" name="sendProductCode" id="post1"/>
 		<input type="hidden" name="sendPantsCode" id="post2"/>
@@ -434,17 +438,19 @@ tr {
 		<input type="hidden" name="sendDeliveryRecipientPhoneNumber" id="post12"/>
 		<input type="hidden" name="sendDeliveryRequirement" id="post13"/>
 	</form>
-
+ --%>
 	<%@include file="/iceland/../includes/footer.jsp"%>
 
 	<%@include file="/iceland/../includes/QuickMenu.jsp"%>
+	
+	<%@include file="/iceland/../includes/payResultModal.jsp" %>
 
 	<script>
-	$(function(){
-		$("#doneOrder").on("click",function(){
-			$("#sendToDoneOrder").submit();
-		})
-	})
+// 	 $(function(){
+// 		$("#doneOrder").on("click",function(){
+// 			$("#sendToDoneOrder").submit();
+// 		})
+// 	})
 	
 	</script>
 	<!--===============================================================================================-->
@@ -484,8 +490,12 @@ tr {
 	</div>
 
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script src="/iceland/js/address.js"></script>
-	<script src="/iceland/js/ajax.js"></script>
+	<script src="/iceland/js/address.js">
+	</script>
+	<script src="/iceland/js/ajax.js">
+	</script>
+	<script src="/iceland/js/toastMessage.js">
+	</script>
 	<!--===============================================================================================-->
     <script type="text/javascript">
     
@@ -499,7 +509,7 @@ tr {
     	$('#usingPoint').onkeyup = function(){
             $("#post8").val(parseInt(replaceAll($('.mtext-110.cl2')[0].innerText.substring(3,$('.mtext-110.cl2')[0].innerText.length - 3),',','')) - $('#usingPoint').val());   
             $('.mtext-110.cl2')[0].innerText = (parseInt(replaceAll($('.mtext-110.cl2')[0].innerText.substring(3,$('.mtext-110.cl2')[0].innerText.length - 3),',','')) - $('#usingPoint').val());
-         });
+         };
     	$('#usingPoint').on('change',function(){
     		$('#post6').val($('#usingPoint').val());
     		

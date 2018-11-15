@@ -238,10 +238,10 @@
                  	order by product_list_price DESC
                  </if>
                  <if test="orderByHitcount != null">
-                 	order by product_hitcount #{orderByHitcount}
+                 	order by product_hitcount DESC
                  </if>
                  <if test="orderByStar != null">
-                 	order by star_score #{orderByStar}
+                 	order by star_score DESC
                  </if>
 	</select>
 
